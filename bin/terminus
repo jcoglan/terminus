@@ -18,6 +18,8 @@ begin
   
   app.run!
   puts "Terminus running at http://0.0.0.0:#{options[:port]}"
+  puts "Press CTRL-C to exit"
+  
   trap("INT") { app.stop! ; exit }
   
   loop {

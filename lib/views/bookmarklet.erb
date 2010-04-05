@@ -11,10 +11,13 @@
     script.type = 'text/javascript';
     script.src  = host + '/js.packages.js';
     
-    script.onload = function() {
-      script.onload = null;
-      head.removeChild(script);
-      callback();
+    script.onload = script.onreadystatechange = function() {
+      var state = script.readyState;
+      if (!state || state === 'loaded' || state === 'complete') {
+        script.onload = script.onreadystatechange = null;
+        head.removeChild(script);
+        callback();
+      }
     };
     head.appendChild(script);
   };
