@@ -1,0 +1,32 @@
+require 'rubygems'
+require 'readline'
+require 'oyster'
+require File.dirname(__FILE__) + '/../lib/terminus'
+
+spec = Oyster.spec do
+  name "terminus -- controll web browsers from the command line"
+  synopsis "terminus [--port PORT]"
+  
+  integer :port, :default => 7004
+end
+
+begin
+  options = spec.parse
+  app = Terminus::Server.new(options)
+  
+  Thread.new { app.run }
+  while not app.running?; end
+  
+  puts "Terminus running at http://localhost:#{options[:port]}"
+  trap("INT") { app.stop; exit }
+  
+  loop {
+    script, result = Readline.readline('>> '), nil
+    app.execute(script) { |r| result = r }
+    while result.nil?; end
+    puts result.value.inspect
+  }
+  
+rescue Oyster::HelpRendered
+end
+
