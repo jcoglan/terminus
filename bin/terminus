@@ -14,7 +14,7 @@ end
 
 begin
   options = spec.parse
-  app = Terminus::Server.new(options)
+  app = Terminus.create(options)
   
   Thread.new { app.run }
   while not app.running?; end
@@ -24,9 +24,8 @@ begin
   
   loop {
     script, result = Readline.readline('>> '), nil
+    Readline::HISTORY.push(script)
     app.execute(script) { |r| result = r }
-    while result.nil?; end
-    puts result.value.inspect
   }
   
 rescue Oyster::HelpRendered

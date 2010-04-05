@@ -40,6 +40,8 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("thin", ">= 1.2")
   s.add_dependency("eventmachine", ">= 0.12")
   s.add_dependency("faye", "~> 0.3.2")
+  s.add_dependency("sinatra", ">= 1.0")
+  s.add_dependency("packr", ">= 3.1")
   s.add_dependency("oyster", ">= 0.9")
 
   # If your tests use any gems, include them here
