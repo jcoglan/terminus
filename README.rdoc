@@ -1,0 +1,61 @@
+= Terminus
+
+* http://github.com/jcoglan/terminus
+
+Terminus is a distributed JavaScript terminal. It lets you connect
+web browsers you have open to a command-line console and run code
+on all connected browsers at once. It's currently a toy, but it
+might turn into a useful debugging and testing tool. We'll see.
+
+
+== Installation
+
+  sudo gem install terminus
+
+
+== Usage
+
+In your terminal, run the +terminus+ command. You can optionally
+specify a port for it to open up like this:
+
+  terminus --port 7004
+
+You should see something like this:
+
+  Terminus running at http://0.0.0.0:7004
+  >>
+
+This is the Terminus prompt - it's where you type in JavaScript
+commands. Before you do that, though, visit http://localhost:7004
+in your browser. From there you can grab a bookmarklet that lets
+you connect any web page to the Terminus server. When you click
+the bookmarklet, the current page will open a connection with
+Terminus so that any commands you type into the shell are executed
+on that page.
+
+
+== License
+
+(The MIT License)
+
+Copyright (c) 2010 James Coglan
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
