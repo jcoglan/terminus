@@ -18,10 +18,10 @@ spec = Gem::Specification.new do |s|
   # Change these as appropriate
   s.name              = "terminus"
   s.version           = Terminus::VERSION
-  # s.summary           = "What this thing does"
+  s.summary           = "Control multiple web browsers from the command line"
   s.author            = "James Coglan"
   s.email             = "jcoglan@googlemail.com"
-  # s.homepage          = "http://yoursite.example.com"
+  s.homepage          = "http://github.com/jcoglan/terminus"
 
   s.has_rdoc          = true
   # You should probably have a README of some kind. Change the filename
