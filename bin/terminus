@@ -16,11 +16,9 @@ begin
   options = spec.parse
   app = Terminus.create(options)
   
-  Thread.new { app.run }
-  while not app.running?; end
-  
-  puts "Terminus running at http://localhost:#{options[:port]}"
-  trap("INT") { app.stop; exit }
+  app.run!
+  puts "Terminus running at http://0.0.0.0:#{options[:port]}"
+  trap("INT") { app.stop! ; exit }
   
   loop {
     script, result = Readline.readline('>> '), nil

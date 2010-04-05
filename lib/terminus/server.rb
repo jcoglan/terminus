@@ -13,14 +13,14 @@ module Terminus
       not @server.nil?
     end
     
-    def run
+    def run!
       return if running?
       handler = Rack::Handler.get('thin')
       ensure_reactor_running!
       handler.run(app, :Port => @options[:port]) { |s| @server = s }
     end
     
-    def stop
+    def stop!
       return unless running?
       @server.stop!
       @server = nil
