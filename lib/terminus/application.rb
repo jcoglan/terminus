@@ -7,6 +7,10 @@ module Terminus
     set :public, ROOT + '/public'
     set :views,  ROOT + '/views'
     
+    def self.javascript_tag
+      %Q{<script type="text/javascript" src="http://0.0.0.0:#{DEFAULT_PORT}/controller.js"></script>}
+    end
+    
     helpers do
       def host
         "http://#{ env['HTTP_HOST'] }"
@@ -18,6 +22,7 @@ module Terminus
     end
     
     get('/') { erb :index }
+    get('/controller.js') { bookmarklet }
     
   end
 end

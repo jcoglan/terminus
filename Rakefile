@@ -30,7 +30,7 @@ spec = Gem::Specification.new do |s|
   s.rdoc_options      = %w(--main README.rdoc)
 
   # Add any extra files to include in the gem (like your README)
-  s.files             = %w(README.rdoc) + Dir.glob("{bin,lib/**/*}")
+  s.files             = %w(README.rdoc) + Dir.glob("{bin,lib/**/*,features/**/*}")
   s.executables       = FileList["bin/**"].map { |f| File.basename(f) }
   s.require_paths     = ["lib"]
 
@@ -40,6 +40,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("thin", ">= 1.2")
   s.add_dependency("eventmachine", ">= 0.12")
   s.add_dependency("faye", "~> 0.3.2")
+  s.add_dependency("capybara", ">= 0.3.6")
   s.add_dependency("sinatra", ">= 1.0")
   s.add_dependency("packr", ">= 3.1")
   s.add_dependency("oyster", ">= 0.9")

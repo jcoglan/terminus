@@ -9,7 +9,7 @@ spec = Oyster.spec do
   name "terminus -- controll web browsers from the command line"
   synopsis "terminus [--port PORT]"
   
-  integer :port, :default => 7004
+  integer :port, :default => Terminus::DEFAULT_PORT
 end
 
 begin

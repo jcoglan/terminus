@@ -16,7 +16,7 @@ module Terminus
     def run!
       return if running?
       handler = Rack::Handler.get('thin')
-      ensure_reactor_running!
+      Terminus.ensure_reactor_running!
       handler.run(app, :Port => @options[:port]) { |s| @server = s }
     end
     
@@ -36,11 +36,6 @@ module Terminus
     
     def messenger
       app.get_client
-    end
-    
-    def ensure_reactor_running!
-      Thread.new { EM.run unless EM.reactor_running? }
-      while not EM.reactor_running?; end
     end
     
   end
