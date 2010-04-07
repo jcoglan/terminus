@@ -10,7 +10,19 @@ module Terminus
     def initialize
       @connected = false
       @browsers = {}
+      @ping_callbacks = []
       trap('INT') { exit }
+    end
+    
+    def messenger
+      Terminus.ensure_reactor_running!
+      return @messenger if defined?(@messenger)
+      
+      @messenger = Faye::Client.new(Terminus.endpoint)
+      @messenger.subscribe('/terminus/ping') do |message|
+        accept_ping(message)
+      end
+      @messenger
     end
     
     def ensure_connection!
@@ -36,27 +48,28 @@ module Terminus
       @browsers.each { |id, b| b.return_to_dock }
     end
     
-    def messenger
-      Terminus.ensure_reactor_running!
-      return @messenger if defined?(@messenger)
-      
-      @messenger = Faye::Client.new(Terminus.endpoint)
-      @messenger.subscribe('/terminus/ping') do |message|
-        accept_ping(message)
-      end
-      @messenger
+    def await_ping(params)
+      ping = PingMatch.new(params)
+      @ping_callbacks << ping
+      done = false
+      ping.callback { done = true }
+      while not done; sleep 0.1; end
     end
     
   private
     
     def accept_ping(message)
       browser(message['id']).ping!(message)
+      @ping_callbacks.each do |ping|
+        ping.complete! if ping === message
+      end
+      @ping_callbacks.delete_if { |p| p.complete? }
     end
     
     def wait_with_timeout(name, &predicate)
       time_out = false
       add_timeout(name, TIMEOUT) { time_out = true }
-      while not time_out and not predicate.call; sleep 1; end
+      while not time_out and not predicate.call; sleep 0.1; end
       raise TimeoutError.new("Waited #{TIMEOUT}s but could not get a #{name}") if time_out
       remove_timeout(name)
     end

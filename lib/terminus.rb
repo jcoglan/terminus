@@ -8,7 +8,13 @@ require 'capybara'
 require 'sinatra'
 require 'packr'
 
-%w[application server controller browser].each do |file|
+%w[ application
+    server
+    controller
+    browser
+    ping_match
+
+].each do |file|
   require File.join(File.dirname(__FILE__), 'terminus', file)
 end
 

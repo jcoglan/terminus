@@ -2,7 +2,6 @@ module Terminus
   class Browser
     
     include Faye::Timeouts
-    include Observable
     
     TIMEOUT = 30
     
@@ -19,11 +18,15 @@ module Terminus
     def ping!(message)
       remove_timeout(:dead)
       @attributes = @attributes.merge(message)
+      add_timeout(:dead, TIMEOUT) { drop_dead! }
     end
     
     def visit(url)
+      @controller.drop_browser(self)
       instruct [:visit, url]
-      sleep 2
+      @controller.await_ping(
+        'ua'  => @attributes['ua'],
+        'url' => url)
     end
     
     def return_to_dock
