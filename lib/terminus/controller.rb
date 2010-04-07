@@ -19,9 +19,9 @@ module Terminus
       return @messenger if defined?(@messenger)
       
       @messenger = Faye::Client.new(Terminus.endpoint)
-      @messenger.subscribe('/terminus/ping') do |message|
-        accept_ping(message)
-      end
+      
+      @messenger.subscribe('/terminus/ping',    &method(:accept_ping))
+      @messenger.subscribe('/terminus/results', &method(:accept_result))
       @messenger
     end
     
@@ -64,6 +64,10 @@ module Terminus
         ping.complete! if ping === message
       end
       @ping_callbacks.delete_if { |p| p.complete? }
+    end
+    
+    def accept_result(message)
+      browser(message['id']).result!(message)
     end
     
     def wait_with_timeout(name, &predicate)

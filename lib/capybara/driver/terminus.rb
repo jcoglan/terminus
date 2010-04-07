@@ -9,6 +9,10 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     browser.visit @rack_server.url(path)
   end
   
+  def find(xpath)
+    browser.find(xpath)
+  end
+  
 private
   
   def browser
