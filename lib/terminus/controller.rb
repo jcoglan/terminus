@@ -5,6 +5,7 @@ module Terminus
     end
     
     include Timeouts
+    attr_accessor :dock_host
     
     def initialize
       @connected = false

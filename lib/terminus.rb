@@ -1,4 +1,5 @@
 require 'forwardable'
+require 'uri'
 require 'rubygems'
 require 'rack'
 require 'thin'
@@ -26,6 +27,7 @@ Thin::Logging.silent = true
 module Terminus
   VERSION      = '0.2.0'
   FAYE_MOUNT   = '/messaging'
+  DEFAULT_HOST = 'localhost'
   DEFAULT_PORT = 7004
   
   class << self
@@ -33,12 +35,12 @@ module Terminus
       Server.new(options)
     end
     
-    def javascript_tag
-      Application.javascript_tag
+    def javascript_tag(host = DEFAULT_HOST)
+      Application.javascript_tag(host)
     end
     
-    def endpoint
-      "http://0.0.0.0:#{DEFAULT_PORT}#{FAYE_MOUNT}"
+    def endpoint(host = DEFAULT_HOST)
+      "http://#{host}:#{DEFAULT_PORT}#{FAYE_MOUNT}"
     end
     
     def ensure_reactor_running!

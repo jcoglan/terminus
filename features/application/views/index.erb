@@ -6,7 +6,8 @@
     <title>Terminus</title>
   </head>
   <body>
-    <%= Terminus.javascript_tag %>
+    <% hosts = %w[0.0.0.0 10.0.2.2] %>
+    <%= Terminus.javascript_tag hosts.first %>
     <h1>Hello, Terminus!</h1>
   </body>
 </html>

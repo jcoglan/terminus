@@ -3,6 +3,8 @@ module Terminus
     
     include Timeouts
     
+    LOCALHOST = /localhost|0\.0\.0\.0|127\.0\.0\.1/
+    
     def initialize(controller)
       @controller = controller
       @attributes = {}
@@ -18,6 +20,7 @@ module Terminus
     def ping!(message)
       remove_timeout(:dead)
       @attributes = @attributes.merge(message)
+      detect_dock_host
       add_timeout(:dead, TIMEOUT) { drop_dead! }
     end
     
@@ -27,6 +30,7 @@ module Terminus
     
     def visit(url)
       @controller.drop_browser(self)
+      url = url.gsub(LOCALHOST, @controller.dock_host)
       instruct [:visit, url]
       @controller.await_ping(
         'ua'  => @attributes['ua'],
@@ -38,10 +42,18 @@ module Terminus
     end
     
     def return_to_dock
-      visit "http://0.0.0.0:#{DEFAULT_PORT}/"
+      visit "http://#{@controller.dock_host}:#{DEFAULT_PORT}/"
     end
     
   private
+    
+    def messenger
+      @controller.messenger
+    end
+    
+    def channel
+      "/terminus/clients/#{id}"
+    end
     
     def drop_dead!
       @controller.drop_browser(self)
@@ -58,12 +70,9 @@ module Terminus
       @results.delete(id) ? [:foo] : []
     end
     
-    def messenger
-      @controller.messenger
-    end
-    
-    def channel
-      "/terminus/clients/#{id}"
+    def detect_dock_host
+      uri = URI.parse(@attributes['url'])
+      @controller.dock_host = uri.host if uri.port == DEFAULT_PORT
     end
     
   end

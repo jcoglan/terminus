@@ -7,7 +7,7 @@
     <title>Terminus</title>
   </head>
   <body>
-    <%= Terminus.javascript_tag %>
+    <%= Terminus.javascript_tag request.host %>
     
     <div class="container">
       <h1><a href="javascript:<%= bookmarklet %>">Terminus</a>.</h1>
