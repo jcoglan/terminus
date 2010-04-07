@@ -1,9 +1,7 @@
 module Terminus
   class Browser
     
-    include Faye::Timeouts
-    
-    TIMEOUT = 30
+    include Timeouts
     
     def initialize(controller)
       @controller = controller
@@ -50,24 +48,22 @@ module Terminus
     end
     
     def instruct(code)
-      channel = "/terminus/clients/#{id}"
-      @controller.messenger.publish(channel, 'command' => code)
+      messenger.publish(channel, 'command' => code)
     end
     
     def instruct_and_wait(code)
-      channel = "/terminus/clients/#{id}"
       id = @namespace.generate
-      @controller.messenger.publish(channel, 'command' => code, 'commandId' => id)
+      messenger.publish(channel, 'command' => code, 'commandId' => id)
       wait_with_timeout(:result) { @results.has_key?(id) }
       @results.delete(id) ? [:foo] : []
     end
     
-    def wait_with_timeout(name, &predicate)
-      time_out = false
-      add_timeout(name, TIMEOUT) { time_out = true }
-      while not time_out and not predicate.call; sleep 0.1; end
-      raise TimeoutError.new("Waited #{TIMEOUT}s but could not get a #{name}") if time_out
-      remove_timeout(name)
+    def messenger
+      @controller.messenger
+    end
+    
+    def channel
+      "/terminus/clients/#{id}"
     end
     
   end

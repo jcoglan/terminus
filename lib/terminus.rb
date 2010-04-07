@@ -10,6 +10,7 @@ require 'packr'
 
 %w[ application
     server
+    timeouts
     controller
     browser
     ping_match
