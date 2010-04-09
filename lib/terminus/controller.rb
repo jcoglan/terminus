@@ -25,12 +25,6 @@ module Terminus
       @messenger
     end
     
-    def ensure_connection!
-      return if @connected
-      messenger.connect { @connected = true }
-      wait_with_timeout(:connection) { @connected }
-    end
-    
     def ensure_docked_browser!
       ensure_connection!
       wait_with_timeout(:docked_browser) { @browsers.any? { |id,b| b.docked? } }
@@ -74,6 +68,12 @@ module Terminus
     end
     
   private
+    
+    def ensure_connection!
+      return if @connected
+      messenger.connect { @connected = true }
+      wait_with_timeout(:connection) { @connected }
+    end
     
     def accept_ping(message)
       browser = browser(message['id'])
