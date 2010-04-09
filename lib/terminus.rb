@@ -51,8 +51,10 @@ module Terminus
     extend Forwardable
     def_delegators :controller,
                    :ensure_connection!,
+                   :ensure_docked_browser!,
                    :ensure_browser!,
                    :browser,
+                   :browser=,
                    :return_to_dock
     
   private

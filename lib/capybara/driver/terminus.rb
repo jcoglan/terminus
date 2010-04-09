@@ -16,7 +16,6 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
 private
   
   def browser
-    Terminus.ensure_connection!
     Terminus.ensure_browser!
     Terminus.browser
   end

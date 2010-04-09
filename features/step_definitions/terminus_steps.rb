@@ -1,4 +1,5 @@
-Given /^Terminus has a connection$/ do
-  # express the regexp above with the code you wish you had
+Given /^Terminus is connected to a browser$/ do
+  Terminus.ensure_docked_browser!
+  Terminus.browser = :docked
 end
 

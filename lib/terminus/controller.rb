@@ -31,37 +31,55 @@ module Terminus
       wait_with_timeout(:connection) { @connected }
     end
     
+    def ensure_docked_browser!
+      ensure_connection!
+      wait_with_timeout(:docked_browser) { @browsers.any? { |id,b| b.docked? } }
+    end
+    
     def ensure_browser!
-      wait_with_timeout(:browser) { not @browsers.empty? }
+      ensure_connection!
+      wait_with_timeout(:browser) { @browser }
     end
     
     def browser(id = nil)
-      id ||= @browsers.keys.first
+      return @browser if id.nil?
       @browsers[id] ||= Browser.new(self)
+    end
+    
+    def browser=(params)
+      @browser = case params
+        when :docked then @browsers.values.find { |b| b.docked? }
+        when Browser then params
+      end
     end
     
     def drop_browser(browser)
       @browsers.delete(browser.id)
+      @browser = nil if @browser == browser
     end
     
     def return_to_dock
       @browsers.each { |id, b| b.return_to_dock }
     end
     
-    def await_ping(params)
+    def await_ping(params, &block)
       ping = PingMatch.new(params)
       @ping_callbacks << ping
       done = false
-      ping.callback { done = true }
+      ping.callback do |browser|
+        done = true
+        block.call(browser)
+      end
       while not done; sleep 0.1; end
     end
     
   private
     
     def accept_ping(message)
-      browser(message['id']).ping!(message)
+      browser = browser(message['id'])
+      browser.ping!(message)
       @ping_callbacks.each do |ping|
-        ping.complete! if ping === message
+        ping.complete!(browser) if ping === message
       end
       @ping_callbacks.delete_if { |p| p.complete? }
     end

@@ -8,6 +8,7 @@ module Terminus
     def initialize(controller)
       @controller = controller
       @attributes = {}
+      @docked     = false
       @namespace  = Faye::Namespace.new
       @results    = {}
       add_timeout(:dead, TIMEOUT) { drop_dead! }
@@ -15,6 +16,10 @@ module Terminus
     
     def id
       @attributes['id']
+    end
+    
+    def docked?
+      @docked
     end
     
     def ping!(message)
@@ -32,9 +37,9 @@ module Terminus
       @controller.drop_browser(self)
       url = url.gsub(LOCALHOST, @controller.dock_host)
       instruct [:visit, url]
-      @controller.await_ping(
-        'ua'  => @attributes['ua'],
-        'url' => url)
+      @controller.await_ping('ua'  => @attributes['ua'], 'url' => url) do |browser|
+        @controller.browser = browser
+      end
     end
     
     def find(xpath)
@@ -72,7 +77,9 @@ module Terminus
     
     def detect_dock_host
       uri = URI.parse(@attributes['url'])
-      @controller.dock_host = uri.host if uri.port == DEFAULT_PORT
+      return unless uri.port == DEFAULT_PORT
+      @docked = true
+      @controller.dock_host = uri.host
     end
     
   end

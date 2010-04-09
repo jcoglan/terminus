@@ -1,7 +1,7 @@
 Feature: Visit a page
   
   Background:
-    Given Terminus has a connection
+    Given Terminus is connected to a browser
   
   Scenario: Navigate to a page
     When I visit "/"
