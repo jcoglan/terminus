@@ -36,18 +36,34 @@ module Terminus
     def visit(url)
       @controller.drop_browser(self)
       url = url.gsub(LOCALHOST, @controller.dock_host)
-      instruct [:visit, url]
-      @controller.await_ping('ua'  => @attributes['ua'], 'url' => url) do |browser|
+      instruct(:visit, url)
+      @controller.await_ping('ua' => @attributes['ua'], 'url' => url) do |browser|
         @controller.browser = browser
       end
     end
     
     def find(xpath)
-      instruct_and_wait [:find, xpath]
+      instruct_and_wait(:find, xpath).map { |id| Node.new(self, id) }
     end
     
     def return_to_dock
       visit "http://#{@controller.dock_host}:#{DEFAULT_PORT}/"
+    end
+    
+    def instruct(*command)
+      id = @namespace.generate
+      messenger.publish(channel, 'command' => command, 'commandId' => id)
+      id
+    end
+    
+    def wait_for_result_or_ping(id)
+      wait_with_timeout(:result, 2) { @results.has_key?(id) }
+      @results.delete(id)
+    rescue Timeouts::TimeoutError
+      @controller.await_ping('ua' => @attributes['ua']) do |browser|
+        @controller.drop_browser(self)
+        @controller.browser = browser
+      end
     end
     
   private
@@ -64,15 +80,10 @@ module Terminus
       @controller.drop_browser(self)
     end
     
-    def instruct(code)
-      messenger.publish(channel, 'command' => code)
-    end
-    
-    def instruct_and_wait(code)
-      id = @namespace.generate
-      messenger.publish(channel, 'command' => code, 'commandId' => id)
+    def instruct_and_wait(*command)
+      id = instruct(*command)
       wait_with_timeout(:result) { @results.has_key?(id) }
-      @results.delete(id) ? [:foo] : []
+      @results.delete(id)
     end
     
     def detect_dock_host

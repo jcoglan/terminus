@@ -1,9 +1,6 @@
 module Terminus
   class Controller
     
-    class TimeoutError < StandardError
-    end
-    
     include Timeouts
     attr_accessor :dock_host
     

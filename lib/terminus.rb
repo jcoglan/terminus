@@ -14,6 +14,7 @@ require 'packr'
     timeouts
     controller
     browser
+    node
     ping_match
 
 ].each do |file|
