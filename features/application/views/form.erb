@@ -6,3 +6,15 @@
   </fieldset>
 </form>
 
+<form id="js-form" action="/" method="get">
+  <p>The text</p>
+  <input type="submit" value="Go">
+</form>
+
+<script type="text/javascript">
+    $('#js-form').submit(function(event) {
+        event.preventDefault();
+        $('p').html('Injected with script');
+    });
+</script>
+
