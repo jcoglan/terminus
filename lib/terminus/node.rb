@@ -6,8 +6,8 @@ module Terminus
     end
     
     def click
-      id = @browser.instruct(:click, @id)
-      @browser.wait_for_result_or_ping(id)
+      @browser.instruct(:click, @id)
+      @browser.await_ping
     end
     
   end
