@@ -10,6 +10,10 @@ module Terminus
       @browser.await_ping
     end
     
+    def set(value)
+      @browser.instruct(:set, @id, value)
+    end
+    
   end
 end
 

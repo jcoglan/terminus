@@ -8,6 +8,7 @@ class TestApplication < Sinatra::Base
   set :views,  ROOT + '/views'
   
   get('/') { erb :index }
+  post('/save') { erb :save }
   
   get('/*.html') { erb params[:splat].first.to_sym }
 end
