@@ -12,8 +12,8 @@ module Terminus
       @params.all? { |key, value| value === ping[key] }
     end
     
-    def complete!(browser)
-      set_deferred_status(:succeeded, browser)
+    def complete!
+      set_deferred_status(:succeeded)
       @complete = true
     end
     

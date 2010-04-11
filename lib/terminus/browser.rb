@@ -6,12 +6,13 @@ module Terminus
     LOCALHOST = /localhost|0\.0\.0\.0|127\.0\.0\.1/
     
     def initialize(controller)
-      @controller = controller
-      @attributes = {}
-      @docked     = false
-      @namespace  = Faye::Namespace.new
-      @results    = {}
-      add_timeout(:dead, TIMEOUT) { drop_dead! }
+      @controller     = controller
+      @attributes     = {}
+      @docked         = false
+      @namespace      = Faye::Namespace.new
+      @ping_callbacks = []
+      @results        = {}
+      add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
     end
     
     def id
@@ -24,9 +25,13 @@ module Terminus
     
     def ping!(message)
       remove_timeout(:dead)
+      add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       @attributes = @attributes.merge(message)
       detect_dock_host
-      add_timeout(:dead, TIMEOUT) { drop_dead! }
+      @ping_callbacks.each do |ping|
+        ping.complete! if ping === message
+      end
+      @ping_callbacks.delete_if { |p| p.complete? }
     end
     
     def result!(message)
@@ -34,12 +39,9 @@ module Terminus
     end
     
     def visit(url)
-      @controller.drop_browser(self)
       url = url.gsub(LOCALHOST, @controller.dock_host)
       instruct(:visit, url)
-      @controller.await_ping('ua' => @attributes['ua'], 'url' => url) do |browser|
-        @controller.browser = browser
-      end
+      await_ping('url' => url)
     end
     
     def find(xpath)
@@ -60,10 +62,7 @@ module Terminus
       wait_with_timeout(:result, 2) { @results.has_key?(id) }
       @results.delete(id)
     rescue Timeouts::TimeoutError
-      @controller.await_ping('ua' => @attributes['ua']) do |browser|
-        @controller.drop_browser(self)
-        @controller.browser = browser
-      end
+      await_ping
     end
     
   private
@@ -78,6 +77,14 @@ module Terminus
     
     def drop_dead!
       @controller.drop_browser(self)
+    end
+    
+    def await_ping(params = {}, &block)
+      ping = PingMatch.new(params)
+      @ping_callbacks << ping
+      done = false
+      ping.callback { done = true }
+      while not done; sleep 0.1; end
     end
     
     def instruct_and_wait(*command)

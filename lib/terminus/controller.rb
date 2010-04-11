@@ -53,17 +53,6 @@ module Terminus
       @browsers.each { |id, b| b.return_to_dock }
     end
     
-    def await_ping(params, &block)
-      ping = PingMatch.new(params)
-      @ping_callbacks << ping
-      done = false
-      ping.callback do |browser|
-        done = true
-        block.call(browser)
-      end
-      while not done; sleep 0.1; end
-    end
-    
   private
     
     def ensure_connection!
@@ -73,12 +62,7 @@ module Terminus
     end
     
     def accept_ping(message)
-      browser = browser(message['id'])
-      browser.ping!(message)
-      @ping_callbacks.each do |ping|
-        ping.complete!(browser) if ping === message
-      end
-      @ping_callbacks.delete_if { |p| p.complete? }
+      browser(message['id']).ping!(message)
     end
     
     def accept_result(message)
