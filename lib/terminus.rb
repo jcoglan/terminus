@@ -36,8 +36,8 @@ module Terminus
       Server.new(options)
     end
     
-    def javascript_tag(host = DEFAULT_HOST)
-      Application.javascript_tag(host)
+    def driver_script(host = DEFAULT_HOST)
+      Application.driver_script(host)
     end
     
     def endpoint(host = DEFAULT_HOST)

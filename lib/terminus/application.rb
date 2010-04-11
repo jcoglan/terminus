@@ -7,7 +7,7 @@ module Terminus
     set :public, ROOT + '/public'
     set :views,  ROOT + '/views'
     
-    def self.javascript_tag(host)
+    def self.driver_script(host)
       %Q{<script type="text/javascript" src="http://#{host}:#{DEFAULT_PORT}/controller.js"></script>}
     end
     

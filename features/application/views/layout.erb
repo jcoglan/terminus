@@ -10,7 +10,7 @@
     <%= yield %>
     
     <% hosts = %w[0.0.0.0 10.0.2.2] %>
-    <%= Terminus.javascript_tag hosts.last %>
+    <%= Terminus.driver_script hosts.first %>
   </body>
 </html>
 
