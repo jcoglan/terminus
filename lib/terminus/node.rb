@@ -10,8 +10,12 @@ module Terminus
       @browser.await_ping
     end
     
-    def set(value)
-      @browser.instruct(:set, @id, value)
+    DSL_METHODS = [:set, :select, :unselect]
+    
+    DSL_METHODS.each do |method|
+      define_method(method) do |value|
+        @browser.instruct(method, @id, value)
+      end
     end
     
   end

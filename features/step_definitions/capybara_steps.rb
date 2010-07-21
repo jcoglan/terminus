@@ -15,6 +15,20 @@ When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field_name, value|
   fill_in field_name, :with => value
 end
 
+When /^I choose "([^"]*)"$/ do |value|
+  choose value
+end
+
+When /^I (un)?check "([^"]*)"$/ do |un, field_name|
+  method = un ? :uncheck : :check
+  __send__ method, field_name
+end
+
+When /^I (un)?select "([^\"]*)" from "([^\"]*)"$/ do |un, value, label|
+  method = un ? :unselect : :select
+  __send__ method, value, :from => label
+end
+
 When /^I press "([^\"]*)"$/ do |button_text|
   click_button button_text
 end
