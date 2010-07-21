@@ -39,7 +39,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("rack", ">= 1.0")
   s.add_dependency("thin", ">= 1.2")
   s.add_dependency("eventmachine", ">= 0.12")
-  s.add_dependency("faye", "~> 0.3.2")
+  s.add_dependency("faye", ">= 0.5.1")
   s.add_dependency("capybara", ">= 0.3.6")
   s.add_dependency("sinatra", ">= 1.0")
   s.add_dependency("packr", ">= 3.1")
