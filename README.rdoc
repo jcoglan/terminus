@@ -2,36 +2,63 @@
 
 * http://github.com/jcoglan/terminus
 
-Terminus is a distributed JavaScript terminal. It lets you connect
-web browsers you have open to a command-line console and run code
-on all connected browsers at once. It's currently a toy, but it
-might turn into a useful debugging and testing tool. We'll see.
+Terminus is an experimental project to build a Capybara driver in
+client-side JavaScript. This will likely be quite slow, but will
+allow certain fiddly types of testing to be automated. These include:
 
+* Cross-browser testing
+* Multi-browser interaction e.g. messaging apps
+* Testing async behaviour and race conditions
 
-== Installation
-
-  sudo gem install terminus
+It is also a remote scripting tool, giving you a REPL that lets you
+run JavaScript in any number of browsers at once.
 
 
 == Usage
 
-In your terminal, run the +terminus+ command. You can optionally
-specify a port for it to open up like this:
+There are two components in the testing setup: the Terminus server,
+and the application you want to test. Currently we'll use our own
+tests as an example.
 
-  terminus --port 7004
+Start up a Terminus server by running the following. This will start
+Terminus on port 7004 and open a shell for you to type JavaScript
+commands into.
 
-You should see something like this:
+  ruby bin/terminus
 
-  Terminus running at http://0.0.0.0:7004
-  >>
+Then open a browser and go to http://127.0.0.1:7004. You should see
+ther Terminus 'docking' page. Browsers sit here while awaiting
+intructions from the Capybara driver. (This page also provides a
+bookmarklet that you can use to connect any web page to your terminal
+so you can run script on it.)
 
-This is the Terminus prompt - it's where you type in JavaScript
-commands. Before you do that, though, visit http://localhost:7004
-in your browser. From there you can grab a bookmarklet that lets
-you connect any web page to the Terminus server. When you click
-the bookmarklet, the current page will open a connection with
-Terminus so that any commands you type into the shell are executed
-on that page.
+Once you've got a docked browser, run
+
+  cucumber features
+
+And all the Terminus tests will run in that browser. See the +features+
+directory for example usage; but bear in mind the API is not yet stable,
+just a proof of concept.
+
+
+== Notes / to-do
+
+* It's incomplete, and does not support the whole driver API yet. A
+  lot of the form interaction is missing, but it can visit pages,
+  follow links, fill in text fields, click buttons and search for
+  elements and text.
+  
+* Only browsers with XPath are supported. So, not IE. I've not found
+  any user-land XPath libraries that understand what Capybara spits
+  out. I was thinking of writing my own, which is partly what let to
+  Canopy (http://github.com/jcoglan/canopy) being written since there's
+  no way I'm hand-parsing XPath expressions.
+  
+* It's slow, especially at filling out forms. Use it to sanity-check
+  your cross-browser code, not to test your whole app.
+  
+* It can be brittle, though using recent versions of Faye it's been
+  a lot more stable and hangs less.
 
 
 == License
