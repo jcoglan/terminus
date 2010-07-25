@@ -2,6 +2,8 @@
   var faye = '<%= ::Terminus::FAYE_MOUNT %>',
       host = '<%= host %>';
   
+  JSCLASS_PATH = host + '/js.class/';
+  
   var withPackageManager = function(callback) {
     if (window.JS && JS.Packages) return callback();
     
@@ -9,7 +11,7 @@
         head   = document.getElementsByTagName('head')[0];
     
     script.type = 'text/javascript';
-    script.src  = host + '/js.packages.js';
+    script.src  = host + '/js.class/loader.js';
     
     script.onload = script.onreadystatechange = function() {
       var state = script.readyState;
@@ -27,12 +29,19 @@
       this.file(host + faye + '/client.js')
         .provides('Faye', 'Faye.Client');
       
+      this.file(host + '/pathology.js')
+        .requires('JS.Class', 'JS.Module', 'JS.Enumerable')
+        .provides('document.evaluate');
+      
+      this.file(host + '/syn.js')
+        .provides('Syn');
+      
       this.file(host + '/terminus.js')
-        .requires('Faye.Client')
+        .requires('Faye.Client', 'document.evaluate', 'Syn')
         .provides('Terminus');
     });
     
-    require('Terminus', function() {
+    JS.require('Terminus', function() {
       Terminus.connect(host + faye);
     });
   });
