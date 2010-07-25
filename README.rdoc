@@ -43,19 +43,17 @@ just a proof of concept.
 
 == Notes / to-do
 
-* It's incomplete, and does not support the whole driver API yet. A
-  lot of the form interaction is missing, but it can visit pages,
-  follow links, fill in text fields, click buttons and search for
-  elements and text.
-  
-* Only browsers with XPath are supported. So, not IE. I've not found
-  any user-land XPath libraries that understand what Capybara spits
-  out. I was thinking of writing my own, which is partly what let to
-  Canopy (http://github.com/jcoglan/canopy) being written since there's
-  no way I'm hand-parsing XPath expressions.
+* It's incomplete, and does not support the whole driver API yet. It
+  can do the following in all browsers: visit URLs, follow links, fill
+  in text fields, textareas, radio buttons, checkboxes, select boxes,
+  and search by CSS, XPath and text. It can submit forms in everything
+  but IE (this seems to be a problem with the Syn library).
   
 * It's slow, especially at filling out forms. Use it to sanity-check
   your cross-browser code, not to test your whole app.
+  
+* In IE it uses Pathology to run XPath queries, and will probably be
+  even slower than it is everywhere else. (see http://github.com/jcoglan/pathology)
   
 * It can be brittle, though using recent versions of Faye it's been
   a lot more stable and hangs less.
