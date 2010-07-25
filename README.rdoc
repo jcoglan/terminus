@@ -9,6 +9,7 @@ allow certain fiddly types of testing to be automated. These include:
 * Cross-browser testing
 * Multi-browser interaction e.g. messaging apps
 * Testing async behaviour and race conditions
+* Run tests on remote machines, phones, iPads etc.
 
 It is also a remote scripting tool, giving you a REPL that lets you
 run JavaScript in any number of browsers at once.
