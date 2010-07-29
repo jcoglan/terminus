@@ -61,6 +61,10 @@ module Terminus
       instruct_and_wait(:body)
     end
     
+    def evaluate_script(expression)
+      instruct_and_wait(:evaluate, expression)
+    end
+    
     def return_to_dock
       visit "http://#{@controller.dock_host}:#{DEFAULT_PORT}/"
     end
