@@ -1,3 +1,5 @@
+require 'forwardable'
+
 class Capybara::Driver::Terminus < Capybara::Driver::Base
   def initialize(app)
     @app = app
@@ -9,13 +11,8 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     browser.visit @rack_server.url(path)
   end
   
-  def find(xpath)
-    browser.find(xpath)
-  end
-  
-  def current_path
-    browser.current_path
-  end
+  extend Forwardable
+  def_delegators :browser, :find, :current_url, :current_path, :body
   
 private
   

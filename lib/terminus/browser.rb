@@ -48,9 +48,17 @@ module Terminus
       instruct_and_wait(:find, xpath).map { |id| Node.new(self, id) }
     end
     
+    def current_url
+      @attributes['url']
+    end
+    
     def current_path
       return nil unless url = @attributes['url']
       URI.parse(url).path
+    end
+    
+    def body
+      instruct_and_wait(:body)
     end
     
     def return_to_dock
@@ -61,6 +69,12 @@ module Terminus
       id = @namespace.generate
       messenger.publish(channel, 'command' => command, 'commandId' => id)
       id
+    end
+    
+    def instruct_and_wait(*command)
+      id = instruct(*command)
+      wait_with_timeout(:result) { @results.has_key?(id) }
+      @results.delete(id)
     end
     
     def await_ping(params = {}, &block)
@@ -83,12 +97,6 @@ module Terminus
     
     def drop_dead!
       @controller.drop_browser(self)
-    end
-    
-    def instruct_and_wait(*command)
-      id = instruct(*command)
-      wait_with_timeout(:result) { @results.has_key?(id) }
-      @results.delete(id)
     end
     
     def detect_dock_host
