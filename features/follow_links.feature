@@ -7,7 +7,7 @@ Feature: Follow links
   
   Scenario: Follow a link controlled by JavaScript
     When I visit "/"
-    And I click "Show Status"
+    And I click "stat"
     Then I should see "Everything's just peachy"
     And I should not see "Show Status"
 
