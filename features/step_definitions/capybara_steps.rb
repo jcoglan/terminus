@@ -6,6 +6,10 @@ When /^I click "([^\"]*)"$/ do |link_text|
   click_link link_text
 end
 
+Then /^the current path should be "([^"]*)"$/ do |path|
+  current_path.should == path
+end
+
 Then /^I should( not)? see "([^\"]*)"$/ do |no, text|
   method = no ? :should_not : :should
   page.__send__ method, have_content(text)

@@ -13,6 +13,10 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     browser.find(xpath)
   end
   
+  def current_path
+    browser.current_path
+  end
+  
 private
   
   def browser

@@ -2,5 +2,6 @@ Feature: Visit a page
   
   Scenario: Navigate to a page
     When I visit "/"
-    Then I should see "Hello, Terminus!"
+    Then the current path should be "/"
+    And I should see "Hello, Terminus!"
 

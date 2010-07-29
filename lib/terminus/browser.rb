@@ -48,6 +48,11 @@ module Terminus
       instruct_and_wait(:find, xpath).map { |id| Node.new(self, id) }
     end
     
+    def current_path
+      return nil unless url = @attributes['url']
+      URI.parse(url).path
+    end
+    
     def return_to_dock
       visit "http://#{@controller.dock_host}:#{DEFAULT_PORT}/"
     end
