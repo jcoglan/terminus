@@ -65,6 +65,10 @@ module Terminus
       instruct_and_wait(:evaluate, expression)
     end
     
+    def cleanup!
+      instruct_and_wait(:cleanup)
+    end
+    
     def return_to_dock
       visit "http://#{@controller.dock_host}:#{DEFAULT_PORT}/"
     end

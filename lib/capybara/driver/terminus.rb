@@ -16,7 +16,8 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :current_url,
                            :current_path,
                            :body,
-                           :evaluate_script
+                           :evaluate_script,
+                           :cleanup!
   
 private
   
