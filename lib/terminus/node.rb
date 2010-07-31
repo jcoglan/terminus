@@ -1,6 +1,8 @@
 module Terminus
   class Node
     
+    attr_reader :id
+    
     def initialize(browser, id)
       @browser, @id = browser, id
     end
@@ -16,6 +18,10 @@ module Terminus
       define_method(method) do |value|
         @browser.instruct(method, @id, value)
       end
+    end
+    
+    def drag_to(node)
+      @browser.instruct_and_wait(:drag, :from => @id, :to => node.id)
     end
     
     def [](attribute)
