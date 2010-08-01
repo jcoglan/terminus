@@ -89,9 +89,9 @@ module Terminus
     def await_ping(params = {}, &block)
       ping = PingMatch.new(params)
       @ping_callbacks << ping
-      done = false
-      ping.callback { done = true }
-      while not done; sleep 0.1; end
+      got_ping = false
+      ping.callback { got_ping = true }
+      wait_with_timeout(:ping) { got_ping }
     end
     
   private
