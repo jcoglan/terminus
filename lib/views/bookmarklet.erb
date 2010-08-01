@@ -27,7 +27,8 @@
   withPackageManager(function() {
     JS.Packages(function() {
       this.file(host + faye + '/client.js')
-        .provides('Faye', 'Faye.Client');
+        .provides('Faye', 'Faye.Client')
+        .setup(function() { Faye.Client.prototype.MAX_DELAY = 0 });
       
       this.file(host + '/pathology.js')
         .requires('JS.Class', 'JS.Module', 'JS.Enumerable')

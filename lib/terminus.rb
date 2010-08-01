@@ -24,6 +24,7 @@ end
 require File.dirname(__FILE__) + '/capybara/driver/terminus'
 
 Thin::Logging.silent = true
+Faye::Connection::MAX_DELAY = 0
 
 module Terminus
   VERSION      = '0.2.0'

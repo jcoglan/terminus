@@ -45,7 +45,7 @@ module Terminus
     end
     
     def find(xpath)
-      instruct_and_wait(:find, xpath).map { |id| Node.new(self, id) }
+      instruct_and_wait(:find, xpath, false).map { |id| Node.new(self, id) }
     end
     
     def current_url
@@ -60,6 +60,7 @@ module Terminus
     def body
       instruct_and_wait(:body)
     end
+    alias :source :body
     
     def evaluate_script(expression)
       instruct_and_wait(:evaluate, expression)
