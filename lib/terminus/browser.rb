@@ -40,12 +40,12 @@ module Terminus
     
     def visit(url)
       url = url.gsub(LOCALHOST, @controller.dock_host)
-      instruct(:visit, url)
+      tell(:visit, url)
       await_ping('url' => url)
     end
     
     def find(xpath)
-      instruct_and_wait(:find, xpath, false).map { |id| Node.new(self, id) }
+      ask(:find, xpath, false).map { |id| Node.new(self, id) }
     end
     
     def current_url
@@ -58,30 +58,30 @@ module Terminus
     end
     
     def body
-      instruct_and_wait(:body)
+      ask(:body)
     end
     alias :source :body
     
     def evaluate_script(expression)
-      instruct_and_wait(:evaluate, expression)
+      ask(:evaluate, expression)
     end
     
     def cleanup!
-      instruct_and_wait(:cleanup)
+      ask(:cleanup)
     end
     
     def return_to_dock
       visit "http://#{@controller.dock_host}:#{DEFAULT_PORT}/"
     end
     
-    def instruct(*command)
+    def tell(*command)
       id = @namespace.generate
       messenger.publish(channel, 'command' => command, 'commandId' => id)
       id
     end
     
-    def instruct_and_wait(*command)
-      id = instruct(*command)
+    def ask(*command)
+      id = tell(*command)
       wait_with_timeout(:result) { @results.has_key?(id) }
       @results.delete(id)
     end
