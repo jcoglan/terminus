@@ -1,7 +1,8 @@
 require 'forwardable'
 
 class Capybara::Driver::Terminus < Capybara::Driver::Base
-  def initialize(app)
+  def initialize(app = nil)
+    raise ArgumentError.new if app.nil?
     @app = app
     @rack_server = Capybara::Server.new(@app)
     @rack_server.boot if Capybara.run_server
