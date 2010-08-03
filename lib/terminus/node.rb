@@ -17,7 +17,8 @@ module Terminus
     end
     
     def set(value)
-      @browser.ask(:set, @id, value)
+      result = @browser.ask(:set, @id, value)
+      raise Capybara::NotSupportedByDriverError.new if result == 'not_allowed'
     end
     
     def select(value)
