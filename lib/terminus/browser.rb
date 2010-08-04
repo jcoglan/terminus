@@ -28,10 +28,7 @@ module Terminus
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       @attributes = @attributes.merge(message)
       detect_dock_host
-      @ping_callbacks.each do |ping|
-        ping.complete! if ping === message
-      end
-      @ping_callbacks.delete_if { |p| p.complete? }
+      @ping = true
     end
     
     def result!(message)
@@ -41,7 +38,7 @@ module Terminus
     def visit(url)
       url = url.gsub(LOCALHOST, @controller.dock_host)
       tell(:visit, url)
-      await_ping('url' => url)
+      wait_for_ping
     end
     
     def find(xpath)
@@ -86,12 +83,9 @@ module Terminus
       @results.delete(id)
     end
     
-    def await_ping(params = {}, &block)
-      ping = PingMatch.new(params)
-      @ping_callbacks << ping
-      got_ping = false
-      ping.callback { got_ping = true }
-      wait_with_timeout(:ping) { got_ping }
+    def wait_for_ping
+      @ping = false
+      wait_with_timeout(:ping) { @ping }
     end
     
   private

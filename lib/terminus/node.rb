@@ -13,7 +13,7 @@ module Terminus
     
     def click
       @browser.tell(:click, @id)
-      @browser.await_ping
+      @browser.wait_for_ping
     end
     
     def set(value)
