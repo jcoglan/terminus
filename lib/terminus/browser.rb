@@ -3,7 +3,8 @@ module Terminus
     
     include Timeouts
     
-    LOCALHOST = /localhost|0\.0\.0\.0|127\.0\.0\.1/
+    LOCALHOST   = /localhost|0\.0\.0\.0|127\.0\.0\.1/
+    RETRY_LIMIT = 3
     
     def initialize(controller)
       @controller     = controller
@@ -35,14 +36,17 @@ module Terminus
       @results[message['commandId']] = message['result']
     end
     
-    def visit(url)
+    def visit(url, retries = RETRY_LIMIT)
       url = url.gsub(LOCALHOST, @controller.dock_host)
-      tell(:visit, url)
+      tell([:visit, url])
       wait_for_ping
+    rescue Timeouts::TimeoutError => e
+      raise e if retries.zero?
+      visit(url, retries - 1)
     end
     
     def find(xpath)
-      ask(:find, xpath, false).map { |id| Node.new(self, id) }
+      ask([:find, xpath, false]).map { |id| Node.new(self, id) }
     end
     
     def current_url
@@ -55,32 +59,35 @@ module Terminus
     end
     
     def body
-      ask(:body)
+      ask([:body])
     end
     alias :source :body
     
     def evaluate_script(expression)
-      ask(:evaluate, expression)
+      ask([:evaluate, expression])
     end
     
     def cleanup!
-      ask(:cleanup)
+      ask([:cleanup])
     end
     
     def return_to_dock
       visit "http://#{@controller.dock_host}:#{DEFAULT_PORT}/"
     end
     
-    def tell(*command)
+    def tell(command)
       id = @namespace.generate
       messenger.publish(channel, 'command' => command, 'commandId' => id)
       id
     end
     
-    def ask(*command)
-      id = tell(*command)
+    def ask(command, retries = RETRY_LIMIT)
+      id = tell(command)
       wait_with_timeout(:result) { @results.has_key?(id) }
       @results.delete(id)
+    rescue Timeouts::TimeoutError => e
+      raise e if retries.zero?
+      ask(command, retries - 1)
     end
     
     def wait_for_ping
