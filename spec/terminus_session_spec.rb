@@ -33,5 +33,6 @@ describe Capybara::Session do
     end
 
     it_should_behave_like "session"
+    it_should_behave_like "session with javascript support"
   end
 end

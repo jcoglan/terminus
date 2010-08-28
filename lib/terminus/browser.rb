@@ -67,6 +67,10 @@ module Terminus
       ask([:evaluate, expression])
     end
     
+    def execute_script(expression)
+      ask([:execute, expression])
+    end
+    
     def cleanup!
       ask([:cleanup])
     end

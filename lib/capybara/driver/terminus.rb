@@ -19,6 +19,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :body,
                            :source,
                            :evaluate_script,
+                           :execute_script,
                            :cleanup!
   
 private

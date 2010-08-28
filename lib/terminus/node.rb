@@ -50,6 +50,10 @@ module Terminus
       @browser.ask([:drag, {:from => @id, :to => node.id}])
     end
     
+    def trigger(event_type)
+      @browser.ask([:trigger, @id, event_type])
+    end
+    
   end
 end
 
