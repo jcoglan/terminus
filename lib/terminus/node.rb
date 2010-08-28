@@ -21,16 +21,13 @@ module Terminus
       raise Capybara::NotSupportedByDriverError.new if result == 'not_allowed'
     end
     
-    def select(value)
-      result = @browser.ask(:select, @id, value)
-      raise Capybara::OptionNotFound.new unless result
+    def select
+      @browser.ask(:select, @id)
     end
     
-    def unselect(value)
-      case @browser.ask(:unselect, @id, value)
-      when 'not_allowed' then raise Capybara::UnselectNotAllowed.new
-      when 'not_found'   then raise Capybara::OptionNotFound.new
-      end
+    def unselect
+      allowed = @browser.ask(:unselect, @id)
+      raise Capybara::UnselectNotAllowed.new unless allowed
     end
     
     alias :select_option :select
