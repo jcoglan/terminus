@@ -13,14 +13,14 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   end
   
   extend Forwardable
-  def_delegators :browser, :find,
-                           :current_url,
+  def_delegators :browser, :body,
+                           :cleanup!,
                            :current_path,
-                           :body,
-                           :source,
+                           :current_url,
                            :evaluate_script,
                            :execute_script,
-                           :cleanup!
+                           :find,
+                           :source
   
 private
   

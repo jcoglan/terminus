@@ -12,12 +12,12 @@ module Terminus
     end
     
     helpers do
-      def host
-        "http://#{ env['HTTP_HOST'] }"
-      end
-      
       def bookmarklet
         Packr.pack(erb(:bookmarklet), :shrink_vars => true)
+      end
+      
+      def host
+        "http://#{ env['HTTP_HOST'] }"
       end
     end
     

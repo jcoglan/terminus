@@ -11,27 +11,6 @@ module Terminus
       trap('INT') { exit }
     end
     
-    def messenger
-      Terminus.ensure_reactor_running!
-      return @messenger if defined?(@messenger)
-      
-      @messenger = Faye::Client.new(Terminus.endpoint)
-      
-      @messenger.subscribe('/terminus/ping',    &method(:accept_ping))
-      @messenger.subscribe('/terminus/results', &method(:accept_result))
-      @messenger
-    end
-    
-    def ensure_docked_browser!
-      ensure_connection!
-      wait_with_timeout(:docked_browser) { @browsers.any? { |id,b| b.docked? } }
-    end
-    
-    def ensure_browser!
-      ensure_connection!
-      wait_with_timeout(:browser) { @browser }
-    end
-    
     def browser(id = nil)
       return @browser if id.nil?
       @browsers[id] ||= Browser.new(self)
@@ -49,17 +28,32 @@ module Terminus
       @browser = nil if @browser == browser
     end
     
+    def ensure_browser!
+      ensure_connection!
+      wait_with_timeout(:browser) { @browser }
+    end
+    
+    def ensure_docked_browser!
+      ensure_connection!
+      wait_with_timeout(:docked_browser) { @browsers.any? { |id,b| b.docked? } }
+    end
+    
+    def messenger
+      Terminus.ensure_reactor_running!
+      return @messenger if defined?(@messenger)
+      
+      @messenger = Faye::Client.new(Terminus.endpoint)
+      
+      @messenger.subscribe('/terminus/ping',    &method(:accept_ping))
+      @messenger.subscribe('/terminus/results', &method(:accept_result))
+      @messenger
+    end
+    
     def return_to_dock
       @browsers.each { |id, b| b.return_to_dock }
     end
     
   private
-    
-    def ensure_connection!
-      return if @connected
-      messenger.connect { @connected = true }
-      wait_with_timeout(:connection) { @connected }
-    end
     
     def accept_ping(message)
       browser(message['id']).ping!(message)
@@ -67,6 +61,12 @@ module Terminus
     
     def accept_result(message)
       browser(message['id']).result!(message)
+    end
+    
+    def ensure_connection!
+      return if @connected
+      messenger.connect { @connected = true }
+      wait_with_timeout(:connection) { @connected }
     end
     
   end

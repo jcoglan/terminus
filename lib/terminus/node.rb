@@ -7,13 +7,21 @@ module Terminus
       @browser, @id = browser, id
     end
     
+    def click
+      @browser.tell([:click, @id])
+      @browser.wait_for_ping
+    end
+    
+    def drag_to(node)
+      @browser.ask([:drag, {:from => @id, :to => node.id}])
+    end
+    
     def find(xpath)
       @browser.ask([:find, xpath, @id]).map { |id| Node.new(@browser, id) }
     end
     
-    def click
-      @browser.tell([:click, @id])
-      @browser.wait_for_ping
+    def select
+      @browser.ask([:select, @id])
     end
     
     def set(value)
@@ -21,8 +29,8 @@ module Terminus
       raise Capybara::NotSupportedByDriverError.new if result == 'not_allowed'
     end
     
-    def select
-      @browser.ask([:select, @id])
+    def trigger(event_type)
+      @browser.ask([:trigger, @id, event_type])
     end
     
     def unselect
@@ -33,7 +41,12 @@ module Terminus
     alias :select_option :select
     alias :unselect_option :unselect
     
-    SYNC_DSL_METHODS = [[:[], :attribute], :tag_name, :text, :value, [:visible?, :is_visible]]
+    SYNC_DSL_METHODS = [ [:[], :attribute],
+                         :tag_name,
+                         :text,
+                         :value,
+                         [:visible?, :is_visible]
+                       ]
     
     SYNC_DSL_METHODS.each do |method|
       if Array === method
@@ -44,14 +57,6 @@ module Terminus
       define_method(name) do |*args|
         @browser.ask([command, @id, *args])
       end
-    end
-    
-    def drag_to(node)
-      @browser.ask([:drag, {:from => @id, :to => node.id}])
-    end
-    
-    def trigger(event_type)
-      @browser.ask([:trigger, @id, event_type])
     end
     
   end
