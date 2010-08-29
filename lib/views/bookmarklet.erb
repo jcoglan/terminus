@@ -30,6 +30,7 @@
         .provides('Faye', 'Faye.Client')
         .setup(function() { Faye.Client.prototype.MAX_DELAY = 0 });
       
+      if (!document.evaluate)
       this.file(host + '/pathology.js')
         .requires('JS.Class', 'JS.Module', 'JS.Enumerable')
         .provides('document.evaluate');
