@@ -2,13 +2,13 @@
 
 * http://github.com/jcoglan/terminus
 
-Terminus is an experimental project to build a Capybara driver in
-client-side JavaScript. This will likely be quite slow, but will
-allow certain fiddly types of testing to be automated. These include:
+Terminus is an experimental Capybara driver implemented in client-side
+JavaScript. It lets you script your application in any browser on any
+device, without needing browser plugins. This allows several types of
+testing to be automated:
 
 * Cross-browser testing
 * Multi-browser interaction e.g. messaging apps
-* Testing async behaviour and race conditions
 * Run tests on remote machines, phones, iPads etc.
 
 It is also a remote scripting tool, giving you a REPL that lets you
@@ -17,47 +17,69 @@ run JavaScript in any number of browsers at once.
 
 == Usage
 
-There are two components in the testing setup: the Terminus server,
-and the application you want to test. Currently we'll use our own
-tests as an example.
+Terminus is a Capybara driver. For the most part, you will not use
+it directly: you will use the Capybara API and it will send instructions
+to Terminus for execution. To set Terminus as your driver:
 
-Start up a Terminus server by running the following. This will start
-Terminus on port 7004 and open a shell for you to type JavaScript
-commands into.
+  require 'capybara'
+  require 'terminus'
+  
+  Capybara.current_driver = :terminus
 
-  ruby bin/terminus
+Terminus does require some extra setup before you can use it to control
+your app. First up, you need to start the Terminus server on the machine
+where your application will be running:
 
-Then open a browser and go to http://127.0.0.1:7004. You should see
-ther Terminus 'docking' page. Browsers sit here while awaiting
-intructions from the Capybara driver. (This page also provides a
-bookmarklet that you can use to connect any web page to your terminal
-so you can run script on it.)
+  $ terminus
 
-Once you've got a docked browser, run
+This starts the server on port 7004. Now open a browser at
+http://127.0.0.1:7004/. (I recommend using the IP address of the Terminus
+host; Chrome has bugs that can stop WebSockets working if you use the
+hostname.) This is the 'holding page'. A browser is said to be 'docked'
+while it is visiting this page, meaning it is ready and waiting to run
+some tests for you.
 
-  cucumber features
+To let Terminus control your app's pages, you need to include this
+just before the closing +body+ tag when in testing mode:
 
-And all the Terminus tests will run in that browser. See the +features+
-directory for example usage; but bear in mind the API is not yet stable,
-just a proof of concept.
+  <!-- For example if you're using Rails -->
+  
+  <% if Rails.env.test? %>
+    <%= Terminus.driver_script '127.0.0.1' %>
+  <% end %>
+
+If the browser you're using is on a different machine to the Terminus
+server, replace <tt>127.0.0.1</tt> with the Terminus machine's IP as
+seen by the browser. For example if I'm running the browser in VirtualBox
+and the Terminus server on the host OS, then I set the IP to <tt>10.0.2.2</tt>.
+
+Finally, in your tests you need to make sure there's a docked browser
+and select it. In a 'before' block, run the following:
+
+  Terminus.ensure_docked_browser
+  Terminus.browser = :docked
+
+After each test is finished, you need to return the browser to the
+holding page to make it ready to accept new work. In an 'after' block:
+
+  Terminus.return_to_dock
+
+This returns all currently connected browsers to the holding page.
 
 
 == Notes / to-do
 
-* It's incomplete, and does not support the whole driver API yet. It
-  can do the following in all browsers: visit URLs, follow links, fill
-  in text fields, textareas, radio buttons, checkboxes, select boxes,
-  and search by CSS, XPath and text. It can submit forms in everything
-  but IE (this seems to be a problem with the Syn library).
+* Allow <tt>Terminus.browser=</tt> to select browsers by name and
+  version so we can control multiple browsers at once.
   
 * It's slow, especially at filling out forms. Use it to sanity-check
-  your cross-browser code, not to test your whole app.
+  your cross-browser code and JavaScript, not to test your whole app.
   
 * In IE it uses Pathology to run XPath queries, and will probably be
   even slower than it is everywhere else. (see http://github.com/jcoglan/pathology)
   
-* It can be brittle, though using recent versions of Faye it's been
-  a lot more stable and hangs less.
+* It can be a little brittle, and occasionally there seem to be race
+  conditions when running the Capybara specs.
 
 
 == License

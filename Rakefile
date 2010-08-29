@@ -18,9 +18,9 @@ spec = Gem::Specification.new do |s|
   # Change these as appropriate
   s.name              = "terminus"
   s.version           = Terminus::VERSION
-  s.summary           = "Control multiple web browsers from the command line"
+  s.summary           = "Capybara driver for cross-browser testing"
   s.author            = "James Coglan"
-  s.email             = "jcoglan@googlemail.com"
+  s.email             = "jcoglan@gmail.com"
   s.homepage          = "http://github.com/jcoglan/terminus"
 
   s.has_rdoc          = true
@@ -30,7 +30,7 @@ spec = Gem::Specification.new do |s|
   s.rdoc_options      = %w(--main README.rdoc)
 
   # Add any extra files to include in the gem (like your README)
-  s.files             = %w(README.rdoc) + Dir.glob("{bin,lib/**/*,features/**/*}")
+  s.files             = %w(README.rdoc) + Dir.glob("{bin,lib/**/*,spec/**/*}")
   s.executables       = FileList["bin/**"].map { |f| File.basename(f) }
   s.require_paths     = ["lib"]
 
@@ -39,8 +39,8 @@ spec = Gem::Specification.new do |s|
   s.add_dependency("rack", ">= 1.0")
   s.add_dependency("thin", ">= 1.2")
   s.add_dependency("eventmachine", ">= 0.12")
-  s.add_dependency("faye", ">= 0.5.1")
-  s.add_dependency("capybara", ">= 0.3.9")
+  s.add_dependency("faye", ">= 0.5.2")
+  s.add_dependency("capybara", ">= 0.4.0")
   s.add_dependency("sinatra", ">= 1.0")
   s.add_dependency("packr", ">= 3.1")
   s.add_dependency("oyster", ">= 0.9")

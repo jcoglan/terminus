@@ -28,18 +28,18 @@ module Terminus
       @browser = nil if @browser == browser
     end
     
-    def ensure_browser!
-      ensure_connection!
+    def ensure_browser
+      ensure_connection
       wait_with_timeout(:browser) { @browser }
     end
     
-    def ensure_docked_browser!
-      ensure_connection!
+    def ensure_docked_browser
+      ensure_connection
       wait_with_timeout(:docked_browser) { @browsers.any? { |id,b| b.docked? } }
     end
     
     def messenger
-      Terminus.ensure_reactor_running!
+      Terminus.ensure_reactor_running
       return @messenger if defined?(@messenger)
       
       @messenger = Faye::Client.new(Terminus.endpoint)
@@ -63,7 +63,7 @@ module Terminus
       browser(message['id']).result!(message)
     end
     
-    def ensure_connection!
+    def ensure_connection
       return if @connected
       messenger.connect { @connected = true }
       wait_with_timeout(:connection) { @connected }

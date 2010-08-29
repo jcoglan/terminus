@@ -17,10 +17,15 @@ begin
   app = Terminus.create(options)
   
   app.run!
-  puts "Terminus running at http://0.0.0.0:#{options[:port]}"
+  puts "Terminus server running on port #{options[:port]}"
   puts "Press CTRL-C to exit"
   
   trap("INT") { app.stop! ; exit }
+  
+  puts ""
+  puts "This is the Terminus console. You can type JavaScript"
+  puts "in here and it will be executed on all connected pages."
+  puts ""
   
   loop {
     script, result = Readline.readline('>> '), nil

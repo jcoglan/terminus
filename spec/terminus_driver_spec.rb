@@ -3,7 +3,7 @@ require 'spec/spec_helper'
 describe Capybara::Driver::Terminus do
   before do
     @driver = Capybara::Driver::Terminus.new(TestApp)
-    Terminus.ensure_docked_browser!
+    Terminus.ensure_docked_browser
     Terminus.browser = :docked
   end
 

@@ -23,7 +23,6 @@ end
 require File.dirname(__FILE__) + '/capybara/driver/terminus'
 
 Thin::Logging.silent = true
-Faye::Connection::MAX_DELAY = 0
 
 module Terminus
   VERSION      = '0.2.0'
@@ -44,18 +43,17 @@ module Terminus
       "http://#{host}:#{DEFAULT_PORT}#{FAYE_MOUNT}"
     end
     
-    def ensure_reactor_running!
+    def ensure_reactor_running
       Thread.new { EM.run unless EM.reactor_running? }
       while not EM.reactor_running?; end
     end
     
     extend Forwardable
-    def_delegators :controller,
-                   :ensure_docked_browser!,
-                   :ensure_browser!,
-                   :browser,
-                   :browser=,
-                   :return_to_dock
+    def_delegators :controller, :browser,
+                                :browser=,
+                                :ensure_docked_browser,
+                                :ensure_browser,
+                                :return_to_dock
     
   private
     
