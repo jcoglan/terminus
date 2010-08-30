@@ -8,8 +8,12 @@ module Terminus
     end
     
     def click
-      @browser.tell([:click, @id])
-      @browser.wait_for_ping
+      page    = @browser.page_id
+      command = @browser.tell([:click, @id])
+      
+      @browser.wait_with_timeout(:click_response) do
+        @browser.result(command) || (@browser.page_id != page)
+      end
     end
     
     def drag_to(node)

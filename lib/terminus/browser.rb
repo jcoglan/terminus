@@ -18,8 +18,8 @@ module Terminus
     
     def ask(command, retries = RETRY_LIMIT)
       id = tell(command)
-      wait_with_timeout(:result) { @results.has_key?(id) }
-      @results.delete(id)
+      result_hash = wait_with_timeout(:result) { result(id) }
+      result_hash[:value]
     rescue Timeouts::TimeoutError => e
       raise e if retries.zero?
       ask(command, retries - 1)
@@ -63,6 +63,10 @@ module Terminus
       @attributes['id']
     end
     
+    def page_id
+      @attributes['page']
+    end
+    
     def ping!(message)
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
@@ -73,6 +77,11 @@ module Terminus
     
     def result!(message)
       @results[message['commandId']] = message['result']
+    end
+    
+    def result(id)
+      return nil unless @results.has_key?(id)
+      {:value => @results.delete(id)}
     end
     
     def return_to_dock
