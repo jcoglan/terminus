@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'readline'
 require 'oyster'
-require File.dirname(__FILE__) + '/../lib/terminus'
+require File.expand_path(File.dirname(__FILE__) + '/../lib/terminus')
 
 spec = Oyster.spec do
   name "terminus -- controll web browsers from the command line"
@@ -19,19 +18,27 @@ begin
   app.run!
   puts "Terminus server running on port #{options[:port]}"
   puts "Press CTRL-C to exit"
+  puts ""
   
   trap("INT") { app.stop! ; exit }
   
-  puts ""
-  puts "This is the Terminus console. You can type JavaScript"
-  puts "in here and it will be executed on all connected pages."
-  puts ""
-  
-  loop {
-    script, result = Readline.readline('>> '), nil
-    Readline::HISTORY.push(script)
-    app.execute(script) { |r| result = r }
-  }
+  begin
+    require 'readline'
+    
+    puts "This is the Terminus console. You can type JavaScript"
+    puts "in here and it will be executed on all connected pages."
+    puts ""
+    
+    loop {
+      script, result = Readline.readline('>> '), nil
+      Readline::HISTORY.push(script)
+      app.execute(script) { |r| result = r }
+    }
+  rescue LoadError
+    puts "If you install the readline library, you'll get a console"
+    puts "that lets you execute JavaScript in connected browsers."
+    puts ""
+  end
   
 rescue Oyster::HelpRendered
 end

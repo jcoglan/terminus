@@ -9,6 +9,8 @@ require 'capybara'
 require 'sinatra'
 require 'packr'
 
+root = File.expand_path(File.dirname(__FILE__))
+
 %w[ application
     server
     timeouts
@@ -17,10 +19,10 @@ require 'packr'
     node
 
 ].each do |file|
-  require File.join(File.dirname(__FILE__), 'terminus', file)
+  require File.join(root, 'terminus', file)
 end
 
-require File.dirname(__FILE__) + '/capybara/driver/terminus'
+require root + '/capybara/driver/terminus'
 
 Thin::Logging.silent = true
 
