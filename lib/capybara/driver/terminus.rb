@@ -29,3 +29,12 @@ private
     Terminus.browser
   end
 end
+
+# Capybara 0.3.9 looks in the Capybara::Driver namespace for
+# appropriate drivers. 0.4 uses this registration API instead.
+if Capybara.respond_to?(:register_driver)
+  Capybara.register_driver :terminus do |app|
+    Capybara::Driver::Terminus.new(app)
+  end
+end
+
