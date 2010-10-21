@@ -1,12 +1,5 @@
 Failures:
-  1) Capybara::Session with terminus driver it should behave like session it should behave like all#all with css selectors should find all elements using the given selector
-     Failure/Error: @session.all(:css, 'h1').first.text.should == 'This is a test'
-     expected: "This is a test",
-          got: "Terminus." (using ==)
-     Shared Example Group: "all" called from ./vendor/capybara/lib/capybara/spec/session.rb:44
-     # ./vendor/capybara/lib/capybara/spec/session/all_spec.rb:27:in `block (4 levels) in <top (required)>'
-
-  2) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
+  1) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
      Failure/Error: @session.attach_file "form_image", __FILE__
      Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:45
@@ -16,7 +9,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:273:in `method_missing'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:10:in `block (4 levels) in <top (required)>'
 
-  3) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by label
+  2) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by label
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:45
@@ -26,7 +19,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:273:in `method_missing'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:16:in `block (4 levels) in <top (required)>'
 
-  4) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by id
+  3) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by id
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:45
@@ -36,7 +29,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:273:in `method_missing'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:29:in `block (4 levels) in <top (required)>'
 
-  5) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by label
+  4) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by label
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:45
@@ -46,7 +39,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:273:in `method_missing'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:35:in `block (4 levels) in <top (required)>'
 
-  6) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type text/plain when uploading a text file
+  5) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type text/plain when uploading a text file
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:45
@@ -56,7 +49,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:273:in `method_missing'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:46:in `block (4 levels) in <top (required)>'
 
-  7) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
+  6) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
      Failure/Error: @session.attach_file "Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:45
@@ -66,82 +59,18 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:273:in `method_missing'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:52:in `block (4 levels) in <top (required)>'
 
-  8) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with text should discard all matches where the given regexp is not matched
-     Failure/Error: @session.should have_css("p a", :text => /re[dab]i/i, :count => 1)
-     expected #has_css?("p a") to return true, got false
-     Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:58
-     # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:49:in `block (4 levels) in <top (required)>'
-
-  9) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with text should discard all matches where the given regexp is not matched
-     Failure/Error: @session.should have_css("p a", :text => /re[dab]i/i, :count => 1)
-     expected #has_css?("p a") to return true, got false
-     Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:59
-     # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:49:in `block (4 levels) in <top (required)>'
-
-  10) Capybara::Session with terminus driver it should behave like session it should behave like has_link#has_link? should be true if the given link is on the page
-     Failure/Error: @session.should have_link('foo')
-     expected #has_link?("foo") to return true, got false
-     Shared Example Group: "has_link" called from ./vendor/capybara/lib/capybara/spec/session.rb:62
-     # ./vendor/capybara/lib/capybara/spec/session/has_link_spec.rb:9:in `block (3 levels) in <top (required)>'
-
-  11) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? should be true if the field is on the page
-     Failure/Error: @session.should have_table('Deaths')
-     expected #has_table?("Deaths") to return true, got false
-     Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:66
-     # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:8:in `block (3 levels) in <top (required)>'
-
-  12) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
+  7) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
      Failure/Error: @session.should have_css('#focus_event_triggered')
      expected #has_css?("#focus_event_triggered") to return true, got false
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:28
+     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:29
      # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:36:in `block (4 levels) in <top (required)>'
 
-  13) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#source should return the original, unmodified source of the page
-     Failure/Error: @session.source.should include('This is text')
-     expected "<html>\n<head>      \n        \n          <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\">\n          <title>Capybara Driver Test</title>\n        <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\"><title>with_js</title><script src=\"http://127.0.0.1:7004/messaging/client.js\" type=\"text/javascript\"></script><script src=\"http://127.0.0.1:7004/syn.js\" type=\"text/javascript\"></script><script src=\"http://127.0.0.1:7004/terminus.js\" type=\"text/javascript\"></script></head><body id=\"with_js\">\n          \n  \n    \n    \n    <script src=\"/jquery.js\" type=\"text/javascript\" charset=\"utf-8\"></script><div methodname=\"info\" firebugversion=\"1.5.4\" style=\"display: none;\" id=\"_firebugConsole\"></div>\n    <script src=\"/jquery-ui.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n    <script src=\"/test.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n  \n    <h1>FooBar</h1>\n    \n    <p id=\"change\">I changed it</p>\n    <div class=\"ui-draggable\" style=\"position: relative;\" id=\"drag\">\n      <p>This is a draggable element.</p>\n    </div>\n    <div class=\"ui-droppable\" id=\"drop\">\n      <p>It should be dropped here.</p>\n    </div>\n    \n    <p><a href=\"#\" id=\"clickable\">Click me</a></p>\n    \n    <p>\n      <select id=\"waiter\">\n        <option>Foo</option>\n        <option>My Waiting Option</option>\n      </select>\n    </p>\n    \n    <p>\n      <input name=\"with_focus_event\" value=\"\" id=\"with_focus_event\" type=\"text\">\n    </p>\n\n    <p>\n      <input id=\"checkbox_with_event\" type=\"checkbox\">\n    </p>\n  <script type=\"text/javascript\" src=\"http://127.0.0.1:7004/controller.js\"></script>\n        </body>\n</html>\n" to include "This is text"
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:28
-     # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:52:in `block (4 levels) in <top (required)>'
-
-  14) Capybara::Driver::Terminus it should behave like driver with support for window switching#within_window should find the div in firstPopup
-     Failure/Error: @driver.within_window("firstPopup") do
-     Capybara::NotSupportedByDriverError
-     Shared Example Group: "driver with support for window switching" called from ./spec/terminus_driver_spec.rb:16
-     # ./vendor/capybara/lib/capybara/driver/base.rb:43:in `within_window'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:172:in `block (3 levels) in <top (required)>'
-
-  15) Capybara::Driver::Terminus it should behave like driver with support for window switching#within_window should find the div in secondPopup
-     Failure/Error: @driver.within_window("secondPopup") do
-     Capybara::NotSupportedByDriverError
-     Shared Example Group: "driver with support for window switching" called from ./spec/terminus_driver_spec.rb:16
-     # ./vendor/capybara/lib/capybara/driver/base.rb:43:in `within_window'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:177:in `block (3 levels) in <top (required)>'
-
-  16) Capybara::Driver::Terminus it should behave like driver with support for window switching#within_window should find the divs in both popups
-     Failure/Error: @driver.within_window("secondPopup") do
-     Capybara::NotSupportedByDriverError
-     Shared Example Group: "driver with support for window switching" called from ./spec/terminus_driver_spec.rb:16
-     # ./vendor/capybara/lib/capybara/driver/base.rb:43:in `within_window'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:182:in `block (3 levels) in <top (required)>'
-
-  17) Capybara::Driver::Terminus it should behave like driver with support for window switching#within_window should find the div in the main window after finding a div in a popup
-     Failure/Error: @driver.within_window("secondPopup") do
-     Capybara::NotSupportedByDriverError
-     Shared Example Group: "driver with support for window switching" called from ./spec/terminus_driver_spec.rb:16
-     # ./vendor/capybara/lib/capybara/driver/base.rb:43:in `within_window'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:190:in `block (3 levels) in <top (required)>'
-
-  18) Capybara::Driver::Terminus it should behave like driver with cookies support#reset! should set and clean cookies
-     Failure/Error: @driver.body.should_not include('test_cookie')
-     expected "<html>\n<head>      \n        \n          <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\">\n          <title>Capybara Driver Test</title>\n        <script src=\"http://127.0.0.1:7004/messaging/client.js\" type=\"text/javascript\"></script><script src=\"http://127.0.0.1:7004/syn.js\" type=\"text/javascript\"></script><script src=\"http://127.0.0.1:7004/terminus.js\" type=\"text/javascript\"></script></head><body>\n          test_cookie\n          <script type=\"text/javascript\" src=\"http://127.0.0.1:7004/controller.js\"></script><div methodname=\"info\" firebugversion=\"1.5.4\" style=\"display: none;\" id=\"_firebugConsole\"></div>\n        </body>\n</html>\n" not to include "test_cookie"
-     Shared Example Group: "driver with cookies support" called from ./spec/terminus_driver_spec.rb:18
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:212:in `block (3 levels) in <top (required)>'
-
-  19) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
+  8) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
      Failure/Error: running do
      expected Capybara::InfiniteRedirectError but nothing was raised
      Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:19
      # ./vendor/capybara/lib/capybara/spec/driver.rb:224:in `block (2 levels) in <top (required)>'
 
-Finished in 1612.21 seconds
-370 examples, 19 failures
+Finished in 1561.36 seconds
+370 examples, 8 failures
 

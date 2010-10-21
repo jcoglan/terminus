@@ -22,6 +22,13 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :reset!,
                            :source
   
+  def within_window(name)
+    current_browser = browser
+    Terminus.browser = {:name => name}
+    yield
+    Terminus.browser = current_browser
+  end
+  
 private
   
   def browser

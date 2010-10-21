@@ -33,10 +33,6 @@ module Terminus
       ask([:source])
     end
     
-    def reset!
-      ask([:reset])
-    end
-    
     def current_path
       return nil unless url = @attributes['url']
       URI.parse(url).path
@@ -55,7 +51,8 @@ module Terminus
     end
     
     def execute_script(expression)
-      ask([:execute, expression])
+      tell([:evaluate, expression])
+      nil
     end
     
     def find(xpath)
@@ -65,6 +62,7 @@ module Terminus
     def id
       @attributes['id']
     end
+    alias :name :id
     
     def page_id
       @attributes['page']
@@ -76,6 +74,10 @@ module Terminus
       @attributes = @attributes.merge(message)
       detect_dock_host
       @ping = true
+    end
+    
+    def reset!
+      ask([:reset])
     end
     
     def result!(message)
@@ -108,7 +110,7 @@ module Terminus
     
     def wait_for_ping
       @ping = false
-      wait_with_timeout(:ping) { @ping }
+      wait_with_timeout(:ping) { @ping or @dead }
     end
     
   private
@@ -125,6 +127,7 @@ module Terminus
     end
     
     def drop_dead!
+      @dead = true
       @controller.drop_browser(self)
     end
     
