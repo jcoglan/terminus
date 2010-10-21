@@ -33,8 +33,8 @@ module Terminus
       ask([:source])
     end
     
-    def cleanup!
-      ask([:cleanup])
+    def reset!
+      ask([:reset])
     end
     
     def current_path
