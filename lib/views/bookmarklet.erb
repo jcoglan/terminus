@@ -2,6 +2,9 @@
   var faye = '<%= ::Terminus::FAYE_MOUNT %>',
       host = '<%= host %>';
   
+  var html   = document.getElementsByTagName('html')[0],
+      source = '<html>\n' + html.innerHTML + '\n</html>\n';
+  
   JSCLASS_PATH = host + '/js.class/';
   
   var withPackageManager = function(callback) {
@@ -44,6 +47,7 @@
     });
     
     JS.require('Terminus', function() {
+      Terminus.originalSource = source;
       Terminus.connect(host + faye);
     });
   });

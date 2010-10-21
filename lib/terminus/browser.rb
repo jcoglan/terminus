@@ -28,7 +28,10 @@ module Terminus
     def body
       ask([:body])
     end
-    alias :source :body
+    
+    def source
+      ask([:source])
+    end
     
     def cleanup!
       ask([:cleanup])
