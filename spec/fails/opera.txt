@@ -66,52 +66,45 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:51
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  8) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#source should return the original, unmodified source of the page
-     Failure/Error: @session.source.should include('This is text')
-     expected "<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\"><head>\n          <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\">\n          <title>Capybara Driver Test</title>\n        <script type=\"text/javascript\" src=\"http://127.0.0.1:7004/messaging/client.js\"></script><script type=\"text/javascript\" src=\"http://127.0.0.1:7004/syn.js\"></script><script type=\"text/javascript\" src=\"http://127.0.0.1:7004/terminus.js\"></script></head><body id=\"with_js\">\n          \n  \n    <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\">\n    <title>with_js</title>\n    <script src=\"/jquery.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n    <script src=\"/jquery-ui.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n    <script src=\"/test.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n  \n  \n  \n    <h1>FooBar</h1>\n    \n    <p id=\"change\">I changed it</p>\n    <div id=\"drag\" style=\"position: relative\" class=\"ui-draggable\">\n      <p>This is a draggable element.</p>\n    </div>\n    <div id=\"drop\" class=\"ui-droppable\">\n      <p>It should be dropped here.</p>\n    </div>\n    \n    <p><a href=\"#\" id=\"clickable\">Click me</a></p>\n    \n    <p>\n      <select id=\"waiter\"><option>Foo</option><option>My Waiting Option</option></select>\n    </p>\n    \n    <p>\n      <input type=\"text\" name=\"with_focus_event\" value=\"\" id=\"with_focus_event\">\n    </p>\n\n    <p>\n      <input type=\"checkbox\" id=\"checkbox_with_event\">\n    </p>\n  \n\n\n\n          <script type=\"text/javascript\" src=\"http://127.0.0.1:7004/controller.js\"></script>\n        \n      \n</body></html>" to include "This is text"
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:28
-     # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:52:in `block (4 levels) in <top (required)>'
+  8) Capybara::Session with terminus driver it should behave like session it should behave like find#find within a scope should find the first element using the given locator
+     Failure/Error: @session.within(:xpath, "//div[@id='for_bar']") do
+     scope '//div[@id='for_bar']' not found on page
+     Shared Example Group: "find" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     # ./vendor/capybara/lib/capybara/node/finders.rb:30:in `find'
+     # ./vendor/capybara/lib/capybara/session.rb:273:in `method_missing'
+     # ./vendor/capybara/lib/capybara/session.rb:158:in `within'
+     # ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:116:in `block (4 levels) in <top (required)>'
 
-  9) Capybara::Driver::Terminus it should behave like driver with support for window switching#within_window should find the div in firstPopup
-     Failure/Error: @driver.within_window("firstPopup") do
-     Capybara::NotSupportedByDriverError
-     Shared Example Group: "driver with support for window switching" called from ./spec/terminus_driver_spec.rb:16
-     # ./vendor/capybara/lib/capybara/driver/base.rb:43:in `within_window'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:172:in `block (3 levels) in <top (required)>'
+  9) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#execute_script should execute the given script and return nothing
+     Failure/Error: @session.should have_css('#change', :text => 'Funky Doodle')
+     Waited 10s but could not get a result
+     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:29
+     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
+     # ./lib/terminus/browser.rb:21:in `ask'
+     # ./lib/terminus/browser.rb:25:in `rescue in ask'
+     # ./lib/terminus/browser.rb:20:in `ask'
+     # ./lib/terminus/browser.rb:25:in `rescue in ask'
+     # ./lib/terminus/browser.rb:20:in `ask'
+     # ./lib/terminus/browser.rb:25:in `rescue in ask'
+     # ./lib/terminus/browser.rb:20:in `ask'
+     # ./lib/terminus/browser.rb:59:in `find'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:126:in `block in all'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:125:in `map'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:125:in `all'
+     # ./vendor/capybara/lib/capybara/node/matchers.rb:38:in `block in has_selector?'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:145:in `wait_conditionally_until'
+     # ./vendor/capybara/lib/capybara/node/matchers.rb:37:in `has_selector?'
+     # ./vendor/capybara/lib/capybara/node/matchers.rb:103:in `has_xpath?'
+     # ./vendor/capybara/lib/capybara/node/matchers.rb:142:in `has_css?'
+     # ./vendor/capybara/lib/capybara/session.rb:273:in `method_missing'
+     # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:68:in `block (4 levels) in <top (required)>'
 
-  10) Capybara::Driver::Terminus it should behave like driver with support for window switching#within_window should find the div in secondPopup
-     Failure/Error: @driver.within_window("secondPopup") do
-     Capybara::NotSupportedByDriverError
-     Shared Example Group: "driver with support for window switching" called from ./spec/terminus_driver_spec.rb:16
-     # ./vendor/capybara/lib/capybara/driver/base.rb:43:in `within_window'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:177:in `block (3 levels) in <top (required)>'
-
-  11) Capybara::Driver::Terminus it should behave like driver with support for window switching#within_window should find the divs in both popups
-     Failure/Error: @driver.within_window("secondPopup") do
-     Capybara::NotSupportedByDriverError
-     Shared Example Group: "driver with support for window switching" called from ./spec/terminus_driver_spec.rb:16
-     # ./vendor/capybara/lib/capybara/driver/base.rb:43:in `within_window'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:182:in `block (3 levels) in <top (required)>'
-
-  12) Capybara::Driver::Terminus it should behave like driver with support for window switching#within_window should find the div in the main window after finding a div in a popup
-     Failure/Error: @driver.within_window("secondPopup") do
-     Capybara::NotSupportedByDriverError
-     Shared Example Group: "driver with support for window switching" called from ./spec/terminus_driver_spec.rb:16
-     # ./vendor/capybara/lib/capybara/driver/base.rb:43:in `within_window'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:190:in `block (3 levels) in <top (required)>'
-
-  13) Capybara::Driver::Terminus it should behave like driver with cookies support#reset! should set and clean cookies
-     Failure/Error: @driver.body.should_not include('test_cookie')
-     expected "<html><head>\n          <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\">\n          <title>Capybara Driver Test</title>\n        <script type=\"text/javascript\" src=\"http://127.0.0.1:7004/messaging/client.js\"></script><script type=\"text/javascript\" src=\"http://127.0.0.1:7004/syn.js\"></script><script type=\"text/javascript\" src=\"http://127.0.0.1:7004/terminus.js\"></script></head><body>\n          test_cookie\n          <script type=\"text/javascript\" src=\"http://127.0.0.1:7004/controller.js\"></script>\n        \n      \n</body></html>" not to include "test_cookie"
-     Shared Example Group: "driver with cookies support" called from ./spec/terminus_driver_spec.rb:18
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:212:in `block (3 levels) in <top (required)>'
-
-  14) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
+  10) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
      Failure/Error: running do
      expected Capybara::InfiniteRedirectError but nothing was raised
      Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:19
      # ./vendor/capybara/lib/capybara/spec/driver.rb:224:in `block (2 levels) in <top (required)>'
 
-Finished in 1347.17 seconds
-370 examples, 14 failures
+Finished in 2114.69 seconds
+370 examples, 10 failures
 
