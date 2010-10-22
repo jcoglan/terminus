@@ -51,7 +51,7 @@ module Terminus
     end
     
     def execute_script(expression)
-      tell([:evaluate, expression])
+      tell([:execute, expression])
       nil
     end
     
