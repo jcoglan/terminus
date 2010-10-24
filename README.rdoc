@@ -21,7 +21,7 @@ Terminus is a Capybara driver. For the most part, you will not use
 it directly: you will use the Capybara API and it will send instructions
 to Terminus for execution. To set Terminus as your driver:
 
-  require 'capybara'
+  require 'capybara/dsl'
   require 'terminus'
   
   Capybara.current_driver = :terminus
