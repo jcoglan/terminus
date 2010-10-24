@@ -52,6 +52,8 @@ If the browser you're using is on a different machine to the Terminus
 server, replace <tt>127.0.0.1</tt> with the Terminus machine's IP as
 seen by the browser. For example if I'm running the browser in VirtualBox
 and the Terminus server on the host OS, then I set the IP to <tt>10.0.2.2</tt>.
+You could also use <tt>request.host</tt> to get the right IP automatically
+if you're running your app and your Terminus server on the same machine.
 
 Finally, in your tests you need to make sure there's a docked browser
 and select it. In a 'before' block, run the following:
@@ -69,14 +71,15 @@ This returns all currently connected browsers to the holding page.
 
 == Notes / to-do
 
+* Support IE, which has no built-in XPath engine for querying the DOM.
+  I'm working on Pathology (see http://github.com/jcoglan/pathology) to
+  try and fix this but it's currently not fast enough.
+  
 * Allow <tt>Terminus.browser=</tt> to select browsers by name and
   version so we can control multiple browsers at once.
   
 * It's slow, especially at filling out forms. Use it to sanity-check
   your cross-browser code and JavaScript, not to test your whole app.
-  
-* In IE it uses Pathology to run XPath queries, and will probably be
-  even slower than it is everywhere else. (see http://github.com/jcoglan/pathology)
   
 * It can be a little brittle, and occasionally there seem to be race
   conditions when running the Capybara specs.
