@@ -1,6 +1,5 @@
 require 'forwardable'
 require 'uri'
-require 'rubygems'
 require 'rack'
 require 'thin'
 require 'eventmachine'
@@ -27,7 +26,6 @@ require root + '/capybara/driver/terminus'
 Thin::Logging.silent = true
 
 module Terminus
-  VERSION      = '0.2.0'
   FAYE_MOUNT   = '/messaging'
   DEFAULT_HOST = 'localhost'
   DEFAULT_PORT = 7004
