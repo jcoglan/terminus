@@ -7,6 +7,14 @@ module Terminus
       @browser, @id = browser, id
     end
     
+    def checked?
+      !!self['checked']
+    end
+    
+    def selected?
+      !!self['selected']
+    end
+    
     def click
       page    = @browser.page_id
       command = @browser.tell([:click, @id])

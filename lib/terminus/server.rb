@@ -16,7 +16,6 @@ module Terminus
     def run!
       return if running?
       handler = Rack::Handler.get('thin')
-      Terminus.ensure_reactor_running
       handler.run(app, :Port => @options[:port]) { |s| @server = s }
     end
     
