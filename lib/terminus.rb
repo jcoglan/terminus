@@ -16,6 +16,7 @@ root = File.expand_path(File.dirname(__FILE__))
     controller
     browser
     node
+    user_agent
 
 ].each do |file|
   require File.join(root, 'terminus', file)

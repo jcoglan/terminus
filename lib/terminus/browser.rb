@@ -42,6 +42,10 @@ module Terminus
       @attributes['url']
     end
     
+    def user_agent
+      @attributes['ua']
+    end
+    
     def docked?
       @docked
     end
@@ -72,6 +76,7 @@ module Terminus
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       @attributes = @attributes.merge(message)
+      @user_agent = UserAgent.parse(message['ua'])
       detect_dock_host
       @ping = true
     end
@@ -112,6 +117,11 @@ module Terminus
       @ping = false
       wait_with_timeout(:ping) { @ping or @dead }
     end
+    
+    def to_s
+      "<#{self.class.name} #{@user_agent[:name]} #{@user_agent[:version]} (#{@user_agent[:os]})>"
+    end
+    alias :inspect :to_s
     
   private
     

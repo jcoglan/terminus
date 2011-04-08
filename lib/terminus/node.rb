@@ -50,10 +50,16 @@ module Terminus
       raise Capybara::UnselectNotAllowed.new unless allowed
     end
     
+    def to_s
+      "<#{self.class.name} #{@id}>"
+    end
+    alias :inspect :to_s
+    
     alias :select_option :select
     alias :unselect_option :unselect
     
     SYNC_DSL_METHODS = [ [:[], :attribute],
+                         [:[]=, :set_attribute],
                          :tag_name,
                          :text,
                          :value,
