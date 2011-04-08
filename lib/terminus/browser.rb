@@ -16,6 +16,17 @@ module Terminus
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
     end
     
+    def ===(params)
+      return docked? if params == :docked
+      return true if params[:window_name] == id
+      params.all? do |name, value|
+        case value
+        when Regexp then @user_agent[name] =~ value
+        when String then @user_agent[name] == value
+        end
+      end
+    end
+    
     def ask(command, retries = RETRY_LIMIT)
       id = tell(command)
       result_hash = wait_with_timeout(:result) { result(id) }
@@ -66,7 +77,6 @@ module Terminus
     def id
       @attributes['id']
     end
-    alias :name :id
     
     def page_id
       @attributes['page']

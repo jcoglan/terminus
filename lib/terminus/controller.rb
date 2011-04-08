@@ -17,13 +17,9 @@ module Terminus
     end
     
     def browser=(params)
-      @browser = case params
-        when :docked then @browsers.values.find { |b| b.docked? }
-        when Browser then params
-        when Hash then
-          wait_with_timeout(:named_window) do
-            @browsers.values.find { |b| b.name == params[:name] }
-          end
+      return @browser = params if Browser === params
+      @browser = wait_with_timeout(:selected_browser) do
+        @browsers.values.find { |b| b === params }
       end
     end
     
