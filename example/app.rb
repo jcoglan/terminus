@@ -1,28 +1,36 @@
 require 'rubygems'
 require 'sinatra'
+require 'yaml'
 
 module Example
-  class << self
-    attr_accessor :driver
-  end
-  
   class App < Sinatra::Base
     set :views, File.dirname(__FILE__) + '/views'
     
     get '/' do
       erb(:index)
     end
+    
+    get '/signup' do
+      erb(:signup)
+    end
+    
+    post '/signup' do
+      "<pre>\n#{ YAML.dump params }\n</pre>"
+    end
   end
 end
 
 require File.dirname(__FILE__) + '/../lib/terminus'
+require 'capybara/dsl'
 
-def t(&block)
-  Thread.new(&block)
+def driver
+  Capybara.current_session.driver
 end
 
-t do
-  Example.driver = Capybara::Driver::Terminus.new(Example::App)
+Thread.new do
+  Capybara.current_driver = :terminus
+  Capybara.app = Example::App.new
+  
   Terminus.ensure_docked_browser
   Terminus.browser = :docked
 end
