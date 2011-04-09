@@ -54,7 +54,7 @@ module Terminus
                                 :browsers,
                                 :browser=,
                                 :ensure_docked_browser,
-                                :ensure_browser,
+                                :ensure_browsers,
                                 :return_to_dock
     
   private

@@ -32,7 +32,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
 private
   
   def browser
-    Terminus.ensure_browser
+    Terminus.ensure_browsers
     Terminus.browser
   end
 end

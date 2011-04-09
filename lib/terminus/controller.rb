@@ -32,9 +32,9 @@ module Terminus
       @browser = nil if @browser == browser
     end
     
-    def ensure_browser
+    def ensure_browsers(n = 1)
       ensure_connection
-      wait_with_timeout(:browser) { @browser }
+      wait_with_timeout(:browsers) { @browsers.size >= n }
     end
     
     def ensure_docked_browser
