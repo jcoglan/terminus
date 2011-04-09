@@ -2,6 +2,7 @@ module Terminus
   class Browser
     
     include Timeouts
+    attr_reader :dock_host
     
     LOCALHOST   = /localhost|0\.0\.0\.0|127\.0\.0\.1/
     RETRY_LIMIT = 3
@@ -105,17 +106,18 @@ module Terminus
     end
     
     def return_to_dock
-      visit "http://#{@controller.dock_host}:#{DEFAULT_PORT}/"
+      visit "http://#{dock_host}:#{DEFAULT_PORT}/"
     end
     
     def tell(command)
       id = @namespace.generate
       messenger.publish(channel, 'command' => command, 'commandId' => id)
+      @controller.last_commanded_browser = self
       id
     end
     
     def visit(url, retries = RETRY_LIMIT)
-      url = url.gsub(LOCALHOST, @controller.dock_host)
+      url = url.gsub(LOCALHOST, dock_host)
       tell([:visit, url])
       wait_for_ping
     rescue Timeouts::TimeoutError => e
@@ -141,9 +143,13 @@ module Terminus
     
     def detect_dock_host
       uri = URI.parse(@attributes['url'])
-      return unless uri.port == DEFAULT_PORT
-      @docked = true
-      @controller.dock_host = uri.host
+      if uri.port == DEFAULT_PORT
+        @docked = true
+        @dock_host = uri.host
+      else
+        @docked = false
+        @dock_host ||= @controller.last_commanded_browser.dock_host
+      end
     end
     
     def drop_dead!

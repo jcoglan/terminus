@@ -2,7 +2,7 @@ module Terminus
   class Controller
     
     include Timeouts
-    attr_accessor :dock_host, :browsers
+    attr_accessor :last_commanded_browser
     
     def initialize
       @connected = false
