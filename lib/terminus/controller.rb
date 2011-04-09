@@ -2,7 +2,7 @@ module Terminus
   class Controller
     
     include Timeouts
-    attr_accessor :dock_host
+    attr_accessor :dock_host, :browsers
     
     def initialize
       @connected = false
@@ -14,6 +14,10 @@ module Terminus
     def browser(id = nil)
       return @browser if id.nil?
       @browsers[id] ||= Browser.new(self)
+    end
+    
+    def browsers
+      @browsers.values
     end
     
     def browser=(params)
