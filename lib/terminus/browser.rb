@@ -18,7 +18,7 @@ module Terminus
     
     def ===(params)
       return docked? if params == :docked
-      return true if params[:window_name] == id
+      return params == id if String === params
       params.all? do |name, value|
         case value
         when Regexp then @user_agent[name] =~ value
