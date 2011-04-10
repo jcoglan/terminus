@@ -54,6 +54,18 @@ module Terminus
       @attributes['url']
     end
     
+    def response_headers
+      evaluate_script('TERMINUS_HEADERS')
+    end
+
+    def status_code
+      evaluate_script('TERMINUS_STATUS')
+    end
+
+    def frame_src(name)
+      ask([:frame_src, name])
+    end
+
     def user_agent
       @attributes['ua']
     end

@@ -20,7 +20,9 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :execute_script,
                            :find,
                            :reset!,
-                           :source
+                           :response_headers,
+                           :source,
+                           :status_code
   
   def within_window(name)
     current_browser = browser

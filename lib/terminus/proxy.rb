@@ -27,15 +27,27 @@ module Terminus
       
       response[1] = response[1].dup
       response[1].delete_if { |key, _| key =~ /^content-length$/i }
-      response[2] = DriverBody.new(env, response[2])
+      response[2] = DriverBody.new(env, response)
       
       response
     end
     
     class DriverBody
-      def initialize(env, body)
-        @env  = env
-        @body = body
+      TEMPLATE = ERB.new(<<-DRIVER)
+        <%= driver_script %>
+        <script type="text/javascript">
+          TERMINUS_STATUS = <%= @response.first %>;
+          TERMINUS_HEADERS = {};
+          <% @response[1].each do |key, value| %>
+            TERMINUS_HEADERS[<%= key.inspect %>] = <%= value.inspect %>;
+          <% end %>
+        </script>
+      DRIVER
+
+      def initialize(env, response)
+        @env      = env
+        @response = response
+        @body     = response[2]
       end
       
       def each(&block)
@@ -48,14 +60,16 @@ module Terminus
         end
         
         unless script_injected
-          block.call(driver_script)
+          block.call(TEMPLATE.result(binding))
         end
       end
       
     private
       
       def inject_script(fragment)
-        fragment.gsub(/((?:^\s*)?<\/body>)/i) { driver_script + $1 }
+        fragment.gsub(/((?:^\s*)?<\/body>)/i) do
+          TEMPLATE.result(binding) + $1
+        end
       end
       
       def driver_script
