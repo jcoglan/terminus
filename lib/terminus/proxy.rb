@@ -43,7 +43,7 @@ module Terminus
           <% end %>
         </script>
       DRIVER
-
+      
       def initialize(env, response)
         @env      = env
         @response = response

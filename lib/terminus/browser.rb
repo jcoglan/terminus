@@ -11,6 +11,7 @@ module Terminus
       @controller     = controller
       @attributes     = {}
       @docked         = false
+      @frames         = Set.new
       @namespace      = Faye::Namespace.new
       @ping_callbacks = []
       @results        = {}
@@ -41,10 +42,6 @@ module Terminus
       ask([:body])
     end
     
-    def source
-      ask([:source])
-    end
-    
     def current_path
       return nil unless url = @attributes['url']
       URI.parse(url).path
@@ -52,22 +49,6 @@ module Terminus
     
     def current_url
       @attributes['url']
-    end
-    
-    def response_headers
-      evaluate_script('TERMINUS_HEADERS')
-    end
-
-    def status_code
-      evaluate_script('TERMINUS_STATUS')
-    end
-
-    def frame_src(name)
-      ask([:frame_src, name])
-    end
-
-    def user_agent
-      @attributes['ua']
     end
     
     def docked?
@@ -87,6 +68,18 @@ module Terminus
       ask([:find, xpath, false]).map { |id| Node.new(self, id) }
     end
     
+    def frame!(frame_browser)
+      @frames.add(frame_browser)
+    end
+    
+    def frames
+      @frames.to_a
+    end
+    
+    def frame_src(name)
+      ask([:frame_src, name])
+    end
+    
     def id
       @attributes['id']
     end
@@ -98,14 +91,24 @@ module Terminus
     def ping!(message)
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
+      
       @attributes = @attributes.merge(message)
       @user_agent = UserAgent.parse(message['ua'])
       detect_dock_host
+      
+      if parent = message['parent']
+        Terminus.browser(parent).frame!(self)
+      end
+      
       @ping = true
     end
     
     def reset!
       ask([:reset])
+    end
+    
+    def response_headers
+      evaluate_script('TERMINUS_HEADERS')
     end
     
     def result!(message)
@@ -121,6 +124,14 @@ module Terminus
       visit "http://#{dock_host}:#{DEFAULT_PORT}/"
     end
     
+    def source
+      ask([:source])
+    end
+    
+    def status_code
+      evaluate_script('TERMINUS_STATUS')
+    end
+    
     def tell(command)
       id = @namespace.generate
       messenger.publish(channel, 'command' => command, 'commandId' => id)
@@ -128,7 +139,12 @@ module Terminus
       id
     end
     
+    def user_agent
+      @attributes['ua']
+    end
+    
     def visit(url, retries = RETRY_LIMIT)
+      close_frames!
       url = url.gsub(LOCALHOST, dock_host)
       tell([:visit, url])
       wait_for_ping
@@ -147,10 +163,24 @@ module Terminus
     end
     alias :inspect :to_s
     
+  protected
+    
+    def drop_dead!
+      remove_timeout(:dead)
+      close_frames!
+      @dead = true
+      @controller.drop_browser(self)
+    end
+    
   private
     
     def channel
       "/terminus/clients/#{id}"
+    end
+    
+    def close_frames!
+      @frames.each { |frame| frame.drop_dead! }
+      @frames = Set.new
     end
     
     def detect_dock_host
@@ -162,11 +192,6 @@ module Terminus
         @docked = false
         @dock_host ||= @controller.last_commanded_browser.dock_host
       end
-    end
-    
-    def drop_dead!
-      @dead = true
-      @controller.drop_browser(self)
     end
     
     def messenger

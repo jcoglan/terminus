@@ -10,7 +10,7 @@ describe Capybara::Driver::Terminus do
   after do
     Terminus.return_to_dock
   end
-
+  
   it_should_behave_like "driver"
   it_should_behave_like "driver with header support"
   it_should_behave_like "driver with status code support"
