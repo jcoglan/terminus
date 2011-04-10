@@ -39,22 +39,6 @@ hostname.) This is the 'holding page'. A browser is said to be 'docked'
 while it is visiting this page, meaning it is ready and waiting to run
 some tests for you.
 
-To let Terminus control your app's pages, you need to include this
-just before the closing +body+ tag when in testing mode:
-
-  <!-- For example if you're using Rails -->
-  
-  <% if Rails.env.test? %>
-    <%= Terminus.driver_script '127.0.0.1' %>
-  <% end %>
-
-If the browser you're using is on a different machine to the Terminus
-server, replace <tt>127.0.0.1</tt> with the Terminus machine's IP as
-seen by the browser. For example if I'm running the browser in VirtualBox
-and the Terminus server on the host OS, then I set the IP to <tt>10.0.2.2</tt>.
-You could also use <tt>request.host</tt> to get the right IP automatically
-if you're running your app and your Terminus server on the same machine.
-
 Finally, in your tests you need to make sure there's a docked browser
 and select it. In a 'before' block, run the following:
 
@@ -75,9 +59,6 @@ This returns all currently connected browsers to the holding page.
   I'm working on Pathology (see http://github.com/jcoglan/pathology) to
   try and fix this but it's currently not fast enough.
   
-* Allow <tt>Terminus.browser=</tt> to select browsers by name and
-  version so we can control multiple browsers at once.
-  
 * It's slow, especially at filling out forms. Use it to sanity-check
   your cross-browser code and JavaScript, not to test your whole app.
   
@@ -89,7 +70,7 @@ This returns all currently connected browsers to the holding page.
 
 (The MIT License)
 
-Copyright (c) 2010 James Coglan
+Copyright (c) 2010-2011 James Coglan
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
