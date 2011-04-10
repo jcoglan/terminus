@@ -21,8 +21,14 @@ module Terminus
       end
     end
     
-    get('/') { erb :index }
-    get('/controller.js') { bookmarklet }
+    get '/' do
+      erb :index
+    end
+    
+    get '/controller.js' do
+      headers 'Content-Type' => 'text/javascript'
+      bookmarklet
+    end
     
   end
 end

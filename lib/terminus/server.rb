@@ -5,10 +5,6 @@ module Terminus
       @options = options
     end
     
-    def execute(script, &callback)
-      messenger.publish('/terminus/commands', :command => script)
-    end
-    
     def running?
       not @server.nil?
     end
@@ -28,13 +24,11 @@ module Terminus
   private
     
     def app
-      return @app if defined?(@app)
-      frontend = Application.new
-      @app = Faye::RackAdapter.new(frontend, :mount => FAYE_MOUNT, :timeout => 15)
-    end
-    
-    def messenger
-      app.get_client
+      @app ||= Rack::Builder.new {
+                 use Terminus::Proxy
+                 use Faye::RackAdapter, :mount => FAYE_MOUNT, :timeout => 15
+                 run Application.new
+               }.to_app
     end
     
   end
