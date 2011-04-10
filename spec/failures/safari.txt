@@ -159,7 +159,7 @@ Capybara::Session
           should serialize and send valueless buttons that were clicked
           should not send image buttons that were not clicked
           should serialize and send GET forms
-          should follow redirects
+          should follow redirects (FAILED - 9)
           should post pack to the same URL when no action given
           should post pack to the same URL when blank action given
           with multiple values with the same name
@@ -239,7 +239,7 @@ Capybara::Session
         #fill_in
           should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for
+          should fill in a text field by label without for (FAILED - 10)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
@@ -248,7 +248,7 @@ Capybara::Session
           should fill in a password field by id
           should fill in a field with a custom type
           should fill in a field without a type
-          should fill in a text field respecting its maxlength attribute (FAILED - 9)
+          should fill in a text field respecting its maxlength attribute (FAILED - 11)
           should fill in a password field by name
           should fill in a password field by label
           should fill in a password field by name
@@ -670,7 +670,7 @@ Capybara::Session
         Node#drag_to
           should drag and drop an object
         #find
-          should allow triggering of custom JS events (FAILED - 10)
+          should allow triggering of custom JS events
         #body
           should return the current state of the page
         #source
@@ -802,18 +802,25 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:58:in `block (4 levels) in <top (required)>'
 
-  9) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
+  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should follow redirects
+     Failure/Error: @session.current_url.should match(%r{/landed$})
+       expected "http://localhost:61667/form" to match /\/landed$/
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:60
+     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:236:in `block (3 levels) in <top (required)>'
+
+  10) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
+     Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
+       expected: "Avenue Q"
+            got: "Sesame street 66" (using ==)
+     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:62
+     # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
+
+  11) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
      Failure/Error: extract_results(@session)['zipcode'].should == '52071'
        expected: "52071"
             got: "52071350" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:62
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
 
-  10) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
-     Failure/Error: @session.should have_css('#focus_event_triggered')
-       expected #has_css?("#focus_event_triggered") to return true, got false
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:18
-     # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:26:in `block (4 levels) in <top (required)>'
-
-Finished in 2105.71 seconds
-478 examples, 10 failures
+Finished in 1998.85 seconds
+478 examples, 11 failures

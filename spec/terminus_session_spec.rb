@@ -11,10 +11,10 @@ describe Capybara::Session do
     after do
       Terminus.return_to_dock
     end
-
+    
     it_should_behave_like "session"
-    it_should_behave_like "session without headers support"
+    it_should_behave_like "session with headers support"
+    it_should_behave_like "session with status code support"
     it_should_behave_like "session with javascript support"
-    it_should_behave_like "session without status code support"
   end
 end

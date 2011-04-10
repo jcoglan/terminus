@@ -125,7 +125,7 @@ module Terminus
     end
     
     def source
-      ask([:source])
+      evaluate_script('TERMINUS_SOURCE')
     end
     
     def status_code
