@@ -92,6 +92,10 @@ module Terminus
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       
+      uri  = URI.parse(message['url'])
+      path = (uri.path == '/') ? '' : uri.path
+      message['url'] = "http://#{uri.host}:#{uri.port}#{path}"
+      
       @attributes = @attributes.merge(message)
       @user_agent = UserAgent.parse(message['ua'])
       detect_dock_host
@@ -104,7 +108,9 @@ module Terminus
     end
     
     def reset!
-      ask([:reset])
+      uri = URI.parse(@attributes['url'])
+      visit("http://#{uri.host}:#{uri.port}")
+      ask([:clear_cookies])
     end
     
     def response_headers
