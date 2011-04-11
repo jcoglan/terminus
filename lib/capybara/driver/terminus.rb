@@ -26,7 +26,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   
   def within_window(name)
     current_browser = browser
-    Terminus.browser = name
+    Terminus.browser = browser.id + '/' + name
     yield
     Terminus.browser = current_browser
   end

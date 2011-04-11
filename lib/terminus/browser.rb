@@ -22,6 +22,7 @@ module Terminus
       return docked? if params == :docked
       return params == id if String === params
       return false if @parent
+      return false unless @user_agent
       
       params.all? do |name, value|
         case value

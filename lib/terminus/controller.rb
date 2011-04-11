@@ -66,7 +66,8 @@ module Terminus
     end
     
     def accept_result(message)
-      browser(message['id']).result!(message)
+      browser = @browsers[message['id']]
+      browser.result!(message) if browser
     end
     
     def ensure_connection

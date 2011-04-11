@@ -129,6 +129,8 @@ Capybara::Session
             should not break when using HTML5 multiple file input (FAILED - 8)
           with a locator that doesn't exist
             should raise an error
+          with a path that doesn't exist
+            should raise an error
       it should behave like check
         #check
           should check a checkbox by id
@@ -195,7 +197,7 @@ Capybara::Session
             should work with partial matches
           with alt given on an image button
             should submit the associated form
-            should work with partial matches
+            should work with partial matches (FAILED - 9)
           with value given on an image button
             should submit the associated form
             should work with partial matches
@@ -252,7 +254,7 @@ Capybara::Session
           should fill in a password field by id
           should fill in a field with a custom type
           should fill in a field without a type
-          should fill in a text field respecting its maxlength attribute (FAILED - 9)
+          should fill in a text field respecting its maxlength attribute (FAILED - 10)
           should fill in a password field by name
           should fill in a password field by label
           should fill in a password field by name
@@ -405,7 +407,7 @@ Capybara::Session
             should coerce minimum to an integer
           with text
             should discard all matches where the given string is not contained
-            should discard all matches where the given regexp is not matched
+            should discard all matches where the given regexp is not matched (FAILED - 11)
         #has_no_css?
           should be false if the given selector is on the page
           should be true if the given selector is not on the page
@@ -674,7 +676,7 @@ Capybara::Session
         Node#drag_to
           should drag and drop an object
         #find
-          should allow triggering of custom JS events (FAILED - 10)
+          should allow triggering of custom JS events (FAILED - 12)
         #body
           should return the current state of the page
         #source
@@ -736,9 +738,9 @@ Failures:
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:10:in `block (4 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:12:in `block (4 levels) in <top (required)>'
 
   3) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by label
      Failure/Error: @session.attach_file "Image", __FILE__
@@ -747,9 +749,9 @@ Failures:
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:16:in `block (4 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:18:in `block (4 levels) in <top (required)>'
 
   4) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by id
      Failure/Error: @session.attach_file "form_document", @test_file_path
@@ -758,9 +760,9 @@ Failures:
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:29:in `block (4 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:26:in `block (4 levels) in <top (required)>'
 
   5) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by label
      Failure/Error: @session.attach_file "Document", @test_file_path
@@ -769,9 +771,9 @@ Failures:
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:35:in `block (4 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:32:in `block (4 levels) in <top (required)>'
 
   6) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type text/plain when uploading a text file
      Failure/Error: @session.attach_file "Document", @test_file_path
@@ -780,9 +782,9 @@ Failures:
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:46:in `block (4 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:43:in `block (4 levels) in <top (required)>'
 
   7) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
      Failure/Error: @session.attach_file "Document", @test_jpg_file_path
@@ -791,9 +793,9 @@ Failures:
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:52:in `block (4 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:49:in `block (4 levels) in <top (required)>'
 
   8) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
@@ -802,22 +804,60 @@ Failures:
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:58:in `block (4 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
 
-  9) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
+  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with alt given on an image button should work with partial matches
+     Failure/Error: @session.click_button('hai')
+     Terminus::Timeouts::TimeoutError:
+       Waited 10s but could not get a click_response
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
+     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
+     # ./lib/terminus/node.rb:22:in `click'
+     # ./vendor/capybara/lib/capybara/node/element.rb:93:in `click'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
+     # (eval):2:in `click_button'
+     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:133:in `block (4 levels) in <top (required)>'
+
+  10) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
      Failure/Error: extract_results(@session)['zipcode'].should == '52071'
        expected: "52071"
             got: "52071350" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
 
-  10) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
+  11) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with text should discard all matches where the given regexp is not matched
+     Failure/Error: @session.should_not have_css("p a", :text => /Red$/)
+     Terminus::Timeouts::TimeoutError:
+       Waited 10s but could not get a result
+     Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:108
+     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
+     # ./lib/terminus/browser.rb:37:in `ask'
+     # ./lib/terminus/browser.rb:41:in `rescue in ask'
+     # ./lib/terminus/browser.rb:36:in `ask'
+     # ./lib/terminus/browser.rb:41:in `rescue in ask'
+     # ./lib/terminus/browser.rb:36:in `ask'
+     # ./lib/terminus/browser.rb:41:in `rescue in ask'
+     # ./lib/terminus/browser.rb:36:in `ask'
+     # ./lib/terminus/node.rb:76:in `block (2 levels) in <class:Node>'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:190:in `matches_options'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:125:in `block in all'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:123:in `select'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:123:in `all'
+     # ./vendor/capybara/lib/capybara/node/matchers.rb:38:in `block in has_selector?'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:168:in `wait_conditionally_until'
+     # ./vendor/capybara/lib/capybara/node/matchers.rb:37:in `has_selector?'
+     # ./vendor/capybara/lib/capybara/node/matchers.rb:121:in `has_xpath?'
+     # ./vendor/capybara/lib/capybara/node/matchers.rb:160:in `has_css?'
+     # (eval):2:in `has_css?'
+     # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:118:in `block (4 levels) in <top (required)>'
+
+  12) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
      Failure/Error: @session.should have_css('#focus_event_triggered')
        expected #has_css?("#focus_event_triggered") to return true, got false
      Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:18
      # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:26:in `block (4 levels) in <top (required)>'
 
-Finished in 2700.67 seconds
-481 examples, 10 failures
+Finished in 2586.88 seconds
+482 examples, 12 failures
