@@ -4,12 +4,12 @@ describe Capybara::Session do
   context 'with terminus driver' do
     before do
       @session = Capybara::Session.new(:terminus, TestApp)
-      Terminus.ensure_docked_browser
-      Terminus.browser = :docked
+      select_browser
     end
 
     after do
-      Terminus.return_to_dock
+      select_browser
+      Terminus.browser.return_to_dock
     end
     
     it_should_behave_like "session"

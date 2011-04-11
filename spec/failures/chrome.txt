@@ -70,6 +70,10 @@ Capybara::Session
         should return the unmodified page body
       #source
         should return the unmodified page source
+      #reset!
+        removes cookies
+        resets current path
+        resets page body
       it should behave like all
         #all
           should find all elements using the given locator
@@ -729,10 +733,10 @@ Failures:
      Failure/Error: @session.attach_file "form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:10:in `block (4 levels) in <top (required)>'
 
@@ -740,10 +744,10 @@ Failures:
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:16:in `block (4 levels) in <top (required)>'
 
@@ -751,10 +755,10 @@ Failures:
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:29:in `block (4 levels) in <top (required)>'
 
@@ -762,10 +766,10 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:35:in `block (4 levels) in <top (required)>'
 
@@ -773,10 +777,10 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:46:in `block (4 levels) in <top (required)>'
 
@@ -784,10 +788,10 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:52:in `block (4 levels) in <top (required)>'
 
@@ -795,24 +799,24 @@ Failures:
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:58:in `block (4 levels) in <top (required)>'
 
   9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should follow redirects
      Failure/Error: @session.current_url.should match(%r{/landed$})
-       expected "http://localhost:58882/form" to match /\/landed$/
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:60
+       expected "http://localhost:51638/form" to match /\/landed$/
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:236:in `block (3 levels) in <top (required)>'
 
   10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit search fields
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:60
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
@@ -820,7 +824,7 @@ Failures:
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:60
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
@@ -828,7 +832,7 @@ Failures:
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:60
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
@@ -836,7 +840,7 @@ Failures:
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:60
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
@@ -844,7 +848,7 @@ Failures:
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:60
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
@@ -852,14 +856,14 @@ Failures:
      Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
        expected: "Avenue Q"
             got: "Sesame street 66" (using ==)
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:62
+     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
   16) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a url field by label without for
      Failure/Error: extract_results(@session)['html5_url'].should == 'http://www.avenueq.com'
      NoMethodError:
        undefined method `text' for nil:NilClass
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:62
+     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:28:in `block (3 levels) in <top (required)>'
 
@@ -867,9 +871,9 @@ Failures:
      Failure/Error: extract_results(@session)['zipcode'].should == '52071'
      NoMethodError:
        undefined method `text' for nil:NilClass
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:62
+     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
 
-Finished in 1974.92 seconds
-478 examples, 17 failures
+Finished in 2171.67 seconds
+481 examples, 17 failures

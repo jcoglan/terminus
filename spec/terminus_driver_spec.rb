@@ -3,12 +3,12 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe Capybara::Driver::Terminus do
   before do
     @driver = Capybara::Driver::Terminus.new(TestApp)
-    Terminus.ensure_docked_browser
-    Terminus.browser = :docked
+    select_browser
   end
 
   after do
-    Terminus.return_to_dock
+    select_browser
+    Terminus.browser.return_to_dock
   end
   
   it_should_behave_like "driver"

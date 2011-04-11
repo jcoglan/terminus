@@ -21,6 +21,8 @@ module Terminus
     def ===(params)
       return docked? if params == :docked
       return params == id if String === params
+      return false if @parent
+      
       params.all? do |name, value|
         case value
         when Regexp then @user_agent[name] =~ value
@@ -101,7 +103,8 @@ module Terminus
       detect_dock_host
       
       if parent = message['parent']
-        Terminus.browser(parent).frame!(self)
+        @parent = Terminus.browser(parent)
+        @parent.frame!(self)
       end
       
       @ping = true

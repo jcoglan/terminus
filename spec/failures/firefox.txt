@@ -70,6 +70,10 @@ Capybara::Session
         should return the unmodified page body
       #source
         should return the unmodified page source
+      #reset!
+        removes cookies
+        resets current path
+        resets page body
       it should behave like all
         #all
           should find all elements using the given locator
@@ -729,10 +733,10 @@ Failures:
      Failure/Error: @session.attach_file "form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:10:in `block (4 levels) in <top (required)>'
 
@@ -740,10 +744,10 @@ Failures:
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:16:in `block (4 levels) in <top (required)>'
 
@@ -751,10 +755,10 @@ Failures:
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:29:in `block (4 levels) in <top (required)>'
 
@@ -762,10 +766,10 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:35:in `block (4 levels) in <top (required)>'
 
@@ -773,10 +777,10 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:46:in `block (4 levels) in <top (required)>'
 
@@ -784,10 +788,10 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:52:in `block (4 levels) in <top (required)>'
 
@@ -795,10 +799,10 @@ Failures:
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:56
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:156:in `attach_file'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:157:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:58:in `block (4 levels) in <top (required)>'
 
@@ -806,7 +810,7 @@ Failures:
      Failure/Error: extract_results(@session)['zipcode'].should == '52071'
        expected: "52071"
             got: "52071350" (using ==)
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:62
+     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
 
   10) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
@@ -815,5 +819,5 @@ Failures:
      Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:18
      # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:26:in `block (4 levels) in <top (required)>'
 
-Finished in 2105.71 seconds
-478 examples, 10 failures
+Finished in 2700.67 seconds
+481 examples, 10 failures

@@ -32,14 +32,16 @@ module Terminus
       @browser = nil if @browser == browser
     end
     
+    def ensure_browser(params)
+      ensure_connection
+      wait_with_timeout(:browser) do
+        @browsers.any? { |_,b| b === params }
+      end
+    end
+    
     def ensure_browsers(n = 1)
       ensure_connection
       wait_with_timeout(:browsers) { @browsers.size >= n }
-    end
-    
-    def ensure_docked_browser
-      ensure_connection
-      wait_with_timeout(:docked_browser) { @browsers.any? { |id,b| b.docked? } }
     end
     
     def messenger
