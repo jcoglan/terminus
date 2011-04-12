@@ -4,9 +4,6 @@ module Terminus
     include Timeouts
     attr_reader :dock_host
     
-    LOCALHOST   = /localhost|0\.0\.0\.0|127\.0\.0\.1/
-    RETRY_LIMIT = 3
-    
     extend Forwardable
     def_delegator  :@user_agent, :browser, :name
     def_delegators :@user_agent, :os, :version
@@ -56,7 +53,7 @@ module Terminus
     end
     
     def current_url
-      @attributes['url']
+      @attributes['url'] || ''
     end
     
     def docked?
@@ -100,9 +97,8 @@ module Terminus
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       
-      uri  = URI.parse(message['url'])
-      path = (uri.path == '/') ? '' : uri.path
-      message['url'] = "http://#{uri.host}:#{uri.port}#{path}"
+      uri = @controller.rewrite_local(message['url'], dock_host)
+      message['url'] = uri.to_s
       
       @attributes = @attributes.merge(message)
       @user_agent = UserAgent.parse(message['ua'])
@@ -117,9 +113,12 @@ module Terminus
     end
     
     def reset!
-      uri = URI.parse(@attributes['url'])
-      visit("http://#{uri.host}:#{uri.port}")
+      if url = @attributes['url']
+        uri = URI.parse(url)
+        visit("http://#{uri.host}:#{uri.port}")
+      end
       ask([:clear_cookies])
+      @attributes.delete('url')
     end
     
     def response_headers
@@ -156,8 +155,9 @@ module Terminus
     
     def visit(url, retries = RETRY_LIMIT)
       close_frames!
-      url = url.gsub(LOCALHOST, dock_host)
-      tell([:visit, url])
+      uri = @controller.rewrite_remote(url)
+      uri.host = dock_host if uri.host =~ LOCALHOST
+      tell([:visit, uri.to_s])
       wait_for_ping
     rescue Timeouts::TimeoutError => e
       raise e if retries.zero?

@@ -4,26 +4,11 @@ require 'rack'
 require 'thin'
 require 'eventmachine'
 require 'faye'
-require 'capybara'
 require 'sinatra'
 require 'packr'
+require 'capybara'
+require 'rack-proxy'
 require 'useragent'
-
-root = File.expand_path(File.dirname(__FILE__))
-
-%w[ application
-    server
-    proxy
-    timeouts
-    controller
-    browser
-    node
-
-].each do |file|
-  require File.join(root, 'terminus', file)
-end
-
-require root + '/capybara/driver/terminus'
 
 Thin::Logging.silent = true
 
@@ -31,6 +16,20 @@ module Terminus
   FAYE_MOUNT   = '/messaging'
   DEFAULT_HOST = 'localhost'
   DEFAULT_PORT = 7004
+  LOCALHOST    = /^(localhost|0\.0\.0\.0|127\.0\.0\.1)$/
+  RETRY_LIMIT  = 3
+  
+  ROOT = File.expand_path(File.dirname(__FILE__))
+  autoload :Application, ROOT + '/terminus/application'
+  autoload :Browser,     ROOT + '/terminus/browser'
+  autoload :Controller,  ROOT + '/terminus/controller'
+  autoload :Host,        ROOT + '/terminus/host'
+  autoload :Node,        ROOT + '/terminus/node'
+  autoload :Proxy,       ROOT + '/terminus/proxy'
+  autoload :Server,      ROOT + '/terminus/server'
+  autoload :Timeouts,    ROOT + '/terminus/timeouts'
+  
+  require ROOT + '/capybara/driver/terminus'
   
   class << self
     def create(options = {})
@@ -56,7 +55,9 @@ module Terminus
                                 :browser=,
                                 :ensure_browser,
                                 :ensure_browsers,
-                                :return_to_dock
+                                :return_to_dock,
+                                :rewrite_local,
+                                :rewrite_remote
     
   private
     

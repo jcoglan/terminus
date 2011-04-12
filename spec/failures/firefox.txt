@@ -72,6 +72,7 @@ Capybara::Session
         should return the unmodified page source
       #reset!
         removes cookies
+        resets current host
         resets current path
         resets page body
       it should behave like all
@@ -197,7 +198,7 @@ Capybara::Session
             should work with partial matches
           with alt given on an image button
             should submit the associated form
-            should work with partial matches (FAILED - 9)
+            should work with partial matches
           with value given on an image button
             should submit the associated form
             should work with partial matches
@@ -254,7 +255,7 @@ Capybara::Session
           should fill in a password field by id
           should fill in a field with a custom type
           should fill in a field without a type
-          should fill in a text field respecting its maxlength attribute (FAILED - 10)
+          should fill in a text field respecting its maxlength attribute (FAILED - 9)
           should fill in a password field by name
           should fill in a password field by label
           should fill in a password field by name
@@ -407,7 +408,7 @@ Capybara::Session
             should coerce minimum to an integer
           with text
             should discard all matches where the given string is not contained
-            should discard all matches where the given regexp is not matched (FAILED - 11)
+            should discard all matches where the given regexp is not matched
         #has_no_css?
           should be false if the given selector is on the page
           should be true if the given selector is not on the page
@@ -665,6 +666,15 @@ Capybara::Session
           should return the current url
         #current_path
           should show the correct location
+      it should behave like current_host
+        #current_host
+          is affected by visiting a page directly
+          returns to the app host when visiting a relative url
+          is affected by setting Capybara.app_host
+          is unaffected by following a relative link
+          is affected by following an absolute link
+          is unaffected by posting through a relative form
+          is affected by posting through an absolute form
     it should behave like session with headers support
       #response_headers
         should return response headers
@@ -676,7 +686,7 @@ Capybara::Session
         Node#drag_to
           should drag and drop an object
         #find
-          should allow triggering of custom JS events (FAILED - 12)
+          should allow triggering of custom JS events (FAILED - 10)
         #body
           should return the current state of the page
         #source
@@ -715,20 +725,12 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-Terminus::UserAgent
-  chrome
-    osx
-  firefox
-    osx
-  safari
-    osx
-
 Failures:
 
   1) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
      Failure/Error: running do
        expected Capybara::InfiniteRedirectError but nothing was raised
-     Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:22
+     Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:21
      # ./vendor/capybara/lib/capybara/spec/driver.rb:293:in `block (2 levels) in <top (required)>'
 
   2) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
@@ -808,56 +810,18 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
 
-  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with alt given on an image button should work with partial matches
-     Failure/Error: @session.click_button('hai')
-     Terminus::Timeouts::TimeoutError:
-       Waited 10s but could not get a click_response
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
-     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
-     # ./lib/terminus/node.rb:22:in `click'
-     # ./vendor/capybara/lib/capybara/node/element.rb:93:in `click'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
-     # (eval):2:in `click_button'
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:133:in `block (4 levels) in <top (required)>'
-
-  10) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
+  9) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
      Failure/Error: extract_results(@session)['zipcode'].should == '52071'
        expected: "52071"
             got: "52071350" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
 
-  11) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with text should discard all matches where the given regexp is not matched
-     Failure/Error: @session.should_not have_css("p a", :text => /Red$/)
-     Terminus::Timeouts::TimeoutError:
-       Waited 10s but could not get a result
-     Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:108
-     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
-     # ./lib/terminus/browser.rb:37:in `ask'
-     # ./lib/terminus/browser.rb:41:in `rescue in ask'
-     # ./lib/terminus/browser.rb:36:in `ask'
-     # ./lib/terminus/browser.rb:41:in `rescue in ask'
-     # ./lib/terminus/browser.rb:36:in `ask'
-     # ./lib/terminus/browser.rb:41:in `rescue in ask'
-     # ./lib/terminus/browser.rb:36:in `ask'
-     # ./lib/terminus/node.rb:76:in `block (2 levels) in <class:Node>'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:190:in `matches_options'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:125:in `block in all'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:123:in `select'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:123:in `all'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:38:in `block in has_selector?'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:168:in `wait_conditionally_until'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:37:in `has_selector?'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:121:in `has_xpath?'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:160:in `has_css?'
-     # (eval):2:in `has_css?'
-     # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:118:in `block (4 levels) in <top (required)>'
-
-  12) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
+  10) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
      Failure/Error: @session.should have_css('#focus_event_triggered')
        expected #has_css?("#focus_event_triggered") to return true, got false
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:18
+     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:17
      # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:26:in `block (4 levels) in <top (required)>'
 
-Finished in 2586.88 seconds
-482 examples, 12 failures
+Finished in 2630.67 seconds
+487 examples, 10 failures

@@ -5,8 +5,9 @@ module Terminus
     attr_accessor :last_commanded_browser
     
     def initialize
-      @connected = false
-      @browsers = {}
+      @connected      = false
+      @browsers       = {}
+      @host_aliases   = {}
       @ping_callbacks = []
       trap('INT') { exit }
     end
@@ -59,6 +60,27 @@ module Terminus
       @browsers.each { |id, b| b.return_to_dock }
     end
     
+    def rewrite_local(url, dock_host)
+      uri = URI.parse(url)
+      uri.host = '127.0.0.1' if uri.host == dock_host
+      uri.path = '' if uri.path == '/'
+      
+      if remote_host = @host_aliases.key(Host.new(uri))
+        uri.host = remote_host.host
+        uri.port = remote_host.port
+      end
+      uri.host = dock_host if dock_host and uri.host =~ LOCALHOST
+      uri
+    end
+    
+    def rewrite_remote(url)
+      uri = URI.parse(url)
+      return uri unless URI::HTTP === uri and uri.host !~ LOCALHOST
+      server = boot(uri)
+      uri.host, uri.port = server.host, server.port
+      uri
+    end
+    
   private
     
     def accept_ping(message)
@@ -68,6 +90,15 @@ module Terminus
     def accept_result(message)
       browser = @browsers[message['id']]
       browser.result!(message) if browser
+    end
+    
+    def boot(remote_uri)
+      host = Host.new(remote_uri)
+      @host_aliases[host] ||= begin
+        server = Capybara::Server.new(Proxy[host])
+        server.boot
+        Host.new(server)
+      end
     end
     
     def ensure_connection

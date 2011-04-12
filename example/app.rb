@@ -31,6 +31,6 @@ Thread.new do
   Capybara.current_driver = :terminus
   Capybara.app = Example::App.new
   
-  Terminus.ensure_docked_browser
+  Terminus.ensure_browser :docked
   Terminus.browser = :docked
 end

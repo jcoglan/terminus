@@ -9,7 +9,13 @@ module Terminus
       @proxies[app] ||= new(app)
     end
     
+    def self.content_type(response)
+      type = response[1].find { |key, _| key =~ /^content-type$/i }
+      type && type.last.split(';').first
+    end
+    
     def initialize(app)
+      app = External.new(app) if Host === app
       @app = app
     end
     
@@ -20,9 +26,7 @@ module Terminus
              BASIC_RESOURCES.include?(env['PATH_INFO']) or    # not pages - favicon etc
              env.has_key?('HTTP_X_REQUESTED_WITH')            # Ajax calls
       
-      type = response[1].find { |key, _| key =~ /^content-type$/i }
-      content_type = type && type.last.split(';').first
-      
+      content_type = Proxy.content_type(response)
       return response unless CONTENT_TYPES.include?(content_type)
       
       response[1] = response[1].dup
@@ -87,6 +91,45 @@ module Terminus
       
       def page_source
         @source.inspect.gsub('</script>', '</scr"+"ipt>')
+      end
+    end
+    
+    class External < Rack::Proxy
+      def initialize(uri)
+        @uri = uri
+      end
+      
+      def rewrite_env(env)
+        env = env.dup
+        env['SERVER_NAME'] = @uri.host
+        env['SERVER_PORT'] = @uri.port
+        env['HTTP_HOST']   = "#{@uri.host}:#{@uri.port}"
+        env
+      end
+      
+      def call(env)
+        response = super
+        response[2] = Rewrite.new(response[2])
+        response
+      end
+    end
+    
+    class Rewrite
+      def initialize(body)
+        body  = [body] unless body.respond_to?(:each)
+        @body = body
+      end
+      
+      def each(&block)
+        @body.each do |fragment|
+          block.call(rewrite(fragment))
+        end
+      end
+      
+      def rewrite(fragment)
+        fragment.gsub(/\b(action|href)="([^"]*)"/i) do
+          %Q{#{$1}="#{ Terminus.rewrite_remote($2) }"}
+        end
       end
     end
     

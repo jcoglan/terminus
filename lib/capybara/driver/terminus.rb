@@ -3,16 +3,15 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     raise ArgumentError.new if app.nil?
     @app = Terminus::Proxy[app]
     @rack_server = Capybara::Server.new(@app)
-    @rack_server.boot if Capybara.run_server
+    @rack_server.boot
   end
   
   def visit(path)
-    browser.visit @rack_server.url(path)
+    browser.visit(@rack_server.url(path))
   end
   
   extend Forwardable
   def_delegators :browser, :body,
-                           :current_path,
                            :current_url,
                            :evaluate_script,
                            :execute_script,

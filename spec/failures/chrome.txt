@@ -72,6 +72,7 @@ Capybara::Session
         should return the unmodified page source
       #reset!
         removes cookies
+        resets current host
         resets current path
         resets page body
       it should behave like all
@@ -165,18 +166,18 @@ Capybara::Session
           should serialize and send valueless buttons that were clicked
           should not send image buttons that were not clicked
           should serialize and send GET forms
-          should follow redirects
+          should follow redirects (FAILED - 9)
           should post pack to the same URL when no action given
           should post pack to the same URL when blank action given
           with multiple values with the same name
             should use the latest given value
           with value given on a submit button
             on a form with HTML5 fields
-              should serialise and submit search fields (FAILED - 9)
-              should serialise and submit email fields (FAILED - 10)
-              should serialise and submit url fields (FAILED - 11)
-              should serialise and submit tel fields (FAILED - 12)
-              should serialise and submit color fields (FAILED - 13)
+              should serialise and submit search fields (FAILED - 10)
+              should serialise and submit email fields (FAILED - 11)
+              should serialise and submit url fields (FAILED - 12)
+              should serialise and submit tel fields (FAILED - 13)
+              should serialise and submit color fields (FAILED - 14)
             on an HTML4 form
               should serialize and submit text fields
               should escape fields when submitting
@@ -245,8 +246,8 @@ Capybara::Session
         #fill_in
           should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 14)
-          should fill in a url field by label without for (FAILED - 15)
+          should fill in a text field by label without for (FAILED - 15)
+          should fill in a url field by label without for (FAILED - 16)
           should favour exact label matches over partial matches
           should fill in a textarea by id
           should fill in a textarea by label
@@ -254,7 +255,7 @@ Capybara::Session
           should fill in a password field by id
           should fill in a field with a custom type
           should fill in a field without a type
-          should fill in a text field respecting its maxlength attribute (FAILED - 16)
+          should fill in a text field respecting its maxlength attribute (FAILED - 17)
           should fill in a password field by name
           should fill in a password field by label
           should fill in a password field by name
@@ -659,12 +660,21 @@ Capybara::Session
           should restrict scope to a fieldset given by legend
         #within_table
           should restrict scope to a fieldset given by id
-          should restrict scope to a fieldset given by legend (FAILED - 17)
+          should restrict scope to a fieldset given by legend
       it should behave like current_url
         #current_url
           should return the current url
         #current_path
           should show the correct location
+      it should behave like current_host
+        #current_host
+          is affected by visiting a page directly
+          returns to the app host when visiting a relative url
+          is affected by setting Capybara.app_host
+          is unaffected by following a relative link
+          is affected by following an absolute link
+          is unaffected by posting through a relative form
+          is affected by posting through an absolute form
     it should behave like session with headers support
       #response_headers
         should return response headers
@@ -715,20 +725,12 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-Terminus::UserAgent
-  chrome
-    osx
-  firefox
-    osx
-  safari
-    osx
-
 Failures:
 
   1) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
      Failure/Error: running do
        expected Capybara::InfiniteRedirectError but nothing was raised
-     Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:22
+     Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:21
      # ./vendor/capybara/lib/capybara/spec/driver.rb:293:in `block (2 levels) in <top (required)>'
 
   2) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
@@ -808,7 +810,13 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
 
-  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit search fields
+  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should follow redirects
+     Failure/Error: @session.current_url.should match(%r{/landed$})
+       expected "http://localhost:53111/form" to match /\/landed$/
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
+     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:236:in `block (3 levels) in <top (required)>'
+
+  10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit search fields
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
@@ -816,7 +824,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
-  10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit email fields
+  11) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit email fields
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
@@ -824,7 +832,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
-  11) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit url fields
+  12) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit url fields
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
@@ -832,7 +840,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
-  12) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit tel fields
+  13) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit tel fields
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
@@ -840,7 +848,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
-  13) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
+  14) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
      Failure/Error: @results = extract_results(@session)
      NoMethodError:
        undefined method `text' for nil:NilClass
@@ -848,14 +856,14 @@ Failures:
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:19:in `block (5 levels) in <top (required)>'
 
-  14) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
+  15) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
      Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
        expected: "Avenue Q"
             got: "Sesame street 66" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  15) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a url field by label without for
+  16) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a url field by label without for
      Failure/Error: extract_results(@session)['html5_url'].should == 'http://www.avenueq.com'
      NoMethodError:
        undefined method `text' for nil:NilClass
@@ -863,7 +871,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:28:in `block (3 levels) in <top (required)>'
 
-  16) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
+  17) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
      Failure/Error: extract_results(@session)['zipcode'].should == '52071'
      NoMethodError:
        undefined method `text' for nil:NilClass
@@ -871,21 +879,5 @@ Failures:
      # ./vendor/capybara/lib/capybara/spec/session.rb:8:in `extract_results'
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
 
-  17) Capybara::Session with terminus driver it should behave like session it should behave like within#within_table should restrict scope to a fieldset given by legend
-     Failure/Error: @session.click_button("Create")
-     Terminus::Timeouts::TimeoutError:
-       Waited 10s but could not get a click_response
-     Shared Example Group: "within" called from ./vendor/capybara/lib/capybara/spec/session.rb:120
-     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
-     # ./lib/terminus/node.rb:22:in `click'
-     # ./vendor/capybara/lib/capybara/node/element.rb:93:in `click'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
-     # (eval):2:in `click_button'
-     # ./vendor/capybara/lib/capybara/spec/session/within_spec.rb:155:in `block (4 levels) in <top (required)>'
-     # ./vendor/capybara/lib/capybara/session.rb:208:in `block in within_table'
-     # ./vendor/capybara/lib/capybara/session.rb:182:in `within'
-     # ./vendor/capybara/lib/capybara/session.rb:207:in `within_table'
-     # ./vendor/capybara/lib/capybara/spec/session/within_spec.rb:153:in `block (3 levels) in <top (required)>'
-
-Finished in 2542.94 seconds
-482 examples, 17 failures
+Finished in 2230.95 seconds
+487 examples, 17 failures
