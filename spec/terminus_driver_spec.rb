@@ -7,7 +7,6 @@ describe Capybara::Driver::Terminus do
   end
 
   after do
-    select_browser
     Terminus.browser.return_to_dock
   end
   

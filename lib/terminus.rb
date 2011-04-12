@@ -7,6 +7,7 @@ require 'faye'
 require 'capybara'
 require 'sinatra'
 require 'packr'
+require 'useragent'
 
 root = File.expand_path(File.dirname(__FILE__))
 
@@ -17,7 +18,6 @@ root = File.expand_path(File.dirname(__FILE__))
     controller
     browser
     node
-    user_agent
 
 ].each do |file|
   require File.join(root, 'terminus', file)

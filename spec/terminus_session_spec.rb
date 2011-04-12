@@ -8,7 +8,6 @@ describe Capybara::Session do
     end
 
     after do
-      select_browser
       Terminus.browser.return_to_dock
     end
     

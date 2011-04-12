@@ -1,5 +1,3 @@
-require 'forwardable'
-
 class Capybara::Driver::Terminus < Capybara::Driver::Base
   def initialize(app = nil)
     raise ArgumentError.new if app.nil?

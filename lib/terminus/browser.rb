@@ -7,6 +7,10 @@ module Terminus
     LOCALHOST   = /localhost|0\.0\.0\.0|127\.0\.0\.1/
     RETRY_LIMIT = 3
     
+    extend Forwardable
+    def_delegator  :@user_agent, :browser, :name
+    def_delegators :@user_agent, :os, :version
+    
     def initialize(controller)
       @controller     = controller
       @attributes     = {}
@@ -25,9 +29,10 @@ module Terminus
       return false unless @user_agent
       
       params.all? do |name, value|
+        property = __send__(name)
         case value
-        when Regexp then @user_agent[name] =~ value
-        when String then @user_agent[name] == value
+        when Regexp then property =~ value
+        when String then property == value
         end
       end
     end
@@ -149,10 +154,6 @@ module Terminus
       id
     end
     
-    def user_agent
-      @attributes['ua']
-    end
-    
     def visit(url, retries = RETRY_LIMIT)
       close_frames!
       url = url.gsub(LOCALHOST, dock_host)
@@ -169,7 +170,7 @@ module Terminus
     end
     
     def to_s
-      "<#{self.class.name} #{@user_agent[:name]} #{@user_agent[:version]} (#{@user_agent[:os]})>"
+      "<#{self.class.name} #{name} #{version} (#{os})>"
     end
     alias :inspect :to_s
     
