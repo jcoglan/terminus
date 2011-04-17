@@ -73,9 +73,9 @@ module Terminus
       uri
     end
     
-    def rewrite_remote(url)
+    def rewrite_remote(url, dock_host = nil)
       uri = URI.parse(url)
-      return uri unless URI::HTTP === uri and uri.host !~ LOCALHOST
+      return uri unless URI::HTTP === uri and uri.host !~ LOCALHOST and uri.host != dock_host
       server = boot(uri)
       uri.host, uri.port = server.host, server.port
       uri

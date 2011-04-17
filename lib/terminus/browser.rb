@@ -106,7 +106,7 @@ module Terminus
       
       if parent = message['parent']
         @parent = Terminus.browser(parent)
-        @parent.frame!(self)
+        @parent.frame!(self) unless @parent == self
       end
       
       @ping = true
@@ -155,7 +155,7 @@ module Terminus
     
     def visit(url, retries = RETRY_LIMIT)
       close_frames!
-      uri = @controller.rewrite_remote(url)
+      uri = @controller.rewrite_remote(url, dock_host)
       uri.host = dock_host if uri.host =~ LOCALHOST
       tell([:visit, uri.to_s])
       wait_for_ping
