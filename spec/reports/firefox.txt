@@ -60,8 +60,6 @@ Capybara::Session
   with terminus driver
     it should behave like session
       should encode complex field names, like array[][value]
-      #app
-        should remember the application
       #visit
         should fetch a response from the driver
       #body
@@ -70,7 +68,7 @@ Capybara::Session
         should return the unmodified page body
       #source
         should return the unmodified page source
-      #reset!
+      #reset_session!
         removes cookies
         resets current host
         resets current path
@@ -737,7 +735,7 @@ Failures:
      Failure/Error: @session.attach_file "form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -748,7 +746,7 @@ Failures:
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -759,7 +757,7 @@ Failures:
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -770,7 +768,7 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -781,7 +779,7 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -792,7 +790,7 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -803,7 +801,7 @@ Failures:
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -814,7 +812,7 @@ Failures:
      Failure/Error: extract_results(@session)['zipcode'].should == '52071'
        expected: "52071"
             got: "52071350" (using ==)
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
+     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
 
   10) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
@@ -823,5 +821,5 @@ Failures:
      Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:17
      # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:26:in `block (4 levels) in <top (required)>'
 
-Finished in 2630.67 seconds
-487 examples, 10 failures
+Finished in 2436.08 seconds
+486 examples, 10 failures

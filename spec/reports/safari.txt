@@ -60,8 +60,6 @@ Capybara::Session
   with terminus driver
     it should behave like session
       should encode complex field names, like array[][value]
-      #app
-        should remember the application
       #visit
         should fetch a response from the driver
       #body
@@ -70,7 +68,7 @@ Capybara::Session
         should return the unmodified page body
       #source
         should return the unmodified page source
-      #reset!
+      #reset_session!
         removes cookies
         resets current host
         resets current path
@@ -411,8 +409,8 @@ Capybara::Session
             should discard all matches where the given regexp is not matched
         #has_no_css?
           should be false if the given selector is on the page
-          should be true if the given selector is not on the page
-          should respect scopes
+          should be true if the given selector is not on the page (FAILED - 12)
+          should respect scopes (FAILED - 13)
           with between
             should be false if the content occurs within the range given
             should be true if the content occurs more or fewer times than range
@@ -737,7 +735,7 @@ Failures:
      Failure/Error: @session.attach_file "form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -748,7 +746,7 @@ Failures:
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -759,7 +757,7 @@ Failures:
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -770,7 +768,7 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -781,7 +779,7 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -792,7 +790,7 @@ Failures:
      Failure/Error: @session.attach_file "Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -803,7 +801,7 @@ Failures:
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:41:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
      # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
@@ -812,23 +810,41 @@ Failures:
 
   9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should follow redirects
      Failure/Error: @session.current_url.should match(%r{/landed$})
-       expected "http://localhost:55687/form" to match /\/landed$/
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:98
+       expected "http://localhost:53125/form" to match /\/landed$/
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:236:in `block (3 levels) in <top (required)>'
 
   10) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
      Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
        expected: "Avenue Q"
             got: "Sesame street 66" (using ==)
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
+     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
   11) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
      Failure/Error: extract_results(@session)['zipcode'].should == '52071'
        expected: "52071"
             got: "52071350" (using ==)
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:100
+     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
 
-Finished in 2253.81 seconds
-487 examples, 11 failures
+  12) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? should be true if the given selector is not on the page
+     Failure/Error: Unable to find matching line from backtrace
+     Terminus::Timeouts::TimeoutError:
+       Waited 10s but could not get a browser
+     Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
+     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
+     # ./lib/terminus/controller.rb:38:in `ensure_browser'
+     # ./spec/terminus_session_spec.rb:7:in `block (3 levels) in <top (required)>'
+
+  13) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? should respect scopes
+     Failure/Error: Unable to find matching line from backtrace
+     Terminus::Timeouts::TimeoutError:
+       Waited 10s but could not get a browser
+     Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
+     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
+     # ./lib/terminus/controller.rb:38:in `ensure_browser'
+     # ./spec/terminus_session_spec.rb:7:in `block (3 levels) in <top (required)>'
+
+Finished in 2257.18 seconds
+486 examples, 13 failures
