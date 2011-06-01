@@ -13,7 +13,7 @@ module Terminus
       
       while !result and !time_out
         result = predicate.call
-        sleep 0.1
+        sleep 0.001
       end
       
       raise TimeoutError.new("Waited #{duration}s but could not get a #{name}") if time_out

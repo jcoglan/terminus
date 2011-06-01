@@ -65,7 +65,7 @@ module Terminus
       uri.host = '127.0.0.1' if uri.host == dock_host
       uri.path = '' if uri.path == '/'
       
-      if remote_host = @host_aliases.key(Host.new(uri))
+      if remote_host = @host_aliases.index(Host.new(uri))
         uri.host = remote_host.host
         uri.port = remote_host.port
       end
