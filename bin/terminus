@@ -5,7 +5,7 @@ require 'oyster'
 require File.expand_path(File.dirname(__FILE__) + '/../lib/terminus')
 
 spec = Oyster.spec do
-  name "terminus -- controll web browsers with Ruby"
+  name "terminus -- Control web browsers with Ruby"
   synopsis "terminus [--port PORT]"
   
   integer :port, :default => Terminus::DEFAULT_PORT
