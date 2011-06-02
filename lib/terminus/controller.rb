@@ -65,7 +65,12 @@ module Terminus
       uri.host = '127.0.0.1' if uri.host == dock_host
       uri.path = '' if uri.path == '/'
       
-      if remote_host = @host_aliases.index(Host.new(uri))
+      # 1.8.7 does not have Hash#key, and 1.9.2 gives warnings for #index
+      remote_host = @host_aliases.respond_to?(:key) ?
+                    @host_aliases.key(Host.new(uri)) :
+                    @host_aliases.index(Host.new(uri))
+
+      if remote_host
         uri.host = remote_host.host
         uri.port = remote_host.port
       end
