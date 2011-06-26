@@ -169,6 +169,10 @@ Capybara::Session
           should post pack to the same URL when blank action given
           with multiple values with the same name
             should use the latest given value
+          with a form that has a relative url as an action
+            should post to the correct url
+          with a form that has no action specified
+            should post to the correct url
           with value given on a submit button
             on a form with HTML5 fields
               should serialise and submit search fields
@@ -195,8 +199,8 @@ Capybara::Session
             should submit the associated form
             should work with partial matches
           with title given on a submit button
-            should submit the associated form (FAILED - 10)
-            should work with partial matches (FAILED - 11)
+            should submit the associated form
+            should work with partial matches
           with alt given on an image button
             should submit the associated form
             should work with partial matches
@@ -206,10 +210,10 @@ Capybara::Session
           with id given on an image button
             should submit the associated form
           with title given on an image button
-            should submit the associated form (FAILED - 12)
-            should work with partial matches (FAILED - 13)
-          with text given on a button defined by <button> tag
             should submit the associated form
+            should work with partial matches
+          with text given on a button defined by <button> tag
+            should submit the associated form (FAILED - 10)
             should work with partial matches
             should prefer exact matches over partial matches
           with id given on a button defined by <button> tag
@@ -220,8 +224,8 @@ Capybara::Session
             should work with partial matches
             should prefer exact matches over partial matches
           with title given on a button defined by <button> tag
-            should submit the associated form (FAILED - 14)
-            should work with partial matches (FAILED - 15)
+            should submit the associated form
+            should work with partial matches
           with a locator that doesn't exist
             should raise an error
       it should behave like click_link
@@ -253,7 +257,7 @@ Capybara::Session
         #fill_in
           should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 16)
+          should fill in a text field by label without for (FAILED - 11)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
@@ -262,7 +266,7 @@ Capybara::Session
           should fill in a password field by id
           should fill in a field with a custom type
           should fill in a field without a type
-          should fill in a text field respecting its maxlength attribute (FAILED - 17)
+          should fill in a text field respecting its maxlength attribute (FAILED - 12)
           should fill in a password field by name
           should fill in a password field by label
           should fill in a password field by name
@@ -822,81 +826,37 @@ Failures:
        expected: "#FFF"
             got: "#000000" (using ==)
      Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:39:in `block (5 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:55:in `block (5 levels) in <top (required)>'
 
-  10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with title given on a submit button should submit the associated form
-     Failure/Error: @session.click_button('What an Awesome Button')
-     Capybara::ElementNotFound:
-       no button with value or id or text 'What an Awesome Button' found
+  10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with text given on a button defined by <button> tag should submit the associated form
+     Failure/Error: @session.click_button('Click me')
+     NoMethodError:
+       undefined method `find' for nil:NilClass
      Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/node/finders.rb:36:in `find'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:160:in `find_in_base'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:147:in `block in first'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:146:in `each'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:146:in `first'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:28:in `block in find'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:168:in `wait_conditionally_until'
+     # ./vendor/capybara/lib/capybara/node/finders.rb:28:in `find'
      # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
      # (eval):2:in `click_button'
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:128:in `block (4 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:199:in `block (4 levels) in <top (required)>'
 
-  11) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with title given on a submit button should work with partial matches
-     Failure/Error: @session.click_button('What an Awesome')
-     Capybara::ElementNotFound:
-       no button with value or id or text 'What an Awesome' found
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/node/finders.rb:36:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
-     # (eval):2:in `click_button'
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:133:in `block (4 levels) in <top (required)>'
-
-  12) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with title given on an image button should submit the associated form
-     Failure/Error: @session.click_button('Okay 556 Image')
-     Capybara::ElementNotFound:
-       no button with value or id or text 'Okay 556 Image' found
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/node/finders.rb:36:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
-     # (eval):2:in `click_button'
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:171:in `block (4 levels) in <top (required)>'
-
-  13) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with title given on an image button should work with partial matches
-     Failure/Error: @session.click_button('Okay 556')
-     Capybara::ElementNotFound:
-       no button with value or id or text 'Okay 556' found
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/node/finders.rb:36:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
-     # (eval):2:in `click_button'
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:176:in `block (4 levels) in <top (required)>'
-
-  14) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with title given on a button defined by <button> tag should submit the associated form
-     Failure/Error: @session.click_button('Click Title button')
-     Capybara::ElementNotFound:
-       no button with value or id or text 'Click Title button' found
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/node/finders.rb:36:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
-     # (eval):2:in `click_button'
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:232:in `block (4 levels) in <top (required)>'
-
-  15) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with title given on a button defined by <button> tag should work with partial matches
-     Failure/Error: @session.click_button('Click Title')
-     Capybara::ElementNotFound:
-       no button with value or id or text 'Click Title' found
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/node/finders.rb:36:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
-     # (eval):2:in `click_button'
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:237:in `block (4 levels) in <top (required)>'
-
-  16) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
+  11) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
      Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
        expected: "Avenue Q"
             got: "Sesame street 66" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  17) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
+  12) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
      Failure/Error: extract_results(@session)['zipcode'].should == '52071'
        expected: "52071"
             got: "52071350" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
 
-Finished in 2297.66 seconds
-492 examples, 17 failures
+Finished in 1648.03 seconds
+494 examples, 12 failures
