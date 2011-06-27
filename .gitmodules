@@ -1,3 +1,6 @@
 [submodule "vendor/capybara"]
 	path = vendor/capybara
 	url = git://github.com/jcoglan/capybara.git
+[submodule "vendor/syn"]
+	path = vendor/syn
+	url = git://github.com/jupiterjs/syn.git

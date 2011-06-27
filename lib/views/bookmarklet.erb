@@ -28,18 +28,29 @@
   };
   
   withPackageManager(function() {
-    JS.Packages(function() {
-      this.file(host + faye + '/client.js')
+    JS.Packages(function() { with(this) {
+      file(host + faye + '/client.js')
         .provides('Faye', 'Faye.Client')
         .setup(function() { Faye.Client.prototype.MAX_DELAY = 0 });
       
-      this.file(host + '/syn.js')
-        .provides('Syn');
+      loader(function(callback) {
+        if (!window.steal) window.steal = {then: function(fn) { fn() }};
+        load(host + '/syn/synthetic.js', function() {
+          load(host + '/syn/mouse.js', function() {
+            load(host + '/syn/browsers.js', function() {
+              load(host + '/syn/key.js', function() {
+                load(host + '/syn/drag/drag.js', callback);
+              });
+            });
+          });
+        });
+        
+      }).provides('Syn');
       
-      this.file(host + '/terminus.js')
+      file(host + '/terminus.js')
         .requires('Faye.Client', 'document.evaluate', 'Syn')
         .provides('Terminus');
-    });
+    }});
     
     JS.require('Terminus', function() {
       Terminus.originalSource = source;
