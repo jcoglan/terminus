@@ -42,7 +42,6 @@ some tests for you.
 Finally, in your tests you need to make sure there's a docked browser
 and select it. In a 'before' block, run the following:
 
-  Terminus.ensure_docked_browser
   Terminus.browser = :docked
 
 After each test is finished, you need to return the browser to the

@@ -53,7 +53,6 @@ module Terminus
     def_delegators :controller, :browser,
                                 :browsers,
                                 :browser=,
-                                :ensure_browser,
                                 :ensure_browsers,
                                 :return_to_dock,
                                 :rewrite_local,

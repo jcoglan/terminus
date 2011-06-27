@@ -22,6 +22,7 @@ module Terminus
     end
     
     def browser=(params)
+      ensure_connection
       return @browser = params if Browser === params
       @browser = wait_with_timeout(:selected_browser) do
         @browsers.values.find { |b| b === params }
@@ -31,13 +32,6 @@ module Terminus
     def drop_browser(browser)
       @browsers.delete(browser.id)
       @browser = nil if @browser == browser
-    end
-    
-    def ensure_browser(params)
-      ensure_connection
-      wait_with_timeout(:browser) do
-        @browsers.any? { |_,b| b === params }
-      end
     end
     
     def ensure_browsers(n = 1)
