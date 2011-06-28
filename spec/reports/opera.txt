@@ -161,7 +161,7 @@ Capybara::Session
             should raise an error
       it should behave like click_button
         #click_button
-          should serialize and send valueless buttons that were clicked
+          should serialize and send valueless buttons that were clicked (FAILED - 9)
           should not send image buttons that were not clicked
           should serialize and send GET forms
           should follow redirects
@@ -179,7 +179,7 @@ Capybara::Session
               should serialise and submit email fields
               should serialise and submit url fields
               should serialise and submit tel fields
-              should serialise and submit color fields (FAILED - 9)
+              should serialise and submit color fields (FAILED - 10)
             on an HTML4 form
               should serialize and submit text fields
               should escape fields when submitting
@@ -213,9 +213,9 @@ Capybara::Session
             should submit the associated form
             should work with partial matches
           with text given on a button defined by <button> tag
-            should submit the associated form (FAILED - 10)
+            should submit the associated form
             should work with partial matches
-            should prefer exact matches over partial matches
+            should prefer exact matches over partial matches (FAILED - 11)
           with id given on a button defined by <button> tag
             should submit the associated form
             should serialize and send GET forms
@@ -233,8 +233,8 @@ Capybara::Session
           should follow redirects
           should follow redirects
           should add query string to current URL with naked query string
-          should do nothing on anchor links
-          should do nothing on URL+anchor links for the same page
+          should do nothing on anchor links (FAILED - 12)
+          should do nothing on URL+anchor links for the same page (FAILED - 13)
           should follow link on URL+anchor links for a different page
           raise an error with links with no href
           with id given
@@ -257,7 +257,7 @@ Capybara::Session
         #fill_in
           should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 11)
+          should fill in a text field by label without for (FAILED - 14)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
@@ -266,7 +266,7 @@ Capybara::Session
           should fill in a password field by id
           should fill in a field with a custom type
           should fill in a field without a type
-          should fill in a text field respecting its maxlength attribute (FAILED - 12)
+          should fill in a text field respecting its maxlength attribute
           should fill in a password field by name
           should fill in a password field by label
           should fill in a password field by name
@@ -622,6 +622,7 @@ Capybara::Session
             should return value of the selected options
             should select one option
             should select multiple options
+            should remain selected if already selected
             should return value attribute rather than content if present
       it should behave like text
         #text
@@ -821,42 +822,47 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
 
-  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
-     Failure/Error: @results['html5_color'].should == '#FFF'
-       expected: "#FFF"
-            got: "#000000" (using ==)
+  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should serialize and send valueless buttons that were clicked
+     Failure/Error: @results['no_value'].should_not be_nil
+       expected: not nil
+            got: nil
+     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
+     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:268:in `block (3 levels) in <top (required)>'
+
+  10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
+     Failure/Error: @results['html5_color'].should == '#FFFFFF'
+       expected: "#FFFFFF"
+            got: "#ffffff" (using ==)
      Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:55:in `block (5 levels) in <top (required)>'
 
-  10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with text given on a button defined by <button> tag should submit the associated form
-     Failure/Error: @session.click_button('Click me')
+  11) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with text given on a button defined by <button> tag should prefer exact matches over partial matches
+     Failure/Error: extract_results(@session)['button'].should == 'button_second'
      NoMethodError:
-       undefined method `find' for nil:NilClass
+       undefined method `[]' for nil:NilClass
      Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/node/finders.rb:160:in `find_in_base'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:147:in `block in first'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:146:in `each'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:146:in `first'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:28:in `block in find'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:168:in `wait_conditionally_until'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:28:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:38:in `click_button'
-     # (eval):2:in `click_button'
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:199:in `block (4 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:210:in `block (4 levels) in <top (required)>'
 
-  11) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
+  12) Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on anchor links
+     Failure/Error: @session.find_field("test_field").value.should == 'blah'
+       expected: "blah"
+            got: "monkey" (using ==)
+     Shared Example Group: "click_link" called from ./vendor/capybara/lib/capybara/spec/session.rb:93
+     # ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:91:in `block (3 levels) in <top (required)>'
+
+  13) Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on URL+anchor links for the same page
+     Failure/Error: @session.find_field("test_field").value.should == 'blah'
+       expected: "blah"
+            got: "monkey" (using ==)
+     Shared Example Group: "click_link" called from ./vendor/capybara/lib/capybara/spec/session.rb:93
+     # ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:99:in `block (3 levels) in <top (required)>'
+
+  14) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
      Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
        expected: "Avenue Q"
             got: "Sesame street 66" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  12) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
-     Failure/Error: extract_results(@session)['zipcode'].should == '52071'
-       expected: "52071"
-            got: "52071350" (using ==)
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
-     # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
-
-Finished in 1648.03 seconds
-494 examples, 12 failures
+Finished in 1242.92 seconds
+495 examples, 14 failures

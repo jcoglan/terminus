@@ -255,9 +255,9 @@ Capybara::Session
             should raise an error
       it should behave like fill_in
         #fill_in
-          should fill in a text field by id
+          should fill in a text field by id (FAILED - 11)
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 11)
+          should fill in a text field by label without for (FAILED - 12)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
@@ -266,7 +266,7 @@ Capybara::Session
           should fill in a password field by id
           should fill in a field with a custom type
           should fill in a field without a type
-          should fill in a text field respecting its maxlength attribute (FAILED - 12)
+          should fill in a text field respecting its maxlength attribute
           should fill in a password field by name
           should fill in a password field by label
           should fill in a password field by name
@@ -622,6 +622,7 @@ Capybara::Session
             should return value of the selected options
             should select one option
             should select multiple options
+            should remain selected if already selected
             should return value attribute rather than content if present
       it should behave like text
         #text
@@ -823,7 +824,7 @@ Failures:
 
   9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should follow redirects
      Failure/Error: @session.current_url.should match(%r{/landed$})
-       expected "http://127.0.0.1:62233/form" to match /\/landed$/
+       expected "http://127.0.0.1:55252/form" to match /\/landed$/
      Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:287:in `block (3 levels) in <top (required)>'
 
@@ -834,19 +835,22 @@ Failures:
      Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:18:in `block (4 levels) in <top (required)>'
 
-  11) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
+  11) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by id
+     Failure/Error: @session.fill_in('form_first_name', :with => 'Harry')
+     Capybara::ElementNotFound:
+       cannot fill in, no text field, text area or password field with id, name, or label 'form_first_name' found
+     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
+     # ./vendor/capybara/lib/capybara/node/finders.rb:36:in `find'
+     # ./vendor/capybara/lib/capybara/node/actions.rb:54:in `fill_in'
+     # (eval):2:in `fill_in'
+     # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:8:in `block (3 levels) in <top (required)>'
+
+  12) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
      Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
        expected: "Avenue Q"
             got: "Sesame street 66" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  12) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field respecting its maxlength attribute
-     Failure/Error: extract_results(@session)['zipcode'].should == '52071'
-       expected: "52071"
-            got: "52071350" (using ==)
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
-     # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:76:in `block (3 levels) in <top (required)>'
-
-Finished in 2746.99 seconds
-494 examples, 12 failures
+Finished in 2426.38 seconds
+495 examples, 12 failures
