@@ -5,7 +5,7 @@ module Terminus
     end
     
     include Faye::Timeouts
-    TIMEOUT = 10
+    TIMEOUT = 30
     
     def wait_with_timeout(name, duration = TIMEOUT, &predicate)
       result, time_out = nil, false

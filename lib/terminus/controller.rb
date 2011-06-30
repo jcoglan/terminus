@@ -95,7 +95,8 @@ module Terminus
       host = Host.new(remote_uri)
       @host_aliases[host] ||= begin
         server = Capybara::Server.new(Proxy[host])
-        server.boot
+        Thread.new { server.boot }
+        sleep 0.1 until server.port
         Host.new(server)
       end
     end

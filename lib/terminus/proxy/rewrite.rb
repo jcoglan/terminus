@@ -1,16 +1,12 @@
 module Terminus
   class Proxy
     
-    class Rewrite
-      def initialize(body)
-        body  = [body] unless body.respond_to?(:each)
-        @body = body
-      end
-      
+    module Rewrite
       def each(&block)
-        @body.each do |fragment|
+        handler = lambda do |fragment|
           block.call(rewrite(fragment))
         end
+        super(&handler)
       end
       
       def rewrite(fragment)

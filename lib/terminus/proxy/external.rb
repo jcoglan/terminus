@@ -16,7 +16,7 @@ module Terminus
       
       def call(env)
         response = super
-        response[2] = Rewrite.new(response[2])
+        response[2].extend(Rewrite)
         response
       end
     end
