@@ -179,7 +179,7 @@ Capybara::Session
               should serialise and submit email fields
               should serialise and submit url fields
               should serialise and submit tel fields
-              should serialise and submit color fields (FAILED - 10)
+              should serialise and submit color fields
             on an HTML4 form
               should serialize and submit text fields
               should escape fields when submitting
@@ -215,7 +215,7 @@ Capybara::Session
           with text given on a button defined by <button> tag
             should submit the associated form
             should work with partial matches
-            should prefer exact matches over partial matches (FAILED - 11)
+            should prefer exact matches over partial matches (FAILED - 10)
           with id given on a button defined by <button> tag
             should submit the associated form
             should serialize and send GET forms
@@ -233,8 +233,8 @@ Capybara::Session
           should follow redirects
           should follow redirects
           should add query string to current URL with naked query string
-          should do nothing on anchor links (FAILED - 12)
-          should do nothing on URL+anchor links for the same page (FAILED - 13)
+          should do nothing on anchor links (FAILED - 11)
+          should do nothing on URL+anchor links for the same page (FAILED - 12)
           should follow link on URL+anchor links for a different page
           raise an error with links with no href
           with id given
@@ -257,7 +257,7 @@ Capybara::Session
         #fill_in
           should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 14)
+          should fill in a text field by label without for (FAILED - 13)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
@@ -737,4 +737,4 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-495 examples, 14 failures
+495 examples, 13 failures
