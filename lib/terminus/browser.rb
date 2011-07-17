@@ -2,7 +2,6 @@ module Terminus
   class Browser
     
     include Timeouts
-    attr_reader :dock_host
     
     extend Forwardable
     def_delegator  :@user_agent, :browser, :name
@@ -14,7 +13,6 @@ module Terminus
       @docked         = false
       @frames         = Set.new
       @namespace      = Faye::Namespace.new
-      @ping_callbacks = []
       @results        = {}
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
     end
@@ -97,7 +95,7 @@ module Terminus
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       
-      uri = @controller.rewrite_local(message['url'], dock_host)
+      uri = @controller.rewrite_local(message['url'], @dock_host)
       message['url'] = uri.to_s
       
       @attributes = @attributes.merge(message)
@@ -135,7 +133,7 @@ module Terminus
     end
     
     def return_to_dock
-      visit "http://#{dock_host}:#{DEFAULT_PORT}/"
+      visit "http://#{@dock_host}:#{DEFAULT_PORT}/"
     end
     
     def source
@@ -149,14 +147,13 @@ module Terminus
     def tell(command)
       id = @namespace.generate
       messenger.publish(channel, 'command' => command, 'commandId' => id)
-      @controller.last_commanded_browser = self
       id
     end
     
     def visit(url, retries = RETRY_LIMIT)
       close_frames!
-      uri = @controller.rewrite_remote(url, dock_host)
-      uri.host = dock_host if uri.host =~ LOCALHOST
+      uri = @controller.rewrite_remote(url, @dock_host)
+      uri.host = @dock_host if uri.host =~ LOCALHOST
       tell([:visit, uri.to_s])
       wait_for_ping
     rescue Timeouts::TimeoutError => e
@@ -201,7 +198,6 @@ module Terminus
         @dock_host = uri.host
       else
         @docked = false
-        @dock_host ||= @controller.last_commanded_browser.dock_host
       end
     end
     

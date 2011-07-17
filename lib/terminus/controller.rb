@@ -2,13 +2,11 @@ module Terminus
   class Controller
     
     include Timeouts
-    attr_accessor :last_commanded_browser
     
     def initialize
       @connected      = false
       @browsers       = {}
       @host_aliases   = {}
-      @ping_callbacks = []
       trap('INT') { exit }
     end
     
