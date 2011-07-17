@@ -92,6 +92,7 @@ module Terminus
     end
     
     def ping!(message)
+      p message if Terminus.debug
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       
@@ -124,6 +125,7 @@ module Terminus
     end
     
     def result!(message)
+      p message if Terminus.debug
       @results[message['commandId']] = message['result']
     end
     
@@ -145,6 +147,7 @@ module Terminus
     end
     
     def tell(command)
+      p command if Terminus.debug
       id = @namespace.generate
       messenger.publish(channel, 'command' => command, 'commandId' => id)
       id

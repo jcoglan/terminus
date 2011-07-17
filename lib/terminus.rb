@@ -32,6 +32,8 @@ module Terminus
   require ROOT + '/capybara/driver/terminus'
   
   class << self
+    attr_accessor :debug
+    
     def create(options = {})
       Server.new(options)
     end
