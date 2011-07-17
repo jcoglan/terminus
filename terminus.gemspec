@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.add_dependency("rack", ">= 1.0")
   s.add_dependency("thin", ">= 1.2")
   s.add_dependency("eventmachine", ">= 0.12")
-  s.add_dependency("faye", ">= 0.5.2")
+  s.add_dependency("faye", ">= 0.6.3")
   s.add_dependency("sinatra", ">= 1.0")
   s.add_dependency("packr", ">= 3.1")
   s.add_dependency("capybara", ">= 0.4.0")
