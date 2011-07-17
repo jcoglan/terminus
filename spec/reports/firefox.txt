@@ -698,7 +698,7 @@ Capybara::Session
         Node#drag_to
           should drag and drop an object
         #find
-          should allow triggering of custom JS events (FAILED - 9)
+          should allow triggering of custom JS events
         #body
           should return the current state of the page
         #source
@@ -737,4 +737,4 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-495 examples, 9 failures
+495 examples, 8 failures

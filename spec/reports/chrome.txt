@@ -164,13 +164,13 @@ Capybara::Session
           should serialize and send valueless buttons that were clicked
           should not send image buttons that were not clicked
           should serialize and send GET forms
-          should follow redirects (FAILED - 9)
+          should follow redirects
           should post pack to the same URL when no action given
           should post pack to the same URL when blank action given
           with multiple values with the same name
             should use the latest given value
           with a form that has a relative url as an action
-            should post to the correct url (FAILED - 10)
+            should post to the correct url
           with a form that has no action specified
             should post to the correct url
           with value given on a submit button
@@ -183,7 +183,7 @@ Capybara::Session
             on an HTML4 form
               should serialize and submit text fields
               should escape fields when submitting
-              should serialize and submit password fields (FAILED - 11)
+              should serialize and submit password fields
               should serialize and submit hidden fields
               should not serialize fields from other forms
               should submit the button that was clicked, but not other buttons
@@ -200,7 +200,7 @@ Capybara::Session
             should work with partial matches
           with title given on a submit button
             should submit the associated form
-            should work with partial matches (FAILED - 12)
+            should work with partial matches
           with alt given on an image button
             should submit the associated form
             should work with partial matches
@@ -210,7 +210,7 @@ Capybara::Session
           with id given on an image button
             should submit the associated form
           with title given on an image button
-            should submit the associated form (FAILED - 13)
+            should submit the associated form
             should work with partial matches
           with text given on a button defined by <button> tag
             should submit the associated form
@@ -257,7 +257,7 @@ Capybara::Session
         #fill_in
           should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 14)
+          should fill in a text field by label without for (FAILED - 9)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
@@ -265,10 +265,10 @@ Capybara::Session
           should fill in a textarea by name
           should fill in a password field by id
           should fill in a field with a custom type
-          should fill in a field without a type (FAILED - 15)
+          should fill in a field without a type
           should fill in a text field respecting its maxlength attribute
           should fill in a password field by name
-          should fill in a password field by label (FAILED - 16)
+          should fill in a password field by label
           should fill in a password field by name
           should prefer exact matches over partial matches
           should throw an exception if a hash containing 'with' is not provided
@@ -622,7 +622,7 @@ Capybara::Session
             should return value of the selected options
             should select one option
             should select multiple options
-            should remain selected if already selected (FAILED - 17)
+            should remain selected if already selected
             should return value attribute rather than content if present
       it should behave like text
         #text
@@ -671,7 +671,7 @@ Capybara::Session
           should restrict scope to a fieldset given by id
           should restrict scope to a fieldset given by legend
         #within_table
-          should restrict scope to a fieldset given by id (FAILED - 18)
+          should restrict scope to a fieldset given by id
           should restrict scope to a fieldset given by legend
       it should behave like current_url
         #current_url
@@ -737,4 +737,4 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-495 examples, 18 failures
+495 examples, 9 failures

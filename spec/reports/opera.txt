@@ -350,7 +350,7 @@ Capybara::Session
             should be false if the content occurs more or fewer times than range
             should be false if the content isn't on the page at all
           with count
-            should be true if the content is on the page the given number of times (FAILED - 15)
+            should be true if the content is on the page the given number of times
             should be false if the content occurs the given number of times
             should be false if the content isn't on the page at all
             should coerce count to an integer
@@ -737,4 +737,4 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-495 examples, 15 failures
+495 examples, 14 failures
