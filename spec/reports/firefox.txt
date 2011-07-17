@@ -698,7 +698,7 @@ Capybara::Session
         Node#drag_to
           should drag and drop an object
         #find
-          should allow triggering of custom JS events
+          should allow triggering of custom JS events (FAILED - 9)
         #body
           should return the current state of the page
         #source
@@ -737,90 +737,4 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-Failures:
-
-  1) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
-     Failure/Error: running do
-       expected Capybara::InfiniteRedirectError but nothing was raised
-     Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:21
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:293:in `block (2 levels) in <top (required)>'
-
-  2) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
-     Failure/Error: @session.attach_file "form_image", __FILE__
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:12:in `block (4 levels) in <top (required)>'
-
-  3) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by label
-     Failure/Error: @session.attach_file "Image", __FILE__
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:18:in `block (4 levels) in <top (required)>'
-
-  4) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by id
-     Failure/Error: @session.attach_file "form_document", @test_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:26:in `block (4 levels) in <top (required)>'
-
-  5) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by label
-     Failure/Error: @session.attach_file "Document", @test_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:32:in `block (4 levels) in <top (required)>'
-
-  6) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type text/plain when uploading a text file
-     Failure/Error: @session.attach_file "Document", @test_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:43:in `block (4 levels) in <top (required)>'
-
-  7) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
-     Failure/Error: @session.attach_file "Document", @test_jpg_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:49:in `block (4 levels) in <top (required)>'
-
-  8) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
-     Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
-
-Finished in 1647.66 seconds
-495 examples, 8 failures
+495 examples, 9 failures

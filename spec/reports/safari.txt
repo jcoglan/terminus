@@ -184,7 +184,7 @@ Capybara::Session
               should serialize and submit text fields
               should escape fields when submitting
               should serialize and submit password fields
-              should serialize and submit hidden fields
+              should serialize and submit hidden fields (FAILED - 11)
               should not serialize fields from other forms
               should submit the button that was clicked, but not other buttons
               should serialize radio buttons
@@ -197,7 +197,7 @@ Capybara::Session
               should not submit disabled fields
           with id given on a submit button
             should submit the associated form
-            should work with partial matches
+            should work with partial matches (FAILED - 12)
           with title given on a submit button
             should submit the associated form
             should work with partial matches
@@ -210,7 +210,7 @@ Capybara::Session
           with id given on an image button
             should submit the associated form
           with title given on an image button
-            should submit the associated form
+            should submit the associated form (FAILED - 13)
             should work with partial matches
           with text given on a button defined by <button> tag
             should submit the associated form
@@ -255,20 +255,20 @@ Capybara::Session
             should raise an error
       it should behave like fill_in
         #fill_in
-          should fill in a text field by id (FAILED - 11)
+          should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 12)
+          should fill in a text field by label without for (FAILED - 14)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
-          should fill in a textarea by label
+          should fill in a textarea by label (FAILED - 15)
           should fill in a textarea by name
           should fill in a password field by id
           should fill in a field with a custom type
           should fill in a field without a type
           should fill in a text field respecting its maxlength attribute
           should fill in a password field by name
-          should fill in a password field by label
+          should fill in a password field by label (FAILED - 16)
           should fill in a password field by name
           should prefer exact matches over partial matches
           should throw an exception if a hash containing 'with' is not provided
@@ -608,7 +608,7 @@ Capybara::Session
           should return the value attribute rather than content if present
           should select an option from a select box by id
           should select an option from a select box by label
-          should select an option without giving a select box
+          should select an option without giving a select box (FAILED - 17)
           should favour exact matches to option labels
           should escape quotes
           should obey from
@@ -737,120 +737,4 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-Failures:
-
-  1) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
-     Failure/Error: running do
-       expected Capybara::InfiniteRedirectError but nothing was raised
-     Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:21
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:293:in `block (2 levels) in <top (required)>'
-
-  2) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
-     Failure/Error: @session.attach_file "form_image", __FILE__
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:12:in `block (4 levels) in <top (required)>'
-
-  3) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by label
-     Failure/Error: @session.attach_file "Image", __FILE__
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:18:in `block (4 levels) in <top (required)>'
-
-  4) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by id
-     Failure/Error: @session.attach_file "form_document", @test_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:26:in `block (4 levels) in <top (required)>'
-
-  5) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by label
-     Failure/Error: @session.attach_file "Document", @test_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:32:in `block (4 levels) in <top (required)>'
-
-  6) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type text/plain when uploading a text file
-     Failure/Error: @session.attach_file "Document", @test_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:43:in `block (4 levels) in <top (required)>'
-
-  7) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
-     Failure/Error: @session.attach_file "Document", @test_jpg_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:49:in `block (4 levels) in <top (required)>'
-
-  8) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
-     Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
-     Capybara::NotSupportedByDriverError:
-       Capybara::NotSupportedByDriverError
-     Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:41:in `set'
-     # ./vendor/capybara/lib/capybara/node/element.rb:69:in `set'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:158:in `attach_file'
-     # (eval):2:in `attach_file'
-     # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
-
-  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should follow redirects
-     Failure/Error: @session.current_url.should match(%r{/landed$})
-       expected "http://127.0.0.1:55252/form" to match /\/landed$/
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:287:in `block (3 levels) in <top (required)>'
-
-  10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with a form that has a relative url as an action should post to the correct url
-     Failure/Error: @session.current_path.should == '/relative'
-       expected: "/relative"
-            got: "/form" (using ==)
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:18:in `block (4 levels) in <top (required)>'
-
-  11) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by id
-     Failure/Error: @session.fill_in('form_first_name', :with => 'Harry')
-     Capybara::ElementNotFound:
-       cannot fill in, no text field, text area or password field with id, name, or label 'form_first_name' found
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
-     # ./vendor/capybara/lib/capybara/node/finders.rb:36:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:54:in `fill_in'
-     # (eval):2:in `fill_in'
-     # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:8:in `block (3 levels) in <top (required)>'
-
-  12) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
-     Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
-       expected: "Avenue Q"
-            got: "Sesame street 66" (using ==)
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
-     # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
-
-Finished in 2426.38 seconds
-495 examples, 12 failures
+495 examples, 17 failures
