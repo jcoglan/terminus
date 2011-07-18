@@ -54,7 +54,7 @@ Capybara::Driver::Terminus
       should set and clean cookies
   it should behave like driver with infinite redirect detection
     should follow 5 redirects
-    should not follow more than 5 redirects (FAILED - 1)
+    should not follow more than 5 redirects
 
 Capybara::Session
   with terminus driver
@@ -117,15 +117,15 @@ Capybara::Session
       it should behave like attach_file
         #attach_file
           with normal form
-            should set a file path by id (FAILED - 2)
-            should set a file path by label (FAILED - 3)
+            should set a file path by id (FAILED - 1)
+            should set a file path by label (FAILED - 2)
           with multipart form
-            should set a file path by id (FAILED - 4)
-            should set a file path by label (FAILED - 5)
+            should set a file path by id (FAILED - 3)
+            should set a file path by label (FAILED - 4)
             should not break if no file is submitted
-            should send content type text/plain when uploading a text file (FAILED - 6)
-            should send content type image/jpeg when uploading an image (FAILED - 7)
-            should not break when using HTML5 multiple file input (FAILED - 8)
+            should send content type text/plain when uploading a text file (FAILED - 5)
+            should send content type image/jpeg when uploading an image (FAILED - 6)
+            should not break when using HTML5 multiple file input (FAILED - 7)
           with a locator that doesn't exist
             should raise an error
           with a path that doesn't exist
@@ -161,7 +161,7 @@ Capybara::Session
             should raise an error
       it should behave like click_button
         #click_button
-          should serialize and send valueless buttons that were clicked (FAILED - 9)
+          should serialize and send valueless buttons that were clicked (FAILED - 8)
           should not send image buttons that were not clicked
           should serialize and send GET forms
           should follow redirects
@@ -215,7 +215,7 @@ Capybara::Session
           with text given on a button defined by <button> tag
             should submit the associated form
             should work with partial matches
-            should prefer exact matches over partial matches (FAILED - 10)
+            should prefer exact matches over partial matches (FAILED - 9)
           with id given on a button defined by <button> tag
             should submit the associated form
             should serialize and send GET forms
@@ -233,8 +233,8 @@ Capybara::Session
           should follow redirects
           should follow redirects
           should add query string to current URL with naked query string
-          should do nothing on anchor links (FAILED - 11)
-          should do nothing on URL+anchor links for the same page (FAILED - 12)
+          should do nothing on anchor links (FAILED - 10)
+          should do nothing on URL+anchor links for the same page (FAILED - 11)
           should follow link on URL+anchor links for a different page
           raise an error with links with no href
           with id given
@@ -257,7 +257,7 @@ Capybara::Session
         #fill_in
           should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 13)
+          should fill in a text field by label without for (FAILED - 12)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
@@ -737,4 +737,4 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-495 examples, 13 failures
+495 examples, 12 failures
