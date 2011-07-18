@@ -8,7 +8,7 @@ module Terminus
     set :views,  ROOT + '/terminus/views'
     
     def self.driver_script(host)
-      %Q{<script type="text/javascript" src="http://#{host}:#{DEFAULT_PORT}/controller.js"></script>}
+      %Q{<script type="text/javascript" src="http://#{host}:#{Terminus.port}/controller.js"></script>}
     end
     
     helpers do

@@ -43,12 +43,20 @@ module Terminus
     end
     
     def endpoint(host = DEFAULT_HOST)
-      "http://#{host}:#{DEFAULT_PORT}#{FAYE_MOUNT}"
+      "http://#{host}:#{port}#{FAYE_MOUNT}"
     end
     
     def ensure_reactor_running
       Thread.new { EM.run unless EM.reactor_running? }
       while not EM.reactor_running?; end
+    end
+    
+    def port
+      @port || DEFAULT_PORT
+    end
+    
+    def port=(port)
+      @port = port.to_i
     end
     
     extend Forwardable

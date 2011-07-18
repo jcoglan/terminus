@@ -136,7 +136,7 @@ module Terminus
     end
     
     def return_to_dock
-      visit "http://#{@dock_host}:#{DEFAULT_PORT}/"
+      visit "http://#{@dock_host}:#{Terminus.port}/"
     end
     
     def source
@@ -197,7 +197,7 @@ module Terminus
     
     def detect_dock_host
       uri = URI.parse(@attributes['url'])
-      if uri.port == DEFAULT_PORT
+      if uri.port == Terminus.port
         @docked = true
         @dock_host = uri.host
       else

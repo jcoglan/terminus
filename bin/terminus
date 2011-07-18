@@ -17,7 +17,9 @@ begin
   
   trap("INT") { app.stop! ; exit }
   
-  puts "Terminus server running on port #{options[:port]}"
+  Terminus.port = options[:port]
+  
+  puts "Terminus server running on port #{Terminus.port}"
   puts "Press CTRL-C to exit"
   puts ""
   app.run!
