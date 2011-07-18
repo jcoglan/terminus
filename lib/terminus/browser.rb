@@ -104,6 +104,8 @@ module Terminus
       @user_agent = UserAgent.parse(message['ua'])
       detect_dock_host
       
+      @infinite_redirect = message['infinite']
+      
       if parent = message['parent']
         @parent = Terminus.browser(parent)
         @parent.frame!(self) unless @parent == self
@@ -160,6 +162,12 @@ module Terminus
       uri.host = @dock_host if uri.host =~ LOCALHOST
       tell([:visit, uri.to_s])
       wait_for_ping
+      
+      if @infinite_redirect
+        @infinite_redirect = nil
+        raise Capybara::InfiniteRedirectError
+      end
+      
     rescue Timeouts::TimeoutError => e
       raise e if retries.zero?
       visit(url, retries - 1)
