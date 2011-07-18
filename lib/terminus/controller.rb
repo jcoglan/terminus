@@ -4,10 +4,9 @@ module Terminus
     include Timeouts
     
     def initialize
-      @connected      = false
-      @browsers       = {}
-      @host_aliases   = {}
-      trap('INT') { exit }
+      @connected    = false
+      @browsers     = {}
+      @host_aliases = {}
     end
     
     def browser(id = nil)

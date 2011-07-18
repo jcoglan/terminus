@@ -8,12 +8,13 @@ module Terminus
     def_delegators :@user_agent, :os, :version
     
     def initialize(controller)
-      @controller     = controller
-      @attributes     = {}
-      @docked         = false
-      @frames         = Set.new
-      @namespace      = Faye::Namespace.new
-      @results        = {}
+      @controller = controller
+      @attributes = {}
+      @docked     = false
+      @frames     = Set.new
+      @namespace  = Faye::Namespace.new
+      @results    = {}
+      
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
     end
     
