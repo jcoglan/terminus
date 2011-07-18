@@ -3,6 +3,7 @@
       host = '<%= host %>';
   
   JSCLASS_PATH = host + '/js.class/';
+  SYN_FILES    = ['synthetic', 'mouse', 'browsers', 'key', 'drag/drag'];
   
   var withPackageManager = function(callback) {
     if (window.JS && JS.Packages) return callback();
@@ -32,15 +33,12 @@
       
       loader(function(callback) {
         if (!window.steal) window.steal = {then: function(fn) { fn() }};
-        load(host + '/syn/synthetic.js', function() {
-          load(host + '/syn/mouse.js', function() {
-            load(host + '/syn/browsers.js', function() {
-              load(host + '/syn/key.js', function() {
-                load(host + '/syn/drag/drag.js', callback);
-              });
-            });
-          });
-        });
+        var inject = function() {
+          var synFile = SYN_FILES.shift();
+          if (!synFile) return callback();
+          load(host + '/syn/' + synFile + '.js', inject);
+        };
+        inject();
         
       }).provides('Syn');
       
