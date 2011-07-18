@@ -37,6 +37,14 @@ Capybara::Driver::Terminus
       should drag and drop an object
     #evaluate_script
       should return the value of the executed script
+  it should behave like driver with resynchronization support
+    #find
+      with synchronization turned on
+        should wait for all ajax requests to finish
+      with resynchronization turned off
+        should not wait for ajax requests to finish
+      with short synchronization timeout
+        should raise an error
   it should behave like driver with frame support
     #within_frame
       should find the div in frameOne
@@ -737,4 +745,4 @@ Capybara::Session
         #has_no_content?
           should wait for content to disappear
 
-495 examples, 7 failures
+498 examples, 7 failures

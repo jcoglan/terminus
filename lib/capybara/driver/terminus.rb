@@ -1,9 +1,18 @@
 class Capybara::Driver::Terminus < Capybara::Driver::Base
-  def initialize(app = nil)
+  attr_reader :options
+  
+  def initialize(app = nil, options = {})
     raise ArgumentError.new if app.nil?
-    @app = Terminus::Proxy[app]
+    
+    @app         = Terminus::Proxy[app]
+    @options     = options
     @rack_server = Capybara::Server.new(@app)
+    
     @rack_server.boot
+  end
+  
+  def find(xpath)
+    browser.find(xpath, self)
   end
   
   def visit(path)
@@ -15,7 +24,6 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :current_url,
                            :evaluate_script,
                            :execute_script,
-                           :find,
                            :reset!,
                            :response_headers,
                            :source,

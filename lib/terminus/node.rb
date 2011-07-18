@@ -3,8 +3,8 @@ module Terminus
     
     attr_reader :id
     
-    def initialize(browser, id)
-      @browser, @id = browser, id
+    def initialize(browser, id, driver = nil)
+      @browser, @id, @driver = browser, id, driver
     end
     
     def checked?
@@ -17,10 +17,15 @@ module Terminus
     
     def click
       page    = @browser.page_id
-      command = @browser.tell([:click, @id])
+      options = @driver ? @driver.options : {}
+      command = @browser.tell([:click, @id, options])
       
-      @browser.wait_with_timeout(:click_response) do
+      result = @browser.wait_with_timeout(:click_response) do
         @browser.result(command) || (@browser.page_id != page)
+      end
+      
+      if Hash === result and String === result[:value]
+        raise Capybara::TimeoutError, result[:value]
       end
     end
     

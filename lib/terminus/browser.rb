@@ -68,8 +68,8 @@ module Terminus
       nil
     end
     
-    def find(xpath)
-      ask([:find, xpath, false]).map { |id| Node.new(self, id) }
+    def find(xpath, driver = nil)
+      ask([:find, xpath, false]).map { |id| Node.new(self, id, driver) }
     end
     
     def frame!(frame_browser)
@@ -150,8 +150,8 @@ module Terminus
     end
     
     def tell(command)
-      p command if Terminus.debug
       id = @namespace.generate
+      p [id, command] if Terminus.debug
       messenger.publish(channel, 'command' => command, 'commandId' => id)
       id
     end
