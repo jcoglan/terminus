@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.files             = %w[README.rdoc] +
                         Dir.glob("{bin,lib,spec}/**/*") +
-                        SYN.map { |s| "lib/terminus/public/syn/#{s}.js" }
+                        SYN.map { |f| "lib/terminus/public/syn/#{f}.js" }
 
   s.executables       = Dir.glob("bin/**").map { |f| File.basename(f) }
   s.require_paths     = ["lib"]
