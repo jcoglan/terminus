@@ -25,7 +25,7 @@ module Terminus
       return false unless @user_agent
       
       params.all? do |name, value|
-        property = __send__(name)
+        property = __send__(name).to_s
         case value
         when Regexp then property =~ value
         when String then property == value
