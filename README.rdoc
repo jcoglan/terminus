@@ -48,6 +48,32 @@ to make it ready to accept new work. In an 'after' block:
 This returns all currently connected browsers to the holding page.
 
 
+=== Browser selection API
+
+If you're testing a messaging app, for example, you need several browsers to
+participate in the test. Terminus has a browser selection API that lets you
+switch which browser you're controlling as you use the Capybara API.
+
+* <tt>Terminus.ensure_browsers(n)</tt> blocks until there are at least <tt>n</tt>
+  browsers connected. This is useful for making sure you have everything you
+  need before beginning a test.
+
+* <tt>Terminus.browsers</tt> returns a list of objects representing the
+  connected browsers. So for example you can select the first browser by calling
+  <tt>Terminus.browser = Terminus.browsers.first</tt>.
+
+* <tt>Terminus.browser = :docked</tt> selects any browser that is currently
+  visiting the holding page.
+
+You can also select based on browser name, version and operating system, for
+example to select Firefox 3.6 you can call:
+
+  Terminus.browser = {:name => /Firefox/, :version => /^3.6/}
+
+The available keys are <tt>:name</tt>, <tt>:version</tt> and <tt>:os</tt> and
+the values may be strings or regular expressions.
+
+
 == Notes / to-do
 
 * Support IE, which has no built-in XPath engine for querying the DOM. I'm
