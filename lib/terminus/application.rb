@@ -8,12 +8,12 @@ module Terminus
     set :views,  ROOT + '/terminus/views'
     
     def self.driver_script(host)
-      %Q{<script type="text/javascript" src="http://#{host}:#{Terminus.port}/controller.js"></script>}
+      %Q{<script type="text/javascript" src="http://#{host}:#{Terminus.port}/bootstrap.js"></script>}
     end
     
     helpers do
-      def bookmarklet
-        Packr.pack(erb(:bookmarklet), :shrink_vars => true)
+      def bootstrap
+        Packr.pack(erb(:bootstrap), :shrink_vars => true)
       end
       
       def host
@@ -25,9 +25,9 @@ module Terminus
       erb :index
     end
     
-    get '/controller.js' do
+    get '/bootstrap.js' do
       headers 'Content-Type' => 'text/javascript'
-      bookmarklet
+      bootstrap
     end
     
   end
