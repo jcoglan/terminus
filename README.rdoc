@@ -73,6 +73,9 @@ example to select Firefox 3.6 you can call:
 The available keys are <tt>:name</tt>, <tt>:version</tt> and <tt>:os</tt> and
 the values may be strings or regular expressions.
 
+For an example of this in action, see the automated Faye integration test at
+https://github.com/jcoglan/faye/blob/master/examples/automate.rb
+
 
 == Notes / to-do
 
