@@ -29,7 +29,7 @@ application will be running:
 
   $ terminus
 
-This starts the server on port 7004. Now open a browser at http://127.0.0.1:7004/.
+This starts the server on port 7004. Now open a browser at http://127.0.0.1:7004.
 (I recommend using the IP address of the Terminus host; Chrome has bugs that can
 stop WebSockets working if you use the hostname.) This is the 'holding page'. A
 browser is said to be 'docked' while it is visiting this page, meaning it is
@@ -54,16 +54,16 @@ If you're testing a messaging app, for example, you need several browsers to
 participate in the test. Terminus has a browser selection API that lets you
 switch which browser you're controlling as you use the Capybara API.
 
-* <tt>Terminus.ensure_browsers(n)</tt> blocks until there are at least <tt>n</tt>
-  browsers connected. This is useful for making sure you have everything you
-  need before beginning a test.
+* <b><tt>Terminus.ensure_browsers(n)</tt></b> blocks until there are at least
+  <tt>n</tt> browsers connected. This is useful for making sure you have
+  everything you need before beginning a test.
 
-* <tt>Terminus.browsers</tt> returns a list of objects representing the
+* <b><tt>Terminus.browsers</tt></b> returns a list of objects representing the
   connected browsers. So for example you can select the first browser by calling
   <tt>Terminus.browser = Terminus.browsers.first</tt>.
 
-* <tt>Terminus.browser = :docked</tt> selects any browser that is currently
-  visiting the holding page.
+* <b><tt>Terminus.browser = :docked</tt></b> selects any browser that is
+  currently visiting the holding page.
 
 You can also select based on browser name, version and operating system, for
 example to select Firefox 3.6 you can call:
