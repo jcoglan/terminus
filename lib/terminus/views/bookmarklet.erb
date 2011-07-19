@@ -27,9 +27,9 @@
   
   withPackageManager(function() {
     JS.Packages(function() { with(this) {
-      file(host + faye + '/client.js')
-        .provides('Faye', 'Faye.Client')
-        .setup(function() { Faye.Client.prototype.MAX_DELAY = 0 });
+      loader(function(callback) {
+        load(host + faye + '/client.js', callback);
+      }).provides('Faye', 'Faye.Client');
       
       loader(function(callback) {
         if (!window.steal) window.steal = {then: function(fn) { fn() }};
