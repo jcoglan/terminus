@@ -5,20 +5,27 @@
     <title>Terminus example</title>
     <style type="text/css">
       body {
-        background: #e0e0ff;
+        background: #fff;
         color: #333;
-        font: 15px FreeSans, Helvetica, Arial, sans-serif;
+        font: 28px FreeSans, Helvetica, Arial, sans-serif;
+      }
+      
+      .container {
+        width: 400px;
+        margin: 0 auto;
       }
       
       a {
         font-weight: bold;
-        color: #f80046;
+        color: #28aad4;
       }
     </style>
   </head>
   <body>
     
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
     
   </body>
 </html>
