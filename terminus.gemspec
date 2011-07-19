@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.summary           = "Capybara driver for cross-browser and remote scripting"
   s.author            = "James Coglan"
   s.email             = "jcoglan@gmail.com"
-  s.homepage          = "http://github.com/jcoglan/terminus"
+  s.homepage          = "http://terminus.jcoglan.com"
 
   s.extra_rdoc_files  = %w[README.rdoc]
   s.rdoc_options      = %w[--main README.rdoc]
