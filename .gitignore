@@ -1,5 +1,5 @@
 .bundle
+*.gem
 .DS_Store
 Gemfile.lock
 .redcar
-pkg
