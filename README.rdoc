@@ -1,6 +1,6 @@
 = Terminus
 
-* http://github.com/jcoglan/terminus
+* http://terminus.jcoglan.com
 
 Terminus is an experimental Capybara driver implemented in client-side
 JavaScript. It lets you script your application in any browser on any device,
@@ -10,71 +10,6 @@ automated:
 * Cross-browser testing
 * Multi-browser interaction e.g. messaging apps
 * Testing on remote machines, phones, iPads etc.
-
-
-== Usage
-
-Terminus is a Capybara driver. For the most part, you will not use it directly:
-you will use the Capybara API and it will send instructions to Terminus for
-execution. To set Terminus as your driver:
-
-  require 'capybara/dsl'
-  require 'terminus'
-  
-  Capybara.current_driver = :terminus
-
-Terminus does require some extra setup before you can use it to control your
-app. First up, you need to start the Terminus server on the machine where your
-application will be running:
-
-  $ terminus
-
-This starts the server on port 7004. Now open a browser at http://127.0.0.1:7004.
-(I recommend using the IP address of the Terminus host; Chrome has bugs that can
-stop WebSockets working if you use the hostname.) This is the 'holding page'. A
-browser is said to be 'docked' while it is visiting this page, meaning it is
-ready and waiting to run some tests for you.
-
-Finally, in your tests you need to make sure there's a docked browser and select
-it. In a 'before' block, run the following:
-
-  Terminus.browser = :docked
-
-After each test is finished, you need to return the browser to the holding page
-to make it ready to accept new work. In an 'after' block:
-
-  Terminus.return_to_dock
-
-This returns all currently connected browsers to the holding page.
-
-
-=== Browser selection API
-
-If you're testing a messaging app, for example, you need several browsers to
-participate in the test. Terminus has a browser selection API that lets you
-switch which browser you're controlling as you use the Capybara API.
-
-* <b><tt>Terminus.ensure_browsers(n)</tt></b> blocks until there are at least
-  <tt>n</tt> browsers connected. This is useful for making sure you have
-  everything you need before beginning a test.
-
-* <b><tt>Terminus.browsers</tt></b> returns a list of objects representing the
-  connected browsers. So for example you can select the first browser by calling
-  <tt>Terminus.browser = Terminus.browsers.first</tt>.
-
-* <b><tt>Terminus.browser = :docked</tt></b> selects any browser that is
-  currently visiting the holding page.
-
-You can also select based on browser name, version and operating system, for
-example to select Firefox 3.6 you can call:
-
-  Terminus.browser = {:name => /Firefox/, :version => /^3.6/}
-
-The available keys are <tt>:name</tt>, <tt>:version</tt> and <tt>:os</tt> and
-the values may be strings or regular expressions.
-
-For an example of this in action, see the automated Faye integration test at
-https://github.com/jcoglan/faye/blob/master/examples/automate.rb
 
 
 == Notes / to-do

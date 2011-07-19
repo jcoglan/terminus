@@ -1,0 +1,59 @@
+body {
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  color: #330;
+  font: 15px/1.5 FreeSans, Helvetica, Arial, sans-serif;
+}
+
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 180px;
+  background: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+  z-index: -1;
+}
+
+h1 {
+  background: url(/icon.png) center 20px no-repeat;
+  margin: 0 auto;
+  width: 250px;
+  padding-top: 270px;
+  text-align: center;
+  color: #666;
+  font-size: 3.5em;
+}
+
+h2, p, ul, pre, .iframe {
+  margin: 1.5em auto;
+  width: 500px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin: 1em auto;
+  color: #28aad4;
+}
+
+pre {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 1em 20px;
+  width: 460px;
+}
+
+a {
+  color: #ff6e18;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer {
+  margin: 40px auto;
+  padding: 0 40px;
+  width: 500px;
+  border-top: 1px solid #ccc;
+  font-size: 0.8em;
+}
+
