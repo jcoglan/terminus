@@ -2,7 +2,7 @@ SYN = %w[synthetic mouse browsers key drag/drag]
 
 Gem::Specification.new do |s|
   s.name              = "terminus"
-  s.version           = "0.3.0"
+  s.version           = "0.3.1"
   s.summary           = "Capybara driver for cross-browser and remote scripting"
   s.author            = "James Coglan"
   s.email             = "jcoglan@gmail.com"
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rack", ">= 1.0"
   s.add_dependency "thin", ">= 1.2"
-  s.add_dependency "eventmachine", ">= 0.12"
+  s.add_dependency "eventmachine", "~> 0.12.0"
   s.add_dependency "faye", "~> 0.6.3"
   s.add_dependency "sinatra", ">= 1.0"
   s.add_dependency "packr", ">= 3.1"
