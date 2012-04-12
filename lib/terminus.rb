@@ -1,15 +1,16 @@
 require 'forwardable'
 require 'uri'
-require 'rack'
-require 'faye'
-require 'thin'
-require 'eventmachine'
-require 'sinatra'
-require 'packr'
 require 'capybara'
+require 'eventmachine'
+require 'faye'
+require 'packr'
+require 'rack'
 require 'rack-proxy'
+require 'sinatra'
+require 'thin'
 require 'useragent'
 
+Faye::WebSocket.load_adapter('thin')
 Thin::Logging.silent = true
 
 module Terminus
@@ -19,7 +20,7 @@ module Terminus
   LOCALHOST    = /^(localhost|0\.0\.0\.0|127\.0\.0\.1)$/
   RETRY_LIMIT  = 3
   
-  ROOT = File.expand_path(File.dirname(__FILE__))
+  ROOT = File.expand_path('..', __FILE__)
   autoload :Application, ROOT + '/terminus/application'
   autoload :Browser,     ROOT + '/terminus/browser'
   autoload :Controller,  ROOT + '/terminus/controller'

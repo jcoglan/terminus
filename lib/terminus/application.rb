@@ -4,8 +4,7 @@ module Terminus
     ROOT = File.expand_path(File.dirname(__FILE__) + '/../')
     
     set :static, true
-    set :public, ROOT + '/terminus/public'
-    set :views,  ROOT + '/terminus/views'
+    set :root,   ROOT + '/terminus'
     
     def self.driver_script(host)
       %Q{<script type="text/javascript" src="http://#{host}:#{Terminus.port}/bootstrap.js"></script>}
