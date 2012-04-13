@@ -1,3 +1,6 @@
+require 'packr'
+require 'sinatra'
+
 module Terminus
   class Application < Sinatra::Base
     

@@ -3,15 +3,8 @@ require 'uri'
 require 'capybara'
 require 'eventmachine'
 require 'faye'
-require 'packr'
-require 'rack'
 require 'rack-proxy'
-require 'sinatra'
-require 'thin'
 require 'useragent'
-
-Faye::WebSocket.load_adapter('thin')
-Thin::Logging.silent = true
 
 module Terminus
   FAYE_MOUNT   = '/messaging'

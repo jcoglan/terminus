@@ -1,3 +1,9 @@
+require 'rack'
+require 'thin'
+
+Faye::WebSocket.load_adapter('thin')
+Thin::Logging.silent = true
+
 module Terminus
   class Server
     
