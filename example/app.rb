@@ -4,7 +4,7 @@ require 'yaml'
 
 module Example
   class App < Sinatra::Base
-    set :views, File.dirname(__FILE__) + '/views'
+    set :views, File.expand_path('../views', __FILE__)
     
     get '/' do
       erb(:index)
@@ -20,7 +20,7 @@ module Example
   end
 end
 
-require File.dirname(__FILE__) + '/../lib/terminus'
+require File.expand_path('../../lib/terminus', __FILE__)
 require 'capybara/dsl'
 
 def driver

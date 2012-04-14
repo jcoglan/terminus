@@ -2,7 +2,7 @@
 
 require 'rubygems'
 require 'oyster'
-require File.expand_path(File.dirname(__FILE__) + '/../lib/terminus')
+require File.expand_path('../../lib/terminus', __FILE__)
 
 spec = Oyster.spec do
   name "terminus -- Control web browsers with Ruby"

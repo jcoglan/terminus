@@ -1,7 +1,7 @@
 require 'rack'
 require 'thin'
 
-Faye::WebSocket.load_adapter('thin')
+Faye::WebSocket.load_adapter('thin') if Faye::WebSocket.respond_to?(:load_adapter)
 Thin::Logging.silent = true
 
 module Terminus

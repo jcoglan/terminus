@@ -26,6 +26,8 @@
   };
   
   withPackageManager(function() {
+    JS.cacheBust = true;
+    
     JS.Packages(function() { with(this) {
       loader(function(callback) {
         load(host + faye + '/client.js', callback);

@@ -4,7 +4,7 @@ require 'sinatra'
 module Terminus
   class Application < Sinatra::Base
     
-    ROOT = File.expand_path(File.dirname(__FILE__) + '/../')
+    ROOT = File.expand_path('../..', __FILE__)
     
     set :static, true
     set :root,   ROOT + '/terminus'
