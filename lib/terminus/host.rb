@@ -4,8 +4,13 @@ module Terminus
     attr_reader :host, :port
     
     def initialize(uri)
-      @host = uri.host
-      @port = uri.port
+      @scheme = uri.scheme if uri.respond_to?(:scheme)
+      @host   = uri.host
+      @port   = uri.port
+    end
+    
+    def scheme
+      @scheme || 'http'
     end
     
     def eql?(other)

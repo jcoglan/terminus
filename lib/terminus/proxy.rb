@@ -44,6 +44,10 @@ module Terminus
         @redirects = 0
       end
       
+      if location = response[1]['Location']
+        response[1]['Location'] = Terminus.rewrite_remote(location).to_s
+      end
+      
       return response if response.first == -1 or              # async response
              BASIC_RESOURCES.include?(env['PATH_INFO']) or    # not pages - favicon etc
              env.has_key?('HTTP_X_REQUESTED_WITH')            # Ajax calls

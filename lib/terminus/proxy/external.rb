@@ -11,6 +11,11 @@ module Terminus
         env['SERVER_NAME'] = @uri.host
         env['SERVER_PORT'] = @uri.port
         env['HTTP_HOST']   = "#{@uri.host}:#{@uri.port}"
+        
+        if scheme = @uri.scheme
+          env['rack.url_scheme'] = scheme
+        end
+        
         env
       end
       

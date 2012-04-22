@@ -62,8 +62,9 @@ module Terminus
                     @host_aliases.index(Host.new(uri))
 
       if remote_host
-        uri.host = remote_host.host
-        uri.port = remote_host.port
+        uri.scheme = remote_host.scheme
+        uri.host   = remote_host.host
+        uri.port   = remote_host.port
       end
       uri.host = dock_host if dock_host and uri.host =~ LOCALHOST
       uri
@@ -73,6 +74,7 @@ module Terminus
       uri = URI.parse(url)
       return uri unless URI::HTTP === uri and uri.host !~ LOCALHOST and uri.host != dock_host
       server = boot(uri)
+      uri.scheme = 'http'
       uri.host, uri.port = server.host, server.port
       uri
     end
@@ -93,7 +95,7 @@ module Terminus
       @host_aliases[host] ||= begin
         server = Capybara::Server.new(Proxy[host])
         Thread.new { server.boot }
-        Thread.pass until server.port
+        sleep 1 until server.port
         Host.new(server)
       end
     end
