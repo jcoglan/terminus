@@ -19,6 +19,10 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     browser.visit(@rack_server.url(path))
   end
   
+  def wait?
+    true
+  end
+  
   extend Forwardable
   def_delegators :browser, :body,
                            :current_url,
