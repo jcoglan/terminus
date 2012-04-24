@@ -36,7 +36,9 @@ module Terminus
     def ask(command, retries = RETRY_LIMIT)
       id = tell(command)
       result_hash = wait_with_timeout(:result) { result(id) }
-      result_hash[:value]
+      value = result_hash[:value]
+      raise ObsoleteElementError if value.nil?
+      value
     rescue Timeouts::TimeoutError => e
       raise e if retries.zero?
       ask(command, retries - 1)
@@ -129,12 +131,12 @@ module Terminus
     
     def result!(message)
       p message if Terminus.debug
-      @results[message['commandId']] = message['result']
+      @results[message['commandId']] = {:value => message['result']}
     end
     
     def result(id)
       return nil unless @results.has_key?(id)
-      {:value => @results.delete(id)}
+      @results.delete(id)
     end
     
     def return_to_dock

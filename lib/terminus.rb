@@ -25,6 +25,9 @@ module Terminus
   
   require ROOT + '/capybara/driver/terminus'
   
+  class ObsoleteElementError < StandardError
+  end
+  
   class << self
     attr_accessor :debug
     

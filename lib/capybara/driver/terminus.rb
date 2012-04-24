@@ -15,6 +15,10 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     browser.find(xpath, self)
   end
   
+  def invalid_element_errors
+    [::Terminus::ObsoleteElementError]
+  end
+  
   def visit(path)
     browser.visit(@rack_server.url(path))
   end
