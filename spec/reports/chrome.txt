@@ -717,8 +717,8 @@ Capybara::Session
             should reload a parent node
             should not automatically reload
           with automatic reload
-            should reload the current context of the node automatically (FAILED - 9)
-            should reload a parent node automatically (FAILED - 10)
+            should reload the current context of the node automatically
+            should reload a parent node automatically
             should reload a node automatically when using find
         #find
           should allow triggering of custom JS events
@@ -862,22 +862,8 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  9) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload the current context of the node automatically
-     Failure/Error: node.text.should == 'RELOADED'
-       expected: "RELOADED"
-            got: "waiting to be reloaded" (using ==)
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:17
-     # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:58:in `block (5 levels) in <top (required)>'
-
-  10) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload a parent node automatically
-     Failure/Error: node.text.should == 'RELOADED'
-       expected: "RELOADED"
-            got: "waiting to be reloaded" (using ==)
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:17
-     # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:66:in `block (5 levels) in <top (required)>'
-
-Finished in 22 minutes 49.5 seconds
-510 examples, 10 failures
+Finished in 19 minutes 6.55 seconds
+510 examples, 8 failures
 
 Failed examples:
 
@@ -889,5 +875,3 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:42 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:48 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:54 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:19 # Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
-rspec ./vendor/capybara/lib/capybara/spec/session/javascript.rb:53 # Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload the current context of the node automatically
-rspec ./vendor/capybara/lib/capybara/spec/session/javascript.rb:61 # Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload a parent node automatically

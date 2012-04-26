@@ -48,9 +48,9 @@ Capybara::Driver::Terminus
   it should behave like driver with frame support
     #within_frame
       should find the div in frameOne
-      should find the div in FrameTwo
-      should find the text div in the main window after finding text in frameOne (FAILED - 1)
-      should find the text div in the main window after finding text in frameTwo (FAILED - 2)
+      should find the div in FrameTwo (FAILED - 1)
+      should find the text div in the main window after finding text in frameOne
+      should find the text div in the main window after finding text in frameTwo
   it should behave like driver with support for window switching
     #within_window
       should find the div in firstPopup
@@ -125,15 +125,15 @@ Capybara::Session
       it should behave like attach_file
         #attach_file
           with normal form
-            should set a file path by id (FAILED - 3)
-            should set a file path by label (FAILED - 4)
+            should set a file path by id (FAILED - 2)
+            should set a file path by label (FAILED - 3)
           with multipart form
-            should set a file path by id (FAILED - 5)
-            should set a file path by label (FAILED - 6)
+            should set a file path by id (FAILED - 4)
+            should set a file path by label (FAILED - 5)
             should not break if no file is submitted
-            should send content type text/plain when uploading a text file (FAILED - 7)
-            should send content type image/jpeg when uploading an image (FAILED - 8)
-            should not break when using HTML5 multiple file input (FAILED - 9)
+            should send content type text/plain when uploading a text file (FAILED - 6)
+            should send content type image/jpeg when uploading an image (FAILED - 7)
+            should not break when using HTML5 multiple file input (FAILED - 8)
           with a locator that doesn't exist
             should raise an error
           with a path that doesn't exist
@@ -169,7 +169,7 @@ Capybara::Session
             should raise an error
       it should behave like click_button
         #click_button
-          should serialize and send valueless buttons that were clicked (FAILED - 10)
+          should serialize and send valueless buttons that were clicked (FAILED - 9)
           should not send image buttons that were not clicked
           should serialize and send GET forms
           should follow redirects
@@ -223,7 +223,7 @@ Capybara::Session
           with text given on a button defined by <button> tag
             should submit the associated form
             should work with partial matches
-            should prefer exact matches over partial matches (FAILED - 11)
+            should prefer exact matches over partial matches (FAILED - 10)
           with id given on a button defined by <button> tag
             should submit the associated form
             should serialize and send GET forms
@@ -242,8 +242,8 @@ Capybara::Session
           should follow redirects
           should follow redirects
           should add query string to current URL with naked query string
-          should do nothing on anchor links (FAILED - 12)
-          should do nothing on URL+anchor links for the same page (FAILED - 13)
+          should do nothing on anchor links (FAILED - 11)
+          should do nothing on URL+anchor links for the same page (FAILED - 12)
           should follow link on URL+anchor links for a different page
           raise an error with links with no href
           with id given
@@ -266,7 +266,7 @@ Capybara::Session
         #fill_in
           should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 14)
+          should fill in a text field by label without for (FAILED - 13)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
@@ -717,8 +717,8 @@ Capybara::Session
             should reload a parent node
             should not automatically reload
           with automatic reload
-            should reload the current context of the node automatically (FAILED - 15)
-            should reload a parent node automatically (FAILED - 16)
+            should reload the current context of the node automatically
+            should reload a parent node automatically
             should reload a node automatically when using find
         #find
           should allow triggering of custom JS events
@@ -764,23 +764,7 @@ Capybara::Session
 
 Failures:
 
-  1) Capybara::Driver::Terminus it should behave like driver with frame support#within_frame should find the text div in the main window after finding text in frameOne
-     Failure/Error: @driver.within_frame("frameOne") do
-     NoMethodError:
-       undefined method `all?' for nil:NilClass
-     Shared Example Group: "driver with frame support" called from ./spec/terminus_driver_spec.rb:18
-     # ./lib/terminus/browser.rb:27:in `==='
-     # ./lib/terminus/controller.rb:25:in `block (2 levels) in browser='
-     # ./lib/terminus/controller.rb:25:in `each'
-     # ./lib/terminus/controller.rb:25:in `find'
-     # ./lib/terminus/controller.rb:25:in `block in browser='
-     # ./lib/terminus/timeouts.rb:15:in `call'
-     # ./lib/terminus/timeouts.rb:15:in `wait_with_timeout'
-     # ./lib/terminus/controller.rb:24:in `browser='
-     # ./lib/capybara/driver/terminus.rb:50:in `within_frame'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:212:in `block (3 levels) in <top (required)>'
-
-  2) Capybara::Driver::Terminus it should behave like driver with frame support#within_frame should find the text div in the main window after finding text in frameTwo
+  1) Capybara::Driver::Terminus it should behave like driver with frame support#within_frame should find the div in FrameTwo
      Failure/Error: @driver.within_frame("frameTwo") do
      NoMethodError:
        undefined method `all?' for nil:NilClass
@@ -793,10 +777,10 @@ Failures:
      # ./lib/terminus/timeouts.rb:15:in `call'
      # ./lib/terminus/timeouts.rb:15:in `wait_with_timeout'
      # ./lib/terminus/controller.rb:24:in `browser='
-     # ./lib/capybara/driver/terminus.rb:50:in `within_frame'
-     # ./vendor/capybara/lib/capybara/spec/driver.rb:218:in `block (3 levels) in <top (required)>'
+     # ./lib/capybara/driver/terminus.rb:54:in `within_frame'
+     # ./vendor/capybara/lib/capybara/spec/driver.rb:207:in `block (3 levels) in <top (required)>'
 
-  3) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
+  2) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
      Failure/Error: @session.attach_file "form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -809,7 +793,7 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:12:in `block (4 levels) in <top (required)>'
 
-  4) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by label
+  3) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by label
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -822,7 +806,7 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:18:in `block (4 levels) in <top (required)>'
 
-  5) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by id
+  4) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by id
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -835,7 +819,7 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:26:in `block (4 levels) in <top (required)>'
 
-  6) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by label
+  5) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by label
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -848,7 +832,7 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:32:in `block (4 levels) in <top (required)>'
 
-  7) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type text/plain when uploading a text file
+  6) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type text/plain when uploading a text file
      Failure/Error: @session.attach_file "Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -861,7 +845,7 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:43:in `block (4 levels) in <top (required)>'
 
-  8) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
+  7) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
      Failure/Error: @session.attach_file "Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -874,7 +858,7 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:49:in `block (4 levels) in <top (required)>'
 
-  9) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
+  8) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -887,62 +871,47 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
 
-  10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should serialize and send valueless buttons that were clicked
+  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should serialize and send valueless buttons that were clicked
      Failure/Error: @results['no_value'].should_not be_nil
        expected: not nil
             got: nil
      Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:268:in `block (3 levels) in <top (required)>'
 
-  11) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with text given on a button defined by <button> tag should prefer exact matches over partial matches
+  10) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with text given on a button defined by <button> tag should prefer exact matches over partial matches
      Failure/Error: extract_results(@session)['button'].should == 'button_second'
      NoMethodError:
        undefined method `[]' for nil:NilClass
      Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:210:in `block (4 levels) in <top (required)>'
 
-  12) Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on anchor links
+  11) Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on anchor links
      Failure/Error: @session.find_field("test_field").value.should == 'blah'
        expected: "blah"
             got: "monkey" (using ==)
      Shared Example Group: "click_link" called from ./vendor/capybara/lib/capybara/spec/session.rb:93
      # ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:97:in `block (3 levels) in <top (required)>'
 
-  13) Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on URL+anchor links for the same page
+  12) Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on URL+anchor links for the same page
      Failure/Error: @session.find_field("test_field").value.should == 'blah'
        expected: "blah"
             got: "monkey" (using ==)
      Shared Example Group: "click_link" called from ./vendor/capybara/lib/capybara/spec/session.rb:93
      # ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:105:in `block (3 levels) in <top (required)>'
 
-  14) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
+  13) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
      Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
        expected: "Avenue Q"
             got: "Sesame street 66" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  15) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload the current context of the node automatically
-     Failure/Error: node.text.should == 'RELOADED'
-       expected: "RELOADED"
-            got: "waiting to be reloaded" (using ==)
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:17
-     # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:58:in `block (5 levels) in <top (required)>'
-
-  16) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload a parent node automatically
-     Failure/Error: node.text.should == 'RELOADED'
-       expected: "RELOADED"
-            got: "waiting to be reloaded" (using ==)
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:17
-     # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:66:in `block (5 levels) in <top (required)>'
-
-Finished in 17 minutes 50.66 seconds
-510 examples, 16 failures
+Finished in 17 minutes 49.16 seconds
+510 examples, 13 failures
 
 Failed examples:
 
-rspec ./vendor/capybara/lib/capybara/spec/driver.rb:211 # Capybara::Driver::Terminus it should behave like driver with frame support#within_frame should find the text div in the main window after finding text in frameOne
-rspec ./vendor/capybara/lib/capybara/spec/driver.rb:217 # Capybara::Driver::Terminus it should behave like driver with frame support#within_frame should find the text div in the main window after finding text in frameTwo
+rspec ./vendor/capybara/lib/capybara/spec/driver.rb:206 # Capybara::Driver::Terminus it should behave like driver with frame support#within_frame should find the div in FrameTwo
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:11 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:17 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by label
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:25 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should set a file path by id
@@ -955,5 +924,3 @@ rspec ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:208 # Cap
 rspec ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:94 # Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on anchor links
 rspec ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:102 # Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on URL+anchor links for the same page
 rspec ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:19 # Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
-rspec ./vendor/capybara/lib/capybara/spec/session/javascript.rb:53 # Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload the current context of the node automatically
-rspec ./vendor/capybara/lib/capybara/spec/session/javascript.rb:61 # Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload a parent node automatically
