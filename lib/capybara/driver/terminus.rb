@@ -43,18 +43,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     yield
     Terminus.browser = current_browser
   end
-  
-  def within_frame(name)
-    frame_src = browser.frame_src(name)
-    frame = browser.frames.find do |frame|
-      frame.current_url == frame_src or
-      frame.current_path == frame_src
-    end
-    current_browser = browser
-    Terminus.browser = frame
-    yield
-    Terminus.browser = current_browser
-  end
+  alias :within_frame :within_window
   
 private
   
