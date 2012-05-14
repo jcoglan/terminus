@@ -4,7 +4,6 @@ module Terminus
     include Timeouts
     
     extend Forwardable
-    def_delegator  :@user_agent, :browser, :name
     def_delegators :@user_agent, :os, :version
     
     def initialize(controller)
@@ -25,11 +24,8 @@ module Terminus
       return false unless @user_agent
       
       params.all? do |name, value|
-        property = __send__(name).to_s
-        case value
-        when Regexp then property =~ value
-        when String then property == value
-        end
+        property = __send__(name)
+        value === property
       end
     end
     
@@ -88,6 +84,11 @@ module Terminus
     
     def id
       @attributes['id']
+    end
+    
+    def name
+      return 'PhantomJS' if @user_agent.to_str =~ /\bPhantomJS\b/
+      @user_agent.browser
     end
     
     def page_id

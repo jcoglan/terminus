@@ -1,4 +1,4 @@
-USER_AGENTS = %w[Firefox Safari Opera Chrome]
+USER_AGENTS = %w[PhantomJS Chrome Firefox Opera Safari]
 
 def run_specs(ua)
   out = "spec/reports/#{ua.downcase}.txt"
