@@ -1,4 +1,4 @@
-SYN = %w[synthetic mouse browsers key drag/drag]
+SYN = %w[synthetic mouse browsers key drag/drag] unless defined? SYN
 
 Gem::Specification.new do |s|
   s.name              = "terminus"

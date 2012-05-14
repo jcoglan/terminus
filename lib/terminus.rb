@@ -45,7 +45,7 @@ module Terminus
     
     def ensure_reactor_running
       Thread.new { EM.run unless EM.reactor_running? }
-      while not EM.reactor_running?; end
+      Threas.pass until EM.reactor_running?
     end
     
     def port
