@@ -78,10 +78,6 @@ module Terminus
       @frames.to_a
     end
     
-    def frame_src(name)
-      ask([:frame_src, name])
-    end
-    
     def id
       @attributes['id']
     end
