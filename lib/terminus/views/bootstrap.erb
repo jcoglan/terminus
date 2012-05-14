@@ -2,9 +2,6 @@
   var faye = '<%= ::Terminus::FAYE_MOUNT %>',
       host = '<%= host %>';
   
-  JSCLASS_PATH = host + '/js.class/';
-  SYN_FILES    = ['synthetic', 'mouse', 'browsers', 'key', 'drag/drag'];
-  
   var withPackageManager = function(callback) {
     if (window.JS && JS.Packages) return callback();
     
@@ -27,22 +24,18 @@
   
   withPackageManager(function() {
     JS.cacheBust = true;
+    if (!window.steal) window.steal = {then: function(fn) { fn() }};
     
     JS.Packages(function() { with(this) {
-      loader(function(callback) {
-        load(host + faye + '/client.js', callback);
-      }).provides('Faye', 'Faye.Client');
+      file(host + faye + '/client.js')
+        .provides('Faye', 'Faye.Client');
       
-      loader(function(callback) {
-        if (!window.steal) window.steal = {then: function(fn) { fn() }};
-        var inject = function() {
-          var synFile = SYN_FILES.shift();
-          if (!synFile) return callback();
-          load(host + '/syn/' + synFile + '.js', inject);
-        };
-        inject();
-        
-      }).provides('Syn');
+      file(host + '/syn/synthetic.js',
+           host + '/syn/mouse.js',
+           host + '/syn/browsers.js',
+           host + '/syn/key.js',
+           host + '/syn/drag/drag.js')
+        .provides('Syn');
       
       file(host + '/terminus.js')
         .requires('Faye.Client', 'document.evaluate', 'Syn')
