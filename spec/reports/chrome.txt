@@ -26,10 +26,6 @@ Capybara::Driver::Terminus
         should extract node checked state
         should extract node selected state
         should return document text on /html selector
-  it should behave like driver with header support
-    should make headers available through response_headers
-  it should behave like driver with status code support
-    should make the status code available through status_code
   it should behave like driver with javascript support
     #find
       should find dynamically changed nodes
@@ -45,6 +41,10 @@ Capybara::Driver::Terminus
         should not wait for ajax requests to finish
       with short synchronization timeout
         should raise an error
+  it should behave like driver with header support
+    should make headers available through response_headers
+  it should behave like driver with status code support
+    should make the status code available through status_code
   it should behave like driver with frame support
     #within_frame
       should find the div in frameOne
@@ -704,9 +704,6 @@ Capybara::Session
     it should behave like session with headers support
       #response_headers
         should return response headers
-    it should behave like session with status code support
-      #status_code
-        should return response codes
     it should behave like session with javascript support
       all JS specs
         Node#drag_to
@@ -761,6 +758,9 @@ Capybara::Session
           should wait for content to appear
         #has_no_content?
           should wait for content to disappear
+    it should behave like session with status code support
+      #status_code
+        should return response codes
 
 Failures:
 
@@ -862,7 +862,7 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-Finished in 20 minutes 20.23 seconds
+Finished in 20 minutes 28.34 seconds
 510 examples, 8 failures
 
 Failed examples:

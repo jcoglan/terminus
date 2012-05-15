@@ -26,10 +26,6 @@ Capybara::Driver::Terminus
         should extract node checked state
         should extract node selected state
         should return document text on /html selector
-  it should behave like driver with header support
-    should make headers available through response_headers
-  it should behave like driver with status code support
-    should make the status code available through status_code
   it should behave like driver with javascript support
     #find
       should find dynamically changed nodes
@@ -45,6 +41,10 @@ Capybara::Driver::Terminus
         should not wait for ajax requests to finish
       with short synchronization timeout
         should raise an error
+  it should behave like driver with header support
+    should make headers available through response_headers
+  it should behave like driver with status code support
+    should make the status code available through status_code
   it should behave like driver with frame support
     #within_frame
       should find the div in frameOne
@@ -704,9 +704,6 @@ Capybara::Session
     it should behave like session with headers support
       #response_headers
         should return response headers
-    it should behave like session with status code support
-      #status_code
-        should return response codes
     it should behave like session with javascript support
       all JS specs
         Node#drag_to
@@ -761,6 +758,9 @@ Capybara::Session
           should wait for content to appear
         #has_no_content?
           should wait for content to disappear
+    it should behave like session with status code support
+      #status_code
+        should return response codes
 
 Failures:
 
@@ -858,10 +858,10 @@ Failures:
   8) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
      Failure/Error: @session.should have_css('#focus_event_triggered')
        expected #has_css?("#focus_event_triggered") to return true, got false
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:17
+     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:16
      # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:84:in `block (4 levels) in <top (required)>'
 
-Finished in 30 minutes 24.96 seconds
+Finished in 28 minutes 49.06 seconds
 510 examples, 8 failures
 
 Failed examples:

@@ -51,12 +51,6 @@ Capybara::Driver::Terminus
       should find the div in FrameTwo
       should find the text div in the main window after finding text in frameOne
       should find the text div in the main window after finding text in frameTwo
-  it should behave like driver with support for window switching
-    #within_window
-      should find the div in firstPopup
-      should find the div in secondPopup
-      should find the divs in both popups
-      should find the div in the main window after finding a div in a popup
   it should behave like driver with cookies support
     #reset!
       should set and clean cookies
@@ -169,7 +163,7 @@ Capybara::Session
             should raise an error
       it should behave like click_button
         #click_button
-          should serialize and send valueless buttons that were clicked (FAILED - 8)
+          should serialize and send valueless buttons that were clicked
           should not send image buttons that were not clicked
           should serialize and send GET forms
           should follow redirects
@@ -223,7 +217,7 @@ Capybara::Session
           with text given on a button defined by <button> tag
             should submit the associated form
             should work with partial matches
-            should prefer exact matches over partial matches (FAILED - 9)
+            should prefer exact matches over partial matches
           with id given on a button defined by <button> tag
             should submit the associated form
             should serialize and send GET forms
@@ -242,8 +236,8 @@ Capybara::Session
           should follow redirects
           should follow redirects
           should add query string to current URL with naked query string
-          should do nothing on anchor links (FAILED - 10)
-          should do nothing on URL+anchor links for the same page (FAILED - 11)
+          should do nothing on anchor links
+          should do nothing on URL+anchor links for the same page
           should follow link on URL+anchor links for a different page
           raise an error with links with no href
           with id given
@@ -266,7 +260,7 @@ Capybara::Session
         #fill_in
           should fill in a text field by id
           should fill in a text field by name
-          should fill in a text field by label without for (FAILED - 12)
+          should fill in a text field by label without for (FAILED - 8)
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
@@ -573,7 +567,7 @@ Capybara::Session
             should be true after the given values are selected
             should be false after one of the values is unselected
           with options
-            should be true if a field with the given options is on the page (FAILED - 13)
+            should be true if a field with the given options is on the page
             should be false if the given field is not on the page
         #has_no_select?
           should be false if the field is on the page
@@ -855,49 +849,15 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
 
-  8) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should serialize and send valueless buttons that were clicked
-     Failure/Error: @results['no_value'].should_not be_nil
-       expected: not nil
-            got: nil
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:268:in `block (3 levels) in <top (required)>'
-
-  9) Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with text given on a button defined by <button> tag should prefer exact matches over partial matches
-     Failure/Error: extract_results(@session)['button'].should == 'button_second'
-     NoMethodError:
-       undefined method `[]' for nil:NilClass
-     Shared Example Group: "click_button" called from ./vendor/capybara/lib/capybara/spec/session.rb:92
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:210:in `block (4 levels) in <top (required)>'
-
-  10) Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on anchor links
-     Failure/Error: @session.find_field("test_field").value.should == 'blah'
-       expected: "blah"
-            got: "monkey" (using ==)
-     Shared Example Group: "click_link" called from ./vendor/capybara/lib/capybara/spec/session.rb:93
-     # ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:97:in `block (3 levels) in <top (required)>'
-
-  11) Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on URL+anchor links for the same page
-     Failure/Error: @session.find_field("test_field").value.should == 'blah'
-       expected: "blah"
-            got: "monkey" (using ==)
-     Shared Example Group: "click_link" called from ./vendor/capybara/lib/capybara/spec/session.rb:93
-     # ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:105:in `block (3 levels) in <top (required)>'
-
-  12) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
+  8) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
      Failure/Error: extract_results(@session)['street'].should == 'Avenue Q'
        expected: "Avenue Q"
             got: "Sesame street 66" (using ==)
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  13) Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_select? with options should be true if a field with the given options is on the page
-     Failure/Error: @session.should have_select('form_locale', :options => ['English'])
-       expected #has_select?("form_locale", {:options=>["English"]}) to return true, got false
-     Shared Example Group: "has_select" called from ./vendor/capybara/lib/capybara/spec/session.rb:108
-     # ./vendor/capybara/lib/capybara/spec/session/has_select_spec.rb:53:in `block (4 levels) in <top (required)>'
-
-Finished in 19 minutes 8.6 seconds
-510 examples, 13 failures
+Finished in 13 minutes 35.07 seconds
+506 examples, 8 failures
 
 Failed examples:
 
@@ -908,9 +868,4 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:31 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:42 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type text/plain when uploading a text file
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:48 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:54 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
-rspec ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:265 # Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button should serialize and send valueless buttons that were clicked
-rspec ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:208 # Capybara::Session with terminus driver it should behave like session it should behave like click_button#click_button with text given on a button defined by <button> tag should prefer exact matches over partial matches
-rspec ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:94 # Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on anchor links
-rspec ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:102 # Capybara::Session with terminus driver it should behave like session it should behave like click_link#click_link should do nothing on URL+anchor links for the same page
 rspec ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:19 # Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
-rspec ./vendor/capybara/lib/capybara/spec/session/has_select_spec.rb:52 # Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_select? with options should be true if a field with the given options is on the page
