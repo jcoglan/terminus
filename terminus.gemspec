@@ -19,8 +19,6 @@ Gem::Specification.new do |s|
   s.require_paths     = ["lib"]
 
   s.add_dependency "capybara", ">= 0.4.0"
-  s.add_dependency "em-http-request", "~> 0.3.0"
-  s.add_dependency "eventmachine", "~> 0.12.0"
   s.add_dependency "faye", ">= 0.8.2"
   s.add_dependency "oyster", ">= 0.9.0"
   s.add_dependency "packr", ">= 3.1.0"
@@ -30,5 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency "thin", ">= 1.2.0"
   s.add_dependency "useragent", ">= 0.3.0"
 
+  s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
 end

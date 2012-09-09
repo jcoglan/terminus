@@ -718,7 +718,7 @@ Capybara::Session
             should reload a parent node automatically
             should reload a node automatically when using find
         #find
-          should allow triggering of custom JS events (FAILED - 8)
+          should allow triggering of custom JS events
         #body
           should return the current state of the page
         #source
@@ -855,14 +855,8 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
 
-  8) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
-     Failure/Error: @session.should have_css('#focus_event_triggered')
-       expected #has_css?("#focus_event_triggered") to return true, got false
-     Shared Example Group: "session with javascript support" called from ./spec/terminus_session_spec.rb:16
-     # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:84:in `block (4 levels) in <top (required)>'
-
-Finished in 28 minutes 49.06 seconds
-510 examples, 8 failures
+Finished in 22 minutes 25.62 seconds
+510 examples, 7 failures
 
 Failed examples:
 
@@ -873,4 +867,3 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:31 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:42 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type text/plain when uploading a text file
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:48 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:54 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
-rspec ./vendor/capybara/lib/capybara/spec/session/javascript.rb:80 # Capybara::Session with terminus driver it should behave like session with javascript support all JS specs#find should allow triggering of custom JS events
