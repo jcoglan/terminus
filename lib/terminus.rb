@@ -35,10 +35,6 @@ module Terminus
       Server.new(options)
     end
     
-    def driver_script(host = DEFAULT_HOST)
-      Application.driver_script(host)
-    end
-    
     def endpoint(host = DEFAULT_HOST)
       "http://#{host}:#{port}#{FAYE_MOUNT}"
     end

@@ -45,10 +45,12 @@ module Terminus
       end
       
       if location = response[1]['Location']
-        response[1]['Location'] = Terminus.rewrite_remote(location).to_s
+        app_host = URI.parse('http://' + env['HTTP_HOST']).host
+        response[1]['Location'] = Terminus.rewrite_remote(location, app_host).to_s
       end
       
       return response if response.first == -1 or              # async response
+             response.first.between?(300,399) or              # redirects
              BASIC_RESOURCES.include?(env['PATH_INFO']) or    # not pages - favicon etc
              env.has_key?('HTTP_X_REQUESTED_WITH')            # Ajax calls
       

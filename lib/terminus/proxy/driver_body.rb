@@ -15,9 +15,16 @@ module Terminus
           (function() {
             var terminusScript = document.getElementById('terminus-data');
             terminusScript.parentNode.removeChild(terminusScript);
+            
+            var head   = document.getElementsByTagName('head')[0],
+                script = document.createElement('script');
+            
+            script.type = 'text/javascript';
+            script.src  = 'http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/bootstrap.js';
+            
+            head.appendChild(script);
           })();
         </script>
-        <%= driver_script %>
       DRIVER
       
       def initialize(env, response)
@@ -48,10 +55,6 @@ module Terminus
         fragment.gsub(/((?:^\s*)?<\/body>)/i) do
           TEMPLATE.result(binding) + $1
         end
-      end
-      
-      def driver_script
-        Terminus.driver_script(@env['SERVER_NAME'])
       end
       
       def page_source

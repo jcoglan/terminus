@@ -9,10 +9,6 @@ module Terminus
     set :static, true
     set :root,   ROOT + '/terminus'
     
-    def self.driver_script(host)
-      %Q{<script type="text/javascript" src="http://#{host}:#{Terminus.port}/bootstrap.js"></script>}
-    end
-    
     helpers do
       def bootstrap
         Packr.pack(erb(:bootstrap), :shrink_vars => true)
