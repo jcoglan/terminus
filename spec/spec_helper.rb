@@ -7,11 +7,12 @@ require root + '/vendor/capybara/spec/spec_helper'
 require root + '/lib/terminus'
 
 def select_browser
-  if ua = ENV['USER_AGENT']
-    Terminus.browser = {:name => ua}
-  else
-    Terminus.browser = :docked
-  end
+  Terminus.browser = case ENV['USER_AGENT']
+                     when 'iPhone' then {:os => /iPhone/}
+                     when 'iPad'   then {:os => /like Mac OS X/}
+                     when String   then {:name => ENV['USER_AGENT']}
+                     else               :docked
+                     end
 end
 
 # We use WEBrick to boot the test app, because if we use Thin (the default) the

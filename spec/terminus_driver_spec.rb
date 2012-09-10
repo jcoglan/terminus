@@ -9,6 +9,8 @@ describe Capybara::Driver::Terminus do
   after do
     Terminus.browser.return_to_dock
   end
+
+  single_window = %w[Android iPad iPhone PhantomJS].include?(ENV['USER_AGENT'])
   
   it_should_behave_like "driver"
   it_should_behave_like "driver with javascript support"
@@ -16,7 +18,7 @@ describe Capybara::Driver::Terminus do
   it_should_behave_like "driver with header support"
   it_should_behave_like "driver with status code support"
   it_should_behave_like "driver with frame support"
-  it_should_behave_like "driver with support for window switching" unless %w[Android PhantomJS].include?(ENV['USER_AGENT'])
+  it_should_behave_like "driver with support for window switching" unless single_window
   it_should_behave_like "driver with cookies support"
   it_should_behave_like "driver with infinite redirect detection"
 end
