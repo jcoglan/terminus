@@ -79,6 +79,14 @@ module Terminus
       uri
     end
     
+    def server_running?(server)
+      return false unless server.port
+      uri = URI.parse("http://#{server.host}:#{server.port}/")
+      Net::HTTP.get_response(uri) && true
+    rescue
+      false
+    end
+    
   private
     
     def accept_ping(message)
@@ -95,7 +103,7 @@ module Terminus
       @host_aliases[host] ||= begin
         server = Capybara::Server.new(Proxy[host])
         Thread.new { server.boot }
-        sleep 1 until server.port
+        sleep 1 until server_running?(server)
         Host.new(server)
       end
     end

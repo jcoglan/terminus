@@ -60,7 +60,8 @@ module Terminus
                                 :ensure_browsers,
                                 :return_to_dock,
                                 :rewrite_local,
-                                :rewrite_remote
+                                :rewrite_remote,
+                                :server_running?
     
   private
     
