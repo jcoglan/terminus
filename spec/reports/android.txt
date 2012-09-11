@@ -209,17 +209,7 @@ Capybara::Session
           should fill in a url field by label without for
           should favour exact label matches over partial matches
           should fill in a textarea by id
-
-An error occurred in an after hook
-  NoMethodError: undefined method `reset!' for nil:NilClass
-  occurred at /home/james/projects/terminus/vendor/capybara/lib/capybara/session.rb:70:in `reset!'
-
-
-An error occurred in an after hook
-  NoMethodError: undefined method `return_to_dock' for nil:NilClass
-  occurred at /home/james/projects/terminus/spec/terminus_session_spec.rb:11:in `block (3 levels) in <top (required)>'
-
-          should fill in a textarea by label (FAILED - 12)
+          should fill in a textarea by label
           should fill in a textarea by name
           should fill in a password field by id
           should fill in a field with a custom type
@@ -261,17 +251,7 @@ An error occurred in an after hook
           the returned node
             should act like a session object
             should scope CSS selectors
-
-An error occurred in an after hook
-  NoMethodError: undefined method `reset!' for nil:NilClass
-  occurred at /home/james/projects/terminus/vendor/capybara/lib/capybara/session.rb:70:in `reset!'
-
-
-An error occurred in an after hook
-  NoMethodError: undefined method `return_to_dock' for nil:NilClass
-  occurred at /home/james/projects/terminus/spec/terminus_session_spec.rb:11:in `block (3 levels) in <top (required)>'
-
-            should have a reference to its parent if there is one (FAILED - 13)
+            should have a reference to its parent if there is one
           with css selectors
             should find the first element using the given locator
           with id selectors
@@ -281,7 +261,7 @@ An error occurred in an after hook
           with custom selector
             should use the custom selector
           with custom selector with :for option
-            should use the selector when it matches the :for option (FAILED - 14)
+            should use the selector when it matches the :for option (FAILED - 12)
           with custom selector with failure_message option
             should raise an error with the failure message if the element is not found
             should pass the selector as the second argument
@@ -324,15 +304,15 @@ An error occurred in an after hook
             should be false if the content isn't on the page at all
             should coerce count to an integer
           with maximum
-            should be true when content occurs same or fewer times than given (FAILED - 15)
+            should be true when content occurs same or fewer times than given (FAILED - 13)
             should be false when content occurs more times than given
             should be false if the content isn't on the page at all
-            should coerce maximum to an integer (FAILED - 16)
+            should coerce maximum to an integer (FAILED - 14)
           with minimum
-            should be true when content occurs same or more times than given (FAILED - 17)
+            should be true when content occurs same or more times than given (FAILED - 15)
             should be false when content occurs fewer times than given
             should be false if the content isn't on the page at all
-            should coerce minimum to an integer (FAILED - 18)
+            should coerce minimum to an integer (FAILED - 16)
           with text
             should discard all matches where the given string is not contained
             should discard all matches where the given regexp is not matched
@@ -350,15 +330,15 @@ An error occurred in an after hook
             should be true if the content isn't on the page at all
             should coerce count to an integer
           with maximum
-            should be false when content occurs same or fewer times than given (FAILED - 19)
+            should be false when content occurs same or fewer times than given (FAILED - 17)
             should be true when content occurs more times than given
             should be true if the content isn't on the page at all
-            should coerce maximum to an integer (FAILED - 20)
+            should coerce maximum to an integer (FAILED - 18)
           with minimum
-            should be false when content occurs more times than given (FAILED - 21)
+            should be false when content occurs more times than given (FAILED - 19)
             should be true when content occurs fewer times than given
             should be true if the content isn't on the page at all
-            should coerce minimum to an integer (FAILED - 22)
+            should coerce minimum to an integer (FAILED - 20)
           with text
             should discard all matches where the given string is not contained
             should discard all matches where the given regexp is not matched
@@ -377,15 +357,15 @@ An error occurred in an after hook
             should be false if the content isn't on the page at all
             should coerce count to an integer
           with maximum
-            should be true when content occurs same or fewer times than given (FAILED - 23)
+            should be true when content occurs same or fewer times than given (FAILED - 21)
             should be false when content occurs more times than given
             should be false if the content isn't on the page at all
-            should coerce maximum to an integer (FAILED - 24)
+            should coerce maximum to an integer (FAILED - 22)
           with minimum
-            should be true when content occurs same or more times than given (FAILED - 25)
+            should be true when content occurs same or more times than given (FAILED - 23)
             should be false when content occurs fewer times than given
             should be false if the content isn't on the page at all
-            should coerce minimum to an integer (FAILED - 26)
+            should coerce minimum to an integer (FAILED - 24)
           with text
             should discard all matches where the given string is not contained
             should discard all matches where the given regexp is not matched
@@ -403,15 +383,15 @@ An error occurred in an after hook
             should be true if the content isn't on the page at all
             should coerce count to an integer
           with maximum
-            should be false when content occurs same or fewer times than given (FAILED - 27)
+            should be false when content occurs same or fewer times than given (FAILED - 25)
             should be true when content occurs more times than given
             should be true if the content isn't on the page at all
-            should coerce maximum to an integer (FAILED - 28)
+            should coerce maximum to an integer (FAILED - 26)
           with minimum
-            should be false when content occurs more times than given (FAILED - 29)
+            should be false when content occurs more times than given (FAILED - 27)
             should be true when content occurs fewer times than given
             should be true if the content isn't on the page at all
-            should coerce minimum to an integer (FAILED - 30)
+            should coerce minimum to an integer (FAILED - 28)
           with text
             should discard all matches where the given string is not contained
             should discard all matches where the given regexp is not matched
@@ -501,7 +481,7 @@ An error occurred in an after hook
           should be false if an unchecked field is on the page
           should be false if no field is on the page
           should be true after an unchecked checkbox is checked
-          should be false after a checked checkbox is unchecked (FAILED - 31)
+          should be false after a checked checkbox is unchecked (FAILED - 29)
           should be true after an unchecked radio button is chosen
           should be false after another radio button in the group is chosen
         #has_no_checked_field?
@@ -514,17 +494,7 @@ An error occurred in an after hook
           should be false if no field is on the page
           should be false after an unchecked checkbox is checked
           should be true after a checked checkbox is unchecked
-
-An error occurred in an after hook
-  NoMethodError: undefined method `reset!' for nil:NilClass
-  occurred at /home/james/projects/terminus/vendor/capybara/lib/capybara/session.rb:70:in `reset!'
-
-
-An error occurred in an after hook
-  NoMethodError: undefined method `return_to_dock' for nil:NilClass
-  occurred at /home/james/projects/terminus/spec/terminus_session_spec.rb:11:in `block (3 levels) in <top (required)>'
-
-          should be false after an unchecked radio button is chosen (FAILED - 32)
+          should be false after an unchecked radio button is chosen
           should be true after another radio button in the group is chosen
         #has_no_unchecked_field?
           should be true if a checked field is on the page
@@ -542,7 +512,7 @@ An error occurred in an after hook
             should be true after the given values are selected
             should be false after one of the values is unselected
           with options
-            should be true if a field with the given options is on the page (FAILED - 33)
+            should be true if a field with the given options is on the page (FAILED - 30)
             should be false if the given field is not on the page
         #has_no_select?
           should be false if the field is on the page
@@ -555,15 +525,15 @@ An error occurred in an after hook
             should be false after the given values are selected
             should be true after one of the values is unselected
           with options
-            should be false if a field with the given options is on the page (FAILED - 34)
+            should be false if a field with the given options is on the page (FAILED - 31)
             should be true if the given field is not on the page
       it should behave like has_table
         #has_table?
           should be true if the field is on the page
           should be false if the field is not on the page
           with rows
-            should be true if a table with the given rows is on the page (FAILED - 35)
-            should be true if the given rows are incomplete (FAILED - 36)
+            should be true if a table with the given rows is on the page (FAILED - 32)
+            should be true if the given rows are incomplete (FAILED - 33)
             should be false if the given table is not on the page
             should be false if the given rows contain incorrect elements
             should be false if the given rows are incorrectly ordered
@@ -573,8 +543,8 @@ An error occurred in an after hook
           should be false if the field is on the page
           should be true if the field is not on the page
           with rows
-            should be false if a table with the given rows is on the page (FAILED - 37)
-            should be false if the given rows are incomplete (FAILED - 38)
+            should be false if a table with the given rows is on the page (FAILED - 34)
+            should be false if the given rows are incomplete (FAILED - 35)
             should be true if the given table is not on the page
             should be true if the given rows contain incorrect elements
             should be true if the given rows are incorrectly ordered
@@ -589,7 +559,7 @@ An error occurred in an after hook
           should select an option from a select box by label
           should select an option without giving a select box
           should favour exact matches to option labels
-          should escape quotes (FAILED - 39)
+          should escape quotes (FAILED - 36)
           should obey from
           show match labels with preceding or trailing whitespace
           with a locator that doesn't exist
@@ -653,17 +623,7 @@ An error occurred in an after hook
           should restrict scope to a fieldset given by id
           should restrict scope to a fieldset given by legend
         #within_table
-
-An error occurred in an after hook
-  NoMethodError: undefined method `reset!' for nil:NilClass
-  occurred at /home/james/projects/terminus/vendor/capybara/lib/capybara/session.rb:70:in `reset!'
-
-
-An error occurred in an after hook
-  NoMethodError: undefined method `return_to_dock' for nil:NilClass
-  occurred at /home/james/projects/terminus/spec/terminus_session_spec.rb:11:in `block (3 levels) in <top (required)>'
-
-          should restrict scope to a fieldset given by id (FAILED - 40)
+          should restrict scope to a fieldset given by id
           should restrict scope to a fieldset given by legend
     it should behave like session with headers support
       #response_headers
@@ -674,11 +634,11 @@ An error occurred in an after hook
           should drag and drop an object
         Node#reload
           without automatic reload
-            should reload the current context of the node (FAILED - 41)
+            should reload the current context of the node (FAILED - 37)
             should reload a parent node
             should not automatically reload
           with automatic reload
-            should reload the current context of the node automatically (FAILED - 42)
+            should reload the current context of the node automatically (FAILED - 38)
             should reload a parent node automatically
             should reload a node automatically when using find
         #find
@@ -783,13 +743,13 @@ An error occurred in an after hook
   NoMethodError: undefined method `return_to_dock' for nil:NilClass
   occurred at /home/james/projects/terminus/spec/terminus_driver_spec.rb:10:in `block (2 levels) in <top (required)>'
 
-    should follow 5 redirects (FAILED - 43)
+    should follow 5 redirects (FAILED - 39)
 
 An error occurred in an after hook
   URI::InvalidURIError: the scheme http does not accept registry part: :7004 (or bad hostname?)
   occurred at /home/james/.rbenv/versions/1.9.3-p194/lib/ruby/1.9.1/uri/generic.rb:213:in `initialize'
 
-    should not follow more than 5 redirects (FAILED - 44)
+    should not follow more than 5 redirects (FAILED - 40)
 
 Failures:
 
@@ -912,25 +872,7 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  12) Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a textarea by label
-     Failure/Error: Unable to find matching line from backtrace
-     Terminus::Timeouts::TimeoutError:
-       Waited 30s but could not get a selected_browser
-     Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
-     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
-     # ./lib/terminus/controller.rb:24:in `browser='
-     # ./spec/terminus_session_spec.rb:7:in `block (3 levels) in <top (required)>'
-
-  13) Capybara::Session with terminus driver it should behave like session it should behave like find#find the returned node should have a reference to its parent if there is one
-     Failure/Error: Unable to find matching line from backtrace
-     Terminus::Timeouts::TimeoutError:
-       Waited 30s but could not get a selected_browser
-     Shared Example Group: "find" called from ./vendor/capybara/lib/capybara/spec/session.rb:99
-     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
-     # ./lib/terminus/controller.rb:24:in `browser='
-     # ./spec/terminus_session_spec.rb:7:in `block (3 levels) in <top (required)>'
-
-  14) Capybara::Session with terminus driver it should behave like session it should behave like find#find with custom selector with :for option should use the selector when it matches the :for option
+  12) Capybara::Session with terminus driver it should behave like session it should behave like find#find with custom selector with :for option should use the selector when it matches the :for option
      Failure/Error: @session.find(:monkey, '2').text.should == 'Monkey Paul'
      Capybara::ElementNotFound:
        Unable to find monkey "2"
@@ -942,103 +884,103 @@ Failures:
      # (eval):2:in `find'
      # ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:81:in `block (4 levels) in <top (required)>'
 
-  15) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should be true when content occurs same or fewer times than given
+  13) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should be true when content occurs same or fewer times than given
      Failure/Error: @session.should have_css("h2.head", :maximum => 5) # edge case
        expected #has_css?("h2.head", {:maximum=>5}) to return true, got false
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:101
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:66:in `block (4 levels) in <top (required)>'
 
-  16) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should coerce maximum to an integer
+  14) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should coerce maximum to an integer
      Failure/Error: @session.should have_css("h2.head", :maximum => "5") # edge case
        expected #has_css?("h2.head", {:maximum=>"5"}) to return true, got false
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:101
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:82:in `block (4 levels) in <top (required)>'
 
-  17) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with minimum should be true when content occurs same or more times than given
+  15) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with minimum should be true when content occurs same or more times than given
      Failure/Error: @session.should have_css("h2.head", :minimum => 5) # edge case
        expected #has_css?("h2.head", {:minimum=>5}) to return true, got false
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:101
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:89:in `block (4 levels) in <top (required)>'
 
-  18) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with minimum should coerce minimum to an integer
+  16) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with minimum should coerce minimum to an integer
      Failure/Error: @session.should have_css("h2.head", :minimum => "5") # edge case
        expected #has_css?("h2.head", {:minimum=>"5"}) to return true, got false
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:101
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:105:in `block (4 levels) in <top (required)>'
 
-  19) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with maximum should be false when content occurs same or fewer times than given
+  17) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with maximum should be false when content occurs same or fewer times than given
      Failure/Error: @session.should_not have_no_css("h2.head", :maximum => 5) # edge case
        expected #has_no_css?("h2.head", {:maximum=>5}) to return false, got true
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:101
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:187:in `block (4 levels) in <top (required)>'
 
-  20) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with maximum should coerce maximum to an integer
+  18) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with maximum should coerce maximum to an integer
      Failure/Error: @session.should_not have_no_css("h2.head", :maximum => "5") # edge case
        expected #has_no_css?("h2.head", {:maximum=>"5"}) to return false, got true
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:101
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:203:in `block (4 levels) in <top (required)>'
 
-  21) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should be false when content occurs more times than given
+  19) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should be false when content occurs more times than given
      Failure/Error: @session.should_not have_no_css("h2.head", :minimum => 4) # edge case
        expected #has_no_css?("h2.head", {:minimum=>4}) to return false, got true
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:101
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:210:in `block (4 levels) in <top (required)>'
 
-  22) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should coerce minimum to an integer
+  20) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should coerce minimum to an integer
      Failure/Error: @session.should_not have_no_css("h2.head", :minimum => "4") # edge case
        expected #has_no_css?("h2.head", {:minimum=>"4"}) to return false, got true
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:101
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:226:in `block (4 levels) in <top (required)>'
 
-  23) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should be true when content occurs same or fewer times than given
+  21) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should be true when content occurs same or fewer times than given
      Failure/Error: @session.should have_css("h2.head", :maximum => 5) # edge case
        expected #has_css?("h2.head", {:maximum=>5}) to return true, got false
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:66:in `block (4 levels) in <top (required)>'
 
-  24) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should coerce maximum to an integer
+  22) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should coerce maximum to an integer
      Failure/Error: @session.should have_css("h2.head", :maximum => "5") # edge case
        expected #has_css?("h2.head", {:maximum=>"5"}) to return true, got false
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:82:in `block (4 levels) in <top (required)>'
 
-  25) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with minimum should be true when content occurs same or more times than given
+  23) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with minimum should be true when content occurs same or more times than given
      Failure/Error: @session.should have_css("h2.head", :minimum => 5) # edge case
        expected #has_css?("h2.head", {:minimum=>5}) to return true, got false
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:89:in `block (4 levels) in <top (required)>'
 
-  26) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with minimum should coerce minimum to an integer
+  24) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with minimum should coerce minimum to an integer
      Failure/Error: @session.should have_css("h2.head", :minimum => "5") # edge case
        expected #has_css?("h2.head", {:minimum=>"5"}) to return true, got false
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:105:in `block (4 levels) in <top (required)>'
 
-  27) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with maximum should be false when content occurs same or fewer times than given
+  25) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with maximum should be false when content occurs same or fewer times than given
      Failure/Error: @session.should_not have_no_css("h2.head", :maximum => 5) # edge case
        expected #has_no_css?("h2.head", {:maximum=>5}) to return false, got true
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:187:in `block (4 levels) in <top (required)>'
 
-  28) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with maximum should coerce maximum to an integer
+  26) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with maximum should coerce maximum to an integer
      Failure/Error: @session.should_not have_no_css("h2.head", :maximum => "5") # edge case
        expected #has_no_css?("h2.head", {:maximum=>"5"}) to return false, got true
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:203:in `block (4 levels) in <top (required)>'
 
-  29) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should be false when content occurs more times than given
+  27) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should be false when content occurs more times than given
      Failure/Error: @session.should_not have_no_css("h2.head", :minimum => 4) # edge case
        expected #has_no_css?("h2.head", {:minimum=>4}) to return false, got true
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:210:in `block (4 levels) in <top (required)>'
 
-  30) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should coerce minimum to an integer
+  28) Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should coerce minimum to an integer
      Failure/Error: @session.should_not have_no_css("h2.head", :minimum => "4") # edge case
        expected #has_no_css?("h2.head", {:minimum=>"4"}) to return false, got true
      Shared Example Group: "has_css" called from ./vendor/capybara/lib/capybara/spec/session.rb:102
      # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:226:in `block (4 levels) in <top (required)>'
 
-  31) Capybara::Session with terminus driver it should behave like session it should behave like has_field#has_checked_field? should be false after a checked checkbox is unchecked
+  29) Capybara::Session with terminus driver it should behave like session it should behave like has_field#has_checked_field? should be false after a checked checkbox is unchecked
      Failure/Error: @session.uncheck('form_pets_dog')
      Capybara::ElementNotFound:
        cannot uncheck field, no checkbox with id, name, or label 'form_pets_dog' found
@@ -1051,52 +993,43 @@ Failures:
      # (eval):2:in `uncheck'
      # ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:103:in `block (3 levels) in <top (required)>'
 
-  32) Capybara::Session with terminus driver it should behave like session it should behave like has_field#has_unchecked_field? should be false after an unchecked radio button is chosen
-     Failure/Error: Unable to find matching line from backtrace
-     Terminus::Timeouts::TimeoutError:
-       Waited 30s but could not get a selected_browser
-     Shared Example Group: "has_field" called from ./vendor/capybara/lib/capybara/spec/session.rb:107
-     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
-     # ./lib/terminus/controller.rb:24:in `browser='
-     # ./spec/terminus_session_spec.rb:7:in `block (3 levels) in <top (required)>'
-
-  33) Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_select? with options should be true if a field with the given options is on the page
+  30) Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_select? with options should be true if a field with the given options is on the page
      Failure/Error: @session.should have_select('form_locale', :options => ['English'])
        expected #has_select?("form_locale", {:options=>["English"]}) to return true, got false
      Shared Example Group: "has_select" called from ./vendor/capybara/lib/capybara/spec/session.rb:108
      # ./vendor/capybara/lib/capybara/spec/session/has_select_spec.rb:53:in `block (4 levels) in <top (required)>'
 
-  34) Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_no_select? with options should be false if a field with the given options is on the page
+  31) Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_no_select? with options should be false if a field with the given options is on the page
      Failure/Error: @session.should_not have_no_select('form_locale', :options => ['English'])
        expected #has_no_select?("form_locale", {:options=>["English"]}) to return false, got true
      Shared Example Group: "has_select" called from ./vendor/capybara/lib/capybara/spec/session.rb:108
      # ./vendor/capybara/lib/capybara/spec/session/has_select_spec.rb:116:in `block (4 levels) in <top (required)>'
 
-  35) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if a table with the given rows is on the page
+  32) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if a table with the given rows is on the page
      Failure/Error: @session.should have_table('Ransom', :rows => [['2007', '$300', '$100']])
        expected #has_table?("Ransom", {:rows=>[["2007", "$300", "$100"]]}) to return true, got false
      Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:109
      # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:18:in `block (4 levels) in <top (required)>'
 
-  36) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if the given rows are incomplete
+  33) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if the given rows are incomplete
      Failure/Error: @session.should have_table('Ransom', :rows => [['$300', '$100']])
        expected #has_table?("Ransom", {:rows=>[["$300", "$100"]]}) to return true, got false
      Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:109
      # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:23:in `block (4 levels) in <top (required)>'
 
-  37) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if a table with the given rows is on the page
+  34) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if a table with the given rows is on the page
      Failure/Error: @session.should_not have_no_table('Ransom', :rows => [['2007', '$300', '$100']])
        expected #has_no_table?("Ransom", {:rows=>[["2007", "$300", "$100"]]}) to return false, got true
      Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:109
      # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:64:in `block (4 levels) in <top (required)>'
 
-  38) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if the given rows are incomplete
+  35) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if the given rows are incomplete
      Failure/Error: @session.should_not have_no_table('Ransom', :rows => [['$300', '$100']])
        expected #has_no_table?("Ransom", {:rows=>[["$300", "$100"]]}) to return false, got true
      Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:109
      # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:69:in `block (4 levels) in <top (required)>'
 
-  39) Capybara::Session with terminus driver it should behave like session it should behave like select#select should escape quotes
+  36) Capybara::Session with terminus driver it should behave like session it should behave like select#select should escape quotes
      Failure/Error: @session.select("John's made-up language", :from => 'Locale')
      Capybara::ElementNotFound:
        cannot select option, no select box with id, name, or label 'Locale' found
@@ -1109,16 +1042,7 @@ Failures:
      # (eval):2:in `select'
      # ./vendor/capybara/lib/capybara/spec/session/select_spec.rb:45:in `block (3 levels) in <top (required)>'
 
-  40) Capybara::Session with terminus driver it should behave like session it should behave like within#within_table should restrict scope to a fieldset given by id
-     Failure/Error: Unable to find matching line from backtrace
-     Terminus::Timeouts::TimeoutError:
-       Waited 30s but could not get a selected_browser
-     Shared Example Group: "within" called from ./vendor/capybara/lib/capybara/spec/session.rb:114
-     # ./lib/terminus/timeouts.rb:19:in `wait_with_timeout'
-     # ./lib/terminus/controller.rb:24:in `browser='
-     # ./spec/terminus_session_spec.rb:7:in `block (3 levels) in <top (required)>'
-
-  41) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload without automatic reload should reload the current context of the node
+  37) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload without automatic reload should reload the current context of the node
      Failure/Error: node = @session.find(:css, '#reload-me')
      Capybara::ElementNotFound:
        Unable to find css "#reload-me"
@@ -1130,7 +1054,7 @@ Failures:
      # (eval):2:in `find'
      # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:26:in `block (5 levels) in <top (required)>'
 
-  42) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload the current context of the node automatically
+  38) Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload the current context of the node automatically
      Failure/Error: node.text.should == 'RELOADED'
      Terminus::ObsoleteElementError:
        Terminus::ObsoleteElementError
@@ -1142,21 +1066,21 @@ Failures:
      # ./vendor/capybara/lib/capybara/node/element.rb:44:in `text'
      # ./vendor/capybara/lib/capybara/spec/session/javascript.rb:58:in `block (5 levels) in <top (required)>'
 
-  43) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should follow 5 redirects
+  39) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should follow 5 redirects
      Failure/Error: @driver.body.should include('redirection complete')
      NoMethodError:
        undefined method `body' for nil:NilClass
      Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:23
      # ./vendor/capybara/lib/capybara/spec/driver.rb:289:in `block (2 levels) in <top (required)>'
 
-  44) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
+  40) Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should not follow more than 5 redirects
      Failure/Error: running do
        expected Capybara::InfiniteRedirectError but nothing was raised
      Shared Example Group: "driver with infinite redirect detection" called from ./spec/terminus_driver_spec.rb:23
      # ./vendor/capybara/lib/capybara/spec/driver.rb:293:in `block (2 levels) in <top (required)>'
 
 Finished in 224 minutes 4.47 seconds
-496 examples, 44 failures
+496 examples, 40 failures
 
 Failed examples:
 
@@ -1171,8 +1095,6 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:42 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:48 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:54 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:19 # Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
-rspec ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:43 # Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a textarea by label
-rspec ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:36 # Capybara::Session with terminus driver it should behave like session it should behave like find#find the returned node should have a reference to its parent if there is one
 rspec ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:76 # Capybara::Session with terminus driver it should behave like session it should behave like find#find with custom selector with :for option should use the selector when it matches the :for option
 rspec ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:65 # Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should be true when content occurs same or fewer times than given
 rspec ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:81 # Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_css? with maximum should coerce maximum to an integer
@@ -1191,7 +1113,6 @@ rspec ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:202 # Capybara
 rspec ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:209 # Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should be false when content occurs more times than given
 rspec ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:225 # Capybara::Session with terminus driver it should behave like session it should behave like has_css#has_no_css? with minimum should coerce minimum to an integer
 rspec ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:102 # Capybara::Session with terminus driver it should behave like session it should behave like has_field#has_checked_field? should be false after a checked checkbox is unchecked
-rspec ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:163 # Capybara::Session with terminus driver it should behave like session it should behave like has_field#has_unchecked_field? should be false after an unchecked radio button is chosen
 rspec ./vendor/capybara/lib/capybara/spec/session/has_select_spec.rb:52 # Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_select? with options should be true if a field with the given options is on the page
 rspec ./vendor/capybara/lib/capybara/spec/session/has_select_spec.rb:115 # Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_no_select? with options should be false if a field with the given options is on the page
 rspec ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:17 # Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if a table with the given rows is on the page
@@ -1199,7 +1120,6 @@ rspec ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:22 # Capybar
 rspec ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:63 # Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if a table with the given rows is on the page
 rspec ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:68 # Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if the given rows are incomplete
 rspec ./vendor/capybara/lib/capybara/spec/session/select_spec.rb:44 # Capybara::Session with terminus driver it should behave like session it should behave like select#select should escape quotes
-rspec ./vendor/capybara/lib/capybara/spec/session/within_spec.rb:162 # Capybara::Session with terminus driver it should behave like session it should behave like within#within_table should restrict scope to a fieldset given by id
 rspec ./vendor/capybara/lib/capybara/spec/session/javascript.rb:24 # Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload without automatic reload should reload the current context of the node
 rspec ./vendor/capybara/lib/capybara/spec/session/javascript.rb:53 # Capybara::Session with terminus driver it should behave like session with javascript support all JS specs Node#reload with automatic reload should reload the current context of the node automatically
 rspec ./vendor/capybara/lib/capybara/spec/driver.rb:287 # Capybara::Driver::Terminus it should behave like driver with infinite redirect detection should follow 5 redirects
