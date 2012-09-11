@@ -9,6 +9,14 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     @rack_server = Capybara::Server.new(@app)
     
     @rack_server.boot
+    sleep 0.1 until server_running?
+  end
+  
+  def server_running?
+    uri = URI.parse("http://#{@rack_server.host}:#{@rack_server.port}/")
+    Net::HTTP.get_response(uri)
+  rescue
+    nil
   end
   
   def find(xpath)

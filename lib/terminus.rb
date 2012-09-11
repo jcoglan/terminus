@@ -1,4 +1,5 @@
 require 'forwardable'
+require 'net/http'
 require 'uri'
 require 'capybara'
 require 'eventmachine'
