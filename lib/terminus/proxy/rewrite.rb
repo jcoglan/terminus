@@ -2,6 +2,8 @@ module Terminus
   class Proxy
     
     module Rewrite
+      attr_writer :dock_host
+      
       def each(&block)
         handler = lambda do |fragment|
           block.call(rewrite(fragment))
@@ -11,7 +13,7 @@ module Terminus
       
       def rewrite(fragment)
         fragment.gsub(/\b(action|href)="([^"]*)"/i) do
-          %Q{#{$1}="#{ Terminus.rewrite_remote($2) }"}
+          %Q{#{$1}="#{ Terminus.rewrite_remote($2, @dock_host) }"}
         end
       end
     end

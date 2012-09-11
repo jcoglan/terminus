@@ -75,7 +75,7 @@ module Terminus
       return uri unless URI::HTTP === uri and uri.host !~ LOCALHOST and uri.host != dock_host
       server = boot(uri)
       uri.scheme = 'http'
-      uri.host, uri.port = server.host, server.port
+      uri.host, uri.port = (dock_host || server.host), server.port
       uri
     end
     

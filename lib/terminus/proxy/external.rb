@@ -20,8 +20,10 @@ module Terminus
       end
       
       def call(env)
+        dock_host = env['SERVER_NAME']
         response = super
         response[2].extend(Rewrite)
+        response[2].dock_host = dock_host
         response
       end
     end
