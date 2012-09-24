@@ -625,6 +625,21 @@ Capybara::Session
         #within_table
           should restrict scope to a fieldset given by id
           should restrict scope to a fieldset given by legend
+      it should behave like current_url
+        #current_url
+          should return the current url
+        #current_path
+          should show the correct location
+      it should behave like current_host
+        #current_host
+          is affected by visiting a page directly
+          returns to the app host when visiting a relative url
+          is affected by setting Capybara.app_host
+          is unaffected by following a relative link
+          is affected by following an absolute link
+          is unaffected by posting through a relative form
+          is affected by posting through an absolute form
+          is affected by following a redirect
     it should behave like session with headers support
       #response_headers
         should return response headers
@@ -889,8 +904,8 @@ Failures:
      Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:109
      # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:69:in `block (4 levels) in <top (required)>'
 
-Finished in 224 minutes 4.47 seconds
-496 examples, 15 failures
+Finished in 208 minutes 14.32 seconds
+506 examples, 15 failures
 
 Failed examples:
 
