@@ -15,7 +15,6 @@
       var state = script.readyState;
       if (!state || state === 'loaded' || state === 'complete') {
         script.onload = script.onreadystatechange = null;
-        head.removeChild(script);
         callback();
       }
     };
