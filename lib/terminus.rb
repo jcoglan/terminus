@@ -1,7 +1,10 @@
 require 'forwardable'
 require 'net/http'
+require 'socket'
 require 'uri'
+
 require 'capybara'
+require 'childprocess'
 require 'eventmachine'
 require 'faye'
 require 'rack-proxy'
@@ -21,6 +24,7 @@ module Terminus
   autoload :Host,        ROOT + '/terminus/host'
   autoload :Node,        ROOT + '/terminus/node'
   autoload :Proxy,       ROOT + '/terminus/proxy'
+  autoload :PhantomJS,   ROOT + '/terminus/phantomjs'
   autoload :Server,      ROOT + '/terminus/server'
   autoload :Timeouts,    ROOT + '/terminus/timeouts'
   
@@ -51,6 +55,10 @@ module Terminus
     
     def port=(port)
       @port = port.to_i
+    end
+    
+    def start_phantomjs(options = {})
+      PhantomJS.start(options)
     end
     
     extend Forwardable

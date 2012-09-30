@@ -6,6 +6,10 @@ root = File.expand_path('../..', __FILE__)
 require root + '/vendor/capybara/spec/spec_helper'
 require root + '/lib/terminus'
 
+if ENV['USER_AGENT'] == 'PhantomJS'
+  Terminus.start_phantomjs
+end
+
 def select_browser
   Terminus.browser = case ENV['USER_AGENT']
                      when 'iPhone' then {:os => /iPhone/}
