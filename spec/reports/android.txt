@@ -261,7 +261,7 @@ Capybara::Session
           with custom selector
             should use the custom selector
           with custom selector with :for option
-            should use the selector when it matches the :for option (FAILED - 9)
+            should use the selector when it matches the :for option
           with custom selector with failure_message option
             should raise an error with the failure message if the element is not found
             should pass the selector as the second argument
@@ -856,20 +856,8 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-  9) Capybara::Session with terminus driver it should behave like session it should behave like find#find with custom selector with :for option should use the selector when it matches the :for option
-     Failure/Error: @session.find(:monkey, '2').text.should == 'Monkey Paul'
-     Capybara::ElementNotFound:
-       Unable to find monkey "2"
-     Shared Example Group: "find" called from ./vendor/capybara/lib/capybara/spec/session.rb:99
-     # ./vendor/capybara/lib/capybara/node/finders.rb:154:in `raise_find_error'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `block in find'
-     # ./vendor/capybara/lib/capybara/node/base.rb:46:in `wait_until'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `find'
-     # (eval):2:in `find'
-     # ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:81:in `block (4 levels) in <top (required)>'
-
 Finished in 208 minutes 14.32 seconds
-506 examples, 9 failures
+506 examples, 8 failures
 
 Failed examples:
 
@@ -881,4 +869,3 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:42 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:48 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should send content type image/jpeg when uploading an image
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:54 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:19 # Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
-rspec ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:76 # Capybara::Session with terminus driver it should behave like session it should behave like find#find with custom selector with :for option should use the selector when it matches the :for option
