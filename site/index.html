@@ -78,7 +78,8 @@ Capybara.current_driver = :terminus</pre>
     
     <p>Terminus does require some extra setup before you can use it to control
       your app. First up, you need to start the Terminus server on the machine
-      where your application will be running:</p>
+      where your application will be running (you don&rsquo;t need to do this if
+      you&rsquo;re using PhantomJS &ndash; see below):</p>
     
     <pre class="prettyprint">$ terminus</pre>
     
@@ -88,8 +89,8 @@ Capybara.current_driver = :terminus</pre>
       while it is visiting this page, meaning it is ready and waiting to run
       some tests for you.</p>
     
-    <p>Finally, in your tests you need to make sure there's a docked browser and
-      select it. In a <tt>before</tt> block, run the following:</p>
+    <p>Finally, in your tests you need to make sure there&rsquo;s a docked
+      browser and select it. In a <tt>before</tt> block, run the following:</p>
     
     <pre class="prettyprint">Terminus.browser = :docked</pre>
     
@@ -132,9 +133,10 @@ Capybara.current_driver = :terminus</pre>
     
     <h2>Browser selection API</h2>
 
-    <p>If you're testing a messaging app, for example, you need several browsers
-      to participate in the test. Terminus has a browser selection API that lets
-      you switch which browser you're controlling as you use the Capybara API.</p>
+    <p>If you&rsquo;re testing a messaging app, for example, you need several
+      browsers to participate in the test. Terminus has a browser selection API
+      that lets you switch which browser you&rsquo;re controlling as you use the
+      Capybara API.</p>
     
     <ul>
       <li><b><tt>Terminus.ensure_browsers(n)</tt></b> blocks until there are at
