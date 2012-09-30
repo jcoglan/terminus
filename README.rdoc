@@ -12,19 +12,6 @@ automated:
 * Testing on remote machines, phones, iPads etc.
 
 
-== Notes / to-do
-
-* Support IE, which has no built-in XPath engine for querying the DOM. I'm
-  working on Pathology (see http://github.com/jcoglan/pathology) to try and fix
-  this but it's currently not fast enough.
-  
-* It's slow, especially at filling out forms. Use it to sanity-check your
-  cross-browser code and JavaScript, not to test your whole app.
-  
-* It can be a little brittle, and occasionally there seem to be race conditions
-  when running the Capybara specs.
-
-
 == License
 
 (The MIT License)
