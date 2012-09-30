@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths     = ["lib"]
 
   s.add_dependency "capybara", ">= 0.4.0"
-  s.add_dependency "faye", ">= 0.8.2"
+  s.add_dependency "faye", ">= 0.8.5"
   s.add_dependency "oyster", ">= 0.9.0"
   s.add_dependency "packr", ">= 3.1.0"
   s.add_dependency "rack", ">= 1.0.0"
