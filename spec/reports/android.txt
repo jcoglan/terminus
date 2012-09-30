@@ -525,15 +525,15 @@ Capybara::Session
             should be false after the given values are selected
             should be true after one of the values is unselected
           with options
-            should be false if a field with the given options is on the page (FAILED - 10)
+            should be false if a field with the given options is on the page
             should be true if the given field is not on the page
       it should behave like has_table
         #has_table?
           should be true if the field is on the page
           should be false if the field is not on the page
           with rows
-            should be true if a table with the given rows is on the page (FAILED - 11)
-            should be true if the given rows are incomplete (FAILED - 12)
+            should be true if a table with the given rows is on the page (FAILED - 10)
+            should be true if the given rows are incomplete (FAILED - 11)
             should be false if the given table is not on the page
             should be false if the given rows contain incorrect elements
             should be false if the given rows are incorrectly ordered
@@ -543,8 +543,8 @@ Capybara::Session
           should be false if the field is on the page
           should be true if the field is not on the page
           with rows
-            should be false if a table with the given rows is on the page (FAILED - 13)
-            should be false if the given rows are incomplete (FAILED - 14)
+            should be false if a table with the given rows is on the page (FAILED - 12)
+            should be false if the given rows are incomplete (FAILED - 13)
             should be true if the given table is not on the page
             should be true if the given rows contain incorrect elements
             should be true if the given rows are incorrectly ordered
@@ -868,38 +868,32 @@ Failures:
      # (eval):2:in `find'
      # ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:81:in `block (4 levels) in <top (required)>'
 
-  10) Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_no_select? with options should be false if a field with the given options is on the page
-     Failure/Error: @session.should_not have_no_select('form_locale', :options => ['English'])
-       expected #has_no_select?("form_locale", {:options=>["English"]}) to return false, got true
-     Shared Example Group: "has_select" called from ./vendor/capybara/lib/capybara/spec/session.rb:108
-     # ./vendor/capybara/lib/capybara/spec/session/has_select_spec.rb:116:in `block (4 levels) in <top (required)>'
-
-  11) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if a table with the given rows is on the page
+  10) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if a table with the given rows is on the page
      Failure/Error: @session.should have_table('Ransom', :rows => [['2007', '$300', '$100']])
        expected #has_table?("Ransom", {:rows=>[["2007", "$300", "$100"]]}) to return true, got false
      Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:109
      # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:18:in `block (4 levels) in <top (required)>'
 
-  12) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if the given rows are incomplete
+  11) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if the given rows are incomplete
      Failure/Error: @session.should have_table('Ransom', :rows => [['$300', '$100']])
        expected #has_table?("Ransom", {:rows=>[["$300", "$100"]]}) to return true, got false
      Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:109
      # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:23:in `block (4 levels) in <top (required)>'
 
-  13) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if a table with the given rows is on the page
+  12) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if a table with the given rows is on the page
      Failure/Error: @session.should_not have_no_table('Ransom', :rows => [['2007', '$300', '$100']])
        expected #has_no_table?("Ransom", {:rows=>[["2007", "$300", "$100"]]}) to return false, got true
      Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:109
      # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:64:in `block (4 levels) in <top (required)>'
 
-  14) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if the given rows are incomplete
+  13) Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if the given rows are incomplete
      Failure/Error: @session.should_not have_no_table('Ransom', :rows => [['$300', '$100']])
        expected #has_no_table?("Ransom", {:rows=>[["$300", "$100"]]}) to return false, got true
      Shared Example Group: "has_table" called from ./vendor/capybara/lib/capybara/spec/session.rb:109
      # ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:69:in `block (4 levels) in <top (required)>'
 
 Finished in 208 minutes 14.32 seconds
-506 examples, 14 failures
+506 examples, 13 failures
 
 Failed examples:
 
@@ -912,7 +906,6 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:48 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:54 # Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:19 # Capybara::Session with terminus driver it should behave like session it should behave like fill_in#fill_in should fill in a text field by label without for
 rspec ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:76 # Capybara::Session with terminus driver it should behave like session it should behave like find#find with custom selector with :for option should use the selector when it matches the :for option
-rspec ./vendor/capybara/lib/capybara/spec/session/has_select_spec.rb:115 # Capybara::Session with terminus driver it should behave like session it should behave like has_select#has_no_select? with options should be false if a field with the given options is on the page
 rspec ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:17 # Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if a table with the given rows is on the page
 rspec ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:22 # Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_table? with rows should be true if the given rows are incomplete
 rspec ./vendor/capybara/lib/capybara/spec/session/has_table_spec.rb:63 # Capybara::Session with terminus driver it should behave like session it should behave like has_table#has_no_table? with rows should be false if a table with the given rows is on the page
