@@ -3,9 +3,9 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="/style.css">
-    <link rel="stylesheet" type="text/css" href="/prettify.css">
-    <script type="text/javascript" src="/prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./prettify.css">
+    <script type="text/javascript" src="./prettify.js"></script>
     <title>Terminus</title>
     
     <script type="text/javascript">
@@ -47,14 +47,21 @@
     
     <ul>
       <li>All core Capybara 1.1.x features except file attachments</li>
-      <li>Drives all major desktop and mobile browsers except Internet Explorer</li>
-      <li>JavaScript</li>
+      <li>Drive most major desktop and mobile browsers</li>
+      <li>Execute JavaScript</li>
       <li>Resynchronization (waiting for <tt>setTimeout</tt> and <tt>jQuery.ajax</tt>)</li>
       <li>Response headers and status codes</li>
-      <li>Cookies</li>
-      <li>Frame and window switching (except on PhantomJS)</li>
-      <li>Infinite redirect detection</li>
+      <li>Set cookies</li>
+      <li>Frame and window switching</li>
+      <li>Detect infinite redirects</li>
     </ul>
+    
+    <p>By &lsquo;most browsers&rsquo;, I mean Android, Chrome, Firefox, Internet
+      Explorer, Opera, PhantomJS, Safari and Mobile Safari. Some features are
+      platform-dependent, for example frame and window switching does not work
+      in IE, PhantomJS, or mobile browsers. Internet Explorer support is
+      somewhat experimental and has some performance problems, but mostly works
+      in IE8.</p>
     
     <h2>How to use it</h2>
     
