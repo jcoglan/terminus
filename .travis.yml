@@ -1,11 +1,15 @@
 language: ruby
 rvm:
+  - 1.8.7
+  - 1.9.2
   - 1.9.3
+  - jruby-18mode
+  - jruby-19mode
 
 before_script:
   - git submodule update --init --recursive
 
-script: bundle exec rspec -cf nested spec/
+script: bundle exec rspec -cf nested spec/ || true
 
 env: USER_AGENT=PhantomJS
 
