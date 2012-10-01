@@ -855,7 +855,7 @@ Failures:
      # (eval):2:in `attach_file'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
 
-Finished in 22 minutes 25.62 seconds
+Finished in 19 minutes 13.03 seconds
 510 examples, 7 failures
 
 Failed examples:
