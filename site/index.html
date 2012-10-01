@@ -101,6 +101,18 @@ Capybara.current_driver = :terminus</pre>
     
     <p>This returns all currently connected browsers to the holding page.</p>
     
+    <h2>Launching a browser automatically</h2>
+    
+    <p>You can skip running the <tt>terminus</tt> command and opening a browser
+      by hand if you just want to use your default browser. Run this
+      command:</p>
+    
+    <pre class="prettyprint">Terminus.start_browser</pre>
+    
+    <p>This runs <tt>terminus</tt> in the background, launches your default
+      browser connected to it and sets <tt>Terminus.browser</tt> to this
+      browser.</p>
+    
     <h2>Using PhantomJS</h2>
     
     <p>Terminus can be used for headless testing via <a

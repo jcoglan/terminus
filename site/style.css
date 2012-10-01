@@ -43,6 +43,10 @@ pre {
   width: 460px;
 }
 
+tt {
+  color: #666;
+}
+
 a {
   color: #ff6e18;
   font-weight: bold;
