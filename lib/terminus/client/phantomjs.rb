@@ -3,7 +3,7 @@ module Terminus
     
     class PhantomJS < Base
       DEFAULT_COMMAND = ['/usr/bin/env', 'phantomjs']
-      PHANTOM_CLIENT  = File.expand_path('../../phantom.js', __FILE__)
+      PHANTOM_CLIENT  = File.expand_path('../phantom.js', __FILE__)
       
       def browser_args(command)
         args = (command || DEFAULT_COMMAND).dup
