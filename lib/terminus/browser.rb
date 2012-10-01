@@ -137,7 +137,7 @@ module Terminus
     end
     
     def return_to_dock
-      visit "http://#{@dock_host}:#{Terminus.port}/"
+      visit("http://#{@dock_host}:#{Terminus.port}/")
     end
     
     def source
