@@ -1,15 +1,14 @@
 = Terminus
 
-* http://terminus.jcoglan.com
-
-Terminus is an experimental Capybara driver implemented in client-side
-JavaScript. It lets you script your application in any browser on any device,
-without needing browser plugins. This allows several types of testing to be
-automated:
-
+{Terminus}[http://terminus.jcoglan.com] is a {Capybara}[https://github.com/jnicklas/capybara]
+driver for real browsers. It lets you control your application in any browser on
+any device (including {PhantomJS}[http://phantomjs.org/]), without needing
+browser plugins. This allows several types of testing to be automated:
+    
 * Cross-browser testing
+* Headless testing
 * Multi-browser interaction e.g. messaging apps
-* Testing on remote machines, phones, iPads etc.
+* Testing on remote machines, phones, iPads etc
 
 
 == License

@@ -34,6 +34,7 @@
     
     <ul>
       <li>Cross-browser testing</li>
+      <li>Headless testing</li>
       <li>Multi-browser interaction e.g. messaging apps</li>
       <li>Testing on remote machines, phones, iPads etc</li>
     </ul>
@@ -169,7 +170,9 @@ Capybara.current_driver = :terminus</pre>
     <pre class="prettyprint">Terminus.browser = {:name => /Firefox/, :version => /^3.6/}</pre>
 
     <p>The available keys are <tt>:name</tt>, <tt>:version</tt> and <tt>:os</tt>
-      and the values may be strings or regular expressions.</p>
+      and the values may be strings or regular expressions.
+      <tt>Terminus.browser=</tt> blocks until a browser matching the criteria is
+      connected.</p>
     
     <div class="footer">
       <p>Copyright &copy; 2010&ndash;2012 <a href="http://jcoglan.com">James
