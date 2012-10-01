@@ -1,5 +1,6 @@
 require 'forwardable'
 require 'net/http'
+require 'rbconfig'
 require 'socket'
 require 'uri'
 
@@ -20,11 +21,11 @@ module Terminus
   ROOT = File.expand_path('..', __FILE__)
   autoload :Application, ROOT + '/terminus/application'
   autoload :Browser,     ROOT + '/terminus/browser'
+  autoload :Client,      ROOT + '/terminus/client'
   autoload :Controller,  ROOT + '/terminus/controller'
   autoload :Host,        ROOT + '/terminus/host'
   autoload :Node,        ROOT + '/terminus/node'
   autoload :Proxy,       ROOT + '/terminus/proxy'
-  autoload :PhantomJS,   ROOT + '/terminus/phantomjs'
   autoload :Server,      ROOT + '/terminus/server'
   autoload :Timeouts,    ROOT + '/terminus/timeouts'
   
@@ -57,8 +58,12 @@ module Terminus
       @port = port.to_i
     end
     
+    def start_browser(options = {})
+      Client::Browser.start(options)
+    end
+    
     def start_phantomjs(options = {})
-      PhantomJS.start(options)
+      Client::PhantomJS.start(options)
     end
     
     extend Forwardable

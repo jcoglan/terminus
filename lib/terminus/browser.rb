@@ -116,7 +116,7 @@ module Terminus
     def reset!
       if url = @attributes['url']
         uri = URI.parse(url)
-        visit("http://#{uri.host}:#{uri.port}")
+        visit("http://#{uri.host}:#{uri.port}/")
       end
       ask([:clear_cookies])
       @attributes.delete('url')
