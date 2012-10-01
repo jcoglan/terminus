@@ -3,6 +3,61 @@ Capybara::Session
   with non-existant driver
     should raise an error
 
+Capybara::Driver::Terminus
+  it should behave like driver
+    #visit
+      should move to another page
+      should show the correct URL
+    #body
+      should return text reponses
+      should return the full response html
+      encoding of response between ascii and utf8
+        should be valid with html entities
+        should be valid without html entities
+    #find
+      with xpath selector
+        should extract node texts
+        should extract node attributes
+        should extract boolean node attributes
+        should allow retrieval of the value
+        should allow assignment of field value
+        should extract node tag name
+        should extract node visibility
+        should extract node checked state
+        should extract node selected state
+        should return document text on /html selector
+  it should behave like driver with javascript support
+    #find
+      should find dynamically changed nodes
+    #drag_to
+      should drag and drop an object
+    #evaluate_script
+      should return the value of the executed script
+  it should behave like driver with resynchronization support
+    #find
+      with synchronization turned on
+        should wait for all ajax requests to finish
+      with resynchronization turned off
+        should not wait for ajax requests to finish
+      with short synchronization timeout
+        should raise an error
+  it should behave like driver with header support
+    should make headers available through response_headers
+  it should behave like driver with status code support
+    should make the status code available through status_code
+  it should behave like driver with frame support
+    #within_frame
+      should find the div in frameOne
+      should find the div in FrameTwo
+      should find the text div in the main window after finding text in frameOne
+      should find the text div in the main window after finding text in frameTwo
+  it should behave like driver with cookies support
+    #reset!
+      should set and clean cookies
+  it should behave like driver with infinite redirect detection
+    should follow 5 redirects
+    should not follow more than 5 redirects
+
 Capybara::Session
   with terminus driver
     it should behave like session
@@ -701,61 +756,6 @@ Capybara::Session
       #status_code
         should return response codes
 
-Capybara::Driver::Terminus
-  it should behave like driver
-    #visit
-      should move to another page
-      should show the correct URL
-    #body
-      should return text reponses
-      should return the full response html
-      encoding of response between ascii and utf8
-        should be valid with html entities
-        should be valid without html entities
-    #find
-      with xpath selector
-        should extract node texts
-        should extract node attributes
-        should extract boolean node attributes
-        should allow retrieval of the value
-        should allow assignment of field value
-        should extract node tag name
-        should extract node visibility
-        should extract node checked state
-        should extract node selected state
-        should return document text on /html selector
-  it should behave like driver with javascript support
-    #find
-      should find dynamically changed nodes
-    #drag_to
-      should drag and drop an object
-    #evaluate_script
-      should return the value of the executed script
-  it should behave like driver with resynchronization support
-    #find
-      with synchronization turned on
-        should wait for all ajax requests to finish
-      with resynchronization turned off
-        should not wait for ajax requests to finish
-      with short synchronization timeout
-        should raise an error
-  it should behave like driver with header support
-    should make headers available through response_headers
-  it should behave like driver with status code support
-    should make the status code available through status_code
-  it should behave like driver with frame support
-    #within_frame
-      should find the div in frameOne
-      should find the div in FrameTwo
-      should find the text div in the main window after finding text in frameOne
-      should find the text div in the main window after finding text in frameTwo
-  it should behave like driver with cookies support
-    #reset!
-      should set and clean cookies
-  it should behave like driver with infinite redirect detection
-    should follow 5 redirects
-    should not follow more than 5 redirects
-
 Failures:
 
   1) Capybara::Session with terminus driver it should behave like session it should behave like attach_file#attach_file with normal form should set a file path by id
@@ -856,7 +856,7 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-Finished in 208 minutes 14.32 seconds
+Finished in 83 minutes 1.2 seconds
 506 examples, 8 failures
 
 Failed examples:
