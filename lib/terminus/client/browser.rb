@@ -3,10 +3,9 @@ module Terminus
     
     class Browser < Base
       DEFAULT_COMMANDS = {
-        /(mingw|mswin|windows)/i    => ['start', '/b'],
-        /(darwin|mac os)/i          => ['open'],
-        /(linux|bsd|aix|solaris)/i  => ['xdg-open'],
-        /cygwin/i                   => ['cmd', '/C', 'start', '/b']
+        /(mingw|mswin|windows|cygwin)/i => ['cmd', '/C', 'start', '/b'],
+        /(darwin|mac os)/i              => ['open'],
+        /(linux|bsd|aix|solaris)/i      => ['xdg-open']
       }
       
       def browser_args(command)
