@@ -1,8 +1,10 @@
 require 'erb'
 require 'forwardable'
+require 'http/parser'
 require 'net/http'
 require 'rbconfig'
 require 'socket'
+require 'stringio'
 require 'uri'
 
 require 'capybara'
@@ -23,6 +25,7 @@ module Terminus
   autoload :Application, ROOT + '/terminus/application'
   autoload :Browser,     ROOT + '/terminus/browser'
   autoload :Client,      ROOT + '/terminus/client'
+  autoload :Connector,   ROOT + '/terminus/connector'
   autoload :Controller,  ROOT + '/terminus/controller'
   autoload :Host,        ROOT + '/terminus/host'
   autoload :Node,        ROOT + '/terminus/node'
