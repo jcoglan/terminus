@@ -51,7 +51,7 @@ module Terminus
       
       def send(message)
         accept unless connected?
-        @socket.write @handler.encode(message)
+        @socket.write(@handler.encode(message))
         result = receive
         reset if result.nil?
         result
@@ -81,7 +81,7 @@ module Terminus
           break if msg == "\r\n"
         end
         @handler = SocketHandler.new(self, env)
-        @socket.write @handler.handshake_response
+        @socket.write(@handler.handshake_response)
       end
       
       def env
