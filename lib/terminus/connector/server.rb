@@ -31,7 +31,6 @@ module Terminus
       def initialize(timeout = BIND_TIMEOUT)
         @server  = start_server
         @timeout = timeout
-        
         reset
       end
       
@@ -40,21 +39,6 @@ module Terminus
         @handler = nil
         @parser  = Http::Parser.new
         @socket  = nil
-      end
-      
-      def start_server
-        time = Time.now
-        
-        begin
-          TCPServer.open(0)
-        rescue Errno::EADDRINUSE
-          if (Time.now - time) < BIND_TIMEOUT
-            sleep(0.01)
-            retry
-          else
-            raise
-          end
-        end
       end
       
       def connected?
@@ -76,14 +60,26 @@ module Terminus
         nil
       end
       
+    private
+      
+      def start_server
+        time = Time.now
+        TCPServer.open(0)
+      rescue Errno::EADDRINUSE
+        if (Time.now - time) < BIND_TIMEOUT
+          sleep(0.01)
+          retry
+        else
+          raise
+        end
+      end
+      
       def accept
         @socket = @server.accept
-        
         while msg = @socket.gets
           @parser << msg
           break if msg == "\r\n"
         end
-        
         @handler = SocketHandler.new(self, env)
         @socket.write @handler.handshake_response
       end
@@ -109,10 +105,9 @@ module Terminus
           IO.select([@socket], [], [], @timeout) or raise Errno::EWOULDBLOCK
           data = @socket.recv(RECV_SIZE)
           break if data.empty?
-          @handler.parse(data)
+          @handler << data
           break if @handler.nil?
         end
-        
         @handler && @handler.next_message
       end
       

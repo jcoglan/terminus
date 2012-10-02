@@ -38,7 +38,7 @@ module Terminus
         @parser.handshake_response
       end
       
-      def parse(data)
+      def <<(data)
         @parser.parse(data)
       end
       
