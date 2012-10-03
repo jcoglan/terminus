@@ -23,35 +23,17 @@
   
   withPackageManager(function() {
     JS.cacheBust = true;
-    if (!window.steal) window.steal = {then: function(fn) { fn() }};
     
     JS.Packages(function() { with(this) {
-      file(host + faye + '/client.js')
-        .provides('Faye', 'Faye.Client');
-      
-      file(host + '/xpath/pathology-min.js')
-        .provides('document.evaluate');
-      
-      file(host + '/syn/synthetic.js',
-           host + '/syn/mouse.js',
-           host + '/syn/browsers.js',
-           host + '/syn/drag/drag.js')
-        .provides('Syn');
-      
-      file(host + '/terminus.js')
-        .requires('Faye.Client', 'document.evaluate', 'Syn')
-        .provides('Terminus');
+      file(host + faye + '/client.js').provides('Faye', 'Faye.Client');
+      file(host + '/compiled/terminus-min.js').requires('Faye.Client').provides('Terminus');
     }});
     
-    JS.require('Faye', function() {
-      JS.require('document.evaluate', function() {
-        JS.require('Syn', function() {
-          JS.require('Terminus', function() {
-            Terminus.connect(host + faye);
-          });
-        });
-      });
-    });
+    JS.require('Faye.Client', function() {
+      JS.require('Terminus', function() {
+        Terminus.connect(host + faye);
+     });
+   });
   });
 })();
 

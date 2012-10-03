@@ -1,0 +1,6 @@
+{
+  "name": "terminus",
+  "version": "0.0.0",
+  "devDependencies": {"uglify-js": ""}
+}
+

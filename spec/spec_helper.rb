@@ -21,7 +21,7 @@ def select_browser
                      end
 end
 
-at_exit { Terminus.return_to_dock }
+at_exit { Terminus.browser.return_to_dock }
 
 # We use WEBrick to boot the test app, because if we use Thin (the default) the
 # slow response used to test Ajax resynchronization blocks the event loop. This

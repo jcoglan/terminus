@@ -4,6 +4,7 @@ module Terminus
     CONTENT_TYPES   = %w[text/plain text/html]
     BASIC_RESOURCES = %w[/favicon.ico /robots.txt]
     MAX_REDIRECTS   = 5
+    REDIRECT_CODES  = [301, 302, 303, 305, 307]
     
     INFINITE_REDIRECT_RESPONSE = [
       200,
@@ -34,7 +35,7 @@ module Terminus
     def call(env)
       response = @app.call(env)
       
-      if response.first == 302
+      if REDIRECT_CODES.include?(response.first)
         @redirects += 1
         if @redirects > MAX_REDIRECTS
           @redirects = 0
@@ -50,7 +51,7 @@ module Terminus
       end
       
       return response if response.first == -1 or              # async response
-             response.first.between?(300,399) or              # redirects
+             REDIRECT_CODES.include?(response.first) or       # redirects
              BASIC_RESOURCES.include?(env['PATH_INFO']) or    # not pages - favicon etc
              env.has_key?('HTTP_X_REQUESTED_WITH')            # Ajax calls
       

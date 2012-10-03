@@ -242,7 +242,7 @@ module Terminus
     end
     
     def start_connector
-      return if @connector
+      return if @connector or Terminus.browser != self
       @connector = Connector::Server.new
       messenger.publish(socket_channel, 'url' => "ws://#{@dock_host}:#{@connector.port}/")
     end

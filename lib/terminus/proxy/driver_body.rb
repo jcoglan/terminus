@@ -2,8 +2,10 @@ module Terminus
   class Proxy
     
     class DriverBody
+      ASYNC_BROWSERS = %w[Android]
+      
       TEMPLATE = ERB.new(<<-DRIVER)
-        <script id="terminus-data" type="text/javascript">
+        <script type="text/javascript" id="terminus-data">
           TERMINUS_STATUS = <%= @response.first %>;
           TERMINUS_HEADERS = {};
           <% @response[1].each do |key, value| %>
@@ -15,22 +17,35 @@ module Terminus
           (function() {
             var terminusScript = document.getElementById('terminus-data');
             terminusScript.parentNode.removeChild(terminusScript);
-            
-            var head   = document.getElementsByTagName('head')[0],
-                script = document.createElement('script');
-            
-            script.type = 'text/javascript';
-            script.src  = 'http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/bootstrap.js';
-            
-            head.appendChild(script);
           })();
         </script>
+        <% if @async %>
+          <script type="text/javascript">
+            (function() {
+              var head = document.getElementsByTagName('head')[0],
+                  script = document.createElement('script');
+              
+              script.type = 'text/javascript';
+              script.src = '<%= @host %>/bootstrap.js';
+              head.appendChild(script);
+            })();
+          </script>
+        <% else %>
+          <script type="text/javascript" src="<%= @host %><%= FAYE_MOUNT %>/client.js"></script>
+          <script type="text/javascript" src="<%= @host %>/compiled/terminus-min.js"></script>
+          <script type="text/javascript">
+            Terminus.connect('<%= @host %><%= FAYE_MOUNT %>');
+          </script>
+        <% end %>
+        
       DRIVER
       
       def initialize(env, response)
         @env      = env
         @response = response
         @body     = response[2]
+        @host     = "http://#{@env['SERVER_NAME']}:#{Terminus.port}"
+        @async    = ASYNC_BROWSERS.include?(UserAgent.parse(env['HTTP_USER_AGENT']).browser)
       end
       
       def each(&block)

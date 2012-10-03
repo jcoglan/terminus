@@ -1,5 +1,6 @@
 .bundle
 *.gem
-.DS_Store
 Gemfile.lock
-.redcar
+lib/terminus/public/compiled
+node_modules
+
