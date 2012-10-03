@@ -5,6 +5,10 @@ describe Capybara::Driver::Terminus do
     @driver = Capybara::Driver::Terminus.new(TestApp)
     select_browser
   end
+  
+  after do
+    Terminus.browser.return_to_dock unless ENV['USER_AGENT']
+  end
 
   single_window = %w[Android iPad iPhone PhantomJS].include?(ENV['USER_AGENT'])
   
