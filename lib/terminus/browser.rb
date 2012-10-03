@@ -58,7 +58,9 @@ module Terminus
     end
     
     def current_url
-      @attributes['url'] || ''
+      return @attributes['url'] || '' unless @connector
+      url = ask([:current_url])
+      @controller.rewrite_local(url, @dock_host).to_s
     end
     
     def docked?
