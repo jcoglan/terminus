@@ -93,6 +93,11 @@ module Terminus
       @attributes['id']
     end
     
+    def infinite_redirect?
+      return @infinite_redirect unless @connector
+      evaluate_script('!!window.TERMINUS_INFINITE_REDIRECT')
+    end
+    
     def name
       return 'PhantomJS' if @user_agent.to_str =~ /\bPhantomJS\b/
       @user_agent.browser
@@ -180,7 +185,7 @@ module Terminus
         wait_for_ping
       end
       
-      if @infinite_redirect
+      if infinite_redirect?
         @infinite_redirect = nil
         raise Capybara::InfiniteRedirectError
       end
