@@ -18,14 +18,20 @@ module Terminus
     def click
       page    = @browser.page_id
       options = @driver ? @driver.options : {}
-      command = @browser.tell([:click, @id, options])
       
-      result = @browser.wait_with_timeout(:click_response) do
-        @browser.result(command) || (@browser.page_id != page)
+      value = if @browser.connector
+        @browser.ask([:click, @id, options])
+      else
+        command = @browser.tell([:click, @id, options])
+        
+        result = @browser.wait_with_timeout(:click_response) do
+          @browser.result(command) || (@browser.page_id != page)
+        end
+        Hash === result ? result[:value] : nil
       end
       
-      if Hash === result and String === result[:value]
-        raise Capybara::TimeoutError, result[:value]
+      if String === value
+        raise Capybara::TimeoutError, value
       end
     end
     

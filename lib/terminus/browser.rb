@@ -2,6 +2,7 @@ module Terminus
   class Browser
     
     include Timeouts
+    attr_reader :connector
     
     extend Forwardable
     def_delegators :@user_agent, :os, :version
