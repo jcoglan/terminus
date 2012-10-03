@@ -54,8 +54,7 @@ module Terminus
     end
     
     def current_path
-      return nil unless url = @attributes['url']
-      URI.parse(url).path
+      URI.parse(current_url).path
     end
     
     def current_url
