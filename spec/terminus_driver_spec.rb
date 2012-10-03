@@ -6,10 +6,6 @@ describe Capybara::Driver::Terminus do
     select_browser
   end
 
-  after do
-    Terminus.browser.return_to_dock
-  end
-
   single_window = %w[Android iPad iPhone PhantomJS].include?(ENV['USER_AGENT'])
   
   it_should_behave_like "driver"

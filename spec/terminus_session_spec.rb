@@ -6,10 +6,6 @@ describe Capybara::Session do
       @session = Capybara::Session.new(:terminus, TestApp)
       select_browser
     end
-
-    after do
-      Terminus.browser.return_to_dock
-    end
     
     it_should_behave_like "session"
     it_should_behave_like "session with headers support"
