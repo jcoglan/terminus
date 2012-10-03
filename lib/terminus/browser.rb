@@ -58,9 +58,10 @@ module Terminus
     end
     
     def current_url
-      return @attributes['url'] || '' unless @connector
-      url = ask([:current_url])
-      @controller.rewrite_local(url, @dock_host).to_s
+      url = @attributes['url']
+      return '' unless url
+      return url unless @connector
+      rewrite_local(ask([:current_url]))
     end
     
     def docked?
@@ -111,8 +112,7 @@ module Terminus
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       
-      uri = @controller.rewrite_local(message['url'], @dock_host)
-      message['url'] = uri.to_s
+      message['url'] = rewrite_local(message['url'])
       
       @attributes = @attributes.merge(message)
       @user_agent = UserAgent.parse(message['ua'])
@@ -180,6 +180,7 @@ module Terminus
       
       if @connector
         ask([:visit, uri.to_s])
+        @attributes['url'] = rewrite_local(uri)
       else
         tell([:visit, uri.to_s])
         wait_for_ping
@@ -238,6 +239,10 @@ module Terminus
       else
         @docked = false
       end
+    end
+    
+    def rewrite_local(url)
+      @controller.rewrite_local(url.to_s, @dock_host).to_s
     end
     
     def start_connector
