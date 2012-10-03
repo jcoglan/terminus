@@ -72,7 +72,7 @@ module Terminus
     end
     
     def execute_script(expression)
-      tell([:execute, expression])
+      @connector ? ask([:execute, expression]) : tell([:execute, expression])
       nil
     end
     
