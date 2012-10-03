@@ -34,6 +34,10 @@ module Terminus
         @messages = []
       end
       
+      def url
+        "ws://#{env['HTTP_HOST']}/"
+      end
+      
       def handshake_response
         @parser.handshake_response
       end

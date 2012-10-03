@@ -8,7 +8,9 @@ module Terminus
     TIMEOUT = 30
     
     def wait_with_timeout(name, duration = TIMEOUT, &predicate)
-      result, time_out = nil, false
+      result, time_out = predicate.call, false
+      return result if result
+      
       add_timeout(name, duration) { time_out = true }
       
       while !result and !time_out

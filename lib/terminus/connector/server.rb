@@ -55,7 +55,7 @@ module Terminus
         result = receive
         reset if result.nil?
         result
-      rescue Errno::EPIPE, Errno::EWOULDBLOCK
+      rescue Errno::ECONNRESET, Errno::EPIPE, Errno::EWOULDBLOCK
         reset
         nil
       end

@@ -30,9 +30,17 @@ module Terminus
     end
     
     def ask(command, retries = RETRY_LIMIT)
-      id = tell(command)
-      result_hash = wait_with_timeout(:result) { result(id) }
-      value = result_hash[:value]
+      value = if @connector
+        message = Yajl::Encoder.encode('commandId' => '_', 'command' => command)
+        response = @connector.send(message)
+        return ask(command) if response.nil?
+        result_hash = Yajl::Parser.parse(response)
+        result_hash['value']
+      else
+        id = tell(command)
+        result_hash = wait_with_timeout(:result) { result(id) }
+        result_hash[:value]
+      end
       raise ObsoleteElementError if value.nil?
       value
     rescue Timeouts::TimeoutError => e
@@ -110,6 +118,8 @@ module Terminus
         @parent.frame!(self) unless @parent == self
       end
       
+      start_connector if message['sockets']
+      
       @ping = true
     end
     
@@ -151,7 +161,7 @@ module Terminus
     def tell(command)
       id = @namespace.generate
       p [id, command] if Terminus.debug
-      messenger.publish(channel, 'command' => command, 'commandId' => id)
+      messenger.publish(command_channel, 'command' => command, 'commandId' => id)
       id
     end
     
@@ -159,8 +169,13 @@ module Terminus
       close_frames!
       uri = @controller.rewrite_remote(url, @dock_host)
       uri.host = @dock_host if uri.host =~ LOCALHOST
-      tell([:visit, uri.to_s])
-      wait_for_ping
+      
+      if @connector
+        ask([:visit, uri.to_s])
+      else
+        tell([:visit, uri.to_s])
+        wait_for_ping
+      end
       
       if @infinite_redirect
         @infinite_redirect = nil
@@ -187,14 +202,19 @@ module Terminus
     def drop_dead!
       remove_timeout(:dead)
       close_frames!
+      @connector.close if @connector
       @dead = true
       @controller.drop_browser(self)
     end
     
   private
     
-    def channel
+    def command_channel
       "/terminus/clients/#{id}"
+    end
+    
+    def socket_channel
+      "/terminus/sockets/#{id}"
     end
     
     def close_frames!
@@ -210,6 +230,12 @@ module Terminus
       else
         @docked = false
       end
+    end
+    
+    def start_connector
+      return if @connector
+      @connector = Connector::Server.new
+      messenger.publish(socket_channel, 'url' => "ws://#{@dock_host}:#{@connector.port}/")
     end
     
     def messenger
