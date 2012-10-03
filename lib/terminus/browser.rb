@@ -155,6 +155,7 @@ module Terminus
     end
     
     def return_to_dock
+      return unless @dock_host
       visit("http://#{@dock_host}:#{Terminus.port}/")
     end
     
