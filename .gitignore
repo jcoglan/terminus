@@ -1,6 +1,5 @@
 .bundle
 *.gem
 Gemfile.lock
-lib/terminus/public/compiled
 node_modules
 
