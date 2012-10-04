@@ -45,6 +45,18 @@ Capybara::Driver::Terminus
     should make headers available through response_headers
   it should behave like driver with status code support
     should make the status code available through status_code
+  it should behave like driver with frame support
+    #within_frame
+      should find the div in frameOne
+      should find the div in FrameTwo
+      should find the text div in the main window after finding text in frameOne
+      should find the text div in the main window after finding text in frameTwo
+  it should behave like driver with support for window switching
+    #within_window
+      should find the div in firstPopup
+      should find the div in secondPopup
+      should find the divs in both popups
+      should find the div in the main window after finding a div in a popup
   it should behave like driver with cookies support
     #reset!
       should set and clean cookies
@@ -850,8 +862,8 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-Finished in 3 minutes 35.8 seconds
-502 examples, 8 failures
+Finished in 3 minutes 11.29 seconds
+510 examples, 8 failures
 
 Failed examples:
 

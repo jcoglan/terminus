@@ -45,7 +45,7 @@ module Terminus
       raise ObsoleteElementError if value.nil?
       value
     rescue Timeouts::TimeoutError => e
-      raise e if retries.zero?
+      raise e if retries == 1
       ask(command, retries - 1)
     end
     
@@ -125,7 +125,7 @@ module Terminus
         @parent.frame!(self) unless @parent == self
       end
       
-      # start_connector if message['sockets']
+      start_connector if message['sockets']
       
       @ping = true
     end
