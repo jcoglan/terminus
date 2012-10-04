@@ -13,10 +13,6 @@ module Terminus
       def bootstrap
         Packr.pack(erb(:bootstrap), :shrink_vars => true)
       end
-      
-      def host
-        "http://#{ env['HTTP_HOST'] }"
-      end
     end
     
     get '/' do

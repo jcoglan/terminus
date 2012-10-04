@@ -233,12 +233,8 @@ module Terminus
     
     def detect_dock_host
       uri = URI.parse(@attributes['url'])
-      if uri.port == Terminus.port
-        @docked = true
-        @dock_host = uri.host
-      else
-        @docked = false
-      end
+      @docked = (uri.port == Terminus.port)
+      @dock_host = @attributes['host']
     end
     
     def rewrite_local(url)
