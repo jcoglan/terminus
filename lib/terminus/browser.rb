@@ -125,7 +125,7 @@ module Terminus
         @parent.frame!(self) unless @parent == self
       end
       
-      start_connector if message['sockets']
+      # start_connector if message['sockets']
       
       @ping = true
     end
@@ -246,9 +246,10 @@ module Terminus
     end
     
     def start_connector
-      return if @connector or Terminus.browser != self
+      return if @connector or @dock_host.nil? or Terminus.browser != self
       @connector = Connector::Server.new
-      messenger.publish(socket_channel, 'url' => "ws://#{@dock_host}:#{@connector.port}/")
+      url = "ws://#{@dock_host}:#{@connector.port}/"
+      messenger.publish(socket_channel, 'url' => url)
     end
     
     def messenger

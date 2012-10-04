@@ -17,8 +17,8 @@ describe Capybara::Driver::Terminus do
   it_should_behave_like "driver with resynchronization support"
   it_should_behave_like "driver with header support"
   it_should_behave_like "driver with status code support"
-  #it_should_behave_like "driver with frame support"
-  #it_should_behave_like "driver with support for window switching" unless single_window
+  it_should_behave_like "driver with frame support"
+  it_should_behave_like "driver with support for window switching" unless single_window
   it_should_behave_like "driver with cookies support"
   it_should_behave_like "driver with infinite redirect detection"
 end
