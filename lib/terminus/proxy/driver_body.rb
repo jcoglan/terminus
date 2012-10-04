@@ -15,15 +15,17 @@ module Terminus
           (function() {
             var terminusScript = document.getElementById('terminus-data');
             terminusScript.parentNode.removeChild(terminusScript);
-            
-            var head   = document.getElementsByTagName('head')[0],
-                script = document.createElement('script');
-            
-            script.type = 'text/javascript';
-            script.src  = 'http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/bootstrap.js';
-            
-            head.appendChild(script);
           })();
+        </script>
+        <script type="text/javascript" src="http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/messaging/client.js"></script>
+        <script type="text/javascript" src="http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/syn/synthetic.js"></script>
+        <script type="text/javascript" src="http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/syn/mouse.js"></script>
+        <script type="text/javascript" src="http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/syn/browsers.js"></script>
+        <script type="text/javascript" src="http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/syn/drag/drag.js"></script>
+        <script type="text/javascript" src="http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/xpath/pathology-min.js"></script>
+        <script type="text/javascript" src="http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/terminus.js"></script>
+        <script type="text/javascript">
+          Terminus.connect('http://<%= @env['SERVER_NAME'] %>:<%= Terminus.port %>/messaging');
         </script>
       DRIVER
       
