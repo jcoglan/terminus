@@ -12,8 +12,8 @@ module Terminus
       end
       
       def rewrite(fragment)
-        fragment.gsub(/\b(action|href)="([^"]*)"/i) do
-          %Q{#{$1}="#{ Terminus.rewrite_remote($2, @dock_host) }"}
+        fragment.gsub(/\b(action|href)=('[^']*?'|"[^"]*?"|\S*)/i) do
+          %Q{#{$1}="#{ Terminus.rewrite_remote($2[1..-2], @dock_host) }"}
         end
       end
     end
