@@ -1,7 +1,6 @@
 (function() {
-  var faye   = '<%= ::Terminus::FAYE_MOUNT %>',
-      host   = '<%= env['SERVER_NAME'] %>',
-      origin = 'http://' + host + ':' + <%= Terminus.port %>;
+  var faye = '<%= ::Terminus::FAYE_MOUNT %>',
+      host = '<%= host %>';
   
   var withPackageManager = function(callback) {
     if (window.JS && JS.Packages) return callback();
@@ -10,7 +9,7 @@
         head   = document.getElementsByTagName('head')[0];
     
     script.type = 'text/javascript';
-    script.src  = origin + '/loader.js';
+    script.src  = host + '/loader.js';
     
     script.onload = script.onreadystatechange = function() {
       var state = script.readyState;
@@ -26,13 +25,13 @@
     JS.cacheBust = true;
     
     JS.Packages(function() { with(this) {
-      file(origin + faye + '/client.js').provides('Faye', 'Faye.Client');
-      file(origin + '/compiled/terminus-min.js').requires('Faye.Client').provides('Terminus');
+      file(host + faye + '/client.js').provides('Faye', 'Faye.Client');
+      file(host + '/compiled/terminus-min.js').requires('Faye.Client').provides('Terminus');
     }});
     
     JS.require('Faye.Client', function() {
       JS.require('Terminus', function() {
-        Terminus.connect(host, <%= ::Terminus.port %>);
+        Terminus.connect(host + faye);
       });
     });
   });
