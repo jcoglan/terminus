@@ -1,10 +1,12 @@
 class Capybara::Driver::Terminus < Capybara::Driver::Base
   attr_reader :options
   
+  NULL_APP = lambda do |env|
+    [200, {'Content-Type' => 'text/html'}, ['']]
+  end
+  
   def initialize(app = nil, options = {})
-    raise ArgumentError.new if app.nil?
-    
-    @app         = Terminus::Proxy[app]
+    @app         = Terminus::Proxy[app || NULL_APP]
     @options     = options
     @rack_server = Capybara::Server.new(@app)
     
@@ -54,11 +56,22 @@ private
   end
 end
 
-# Capybara 0.3.9 looks in the Capybara::Driver namespace for
-# appropriate drivers. 0.4 uses this registration API instead.
+# Capybara 0.3.9 looks in the Capybara::Driver namespace for appropriate
+# drivers. 0.4 uses this registration API instead.
 if Capybara.respond_to?(:register_driver)
   Capybara.register_driver :terminus do |app|
     Capybara::Driver::Terminus.new(app)
   end
+end
+
+# We use WEBrick to boot the test app, because if we use Thin (the default) the
+# slow response used to test Ajax resynchronization blocks the event loop. This
+# stops Terminus receiving messages and causes false positives: the client is
+# not really waiting for Ajax to complete, it's just having its messages blocked
+# because EventMachine is frozen.
+
+Capybara.server do |app, port|
+  handler = Rack::Handler.get('webrick')
+  handler.run(app, :Port => port, :AccessLog => [], :Logger => WEBrick::Log::new(nil, 0))
 end
 

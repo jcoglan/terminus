@@ -77,12 +77,15 @@ module Terminus
       uri.scheme = 'http'
       uri.host, uri.port = (dock_host || server.host), server.port
       uri
+    rescue URI::InvalidURIError
+      url
     end
     
     def server_running?(server)
       return false unless server.port
       uri = URI.parse("http://#{server.host}:#{server.port}/")
-      Net::HTTP.get_response(uri) && true
+      Net::HTTP.start(uri.host, uri.port) { |h| h.head(uri.path) }
+      true
     rescue
       false
     end
