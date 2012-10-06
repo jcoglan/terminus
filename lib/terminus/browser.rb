@@ -126,8 +126,8 @@ module Terminus
       
       @infinite_redirect = message['infinite']
       
-      if parent = message['parent']
-        @parent = Terminus.browser(parent)
+      if id =~ /\//
+        @parent = Terminus.browser(id.gsub(/\/[^\/]+$/, ''))
         @parent.frame!(self) unless @parent == self
       end
       
