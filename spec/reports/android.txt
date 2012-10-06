@@ -763,7 +763,7 @@ Failures:
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:46:in `set'
+     # ./lib/terminus/node.rb:52:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:46:in `wait_until'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `set'
@@ -776,7 +776,7 @@ Failures:
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:46:in `set'
+     # ./lib/terminus/node.rb:52:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:46:in `wait_until'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `set'
@@ -789,7 +789,7 @@ Failures:
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:46:in `set'
+     # ./lib/terminus/node.rb:52:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:46:in `wait_until'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `set'
@@ -802,7 +802,7 @@ Failures:
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:46:in `set'
+     # ./lib/terminus/node.rb:52:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:46:in `wait_until'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `set'
@@ -815,7 +815,7 @@ Failures:
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:46:in `set'
+     # ./lib/terminus/node.rb:52:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:46:in `wait_until'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `set'
@@ -828,7 +828,7 @@ Failures:
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:46:in `set'
+     # ./lib/terminus/node.rb:52:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:46:in `wait_until'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `set'
@@ -841,7 +841,7 @@ Failures:
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/lib/capybara/spec/session.rb:88
-     # ./lib/terminus/node.rb:46:in `set'
+     # ./lib/terminus/node.rb:52:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:46:in `wait_until'
      # ./vendor/capybara/lib/capybara/node/element.rb:75:in `set'
@@ -856,7 +856,7 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-Finished in 83 minutes 1.2 seconds
+Finished in 63 minutes 43.28 seconds
 506 examples, 8 failures
 
 Failed examples:
