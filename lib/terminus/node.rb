@@ -20,7 +20,7 @@ module Terminus
       options = @driver ? @driver.options : {}
       
       value = if @browser.connector
-        @browser.ask([:click, @id, options])
+        @browser.ask([:click, @id, options], false)
       else
         command = @browser.tell([:click, @id, options])
         

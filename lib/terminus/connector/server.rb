@@ -30,6 +30,7 @@ module Terminus
       
       def initialize(browser, timeout = BIND_TIMEOUT)
         @browser = browser
+        @skips   = 0
         @server  = start_server
         @timeout = timeout
         reset
@@ -50,7 +51,7 @@ module Terminus
         @server.addr[1]
       end
       
-      def send(message)
+      def request(message)
         p [:send, @browser.id, message] if Terminus.debug
         accept unless connected?
         @socket.write(@handler.encode(message))
@@ -78,14 +79,20 @@ module Terminus
       end
       
       def accept
+        @skips.times { @server.accept.close }
         @socket = @server.accept
-        while msg = @socket.gets
-          @parser << msg
-          break if msg == "\r\n"
+        while line = @socket.gets
+          @parser << line
+          break if line == "\r\n"
         end
-        @handler = SocketHandler.new(self, env)
-        @socket.write(@handler.handshake_response)
-        p [:accept, @browser.id, @handler.url] if Terminus.debug
+        if line.nil?
+          accept
+          @skips += 1
+        else
+          @handler = SocketHandler.new(self, env)
+          @socket.write(@handler.handshake_response)
+          p [:accept, @browser.id, @handler.url] if Terminus.debug
+        end
       end
       
       def env

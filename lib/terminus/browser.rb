@@ -34,10 +34,13 @@ module Terminus
       p [:ask, id, command] if Terminus.debug
       value = if @connector
         message = Yajl::Encoder.encode('commandId' => '_', 'command' => command)
-        response = @connector.send(message)
-        return ask(command) if response.nil?
-        result_hash = Yajl::Parser.parse(response)
-        result_hash['value']
+        response = @connector.request(message)
+        if response.nil?
+          retries == false ? false : ask(command)
+        else
+          result_hash = Yajl::Parser.parse(response)
+          result_hash['value']
+        end
       else
         command_id = tell(command)
         result_hash = wait_with_timeout(:result) { result(command_id) }
@@ -185,7 +188,7 @@ module Terminus
       uri.host = @dock_host if uri.host =~ LOCALHOST
       
       if @connector
-        ask([:visit, uri.to_s])
+        ask([:visit, uri.to_s], false)
         @attributes['url'] = rewrite_local(uri)
       else
         tell([:visit, uri.to_s])
