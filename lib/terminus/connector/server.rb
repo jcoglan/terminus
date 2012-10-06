@@ -28,7 +28,8 @@ module Terminus
       RECV_SIZE    = 1024
       BIND_TIMEOUT = 5
       
-      def initialize(timeout = BIND_TIMEOUT)
+      def initialize(browser, timeout = BIND_TIMEOUT)
+        @browser = browser
         @server  = start_server
         @timeout = timeout
         reset
@@ -50,9 +51,11 @@ module Terminus
       end
       
       def send(message)
+        p [:send, @browser.id, message] if Terminus.debug
         accept unless connected?
         @socket.write(@handler.encode(message))
         result = receive
+        p [:recv, @browser.id, result] if Terminus.debug
         reset if result.nil?
         result
       rescue Errno::ECONNRESET, Errno::EPIPE, Errno::EWOULDBLOCK
@@ -82,6 +85,7 @@ module Terminus
         end
         @handler = SocketHandler.new(self, env)
         @socket.write(@handler.handshake_response)
+        p [:accept, @browser.id, @handler.url] if Terminus.debug
       end
       
       def env
@@ -98,6 +102,7 @@ module Terminus
       end
       
       def receive
+        p [:receive, @browser.id] if Terminus.debug
         start = Time.now
         
         until @handler.message?

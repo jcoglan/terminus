@@ -11,7 +11,7 @@ module Terminus
     
     def browser(id = nil)
       return @browser if id.nil?
-      @browsers[id] ||= Browser.new(self)
+      @browsers[id] ||= Browser.new(self, id)
     end
     
     def browsers

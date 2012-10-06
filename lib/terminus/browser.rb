@@ -7,9 +7,9 @@ module Terminus
     extend Forwardable
     def_delegators :@user_agent, :os, :version
     
-    def initialize(controller)
+    def initialize(controller, id)
       @controller = controller
-      @attributes = {}
+      @attributes = {'id' => id}
       @docked     = false
       @frames     = Set.new
       @namespace  = Faye::Namespace.new
@@ -31,6 +31,7 @@ module Terminus
     end
     
     def ask(command, retries = RETRY_LIMIT)
+      p [:ask, id, command] if Terminus.debug
       value = if @connector
         message = Yajl::Encoder.encode('commandId' => '_', 'command' => command)
         response = @connector.send(message)
@@ -38,10 +39,11 @@ module Terminus
         result_hash = Yajl::Parser.parse(response)
         result_hash['value']
       else
-        id = tell(command)
-        result_hash = wait_with_timeout(:result) { result(id) }
+        command_id = tell(command)
+        result_hash = wait_with_timeout(:result) { result(command_id) }
         result_hash[:value]
       end
+      p [:val, id, command, value] if Terminus.debug
       raise ObsoleteElementError if value.nil?
       value
     rescue Timeouts::TimeoutError => e
@@ -108,7 +110,11 @@ module Terminus
     end
     
     def ping!(message)
-      p message if Terminus.debug
+      if Terminus.debug
+        p [:ping, id]
+        p [:recv, message]
+      end
+      
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       
@@ -144,7 +150,7 @@ module Terminus
     end
     
     def result!(message)
-      p message if Terminus.debug
+      p [:result, id, message['commandId'], message['result']] if Terminus.debug
       @results[message['commandId']] = {:value => message['result']}
     end
     
@@ -167,10 +173,10 @@ module Terminus
     end
     
     def tell(command)
-      id = @namespace.generate
-      p [id, command] if Terminus.debug
-      messenger.publish(command_channel, 'command' => command, 'commandId' => id)
-      id
+      command_id = @namespace.generate
+      p [:tell, id, command, command_id] if Terminus.debug
+      messenger.publish(command_channel, 'command' => command, 'commandId' => command_id)
+      command_id
     end
     
     def visit(url, retries = RETRY_LIMIT)
@@ -247,8 +253,9 @@ module Terminus
     
     def start_connector
       return if @connector or @dock_host.nil? or Terminus.browser != self
-      @connector = Connector::Server.new
+      @connector = Connector::Server.new(self)
       url = "ws://#{@dock_host}:#{@connector.port}/"
+      p [:connect, id, url] if Terminus.debug
       messenger.publish(socket_channel, 'url' => url)
     end
     
