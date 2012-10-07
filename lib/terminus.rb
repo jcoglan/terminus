@@ -9,6 +9,7 @@ require 'uri'
 
 require 'capybara'
 require 'childprocess'
+require 'cookiejar'
 require 'eventmachine'
 require 'faye'
 require 'rack-proxy'
@@ -74,6 +75,7 @@ module Terminus
     def_delegators :controller, :browser,
                                 :browsers,
                                 :browser=,
+                                :cookies,
                                 :ensure_browsers,
                                 :return_to_dock,
                                 :rewrite_local,

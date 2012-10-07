@@ -33,7 +33,9 @@ module Terminus
     end
     
     def call(env)
+      add_cookies(env)
       response = @app.call(env)
+      store_cookies(env, response)
       
       if REDIRECT_CODES.include?(response.first)
         @redirects += 1
@@ -65,5 +67,30 @@ module Terminus
       response
     end
     
+  private
+    
+    def add_cookies(env)
+      return unless External === @app
+      cookies = Terminus.cookies.get_cookies(env['REQUEST_URI'])
+      env['HTTP_COOKIE'] = (cookies + [env['HTTP_COOKIE']]).compact.join('; ')
+    rescue => e
+      puts e.message
+    end
+    
+    def store_cookies(env, response)
+      set_cookie = response[1].keys.grep(/^set-cookie$/i).first
+      return unless set_cookie
+      
+      host = External === @app ? @app.uri.host : env['HTTP_HOST']
+      endpoint = "http://#{host}#{env['PATH_INFO']}"
+      
+      [*response[1][set_cookie]].compact.each do |cookie|
+        cookie.split(/\s*,\s*(?=\S+=)/).each do |value|
+          Terminus.cookies.set_cookie(endpoint, value)
+        end
+      end
+    end
+    
   end
 end
+

@@ -26,6 +26,10 @@ module Terminus
       end
     end
     
+    def cookies
+      @cookies ||= CookieJar::Jar.new
+    end
+    
     def drop_browser(browser)
       @browsers.delete(browser.id)
       @browser = nil if @browser == browser
