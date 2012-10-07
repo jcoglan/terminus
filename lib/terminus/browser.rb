@@ -32,7 +32,7 @@ module Terminus
     end
     
     def ask(command, retries = RETRY_LIMIT)
-      p [:ask, id, command] if Terminus.debug
+      debug(:ask, id, command)
       value = if @connector
         message = Yajl::Encoder.encode('commandId' => '_', 'command' => command)
         response = @connector.request(message)
@@ -47,7 +47,7 @@ module Terminus
         result_hash = wait_with_timeout(:result) { result(command_id) }
         result_hash[:value]
       end
-      p [:val, id, command, value] if Terminus.debug
+      debug(:val, id, command, value)
       raise ObsoleteElementError if value.nil?
       value
     rescue Timeouts::TimeoutError => e
@@ -68,6 +68,10 @@ module Terminus
       return '' unless url
       return url unless @connector
       rewrite_local(ask([:current_url]))
+    end
+    
+    def debug(*args)
+      p args if Terminus.debug
     end
     
     def docked?
@@ -114,10 +118,8 @@ module Terminus
     end
     
     def ping!(message)
-      if Terminus.debug
-        p [:ping, id]
-        p [:recv, message]
-      end
+      debug(:ping, id)
+      debug(:recv, message)
       
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
@@ -154,7 +156,7 @@ module Terminus
     end
     
     def result!(message)
-      p [:result, id, message['commandId'], message['result']] if Terminus.debug
+      debug(:result, id, message['commandId'], message['result'])
       @results[message['commandId']] = {:value => message['result']}
     end
     
@@ -182,7 +184,7 @@ module Terminus
     
     def tell(command)
       command_id = @namespace.generate
-      p [:tell, id, command, command_id] if Terminus.debug
+      debug(:tell, id, command, command_id)
       messenger.publish(command_channel, 'command' => command, 'commandId' => command_id)
       command_id
     end
@@ -260,7 +262,7 @@ module Terminus
       return if @connector or @dock_host.nil? or Terminus.browser != self
       @connector = Connector::Server.new(self)
       url = "ws://#{@dock_host}:#{@connector.port}/"
-      p [:connect, id, url] if Terminus.debug
+      debug(:connect, id, url)
       messenger.publish(socket_channel, 'url' => url)
     end
     

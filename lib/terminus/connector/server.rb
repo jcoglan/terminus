@@ -53,12 +53,12 @@ module Terminus
       end
       
       def request(message)
-        p [:send, @browser.id, message] if Terminus.debug
+        @browser.debug(:send, @browser.id, message)
         accept unless connected?
         @socket.write(@handler.encode(message))
         true while @closing && receive
         result = receive
-        p [:recv, @browser.id, result] if Terminus.debug
+        @browser.debug(:recv, @browser.id, result)
         reset if result.nil?
         result
       rescue Errno::ECONNRESET, Errno::EPIPE, Errno::EWOULDBLOCK
@@ -97,7 +97,7 @@ module Terminus
         else
           @handler = SocketHandler.new(self, env)
           @socket.write(@handler.handshake_response)
-          p [:accept, @browser.id, @handler.url] if Terminus.debug
+          @browser.debug(:accept, @browser.id, @handler.url)
         end
       end
       
@@ -115,7 +115,7 @@ module Terminus
       end
       
       def receive
-        p [:receive, @browser.id] if Terminus.debug
+        @browser.debug(:receive, @browser.id)
         start = Time.now
         
         until @handler.message?
