@@ -47,9 +47,9 @@ module Terminus
         @redirects = 0
       end
       
-      if location = response[1]['Location']
+      if location = response[1].keys.grep(/^location$/i).first
         app_host = URI.parse('http://' + env['HTTP_HOST']).host
-        response[1]['Location'] = Terminus.rewrite_remote(location, app_host).to_s
+        response[1][location] = Terminus.rewrite_remote(response[1][location], app_host).to_s
       end
       
       return response if response.first == -1 or              # async response
