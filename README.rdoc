@@ -11,6 +11,26 @@ browser plugins. This allows several types of testing to be automated:
 * Testing on remote machines, phones, iPads etc
 
 
+== Running the example
+
+Install the dependencies and boot the Terminus server, then open
+{http://localhost:70004/}[http://localhost:70004/] in your browser.
+
+    bundle install
+    bundle exec bin/terminus
+
+With your browser open, start an IRB session and begin controlling the app:
+
+    $ irb -r ./example/app
+    >> extend Capybara::DSL
+    >> visit '/'
+    >> click_link 'Sign up!'
+    >> fill_in 'Username', :with => 'jcoglan'
+    >> fill_in 'Password', :with => 'hello'
+    >> choose 'Web scale'
+    >> click_button 'Go!'
+
+
 == License
 
 (The MIT License)
