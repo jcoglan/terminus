@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'bundler/setup'
 require 'sinatra'
 require 'yaml'
 
@@ -30,7 +31,5 @@ end
 Thread.new do
   Capybara.current_driver = :terminus
   Capybara.app = Example::App
-  
-  Terminus.ensure_browsers
   Terminus.browser = :docked
 end
