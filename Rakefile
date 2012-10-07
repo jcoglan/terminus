@@ -1,4 +1,4 @@
-USER_AGENTS = %w[PhantomJS Chrome Firefox Opera Safari]
+USER_AGENTS = %w[PhantomJS Chrome Firefox Safari Opera]
 require 'fileutils'
 
 def run_specs(ua)
