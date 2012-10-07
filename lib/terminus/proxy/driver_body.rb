@@ -34,7 +34,9 @@ module Terminus
           <script type="text/javascript" src="<%= @host %><%= FAYE_MOUNT %>/client.js"></script>
           <script type="text/javascript" src="<%= @host %>/compiled/terminus-min.js"></script>
           <script type="text/javascript">
-            Terminus.connect('<%= @env['SERVER_NAME'] %>', <%= Terminus.port %>);
+            setTimeout(function() {
+              Terminus.connect('<%= @env['SERVER_NAME'] %>', <%= Terminus.port %>);
+            }, 0);
           </script>
         <% end %>
         
