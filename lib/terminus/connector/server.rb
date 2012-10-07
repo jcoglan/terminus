@@ -37,6 +37,7 @@ module Terminus
       end
       
       def reset
+        @closing = false
         @env     = nil
         @handler = nil
         @parser  = Http::Parser.new
@@ -55,6 +56,7 @@ module Terminus
         p [:send, @browser.id, message] if Terminus.debug
         accept unless connected?
         @socket.write(@handler.encode(message))
+        true while @closing && receive
         result = receive
         p [:recv, @browser.id, result] if Terminus.debug
         reset if result.nil?
@@ -62,6 +64,10 @@ module Terminus
       rescue Errno::ECONNRESET, Errno::EPIPE, Errno::EWOULDBLOCK
         reset
         nil
+      end
+      
+      def drain_socket
+        @closing = true if @socket
       end
       
     private

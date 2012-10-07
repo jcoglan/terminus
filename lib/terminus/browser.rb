@@ -189,6 +189,7 @@ module Terminus
       
       if @connector
         ask([:visit, uri.to_s], false)
+        @connector.drain_socket
         @attributes['url'] = rewrite_local(uri)
       else
         tell([:visit, uri.to_s])
