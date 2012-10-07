@@ -3,6 +3,7 @@ module Terminus
     
     include Timeouts
     attr_reader :connector
+    attr_writer :sockets
     
     extend Forwardable
     def_delegators :@user_agent, :os, :version
@@ -134,7 +135,7 @@ module Terminus
         @parent.frame!(self) unless @parent == self
       end
       
-      start_connector if message['sockets']
+      start_connector if message['sockets'] and sockets?
       
       @ping = true
     end
@@ -165,6 +166,10 @@ module Terminus
     def return_to_dock
       return unless @dock_host
       visit("http://#{@dock_host}:#{Terminus.port}/")
+    end
+    
+    def sockets?
+      @sockets.nil? ? Terminus.sockets != false : @sockets
     end
     
     def source

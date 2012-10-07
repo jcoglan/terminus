@@ -7,6 +7,7 @@ require root + '/vendor/capybara/spec/spec_helper'
 require root + '/lib/terminus'
 
 Terminus.debug = ENV.has_key?('DEBUG')
+Terminus.sockets = false if ENV.has_key?('NOSOCKET')
 
 case ENV['USER_AGENT']
   when 'auto'      then Terminus.start_browser

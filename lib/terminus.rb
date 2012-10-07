@@ -39,7 +39,7 @@ module Terminus
   end
   
   class << self
-    attr_accessor :debug
+    attr_accessor :debug, :sockets
     
     def create(options = {})
       Server.new(options)
