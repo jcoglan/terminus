@@ -48,7 +48,7 @@
     <h2>Supported Capybara features</h2>
     
     <ul>
-      <li>All core Capybara 1.1.x features except file attachments</li>
+      <li>All core Capybara 1.1.x features except <tt>attach_file</tt></li>
       <li>Drive most major desktop and mobile browsers</li>
       <li>Execute JavaScript</li>
       <li>Resynchronization (waiting for <tt>setTimeout</tt> and <tt>jQuery.ajax</tt>)</li>
@@ -58,12 +58,18 @@
       <li>Detect infinite redirects</li>
     </ul>
     
-    <p>By &lsquo;most browsers&rsquo;, I mean Android, Chrome, Firefox, Internet
-      Explorer, Opera, PhantomJS, Safari and Mobile Safari. Some features are
-      platform-dependent, for example frame and window switching does not work
-      in IE, PhantomJS, or mobile browsers. Internet Explorer support is
-      somewhat experimental and has some performance problems, but mostly works
-      in IE8.</p>
+    <h2>Supported browsers</h2>
+    
+    <ul>
+      <li>Android (except window switching)</li>
+      <li>Chrome</li>
+      <li>Firefox</li>
+      <li>Internet Explorer 8 (experimental &amp; incomplete)</li>
+      <li>Opera (with degraded performance)</li>
+      <li>PhantomJS  (except window switching)</li>
+      <li>Safari</li>
+      <li>Mobile Safari (except window switching)</li>
+    </ul>
     
     <h2>How to use it</h2>
     
@@ -95,9 +101,9 @@ Capybara.current_driver = :terminus</pre>
     
     <pre class="prettyprint">Terminus.browser = :docked</pre>
     
-    <p>After each test is finished, you need to return the browser to the
+    <p>After your tests are finished, you need to return the browser to the
       holding page to make it ready to accept new work. In an <tt>after</tt>
-      block:</p>
+      block or using the <tt>at_exit</tt> hook:</p>
     
     <pre class="prettyprint">Terminus.return_to_dock</pre>
     
@@ -107,7 +113,7 @@ Capybara.current_driver = :terminus</pre>
     
     <p>You can skip running the <tt>terminus</tt> command and opening a browser
       by hand if you just want to use your default browser. Run this
-      command:</p>
+      command at the beginning of your test suite:</p>
     
     <pre class="prettyprint">Terminus.start_browser</pre>
     
