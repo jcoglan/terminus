@@ -2,7 +2,7 @@ SYN = %w[synthetic mouse browsers key drag/drag] unless defined? SYN
 
 Gem::Specification.new do |s|
   s.name              = "terminus"
-  s.version           = "0.3.1"
+  s.version           = "0.4.0"
   s.summary           = "Capybara driver for cross-browser and remote scripting"
   s.author            = "James Coglan"
   s.email             = "jcoglan@gmail.com"
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "capybara", ">= 0.4.0"
   s.add_dependency "childprocess", ">= 0.3.0"
   s.add_dependency "cookiejar", ">= 0.3.0"
-  s.add_dependency "faye", ">= 0.8.5"
+  s.add_dependency "faye", ">= 0.8.2"
   s.add_dependency "oyster", ">= 0.9.0"
   s.add_dependency "packr", ">= 3.1.0"
   s.add_dependency "rack", ">= 1.0.0"
