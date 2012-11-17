@@ -70,13 +70,17 @@ module Terminus
         uri.host   = remote_host.host
         uri.port   = remote_host.port
       end
-      uri.host = dock_host if dock_host and uri.host =~ LOCALHOST
+      uri.host = dock_host if dock_host and dock_host !~ LOCALHOST and uri.host =~ LOCALHOST
       uri
     end
     
     def rewrite_remote(url, dock_host = nil)
       uri = URI.parse(url)
-      return uri unless URI::HTTP === uri and uri.host !~ LOCALHOST and uri.host != dock_host
+      return uri unless URI::HTTP === uri
+      if uri.host =~ LOCALHOST or uri.host == dock_host
+        local_ports = [Terminus.port] + @host_aliases.values.map { |h| h.port }
+        return uri if local_ports.include?(uri.port)
+      end
       server = boot(uri)
       uri.scheme = 'http'
       uri.host, uri.port = (dock_host || server.host), server.port

@@ -24,7 +24,8 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   
   def visit(path)
     s = @rack_server
-    browser.visit("http://#{s.host}:#{s.port}#{path}")
+    path = "http://#{s.host}:#{s.port}#{path}" unless path =~ /^https?:\/\//
+    browser.visit(path)
   end
   
   def wait?
