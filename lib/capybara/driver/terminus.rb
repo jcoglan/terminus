@@ -37,6 +37,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :current_url,
                            :evaluate_script,
                            :execute_script,
+                           :html,
                            :reset!,
                            :response_headers,
                            :source,

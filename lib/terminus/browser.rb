@@ -55,10 +55,6 @@ module Terminus
       ask(command, retries - 1)
     end
     
-    def body
-      ask([:body])
-    end
-    
     def current_path
       URI.parse(current_url).path
     end
@@ -98,6 +94,11 @@ module Terminus
     def frames
       @frames.to_a
     end
+    
+    def html
+      ask([:body])
+    end
+    alias :body :html
     
     def id
       @attributes['id']
