@@ -23,7 +23,8 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   end
   
   def visit(path)
-    browser.visit(@rack_server.url(path))
+    s = @rack_server
+    browser.visit("http://#{s.host}:#{s.port}#{path}")
   end
   
   def wait?
