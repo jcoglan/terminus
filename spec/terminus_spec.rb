@@ -1,23 +1,32 @@
 require File.expand_path('../spec_helper', __FILE__)
 
-describe Terminus do
-  include Capybara::SpecHelper
-
-  before do
-    @session = Capybara::Session.new(:terminus, TestApp)
-    select_browser
+RSpec.configure do |config|
+  config.before do
+    Terminus.browser = case ENV['USER_AGENT']
+                       when 'iPhone' then {:os => /iPhone/}
+                       when 'iPad'   then {:os => /like Mac OS X/}
+                       when 'auto'   then Terminus.browser
+                       when String   then {:name => ENV['USER_AGENT']}
+                       else               :docked
+                       end
   end
   
-  after do
+  config.after do
     Terminus.browser.return_to_dock unless ENV['USER_AGENT']
   end
-
-  specs = Capybara::SpecHelper.instance_eval { @specs }
-  specs.each do |name, options, block|
-    next if name =~ /within/
-    describe name, options do
-      class_eval(&block)
-    end
-  end
 end
+
+session = Capybara::Session.new(:terminus, TestApp)
+
+Capybara::SpecHelper.run_specs session, 'terminus', :skip => [
+#  :drag,
+  :frames,
+#  :js,
+#  :response_headers,
+  :screenshot,
+#  :source,
+#  :status_code,
+#  :trigger,
+  :windows
+]
 

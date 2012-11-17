@@ -14,15 +14,5 @@ case ENV['USER_AGENT']
   when 'PhantomJS' then Terminus.start_phantomjs
 end
 
-def select_browser
-  Terminus.browser = case ENV['USER_AGENT']
-                     when 'iPhone' then {:os => /iPhone/}
-                     when 'iPad'   then {:os => /like Mac OS X/}
-                     when 'auto'   then Terminus.browser
-                     when String   then {:name => ENV['USER_AGENT']}
-                     else               :docked
-                     end
-end
-
 at_exit { Terminus.browser.return_to_dock }
 
