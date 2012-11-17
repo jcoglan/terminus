@@ -70,7 +70,6 @@ module Terminus
         uri.host   = remote_host.host
         uri.port   = remote_host.port
       end
-      uri.host = dock_host if dock_host and dock_host !~ LOCALHOST and uri.host =~ LOCALHOST
       uri
     end
     
