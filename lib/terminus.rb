@@ -28,6 +28,7 @@ module Terminus
   autoload :Client,      ROOT + '/terminus/client'
   autoload :Connector,   ROOT + '/terminus/connector'
   autoload :Controller,  ROOT + '/terminus/controller'
+  autoload :Headers,     ROOT + '/terminus/headers'
   autoload :Host,        ROOT + '/terminus/host'
   autoload :Node,        ROOT + '/terminus/node'
   autoload :Proxy,       ROOT + '/terminus/proxy'

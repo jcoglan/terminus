@@ -152,7 +152,7 @@ module Terminus
     end
     
     def response_headers
-      evaluate_script('TERMINUS_HEADERS')
+      Headers.new(evaluate_script('TERMINUS_HEADERS'))
     end
     
     def result!(message)
