@@ -14,19 +14,19 @@ Capybara::Session terminus
     should click on a button
     should click on a button with no type attribute
     should be aliased as click_on
-    should wait for asynchronous load (FAILED - 1)
+    should wait for asynchronous load
     casts to string
     with a locator that doesn't exist
       should raise an error
   #current_url, #current_path, #current_host
-    is affected by visiting a page directly
+    is affected by visiting a page directly (FAILED - 1)
     returns to the app host when visiting a relative url (FAILED - 2)
     is affected by setting Capybara.app_host (FAILED - 3)
-    is unaffected by following a relative link
-    is affected by following an absolute link
-    is unaffected by posting through a relative form
-    is affected by posting through an absolute form
-    is affected by following a redirect
+    is unaffected by following a relative link (FAILED - 4)
+    is affected by following an absolute link (FAILED - 5)
+    is unaffected by posting through a relative form (FAILED - 6)
+    is affected by posting through an absolute form (FAILED - 7)
+    is affected by following a redirect (FAILED - 8)
     is affected by pushState
     is affected by replaceState
   #has_link?
@@ -66,22 +66,22 @@ Capybara::Session terminus
     #selected?
       should extract node selected state
     #==
-      preserve object identity (FAILED - 4)
+      preserve object identity (FAILED - 9)
     #trigger
-      should allow triggering of custom JS events (FAILED - 5)
+      should allow triggering of custom JS events
     #drag_to
-      should drag and drop an object (FAILED - 6)
+      should drag and drop an object
     #reload
       without automatic reload
-        should reload the current context of the node (FAILED - 7)
-        should reload a parent node (FAILED - 8)
+        should reload the current context of the node
+        should reload a parent node
         should not automatically reload
       with automatic reload
-        should reload the current context of the node automatically (FAILED - 9)
-        should reload a parent node automatically (FAILED - 10)
-        should reload a node automatically when using find (FAILED - 11)
+        should reload the current context of the node automatically
+        should reload a parent node automatically
+        should reload a node automatically when using find
         should not reload nodes which haven't been found
-        should reload nodes with options (FAILED - 12)
+        should reload nodes with options
   #within
     should raise an error if the scope is not found on the page
     should restore the scope when an error is raised
@@ -109,17 +109,17 @@ Capybara::Session terminus
     should restrict scope to a fieldset given by legend
   #attach_file
     with normal form
+      should set a file path by id (FAILED - 10)
+      should set a file path by label (FAILED - 11)
+      casts to string (FAILED - 12)
+    with multipart form
       should set a file path by id (FAILED - 13)
       should set a file path by label (FAILED - 14)
-      casts to string (FAILED - 15)
-    with multipart form
-      should set a file path by id (FAILED - 16)
-      should set a file path by label (FAILED - 17)
       should not break if no file is submitted
-      should send content type text/plain when uploading a text file (FAILED - 18)
-      should send content type image/jpeg when uploading an image (FAILED - 19)
-      should not break when using HTML5 multiple file input (FAILED - 20)
-      should not break when using HTML5 multiple file input uploading multiple files (FAILED - 21)
+      should send content type text/plain when uploading a text file (FAILED - 15)
+      should send content type image/jpeg when uploading an image (FAILED - 16)
+      should not break when using HTML5 multiple file input (FAILED - 17)
+      should not break when using HTML5 multiple file input uploading multiple files (FAILED - 18)
     with a locator that doesn't exist
       should raise an error
     with a path that doesn't exist
@@ -131,13 +131,13 @@ Capybara::Session terminus
     casts to string
     should raise error if the field doesn't exist
   #response_headers
-    should return response headers (FAILED - 22)
+    should return response headers (FAILED - 19)
   #has_xpath?
     should be true if the given selector is on the page
     should be false if the given selector is not on the page
     should use xpath even if default selector is CSS
     should respect scopes
-    should wait for content to appear (FAILED - 23)
+    should wait for content to appear
     with count
       should be true if the content occurs the given number of times
       should be false if the content occurs a different number of times than the given
@@ -149,7 +149,7 @@ Capybara::Session terminus
     should be true if the given selector is not on the page
     should use xpath even if default selector is CSS
     should respect scopes
-    should wait for content to disappear (FAILED - 24)
+    should wait for content to disappear
     with count
       should be false if the content occurs the given number of times
       should be true if the content occurs a different number of times than the given
@@ -233,12 +233,12 @@ Capybara::Session terminus
       should be false if a field with the given partial options is on the page
       should be true if a field with the given partial options is not on the page
   #click_button
-    should wait for asynchronous load (FAILED - 25)
+    should wait for asynchronous load
     casts to string
     should serialize and send valueless buttons that were clicked
     should not send image buttons that were not clicked
     should serialize and send GET forms
-    should follow redirects (FAILED - 26)
+    should follow redirects (FAILED - 20)
     should post pack to the same URL when no action given
     should post pack to the same URL when blank action given
     ignores disabled buttons
@@ -255,7 +255,7 @@ Capybara::Session terminus
         should serialise and submit email fields
         should serialise and submit url fields
         should serialise and submit tel fields
-        should serialise and submit color fields (FAILED - 27)
+        should serialise and submit color fields (FAILED - 21)
       on an HTML4 form
         should serialize and submit text fields
         should escape fields when submitting
@@ -273,7 +273,7 @@ Capybara::Session terminus
         should not submit disabled fields
     with id given on a submit button
       should submit the associated form
-      should work with partial matches (FAILED - 28)
+      should work with partial matches (FAILED - 22)
     with title given on a submit button
       should submit the associated form
       should work with partial matches
@@ -306,7 +306,7 @@ Capybara::Session terminus
     should find the first element using the given locator
     should find the first element using the given locator and options
     should raise an error if there are multiple matches
-    should wait for asynchronous load (FAILED - 29)
+    should wait for asynchronous load
     should raise ElementNotFound with a useful default message if nothing was found
     should accept an XPath instance
     with frozen time
@@ -329,8 +329,8 @@ Capybara::Session terminus
   #evaluate_script
     should evaluate the given script and return whatever it produces
   #html
-    should return the unmodified page body (FAILED - 30)
-    should return the current state of the page (FAILED - 31)
+    should return the unmodified page body (FAILED - 23)
+    should return the current state of the page (FAILED - 24)
   #find_field
     should find any field
     casts to string
@@ -346,7 +346,7 @@ Capybara::Session terminus
       should be false after the field has been filled in with a different value
     with type
       should be true if a field with the given type is on the page
-      should be false if the given field is not on the page (FAILED - 32)
+      should be false if the given field is not on the page (FAILED - 25)
   #has_no_field
     should be false if the field is on the page
     should be true if the field is not on the page
@@ -357,7 +357,7 @@ Capybara::Session terminus
       should be true after the field has been filled in with a different value
     with type
       should be false if a field with the given type is on the page
-      should be true if the given field is not on the page (FAILED - 33)
+      should be true if the given field is not on the page (FAILED - 26)
   #has_checked_field?
     should be true if a checked field is on the page
     should be false if an unchecked field is on the page
@@ -393,15 +393,15 @@ Capybara::Session terminus
     should handle single quotes in the text
     should handle double quotes in the text
     should handle mixed single and double quotes in the text
-    should be false if text is in the title tag in the head (FAILED - 34)
+    should be false if text is in the title tag in the head (FAILED - 27)
     should be false if text is inside a script tag in the body
-    should be false if the given text is on the page but not visible (FAILED - 35)
+    should be false if the given text is on the page but not visible (FAILED - 28)
     should be true if the text in the page matches given regexp
     should be false if the text in the page doesn't match given regexp
     should escape any characters that would have special meaning in a regexp
     should accept non-string parameters
     should be true when passed nil
-    should wait for text to appear (FAILED - 36)
+    should wait for text to appear
   #has_no_text?
     should be false if the given text is on the page at least once
     should be false if scoped to an element which has the text
@@ -411,18 +411,18 @@ Capybara::Session terminus
     should handle single quotes in the text
     should handle double quotes in the text
     should handle mixed single and double quotes in the text
-    should be true if text is in the title tag in the head (FAILED - 37)
+    should be true if text is in the title tag in the head (FAILED - 29)
     should be true if text is inside a script tag in the body
-    should be true if the given text is on the page but not visible (FAILED - 38)
+    should be true if the given text is on the page but not visible (FAILED - 30)
     should be true if the text in the page doesn't match given regexp
     should be false if the text in the page  matches given regexp
     should escape any characters that would have special meaning in a regexp
-    should wait for text to disappear (FAILED - 39)
+    should wait for text to disappear
   #reset_session!
     removes cookies
     resets current url, host, path
     resets page body
-    raises any errors caught inside the server (FAILED - 40)
+    raises any errors caught inside the server (FAILED - 31)
   #all
     should find all elements using the given locator
     should return an empty array when nothing was found
@@ -473,8 +473,8 @@ Capybara::Session terminus
   #visit
     should fetch a response from the driver with a relative url
     should fetch a response from the driver with an absolute url with a port
-    should send no referer when visiting a page (FAILED - 41)
-    should send no referer when visiting a second page (FAILED - 42)
+    should send no referer when visiting a page (FAILED - 32)
+    should send no referer when visiting a second page (FAILED - 33)
     should send a referer when following a link
     should preserve the original referer URL when following a redirect
     should send a referer when submitting a form
@@ -484,7 +484,7 @@ Capybara::Session terminus
     should be true if the given selector is on the page
     should be false if the given selector is not on the page
     should respect scopes
-    should wait for content to appear (FAILED - 43)
+    should wait for content to appear
     with between
       should be true if the content occurs within the range given
       should be false if the content occurs more or fewer times than range
@@ -507,7 +507,7 @@ Capybara::Session terminus
     should be false if the given selector is on the page
     should be true if the given selector is not on the page
     should respect scopes
-    should wait for content to disappear (FAILED - 44)
+    should wait for content to disappear
     with between
       should be false if the content occurs within the range given
       should be true if the content occurs more or fewer times than range
@@ -527,10 +527,10 @@ Capybara::Session terminus
       should discard all matches where the given string is not contained
       should discard all matches where the given regexp is not matched
   #click_link
-    should wait for asynchronous load (FAILED - 45)
+    should wait for asynchronous load
     casts to string
     should follow relative links
-    should follow protocol relative links (FAILED - 46)
+    should follow protocol relative links (FAILED - 34)
     should follow redirects
     should follow redirects
     should add query string to current URL with naked query string
@@ -553,7 +553,7 @@ Capybara::Session terminus
       should raise an error
   #text
     should print the text of the page
-    should strip whitespace (FAILED - 47)
+    should strip whitespace (FAILED - 35)
     with css as default selector
       should print the text of the page
   #uncheck
@@ -596,7 +596,7 @@ Capybara::Session terminus
     should be false if the given button is not on the page
   #source
     should return the unmodified page source
-    should return the original, unmodified source of the page (FAILED - 48)
+    should return the original, unmodified source of the page (FAILED - 36)
   #fill_in
     should fill in a text field by id
     should fill in a text field by name
@@ -613,7 +613,7 @@ Capybara::Session terminus
     should fill in a password field by label
     should fill in a password field by name
     should throw an exception if a hash containing 'with' is not provided
-    should wait for asynchronous load (FAILED - 49)
+    should wait for asynchronous load
     casts to string
     on a pre-populated textfield with a reformatting onchange
       should only trigger onchange once
@@ -639,7 +639,7 @@ Capybara::Session terminus
     within a scope
       should find the first element using the given locator
   #check
-    should trigger associated events (FAILED - 50)
+    should trigger associated events
     should check a checkbox by id
     should check a checkbox by label
     casts to string
@@ -664,99 +664,73 @@ Capybara::Session terminus
 
 Failures:
 
-  1) Capybara::Session terminus#click_link_or_button should wait for asynchronous load
-     Failure/Error: @session.click_link_or_button('Has been clicked')
-     Capybara::ElementNotFound:
-       Unable to find link or button "Has been clicked"
-     # ./vendor/capybara/lib/capybara/result.rb:22:in `find!'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `block in find'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:13:in `click_link_or_button'
-     # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/lib/capybara/spec/session/click_link_or_button_spec.rb:29:in `block (2 levels) in <top (required)>'
+  1) Capybara::Session terminus#current_url, #current_path, #current_host is affected by visiting a page directly
+     Failure/Error: @session.current_url.chomp('?').should == "#{scheme}://#{s.host}:#{s.port}#{path}"
+       expected: "http://127.0.0.1:39120/host"
+            got: "http://local.dev:39120/host" (using ==)
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:16:in `should_be_on'
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:31:in `block (2 levels) in <top (required)>'
 
   2) Capybara::Session terminus#current_url, #current_path, #current_host returns to the app host when visiting a relative url
      Failure/Error: @session.current_url.chomp('?').should == "#{scheme}://#{s.host}:#{s.port}#{path}"
-       expected: "http://127.0.0.1:45426/host"
-            got: "http://127.0.0.1:53790/host" (using ==)
+       expected: "http://127.0.0.1:39120/host"
+            got: "http://local.dev:39120/host" (using ==)
      # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:16:in `should_be_on'
-     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:39:in `block (2 levels) in <top (required)>'
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:37:in `block (2 levels) in <top (required)>'
 
   3) Capybara::Session terminus#current_url, #current_path, #current_host is affected by setting Capybara.app_host
      Failure/Error: @session.current_url.chomp('?').should == "#{scheme}://#{s.host}:#{s.port}#{path}"
-       expected: "http://127.0.0.1:32952/host"
-            got: "http://127.0.0.1:53790/host" (using ==)
+       expected: "http://127.0.0.1:39120/host"
+            got: "http://local.dev:35231/host" (using ==)
      # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:16:in `should_be_on'
      # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:46:in `block (2 levels) in <top (required)>'
 
-  4) Capybara::Session terminus node#== preserve object identity
+  4) Capybara::Session terminus#current_url, #current_path, #current_host is unaffected by following a relative link
+     Failure/Error: @session.current_url.chomp('?').should == "#{scheme}://#{s.host}:#{s.port}#{path}"
+       expected: "http://127.0.0.1:39120/host"
+            got: "http://local.dev:39120/host" (using ==)
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:16:in `should_be_on'
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:56:in `block (2 levels) in <top (required)>'
+
+  5) Capybara::Session terminus#current_url, #current_path, #current_host is affected by following an absolute link
+     Failure/Error: @session.current_url.chomp('?').should == "#{scheme}://#{s.host}:#{s.port}#{path}"
+       expected: "http://127.0.0.1:49385/host"
+            got: "http://local.dev:49385/host" (using ==)
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:16:in `should_be_on'
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:62:in `block (2 levels) in <top (required)>'
+
+  6) Capybara::Session terminus#current_url, #current_path, #current_host is unaffected by posting through a relative form
+     Failure/Error: @session.current_url.chomp('?').should == "#{scheme}://#{s.host}:#{s.port}#{path}"
+       expected: "http://127.0.0.1:39120/host"
+            got: "http://local.dev:39120/host" (using ==)
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:16:in `should_be_on'
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:68:in `block (2 levels) in <top (required)>'
+
+  7) Capybara::Session terminus#current_url, #current_path, #current_host is affected by posting through an absolute form
+     Failure/Error: @session.current_url.chomp('?').should == "#{scheme}://#{s.host}:#{s.port}#{path}"
+       expected: "http://127.0.0.1:49385/host"
+            got: "http://local.dev:49385/host" (using ==)
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:16:in `should_be_on'
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:74:in `block (2 levels) in <top (required)>'
+
+  8) Capybara::Session terminus#current_url, #current_path, #current_host is affected by following a redirect
+     Failure/Error: @session.current_url.chomp('?').should == "#{scheme}://#{s.host}:#{s.port}#{path}"
+       expected: "http://127.0.0.1:39120/landed"
+            got: "http://local.dev:39120/landed" (using ==)
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:16:in `should_be_on'
+     # ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:79:in `block (2 levels) in <top (required)>'
+
+  9) Capybara::Session terminus node#== preserve object identity
      Failure/Error: (@session.find('//h1') == @session.find('//h1')).should be_true
      NoMethodError:
-       undefined method `native' for <Terminus::Node 3triw508xsra21gq5zi91y14wia1msgljb0>:Terminus::Node
+       undefined method `native' for <Terminus::Node hi3uxf1m70dav0tnhzx11chj8o301c2wfm0>:Terminus::Node
      # ./vendor/capybara/lib/capybara/node/element.rb:40:in `block in native'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:40:in `native'
      # ./vendor/capybara/lib/capybara/node/matchers.rb:455:in `=='
      # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:107:in `block (3 levels) in <top (required)>'
 
-  5) Capybara::Session terminus node#trigger should allow triggering of custom JS events
-     Failure/Error: @session.should have_css('#focus_event_triggered')
-       expected #has_css?("#focus_event_triggered") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:117:in `block (3 levels) in <top (required)>'
-
-  6) Capybara::Session terminus node#drag_to should drag and drop an object
-     Failure/Error: @session.find('//div[contains(., "Dropped!")]').should_not be_nil
-     Capybara::ElementNotFound:
-       Unable to find xpath "//div[contains(., \"Dropped!\")]"
-     # ./vendor/capybara/lib/capybara/result.rb:22:in `find!'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `block in find'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `find'
-     # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:127:in `block (3 levels) in <top (required)>'
-
-  7) Capybara::Session terminus node#reload without automatic reload should reload the current context of the node
-     Failure/Error: node.reload.text.should == 'has been reloaded'
-       expected: "has been reloaded"
-            got: "waiting to be reloaded" (using ==)
-     # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:139:in `block (4 levels) in <top (required)>'
-
-  8) Capybara::Session terminus node#reload without automatic reload should reload a parent node
-     Failure/Error: node.reload.text.should == 'has been reloaded'
-       expected: "has been reloaded"
-            got: "waiting to be reloaded" (using ==)
-     # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:148:in `block (4 levels) in <top (required)>'
-
-  9) Capybara::Session terminus node#reload with automatic reload should reload the current context of the node automatically
-     Failure/Error: node.text.should == 'has been reloaded'
-       expected: "has been reloaded"
-            got: "waiting to be reloaded" (using ==)
-     # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:168:in `block (4 levels) in <top (required)>'
-
-  10) Capybara::Session terminus node#reload with automatic reload should reload a parent node automatically
-     Failure/Error: node.text.should == 'has been reloaded'
-       expected: "has been reloaded"
-            got: "waiting to be reloaded" (using ==)
-     # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:176:in `block (4 levels) in <top (required)>'
-
-  11) Capybara::Session terminus node#reload with automatic reload should reload a node automatically when using find
-     Failure/Error: node.find(:css, 'a').text.should == 'has been reloaded'
-     Capybara::ElementNotFound:
-       Unable to find css "a"
-     # ./vendor/capybara/lib/capybara/result.rb:22:in `find!'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `block in find'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `find'
-     # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:184:in `block (4 levels) in <top (required)>'
-
-  12) Capybara::Session terminus node#reload with automatic reload should reload nodes with options
-     Failure/Error: node.text.should == 'has been reloaded'
-       expected: "has been reloaded"
-            got: "waiting to be reloaded" (using ==)
-     # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:201:in `block (4 levels) in <top (required)>'
-
-  13) Capybara::Session terminus#attach_file with normal form should set a file path by id
+  10) Capybara::Session terminus#attach_file with normal form should set a file path by id
      Failure/Error: @session.attach_file "form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -768,7 +742,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:11:in `block (3 levels) in <top (required)>'
 
-  14) Capybara::Session terminus#attach_file with normal form should set a file path by label
+  11) Capybara::Session terminus#attach_file with normal form should set a file path by label
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -780,7 +754,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:17:in `block (3 levels) in <top (required)>'
 
-  15) Capybara::Session terminus#attach_file with normal form casts to string
+  12) Capybara::Session terminus#attach_file with normal form casts to string
      Failure/Error: @session.attach_file :"form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -792,7 +766,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:23:in `block (3 levels) in <top (required)>'
 
-  16) Capybara::Session terminus#attach_file with multipart form should set a file path by id
+  13) Capybara::Session terminus#attach_file with multipart form should set a file path by id
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -804,7 +778,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:31:in `block (3 levels) in <top (required)>'
 
-  17) Capybara::Session terminus#attach_file with multipart form should set a file path by label
+  14) Capybara::Session terminus#attach_file with multipart form should set a file path by label
      Failure/Error: @session.attach_file "Single Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -816,7 +790,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:37:in `block (3 levels) in <top (required)>'
 
-  18) Capybara::Session terminus#attach_file with multipart form should send content type text/plain when uploading a text file
+  15) Capybara::Session terminus#attach_file with multipart form should send content type text/plain when uploading a text file
      Failure/Error: @session.attach_file "Single Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -828,7 +802,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:48:in `block (3 levels) in <top (required)>'
 
-  19) Capybara::Session terminus#attach_file with multipart form should send content type image/jpeg when uploading an image
+  16) Capybara::Session terminus#attach_file with multipart form should send content type image/jpeg when uploading an image
      Failure/Error: @session.attach_file "Single Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -840,7 +814,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:54:in `block (3 levels) in <top (required)>'
 
-  20) Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input
+  17) Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -852,7 +826,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:60:in `block (3 levels) in <top (required)>'
 
-  21) Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
+  18) Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
      Failure/Error: @session.attach_file "Multiple Documents", [@test_file_path, @another_test_file_path]
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
@@ -864,62 +838,29 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-  22) Capybara::Session terminus#response_headers should return response headers
+  19) Capybara::Session terminus#response_headers should return response headers
      Failure/Error: @session.response_headers['Content-Type'].should =~ %r(text/html)
        expected: /text\/html/
             got: nil (using =~)
      # ./vendor/capybara/lib/capybara/spec/session/headers.rb:4:in `block (2 levels) in <top (required)>'
 
-  23) Capybara::Session terminus#has_xpath? should wait for content to appear
-     Failure/Error: @session.should have_xpath("//input[@type='submit' and @value='New Here']")
-       expected #has_xpath?("//input[@type='submit' and @value='New Here']") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/has_xpath_spec.rb:33:in `block (2 levels) in <top (required)>'
-
-  24) Capybara::Session terminus#has_no_xpath? should wait for content to disappear
-     Failure/Error: @session.should have_no_xpath("//p[@id='change']")
-       expected #has_no_xpath?("//p[@id='change']") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/has_xpath_spec.rb:97:in `block (2 levels) in <top (required)>'
-
-  25) Capybara::Session terminus#click_button should wait for asynchronous load
-     Failure/Error: @session.click_button('New Here')
-     Capybara::ElementNotFound:
-       Unable to find button "New Here"
-     # ./vendor/capybara/lib/capybara/result.rb:22:in `find!'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `block in find'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:35:in `click_button'
-     # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:9:in `block (2 levels) in <top (required)>'
-
-  26) Capybara::Session terminus#click_button should follow redirects
+  20) Capybara::Session terminus#click_button should follow redirects
      Failure/Error: @session.current_url.should match(%r{/landed$})
-       expected "http://127.0.0.1:53790/form" to match /\/landed$/
+       expected "http://local.dev:35231/form" to match /\/landed$/
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:289:in `block (2 levels) in <top (required)>'
 
-  27) Capybara::Session terminus#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
+  21) Capybara::Session terminus#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
      Failure/Error: @results['html5_color'].should == '#FFFFFF'
        expected: "#FFFFFF"
             got: "#ffffff" (using ==)
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:66:in `block (4 levels) in <top (required)>'
 
-  28) Capybara::Session terminus#click_button with id given on a submit button should work with partial matches
+  22) Capybara::Session terminus#click_button with id given on a submit button should work with partial matches
      Failure/Error: @session.should have_content('You landed')
        expected #has_content?("You landed") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:149:in `block (3 levels) in <top (required)>'
 
-  29) Capybara::Session terminus#find should wait for asynchronous load
-     Failure/Error: @session.find(:css, "a#has-been-clicked").text.should include('Has been clicked')
-     Capybara::ElementNotFound:
-       Unable to find css "a#has-been-clicked"
-     # ./vendor/capybara/lib/capybara/result.rb:22:in `find!'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `block in find'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `find'
-     # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:27:in `block (2 levels) in <top (required)>'
-
-  30) Capybara::Session terminus#html should return the unmodified page body
+  23) Capybara::Session terminus#html should return the unmodified page body
      Failure/Error: @session.html.should include('Hello world!')
      NotImplementedError:
        NotImplementedError
@@ -927,7 +868,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:106:in `html'
      # ./vendor/capybara/lib/capybara/spec/session/html_spec.rb:7:in `block (2 levels) in <top (required)>'
 
-  31) Capybara::Session terminus#html should return the current state of the page
+  24) Capybara::Session terminus#html should return the current state of the page
      Failure/Error: @session.html.should include('I changed it')
      NotImplementedError:
        NotImplementedError
@@ -935,7 +876,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:106:in `html'
      # ./vendor/capybara/lib/capybara/spec/session/html_spec.rb:12:in `block (2 levels) in <top (required)>'
 
-  32) Capybara::Session terminus#has_field with type should be false if the given field is not on the page
+  25) Capybara::Session terminus#has_field with type should be false if the given field is not on the page
      Failure/Error: @session.should_not have_field('Description', :type => '')
      Terminus::ObsoleteElementError:
        Terminus::ObsoleteElementError
@@ -964,7 +905,7 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:50:in `block (3 levels) in <top (required)>'
 
-  33) Capybara::Session terminus#has_no_field with type should be true if the given field is not on the page
+  26) Capybara::Session terminus#has_no_field with type should be true if the given field is not on the page
      Failure/Error: @session.should have_no_field('Description', :type => '')
      Terminus::ObsoleteElementError:
        Terminus::ObsoleteElementError
@@ -993,79 +934,47 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:103:in `block (3 levels) in <top (required)>'
 
-  34) Capybara::Session terminus#has_text? should be false if text is in the title tag in the head
+  27) Capybara::Session terminus#has_text? should be false if text is in the title tag in the head
      Failure/Error: @session.should_not have_text('with_js')
        expected #has_text?("with_js") to return false, got true
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:63:in `block (2 levels) in <top (required)>'
 
-  35) Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
+  28) Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
      Failure/Error: @session.should_not have_text('Inside element with hidden ancestor')
        expected #has_text?("Inside element with hidden ancestor") to return false, got true
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:74:in `block (2 levels) in <top (required)>'
 
-  36) Capybara::Session terminus#has_text? should wait for text to appear
-     Failure/Error: @session.should have_text("Has been clicked")
-       expected #has_text?("Has been clicked") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:106:in `block (2 levels) in <top (required)>'
-
-  37) Capybara::Session terminus#has_no_text? should be true if text is in the title tag in the head
+  29) Capybara::Session terminus#has_no_text? should be true if text is in the title tag in the head
      Failure/Error: @session.should have_no_text('with_js')
        expected #has_no_text?("with_js") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:161:in `block (2 levels) in <top (required)>'
 
-  38) Capybara::Session terminus#has_no_text? should be true if the given text is on the page but not visible
+  30) Capybara::Session terminus#has_no_text? should be true if the given text is on the page but not visible
      Failure/Error: @session.should have_no_text('Inside element with hidden ancestor')
        expected #has_no_text?("Inside element with hidden ancestor") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:172:in `block (2 levels) in <top (required)>'
 
-  39) Capybara::Session terminus#has_no_text? should wait for text to disappear
-     Failure/Error: @session.should have_no_text("I changed it")
-       expected #has_no_text?("I changed it") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:193:in `block (2 levels) in <top (required)>'
-
-  40) Capybara::Session terminus#reset_session! raises any errors caught inside the server
+  31) Capybara::Session terminus#reset_session! raises any errors caught inside the server
      Failure/Error: expect do
        expected TestApp::TestAppError but nothing was raised
      # ./vendor/capybara/lib/capybara/spec/session/reset_session_spec.rb:35:in `block (2 levels) in <top (required)>'
 
-  41) Capybara::Session terminus#visit should send no referer when visiting a page
+  32) Capybara::Session terminus#visit should send no referer when visiting a page
      Failure/Error: @session.should have_content 'No referer'
        expected #has_content?("No referer") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:48:in `block (2 levels) in <top (required)>'
 
-  42) Capybara::Session terminus#visit should send no referer when visiting a second page
+  33) Capybara::Session terminus#visit should send no referer when visiting a second page
      Failure/Error: @session.should have_content 'No referer'
        expected #has_content?("No referer") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:54:in `block (2 levels) in <top (required)>'
 
-  43) Capybara::Session terminus#has_css? should wait for content to appear
-     Failure/Error: @session.should have_css("input[type='submit'][value='New Here']")
-       expected #has_css?("input[type='submit'][value='New Here']") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:27:in `block (2 levels) in <top (required)>'
-
-  44) Capybara::Session terminus#has_no_css? should wait for content to disappear
-     Failure/Error: @session.should have_no_css("p#change")
-       expected #has_no_css?("p#change") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:142:in `block (2 levels) in <top (required)>'
-
-  45) Capybara::Session terminus#click_link should wait for asynchronous load
-     Failure/Error: @session.click_link('Has been clicked')
-     Capybara::ElementNotFound:
-       Unable to find link "Has been clicked"
-     # ./vendor/capybara/lib/capybara/result.rb:22:in `find!'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `block in find'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:25:in `click_link'
-     # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:9:in `block (2 levels) in <top (required)>'
-
-  46) Capybara::Session terminus#click_link should follow protocol relative links
+  34) Capybara::Session terminus#click_link should follow protocol relative links
      Failure/Error: @session.should have_content('Another World')
        expected #has_content?("Another World") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:77:in `block (2 levels) in <top (required)>'
 
-  47) Capybara::Session terminus#text should strip whitespace
+  35) Capybara::Session terminus#text should strip whitespace
      Failure/Error: /\ADuis aute .* text with whitespace .* est laborum\.\z/
        expected: /\ADuis aute .* text with whitespace .* est laborum\.\z/
             got: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum\n  dolore eu fugiat Redirect pariatur. Excepteur sint occaecat cupidatat non proident,\n  sunt in culpa qui officia\n  text   with  \n  whitespace\n  id est laborum." (using =~)
@@ -1080,47 +989,27 @@ Failures:
        +  id est laborum.
      # ./vendor/capybara/lib/capybara/spec/session/text_spec.rb:20:in `block (2 levels) in <top (required)>'
 
-  48) Capybara::Session terminus#source should return the original, unmodified source of the page
+  36) Capybara::Session terminus#source should return the original, unmodified source of the page
      Failure/Error: @session.send(method).should include('This is text')
      ArgumentError:
        wrong number of arguments(0 for 1)
      # ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:9:in `method'
      # ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:9:in `block (2 levels) in <top (required)>'
 
-  49) Capybara::Session terminus#fill_in should wait for asynchronous load
-     Failure/Error: @session.fill_in('new_field', :with => 'Testing...')
-     Capybara::ElementNotFound:
-       Unable to find field "new_field"
-     # ./vendor/capybara/lib/capybara/result.rb:22:in `find!'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `block in find'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:27:in `find'
-     # ./vendor/capybara/lib/capybara/node/actions.rb:50:in `fill_in'
-     # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:97:in `block (2 levels) in <top (required)>'
-
-  50) Capybara::Session terminus#check should trigger associated events
-     Failure/Error: @session.should have_css('#checkbox_event_triggered');
-       expected #has_css?("#checkbox_event_triggered") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/check_spec.rb:20:in `block (2 levels) in <top (required)>'
-
-Finished in 7 minutes 18.6 seconds
-483 examples, 50 failures
+Finished in 7 minutes 22.06 seconds
+483 examples, 36 failures
 
 Failed examples:
 
-rspec ./vendor/capybara/lib/capybara/spec/session/click_link_or_button_spec.rb:26 # Capybara::Session terminus#click_link_or_button should wait for asynchronous load
+rspec ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:29 # Capybara::Session terminus#current_url, #current_path, #current_host is affected by visiting a page directly
 rspec ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:34 # Capybara::Session terminus#current_url, #current_path, #current_host returns to the app host when visiting a relative url
 rspec ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:43 # Capybara::Session terminus#current_url, #current_path, #current_host is affected by setting Capybara.app_host
+rspec ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:53 # Capybara::Session terminus#current_url, #current_path, #current_host is unaffected by following a relative link
+rspec ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:59 # Capybara::Session terminus#current_url, #current_path, #current_host is affected by following an absolute link
+rspec ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:65 # Capybara::Session terminus#current_url, #current_path, #current_host is unaffected by posting through a relative form
+rspec ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:71 # Capybara::Session terminus#current_url, #current_path, #current_host is affected by posting through an absolute form
+rspec ./vendor/capybara/lib/capybara/spec/session/current_url_spec.rb:77 # Capybara::Session terminus#current_url, #current_path, #current_host is affected by following a redirect
 rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:106 # Capybara::Session terminus node#== preserve object identity
-rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:114 # Capybara::Session terminus node#trigger should allow triggering of custom JS events
-rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:122 # Capybara::Session terminus node#drag_to should drag and drop an object
-rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:134 # Capybara::Session terminus node#reload without automatic reload should reload the current context of the node
-rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:143 # Capybara::Session terminus node#reload without automatic reload should reload a parent node
-rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:163 # Capybara::Session terminus node#reload with automatic reload should reload the current context of the node automatically
-rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:171 # Capybara::Session terminus node#reload with automatic reload should reload a parent node automatically
-rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:179 # Capybara::Session terminus node#reload with automatic reload should reload a node automatically when using find
-rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:196 # Capybara::Session terminus node#reload with automatic reload should reload nodes with options
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:10 # Capybara::Session terminus#attach_file with normal form should set a file path by id
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:16 # Capybara::Session terminus#attach_file with normal form should set a file path by label
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:22 # Capybara::Session terminus#attach_file with normal form casts to string
@@ -1131,31 +1020,20 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:53 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
 rspec ./vendor/capybara/lib/capybara/spec/session/headers.rb:2 # Capybara::Session terminus#response_headers should return response headers
-rspec ./vendor/capybara/lib/capybara/spec/session/has_xpath_spec.rb:30 # Capybara::Session terminus#has_xpath? should wait for content to appear
-rspec ./vendor/capybara/lib/capybara/spec/session/has_xpath_spec.rb:94 # Capybara::Session terminus#has_no_xpath? should wait for content to disappear
-rspec ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:6 # Capybara::Session terminus#click_button should wait for asynchronous load
 rspec ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:287 # Capybara::Session terminus#click_button should follow redirects
 rspec ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:65 # Capybara::Session terminus#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
 rspec ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:147 # Capybara::Session terminus#click_button with id given on a submit button should work with partial matches
-rspec ./vendor/capybara/lib/capybara/spec/session/find_spec.rb:24 # Capybara::Session terminus#find should wait for asynchronous load
 rspec ./vendor/capybara/lib/capybara/spec/session/html_spec.rb:2 # Capybara::Session terminus#html should return the unmodified page body
 rspec ./vendor/capybara/lib/capybara/spec/session/html_spec.rb:10 # Capybara::Session terminus#html should return the current state of the page
 rspec ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:47 # Capybara::Session terminus#has_field with type should be false if the given field is not on the page
 rspec ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:100 # Capybara::Session terminus#has_no_field with type should be true if the given field is not on the page
 rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:61 # Capybara::Session terminus#has_text? should be false if text is in the title tag in the head
 rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:72 # Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
-rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:103 # Capybara::Session terminus#has_text? should wait for text to appear
 rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:159 # Capybara::Session terminus#has_no_text? should be true if text is in the title tag in the head
 rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:170 # Capybara::Session terminus#has_no_text? should be true if the given text is on the page but not visible
-rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:190 # Capybara::Session terminus#has_no_text? should wait for text to disappear
 rspec ./vendor/capybara/lib/capybara/spec/session/reset_session_spec.rb:34 # Capybara::Session terminus#reset_session! raises any errors caught inside the server
 rspec ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:46 # Capybara::Session terminus#visit should send no referer when visiting a page
 rspec ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:51 # Capybara::Session terminus#visit should send no referer when visiting a second page
-rspec ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:24 # Capybara::Session terminus#has_css? should wait for content to appear
-rspec ./vendor/capybara/lib/capybara/spec/session/has_css_spec.rb:139 # Capybara::Session terminus#has_no_css? should wait for content to disappear
-rspec ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:6 # Capybara::Session terminus#click_link should wait for asynchronous load
 rspec ./vendor/capybara/lib/capybara/spec/session/click_link_spec.rb:75 # Capybara::Session terminus#click_link should follow protocol relative links
 rspec ./vendor/capybara/lib/capybara/spec/session/text_spec.rb:16 # Capybara::Session terminus#text should strip whitespace
 rspec ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:7 # Capybara::Session terminus#source should return the original, unmodified source of the page
-rspec ./vendor/capybara/lib/capybara/spec/session/fill_in_spec.rb:94 # Capybara::Session terminus#fill_in should wait for asynchronous load
-rspec ./vendor/capybara/lib/capybara/spec/session/check_spec.rb:17 # Capybara::Session terminus#check should trigger associated events
