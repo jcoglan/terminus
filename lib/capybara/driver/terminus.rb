@@ -23,8 +23,8 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   end
   
   def visit(path)
-    s = @rack_server
-    path = "http://#{s.host}:#{s.port}#{path}" unless path =~ /^https?:\/\//
+    h, s = Capybara.app_host, @rack_server
+    path = "#{h || "http://#{s.host}:#{s.port}"}#{path}" unless path =~ /^https?:\/\//
     browser.visit(path)
   end
   
