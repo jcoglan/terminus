@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.executables       = Dir.glob("bin/**").map { |f| File.basename(f) }
   s.require_paths     = ["lib"]
 
-  s.add_dependency "capybara", ">= 0.4.0"
+  s.add_dependency "capybara", ">= 0.4.0", "< 2.0.0"
   s.add_dependency "childprocess", ">= 0.3.0"
   s.add_dependency "cookiejar", ">= 0.3.0"
   s.add_dependency "faye", ">= 0.8.2"
