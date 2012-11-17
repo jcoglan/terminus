@@ -2,6 +2,8 @@ module Terminus
   class Proxy
     
     class External < Rack::Proxy
+      attr_reader :uri
+      
       def initialize(uri)
         @uri = uri
       end

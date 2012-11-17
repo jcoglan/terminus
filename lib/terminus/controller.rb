@@ -77,10 +77,18 @@ module Terminus
     def rewrite_remote(url, dock_host = nil)
       uri = URI.parse(url)
       return uri unless URI::HTTP === uri
-      if uri.host =~ LOCALHOST or uri.host == dock_host
-        local_ports = [Terminus.port] + @host_aliases.values.map { |h| h.port }
-        return uri if local_ports.include?(uri.port)
+      
+      if (uri.host =~ LOCALHOST or uri.host == dock_host)
+        if uri.port == 80
+          uri.port = @host_aliases.keys.find { |h| h.host == uri.host }.port
+        end
+        
+        if local_ports.include?(uri.port)
+          uri.host = dock_host
+          return uri
+        end
       end
+      
       server = boot(uri)
       uri.scheme = 'http'
       uri.host, uri.port = (dock_host || server.host), server.port
@@ -123,6 +131,10 @@ module Terminus
       return if @connected
       messenger.connect { @connected = true }
       wait_with_timeout(:connection) { @connected }
+    end
+    
+    def local_ports
+      [Terminus.port] + @host_aliases.values.map { |h| h.port }
     end
     
   end

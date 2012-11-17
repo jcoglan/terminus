@@ -6,7 +6,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   end
   
   def initialize(app = nil, options = {})
-    @app         = Terminus::Proxy[app || NULL_APP]
+    @app         = app || NULL_APP
     @options     = options
     @rack_server = Capybara::Server.new(@app)
     
