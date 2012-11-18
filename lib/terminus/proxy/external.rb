@@ -19,6 +19,10 @@ module Terminus
           env['rack.url_scheme'] = scheme
         end
         
+        if %w[PUT POST].include?(env['REQUEST_METHOD'])
+          env['CONTENT_LENGTH'] ||= '0'
+        end
+        
         env
       end
       
