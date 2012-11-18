@@ -66,7 +66,7 @@ Capybara::Session terminus
     #selected?
       should extract node selected state
     #==
-      preserve object identity (FAILED - 1)
+      preserve object identity
     #trigger
       should allow triggering of custom JS events
     #drag_to
@@ -109,17 +109,17 @@ Capybara::Session terminus
     should restrict scope to a fieldset given by legend
   #attach_file
     with normal form
-      should set a file path by id (FAILED - 2)
-      should set a file path by label (FAILED - 3)
-      casts to string (FAILED - 4)
+      should set a file path by id (FAILED - 1)
+      should set a file path by label (FAILED - 2)
+      casts to string (FAILED - 3)
     with multipart form
-      should set a file path by id (FAILED - 5)
-      should set a file path by label (FAILED - 6)
+      should set a file path by id (FAILED - 4)
+      should set a file path by label (FAILED - 5)
       should not break if no file is submitted
-      should send content type text/plain when uploading a text file (FAILED - 7)
-      should send content type image/jpeg when uploading an image (FAILED - 8)
-      should not break when using HTML5 multiple file input (FAILED - 9)
-      should not break when using HTML5 multiple file input uploading multiple files (FAILED - 10)
+      should send content type text/plain when uploading a text file (FAILED - 6)
+      should send content type image/jpeg when uploading an image (FAILED - 7)
+      should not break when using HTML5 multiple file input (FAILED - 8)
+      should not break when using HTML5 multiple file input uploading multiple files (FAILED - 9)
     with a locator that doesn't exist
       should raise an error
     with a path that doesn't exist
@@ -255,7 +255,7 @@ Capybara::Session terminus
         should serialise and submit email fields
         should serialise and submit url fields
         should serialise and submit tel fields
-        should serialise and submit color fields (FAILED - 11)
+        should serialise and submit color fields (FAILED - 10)
       on an HTML4 form
         should serialize and submit text fields
         should escape fields when submitting
@@ -346,7 +346,7 @@ Capybara::Session terminus
       should be false after the field has been filled in with a different value
     with type
       should be true if a field with the given type is on the page
-      should be false if the given field is not on the page (FAILED - 12)
+      should be false if the given field is not on the page (FAILED - 11)
   #has_no_field
     should be false if the field is on the page
     should be true if the field is not on the page
@@ -357,7 +357,7 @@ Capybara::Session terminus
       should be true after the field has been filled in with a different value
     with type
       should be false if a field with the given type is on the page
-      should be true if the given field is not on the page (FAILED - 13)
+      should be true if the given field is not on the page (FAILED - 12)
   #has_checked_field?
     should be true if a checked field is on the page
     should be false if an unchecked field is on the page
@@ -393,9 +393,9 @@ Capybara::Session terminus
     should handle single quotes in the text
     should handle double quotes in the text
     should handle mixed single and double quotes in the text
-    should be false if text is in the title tag in the head (FAILED - 14)
+    should be false if text is in the title tag in the head (FAILED - 13)
     should be false if text is inside a script tag in the body
-    should be false if the given text is on the page but not visible (FAILED - 15)
+    should be false if the given text is on the page but not visible (FAILED - 14)
     should be true if the text in the page matches given regexp
     should be false if the text in the page doesn't match given regexp
     should escape any characters that would have special meaning in a regexp
@@ -411,9 +411,9 @@ Capybara::Session terminus
     should handle single quotes in the text
     should handle double quotes in the text
     should handle mixed single and double quotes in the text
-    should be true if text is in the title tag in the head (FAILED - 16)
+    should be true if text is in the title tag in the head (FAILED - 15)
     should be true if text is inside a script tag in the body
-    should be true if the given text is on the page but not visible (FAILED - 17)
+    should be true if the given text is on the page but not visible (FAILED - 16)
     should be true if the text in the page doesn't match given regexp
     should be false if the text in the page  matches given regexp
     should escape any characters that would have special meaning in a regexp
@@ -422,7 +422,7 @@ Capybara::Session terminus
     removes cookies
     resets current url, host, path
     resets page body
-    raises any errors caught inside the server (FAILED - 18)
+    raises any errors caught inside the server (FAILED - 17)
   #all
     should find all elements using the given locator
     should return an empty array when nothing was found
@@ -473,8 +473,8 @@ Capybara::Session terminus
   #visit
     should fetch a response from the driver with a relative url
     should fetch a response from the driver with an absolute url with a port
-    should send no referer when visiting a page (FAILED - 19)
-    should send no referer when visiting a second page (FAILED - 20)
+    should send no referer when visiting a page (FAILED - 18)
+    should send no referer when visiting a second page (FAILED - 19)
     should send a referer when following a link
     should preserve the original referer URL when following a redirect
     should send a referer when submitting a form
@@ -553,7 +553,7 @@ Capybara::Session terminus
       should raise an error
   #text
     should print the text of the page
-    should strip whitespace (FAILED - 21)
+    should strip whitespace (FAILED - 20)
     with css as default selector
       should print the text of the page
   #uncheck
@@ -596,7 +596,7 @@ Capybara::Session terminus
     should be false if the given button is not on the page
   #source
     should return the unmodified page source
-    should return the original, unmodified source of the page (FAILED - 22)
+    should return the original, unmodified source of the page (FAILED - 21)
   #fill_in
     should fill in a text field by id
     should fill in a text field by name
@@ -664,21 +664,11 @@ Capybara::Session terminus
 
 Failures:
 
-  1) Capybara::Session terminus node#== preserve object identity
-     Failure/Error: (@session.find('//h1') == @session.find('//h1')).should be_true
-     NoMethodError:
-       undefined method `native' for <Terminus::Node e50w1p0ekkasa1ctcw80159ysl20qgt03v1>:Terminus::Node
-     # ./vendor/capybara/lib/capybara/node/element.rb:40:in `block in native'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/element.rb:40:in `native'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:455:in `=='
-     # ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:107:in `block (3 levels) in <top (required)>'
-
-  2) Capybara::Session terminus#attach_file with normal form should set a file path by id
+  1) Capybara::Session terminus#attach_file with normal form should set a file path by id
      Failure/Error: @session.attach_file "form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:52:in `set'
+     # ./lib/terminus/node.rb:66:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `set'
@@ -686,11 +676,11 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:11:in `block (3 levels) in <top (required)>'
 
-  3) Capybara::Session terminus#attach_file with normal form should set a file path by label
+  2) Capybara::Session terminus#attach_file with normal form should set a file path by label
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:52:in `set'
+     # ./lib/terminus/node.rb:66:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `set'
@@ -698,11 +688,11 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:17:in `block (3 levels) in <top (required)>'
 
-  4) Capybara::Session terminus#attach_file with normal form casts to string
+  3) Capybara::Session terminus#attach_file with normal form casts to string
      Failure/Error: @session.attach_file :"form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:52:in `set'
+     # ./lib/terminus/node.rb:66:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `set'
@@ -710,11 +700,11 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:23:in `block (3 levels) in <top (required)>'
 
-  5) Capybara::Session terminus#attach_file with multipart form should set a file path by id
+  4) Capybara::Session terminus#attach_file with multipart form should set a file path by id
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:52:in `set'
+     # ./lib/terminus/node.rb:66:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `set'
@@ -722,11 +712,11 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:31:in `block (3 levels) in <top (required)>'
 
-  6) Capybara::Session terminus#attach_file with multipart form should set a file path by label
+  5) Capybara::Session terminus#attach_file with multipart form should set a file path by label
      Failure/Error: @session.attach_file "Single Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:52:in `set'
+     # ./lib/terminus/node.rb:66:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `set'
@@ -734,11 +724,11 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:37:in `block (3 levels) in <top (required)>'
 
-  7) Capybara::Session terminus#attach_file with multipart form should send content type text/plain when uploading a text file
+  6) Capybara::Session terminus#attach_file with multipart form should send content type text/plain when uploading a text file
      Failure/Error: @session.attach_file "Single Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:52:in `set'
+     # ./lib/terminus/node.rb:66:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `set'
@@ -746,11 +736,11 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:48:in `block (3 levels) in <top (required)>'
 
-  8) Capybara::Session terminus#attach_file with multipart form should send content type image/jpeg when uploading an image
+  7) Capybara::Session terminus#attach_file with multipart form should send content type image/jpeg when uploading an image
      Failure/Error: @session.attach_file "Single Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:52:in `set'
+     # ./lib/terminus/node.rb:66:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `set'
@@ -758,11 +748,11 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:54:in `block (3 levels) in <top (required)>'
 
-  9) Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input
+  8) Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:52:in `set'
+     # ./lib/terminus/node.rb:66:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `set'
@@ -770,11 +760,11 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:60:in `block (3 levels) in <top (required)>'
 
-  10) Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
+  9) Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
      Failure/Error: @session.attach_file "Multiple Documents", [@test_file_path, @another_test_file_path]
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:52:in `set'
+     # ./lib/terminus/node.rb:66:in `set'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `block in set'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:79:in `set'
@@ -782,18 +772,18 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-  11) Capybara::Session terminus#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
+  10) Capybara::Session terminus#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
      Failure/Error: @results['html5_color'].should == '#FFFFFF'
        expected: "#FFFFFF"
             got: "#ffffff" (using ==)
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:66:in `block (4 levels) in <top (required)>'
 
-  12) Capybara::Session terminus#has_field with type should be false if the given field is not on the page
+  11) Capybara::Session terminus#has_field with type should be false if the given field is not on the page
      Failure/Error: @session.should_not have_field('Description', :type => '')
      Terminus::ObsoleteElementError:
        Terminus::ObsoleteElementError
      # ./lib/terminus/browser.rb:51:in `ask'
-     # ./lib/terminus/node.rb:87:in `block (2 levels) in <class:Node>'
+     # ./lib/terminus/node.rb:101:in `block (2 levels) in <class:Node>'
      # ./vendor/capybara/lib/capybara/node/element.rb:61:in `block in []'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:61:in `[]'
@@ -817,12 +807,12 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:50:in `block (3 levels) in <top (required)>'
 
-  13) Capybara::Session terminus#has_no_field with type should be true if the given field is not on the page
+  12) Capybara::Session terminus#has_no_field with type should be true if the given field is not on the page
      Failure/Error: @session.should have_no_field('Description', :type => '')
      Terminus::ObsoleteElementError:
        Terminus::ObsoleteElementError
      # ./lib/terminus/browser.rb:51:in `ask'
-     # ./lib/terminus/node.rb:87:in `block (2 levels) in <class:Node>'
+     # ./lib/terminus/node.rb:101:in `block (2 levels) in <class:Node>'
      # ./vendor/capybara/lib/capybara/node/element.rb:61:in `block in []'
      # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
      # ./vendor/capybara/lib/capybara/node/element.rb:61:in `[]'
@@ -846,42 +836,42 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:103:in `block (3 levels) in <top (required)>'
 
-  14) Capybara::Session terminus#has_text? should be false if text is in the title tag in the head
+  13) Capybara::Session terminus#has_text? should be false if text is in the title tag in the head
      Failure/Error: @session.should_not have_text('with_js')
        expected #has_text?("with_js") to return false, got true
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:63:in `block (2 levels) in <top (required)>'
 
-  15) Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
+  14) Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
      Failure/Error: @session.should_not have_text('Inside element with hidden ancestor')
        expected #has_text?("Inside element with hidden ancestor") to return false, got true
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:74:in `block (2 levels) in <top (required)>'
 
-  16) Capybara::Session terminus#has_no_text? should be true if text is in the title tag in the head
+  15) Capybara::Session terminus#has_no_text? should be true if text is in the title tag in the head
      Failure/Error: @session.should have_no_text('with_js')
        expected #has_no_text?("with_js") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:161:in `block (2 levels) in <top (required)>'
 
-  17) Capybara::Session terminus#has_no_text? should be true if the given text is on the page but not visible
+  16) Capybara::Session terminus#has_no_text? should be true if the given text is on the page but not visible
      Failure/Error: @session.should have_no_text('Inside element with hidden ancestor')
        expected #has_no_text?("Inside element with hidden ancestor") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:172:in `block (2 levels) in <top (required)>'
 
-  18) Capybara::Session terminus#reset_session! raises any errors caught inside the server
+  17) Capybara::Session terminus#reset_session! raises any errors caught inside the server
      Failure/Error: expect do
        expected TestApp::TestAppError but nothing was raised
      # ./vendor/capybara/lib/capybara/spec/session/reset_session_spec.rb:35:in `block (2 levels) in <top (required)>'
 
-  19) Capybara::Session terminus#visit should send no referer when visiting a page
+  18) Capybara::Session terminus#visit should send no referer when visiting a page
      Failure/Error: @session.should have_content 'No referer'
        expected #has_content?("No referer") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:48:in `block (2 levels) in <top (required)>'
 
-  20) Capybara::Session terminus#visit should send no referer when visiting a second page
+  19) Capybara::Session terminus#visit should send no referer when visiting a second page
      Failure/Error: @session.should have_content 'No referer'
        expected #has_content?("No referer") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:54:in `block (2 levels) in <top (required)>'
 
-  21) Capybara::Session terminus#text should strip whitespace
+  20) Capybara::Session terminus#text should strip whitespace
      Failure/Error: /\ADuis aute .* text with whitespace .* est laborum\.\z/
        expected: /\ADuis aute .* text with whitespace .* est laborum\.\z/
             got: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum\n  dolore eu fugiat Redirect pariatur. Excepteur sint occaecat cupidatat non proident,\n  sunt in culpa qui officia\n  text   with  \n  whitespace\n  id est laborum." (using =~)
@@ -896,19 +886,18 @@ Failures:
        +  id est laborum.
      # ./vendor/capybara/lib/capybara/spec/session/text_spec.rb:20:in `block (2 levels) in <top (required)>'
 
-  22) Capybara::Session terminus#source should return the original, unmodified source of the page
+  21) Capybara::Session terminus#source should return the original, unmodified source of the page
      Failure/Error: @session.send(method).should include('This is text')
      ArgumentError:
        wrong number of arguments(0 for 1)
      # ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:9:in `method'
      # ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:9:in `block (2 levels) in <top (required)>'
 
-Finished in 6 minutes 32.35 seconds
-483 examples, 22 failures
+Finished in 6 minutes 28.68 seconds
+483 examples, 21 failures
 
 Failed examples:
 
-rspec ./vendor/capybara/lib/capybara/spec/session/node_spec.rb:106 # Capybara::Session terminus node#== preserve object identity
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:10 # Capybara::Session terminus#attach_file with normal form should set a file path by id
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:16 # Capybara::Session terminus#attach_file with normal form should set a file path by label
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:22 # Capybara::Session terminus#attach_file with normal form casts to string

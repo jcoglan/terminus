@@ -11,10 +11,6 @@ module Terminus
       !!self['checked']
     end
     
-    def selected?
-      !!self['selected']
-    end
-    
     def click
       page    = @browser.page_id
       options = @driver ? @driver.options : {}
@@ -39,12 +35,30 @@ module Terminus
       @browser.ask([:drag, {:from => @id, :to => node.id}])
     end
     
+    def ==(other)
+      Terminus::Node === other and @id == other.id
+    end
+    alias :eql? :==
+    
     def find(xpath)
       @browser.ask([:find, xpath, @id]).map { |id| Node.new(@browser, id) }
     end
     
+    def hash
+      @id.hash
+    end
+    
+    # Capybara invokes `node.native ==` to determine node equality
+    def native
+      self
+    end
+    
     def select
       @browser.ask([:select, @id])
+    end
+    
+    def selected?
+      !!self['selected']
     end
     
     def set(value)
