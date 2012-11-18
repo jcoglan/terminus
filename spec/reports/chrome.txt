@@ -346,7 +346,7 @@ Capybara::Session terminus
       should be false after the field has been filled in with a different value
     with type
       should be true if a field with the given type is on the page
-      should be false if the given field is not on the page (FAILED - 11)
+      should be false if the given field is not on the page
   #has_no_field
     should be false if the field is on the page
     should be true if the field is not on the page
@@ -357,7 +357,7 @@ Capybara::Session terminus
       should be true after the field has been filled in with a different value
     with type
       should be false if a field with the given type is on the page
-      should be true if the given field is not on the page (FAILED - 12)
+      should be true if the given field is not on the page
   #has_checked_field?
     should be true if a checked field is on the page
     should be false if an unchecked field is on the page
@@ -393,9 +393,9 @@ Capybara::Session terminus
     should handle single quotes in the text
     should handle double quotes in the text
     should handle mixed single and double quotes in the text
-    should be false if text is in the title tag in the head (FAILED - 13)
+    should be false if text is in the title tag in the head (FAILED - 11)
     should be false if text is inside a script tag in the body
-    should be false if the given text is on the page but not visible (FAILED - 14)
+    should be false if the given text is on the page but not visible (FAILED - 12)
     should be true if the text in the page matches given regexp
     should be false if the text in the page doesn't match given regexp
     should escape any characters that would have special meaning in a regexp
@@ -411,9 +411,9 @@ Capybara::Session terminus
     should handle single quotes in the text
     should handle double quotes in the text
     should handle mixed single and double quotes in the text
-    should be true if text is in the title tag in the head (FAILED - 15)
+    should be true if text is in the title tag in the head (FAILED - 13)
     should be true if text is inside a script tag in the body
-    should be true if the given text is on the page but not visible (FAILED - 16)
+    should be true if the given text is on the page but not visible (FAILED - 14)
     should be true if the text in the page doesn't match given regexp
     should be false if the text in the page  matches given regexp
     should escape any characters that would have special meaning in a regexp
@@ -422,7 +422,7 @@ Capybara::Session terminus
     removes cookies
     resets current url, host, path
     resets page body
-    raises any errors caught inside the server (FAILED - 17)
+    raises any errors caught inside the server (FAILED - 15)
   #all
     should find all elements using the given locator
     should return an empty array when nothing was found
@@ -473,8 +473,8 @@ Capybara::Session terminus
   #visit
     should fetch a response from the driver with a relative url
     should fetch a response from the driver with an absolute url with a port
-    should send no referer when visiting a page (FAILED - 18)
-    should send no referer when visiting a second page (FAILED - 19)
+    should send no referer when visiting a page (FAILED - 16)
+    should send no referer when visiting a second page (FAILED - 17)
     should send a referer when following a link
     should preserve the original referer URL when following a redirect
     should send a referer when submitting a form
@@ -553,7 +553,7 @@ Capybara::Session terminus
       should raise an error
   #text
     should print the text of the page
-    should strip whitespace (FAILED - 20)
+    should strip whitespace (FAILED - 18)
     with css as default selector
       should print the text of the page
   #uncheck
@@ -596,7 +596,7 @@ Capybara::Session terminus
     should be false if the given button is not on the page
   #source
     should return the unmodified page source
-    should return the original, unmodified source of the page (FAILED - 21)
+    should return the original, unmodified source of the page (FAILED - 19)
   #fill_in
     should fill in a text field by id
     should fill in a text field by name
@@ -778,100 +778,42 @@ Failures:
             got: "#ffffff" (using ==)
      # ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:66:in `block (4 levels) in <top (required)>'
 
-  11) Capybara::Session terminus#has_field with type should be false if the given field is not on the page
-     Failure/Error: @session.should_not have_field('Description', :type => '')
-     Terminus::ObsoleteElementError:
-       Terminus::ObsoleteElementError
-     # ./lib/terminus/browser.rb:51:in `ask'
-     # ./lib/terminus/node.rb:101:in `block (2 levels) in <class:Node>'
-     # ./vendor/capybara/lib/capybara/node/element.rb:61:in `block in []'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/element.rb:61:in `[]'
-     # ./vendor/capybara/lib/capybara/selector.rb:82:in `block (2 levels) in <top (required)>'
-     # ./vendor/capybara/lib/capybara/query.rb:45:in `call'
-     # ./vendor/capybara/lib/capybara/query.rb:45:in `block (2 levels) in matches_filters?'
-     # ./vendor/capybara/lib/capybara/query.rb:44:in `each'
-     # ./vendor/capybara/lib/capybara/query.rb:44:in `block in matches_filters?'
-     # ./vendor/capybara/lib/capybara/node/base.rb:103:in `unsynchronized'
-     # ./vendor/capybara/lib/capybara/query.rb:38:in `matches_filters?'
-     # ./vendor/capybara/lib/capybara/result.rb:10:in `block in initialize'
-     # ./vendor/capybara/lib/capybara/result.rb:10:in `select'
-     # ./vendor/capybara/lib/capybara/result.rb:10:in `initialize'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:118:in `new'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:118:in `all'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:85:in `block in assert_selector'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:84:in `assert_selector'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:35:in `has_selector?'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:308:in `has_field?'
-     # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:50:in `block (3 levels) in <top (required)>'
-
-  12) Capybara::Session terminus#has_no_field with type should be true if the given field is not on the page
-     Failure/Error: @session.should have_no_field('Description', :type => '')
-     Terminus::ObsoleteElementError:
-       Terminus::ObsoleteElementError
-     # ./lib/terminus/browser.rb:51:in `ask'
-     # ./lib/terminus/node.rb:101:in `block (2 levels) in <class:Node>'
-     # ./vendor/capybara/lib/capybara/node/element.rb:61:in `block in []'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/element.rb:61:in `[]'
-     # ./vendor/capybara/lib/capybara/selector.rb:82:in `block (2 levels) in <top (required)>'
-     # ./vendor/capybara/lib/capybara/query.rb:45:in `call'
-     # ./vendor/capybara/lib/capybara/query.rb:45:in `block (2 levels) in matches_filters?'
-     # ./vendor/capybara/lib/capybara/query.rb:44:in `each'
-     # ./vendor/capybara/lib/capybara/query.rb:44:in `block in matches_filters?'
-     # ./vendor/capybara/lib/capybara/node/base.rb:103:in `unsynchronized'
-     # ./vendor/capybara/lib/capybara/query.rb:38:in `matches_filters?'
-     # ./vendor/capybara/lib/capybara/result.rb:10:in `block in initialize'
-     # ./vendor/capybara/lib/capybara/result.rb:10:in `select'
-     # ./vendor/capybara/lib/capybara/result.rb:10:in `initialize'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:118:in `new'
-     # ./vendor/capybara/lib/capybara/node/finders.rb:118:in `all'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:101:in `block in assert_no_selector'
-     # ./vendor/capybara/lib/capybara/node/base.rb:77:in `synchronize'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:100:in `assert_no_selector'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:49:in `has_no_selector?'
-     # ./vendor/capybara/lib/capybara/node/matchers.rb:322:in `has_no_field?'
-     # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:103:in `block (3 levels) in <top (required)>'
-
-  13) Capybara::Session terminus#has_text? should be false if text is in the title tag in the head
+  11) Capybara::Session terminus#has_text? should be false if text is in the title tag in the head
      Failure/Error: @session.should_not have_text('with_js')
        expected #has_text?("with_js") to return false, got true
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:63:in `block (2 levels) in <top (required)>'
 
-  14) Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
+  12) Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
      Failure/Error: @session.should_not have_text('Inside element with hidden ancestor')
        expected #has_text?("Inside element with hidden ancestor") to return false, got true
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:74:in `block (2 levels) in <top (required)>'
 
-  15) Capybara::Session terminus#has_no_text? should be true if text is in the title tag in the head
+  13) Capybara::Session terminus#has_no_text? should be true if text is in the title tag in the head
      Failure/Error: @session.should have_no_text('with_js')
        expected #has_no_text?("with_js") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:161:in `block (2 levels) in <top (required)>'
 
-  16) Capybara::Session terminus#has_no_text? should be true if the given text is on the page but not visible
+  14) Capybara::Session terminus#has_no_text? should be true if the given text is on the page but not visible
      Failure/Error: @session.should have_no_text('Inside element with hidden ancestor')
        expected #has_no_text?("Inside element with hidden ancestor") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:172:in `block (2 levels) in <top (required)>'
 
-  17) Capybara::Session terminus#reset_session! raises any errors caught inside the server
+  15) Capybara::Session terminus#reset_session! raises any errors caught inside the server
      Failure/Error: expect do
        expected TestApp::TestAppError but nothing was raised
      # ./vendor/capybara/lib/capybara/spec/session/reset_session_spec.rb:35:in `block (2 levels) in <top (required)>'
 
-  18) Capybara::Session terminus#visit should send no referer when visiting a page
+  16) Capybara::Session terminus#visit should send no referer when visiting a page
      Failure/Error: @session.should have_content 'No referer'
        expected #has_content?("No referer") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:48:in `block (2 levels) in <top (required)>'
 
-  19) Capybara::Session terminus#visit should send no referer when visiting a second page
+  17) Capybara::Session terminus#visit should send no referer when visiting a second page
      Failure/Error: @session.should have_content 'No referer'
        expected #has_content?("No referer") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:54:in `block (2 levels) in <top (required)>'
 
-  20) Capybara::Session terminus#text should strip whitespace
+  18) Capybara::Session terminus#text should strip whitespace
      Failure/Error: /\ADuis aute .* text with whitespace .* est laborum\.\z/
        expected: /\ADuis aute .* text with whitespace .* est laborum\.\z/
             got: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum\n  dolore eu fugiat Redirect pariatur. Excepteur sint occaecat cupidatat non proident,\n  sunt in culpa qui officia\n  text   with  \n  whitespace\n  id est laborum." (using =~)
@@ -886,15 +828,15 @@ Failures:
        +  id est laborum.
      # ./vendor/capybara/lib/capybara/spec/session/text_spec.rb:20:in `block (2 levels) in <top (required)>'
 
-  21) Capybara::Session terminus#source should return the original, unmodified source of the page
+  19) Capybara::Session terminus#source should return the original, unmodified source of the page
      Failure/Error: @session.send(method).should include('This is text')
      ArgumentError:
        wrong number of arguments(0 for 1)
      # ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:9:in `method'
      # ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:9:in `block (2 levels) in <top (required)>'
 
-Finished in 6 minutes 28.68 seconds
-483 examples, 21 failures
+Finished in 6 minutes 30.18 seconds
+483 examples, 19 failures
 
 Failed examples:
 
@@ -908,8 +850,6 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:53 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
 rspec ./vendor/capybara/lib/capybara/spec/session/click_button_spec.rb:65 # Capybara::Session terminus#click_button with value given on a submit button on a form with HTML5 fields should serialise and submit color fields
-rspec ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:47 # Capybara::Session terminus#has_field with type should be false if the given field is not on the page
-rspec ./vendor/capybara/lib/capybara/spec/session/has_field_spec.rb:100 # Capybara::Session terminus#has_no_field with type should be true if the given field is not on the page
 rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:61 # Capybara::Session terminus#has_text? should be false if text is in the title tag in the head
 rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:72 # Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
 rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:159 # Capybara::Session terminus#has_no_text? should be true if text is in the title tag in the head
