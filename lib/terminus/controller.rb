@@ -74,6 +74,9 @@ module Terminus
     end
     
     def rewrite_remote(url, dock_host = nil)
+      protocol_relative = (url =~ /^\/\//)
+      url = "http:#{url}" if protocol_relative
+      
       uri = URI.parse(url)
       return uri unless URI::HTTP === uri
       
@@ -89,7 +92,7 @@ module Terminus
       end
       
       server = boot(uri)
-      uri.scheme = 'http'
+      uri.scheme = protocol_relative ? nil : 'http'
       uri.host, uri.port = (dock_host || server.host), server.port
       uri
     rescue URI::InvalidURIError
