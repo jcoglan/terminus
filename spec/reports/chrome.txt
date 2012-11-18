@@ -596,7 +596,7 @@ Capybara::Session terminus
     should be false if the given button is not on the page
   #source
     should return the unmodified page source
-    should return the original, unmodified source of the page (FAILED - 15)
+    should return the original, unmodified source of the page
   #fill_in
     should fill in a text field by id
     should fill in a text field by name
@@ -807,15 +807,8 @@ Failures:
        +  id est laborum.
      # ./vendor/capybara/lib/capybara/spec/session/text_spec.rb:20:in `block (2 levels) in <top (required)>'
 
-  15) Capybara::Session terminus#source should return the original, unmodified source of the page
-     Failure/Error: @session.source.should include('This is text')
-     ArgumentError:
-       wrong number of arguments(0 for 1)
-     # ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:9:in `method'
-     # ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:9:in `block (2 levels) in <top (required)>'
-
 Finished in 6 minutes 44.46 seconds
-483 examples, 15 failures
+483 examples, 14 failures
 
 Failed examples:
 
@@ -833,4 +826,3 @@ rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:170 # Capybar
 rspec ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:46 # Capybara::Session terminus#visit should send no referer when visiting a page
 rspec ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:51 # Capybara::Session terminus#visit should send no referer when visiting a second page
 rspec ./vendor/capybara/lib/capybara/spec/session/text_spec.rb:16 # Capybara::Session terminus#text should strip whitespace
-rspec ./vendor/capybara/lib/capybara/spec/session/source_spec.rb:7 # Capybara::Session terminus#source should return the original, unmodified source of the page
