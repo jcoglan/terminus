@@ -6,7 +6,9 @@ module Terminus
     def initialize
       @connected    = false
       @browsers     = {}
+      @errors       = {}
       @host_aliases = {}
+      @local_ports  = []
     end
     
     def browser(id = nil)
@@ -51,6 +53,15 @@ module Terminus
       @messenger
     end
     
+    def register_local_port(port)
+      @local_ports << port
+      @host_aliases[Host.new(URI.parse("http://localhost:#{port}/"))] = Host.new(URI.parse("http://localhost:80/"))
+    end
+    
+    def retrieve_error(id)
+      @errors.delete(id)
+    end
+    
     def return_to_dock
       @browsers.each { |id, b| b.return_to_dock }
     end
@@ -70,6 +81,7 @@ module Terminus
         uri.host   = remote_host.host
         uri.port   = remote_host.port
       end
+      uri.path = '/' if uri.path == ''
       uri
     end
     
@@ -82,7 +94,7 @@ module Terminus
       
       if (uri.host =~ LOCALHOST or uri.host == dock_host)
         if uri.port == 80
-          uri.port = @host_aliases.keys.find { |h| h.host == uri.host }.port
+          uri.port = @host_aliases.keys.find { |h| h.host =~ LOCALHOST }.port
         end
         
         if local_ports.include?(uri.port)
@@ -97,6 +109,12 @@ module Terminus
       uri
     rescue URI::InvalidURIError
       url
+    end
+    
+    def save_error(error)
+      id = Faye.random
+      @errors[id] = error
+      id
     end
     
     def server_running?(server)
@@ -136,7 +154,7 @@ module Terminus
     end
     
     def local_ports
-      [Terminus.port] + @host_aliases.values.map { |h| h.port }
+      [Terminus.port] + @local_ports + @host_aliases.values.map { |h| h.port }
     end
     
   end

@@ -4,8 +4,9 @@ module Terminus
     class DriverBody
       ASYNC_BROWSERS = %w[Android]
       
-      TEMPLATE = ERB.new(<<-DRIVER)
+      TEMPLATE = ERB.new(<<-HTML)
         <script type="text/javascript" id="terminus-data">
+          TERMINUS_ERROR_ID = window.TERMINUS_ERROR_ID || '';
           TERMINUS_STATUS = <%= @response.first %>;
           TERMINUS_HEADERS = {};
           <% @response[1].each do |key, value| %>
@@ -39,8 +40,7 @@ module Terminus
             }, 0);
           </script>
         <% end %>
-        
-      DRIVER
+      HTML
       
       def initialize(env, response)
         @env      = env

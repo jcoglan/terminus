@@ -12,6 +12,20 @@ module Terminus
       [File.read(ROOT + '/terminus/views/infinite.html')]
     ]
     
+    ERROR_PAGE = ERB.new(<<-HTML)
+      <!doctype html>
+      <html>
+        <head>
+          <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        </head>
+        <body>
+          <script type="text/javascript">
+            TERMINUS_ERROR_ID = '<%= error_id %>';
+          </script>
+        </body>
+      </html>
+    HTML
+    
     autoload :DriverBody, ROOT + '/terminus/proxy/driver_body'
     autoload :External,   ROOT + '/terminus/proxy/external'
     autoload :Rewrite,    ROOT + '/terminus/proxy/rewrite'
@@ -33,8 +47,13 @@ module Terminus
     end
     
     def call(env)
-      add_cookies(env)
-      response = @app.call(env)
+      response = begin
+                   add_cookies(env)
+                   @app.call(env)
+                 rescue => error
+                   error_page(error)
+                 end
+      
       store_cookies(env, response)
       
       if REDIRECT_CODES.include?(response.first)
@@ -89,6 +108,11 @@ module Terminus
           Terminus.cookies.set_cookie(endpoint, value)
         end
       end
+    end
+    
+    def error_page(error)
+      error_id = Terminus.save_error(error)
+      [200, {'Content-Type' => 'text/html'}, [ERROR_PAGE.result(binding)]]
     end
     
   end

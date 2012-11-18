@@ -144,11 +144,17 @@ module Terminus
     end
     
     def reset!
+      error_id = evaluate_script('TERMINUS_ERROR_ID')
+      
       if url = @attributes['url']
         uri = URI.parse(url)
         visit("http://#{uri.host}:#{uri.port}/")
       end
       ask([:clear_cookies])
+      
+      if error = @controller.retrieve_error(error_id)
+        raise error
+      end
       @attributes.delete('url')
     end
     

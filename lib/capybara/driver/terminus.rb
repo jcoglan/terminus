@@ -6,12 +6,13 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   end
   
   def initialize(app = nil, options = {})
-    @app         = app || NULL_APP
+    @app         = Terminus::Proxy[app || NULL_APP]
     @options     = options
     @rack_server = Capybara::Server.new(@app)
     
     @rack_server.boot
     sleep(0.1) until Terminus.server_running?(@rack_server)
+    Terminus.register_local_port(@rack_server.port)
   end
   
   def find(xpath)

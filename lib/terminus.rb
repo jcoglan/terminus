@@ -78,9 +78,11 @@ module Terminus
                                 :browser=,
                                 :cookies,
                                 :ensure_browsers,
+                                :register_local_port,
                                 :return_to_dock,
                                 :rewrite_local,
                                 :rewrite_remote,
+                                :save_error,
                                 :server_running?
     
   private
