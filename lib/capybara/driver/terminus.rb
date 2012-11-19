@@ -47,8 +47,9 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   def within_window(name)
     current_browser = browser
     Terminus.browser = browser.id + '/' + name
-    yield
+    result = yield
     Terminus.browser = current_browser
+    result
   end
   alias :within_frame :within_window
   

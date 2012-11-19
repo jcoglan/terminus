@@ -20,7 +20,7 @@ session = Capybara::Session.new(:terminus, TestApp)
 
 Capybara::SpecHelper.run_specs session, 'terminus', :skip => [
 #  :drag,
-  :frames,
+#  :frames,
 #  :js,
 #  :response_headers,
   :screenshot,
