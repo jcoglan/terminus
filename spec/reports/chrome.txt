@@ -395,7 +395,7 @@ Capybara::Session terminus
     should handle mixed single and double quotes in the text
     should be false if text is in the title tag in the head
     should be false if text is inside a script tag in the body
-    should be false if the given text is on the page but not visible (FAILED - 10)
+    should be false if the given text is on the page but not visible
     should be true if the text in the page matches given regexp
     should be false if the text in the page doesn't match given regexp
     should escape any characters that would have special meaning in a regexp
@@ -413,7 +413,7 @@ Capybara::Session terminus
     should handle mixed single and double quotes in the text
     should be true if text is in the title tag in the head
     should be true if text is inside a script tag in the body
-    should be true if the given text is on the page but not visible (FAILED - 11)
+    should be true if the given text is on the page but not visible
     should be true if the text in the page doesn't match given regexp
     should be false if the text in the page  matches given regexp
     should escape any characters that would have special meaning in a regexp
@@ -473,8 +473,8 @@ Capybara::Session terminus
   #visit
     should fetch a response from the driver with a relative url
     should fetch a response from the driver with an absolute url with a port
-    should send no referer when visiting a page (FAILED - 12)
-    should send no referer when visiting a second page (FAILED - 13)
+    should send no referer when visiting a page (FAILED - 10)
+    should send no referer when visiting a second page (FAILED - 11)
     should send a referer when following a link
     should preserve the original referer URL when following a redirect
     should send a referer when submitting a form
@@ -553,7 +553,7 @@ Capybara::Session terminus
       should raise an error
   #text
     should print the text of the page
-    should strip whitespace (FAILED - 14)
+    should strip whitespace
     with css as default selector
       should print the text of the page
   #uncheck
@@ -772,43 +772,18 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-  10) Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
-     Failure/Error: @session.should_not have_text('Inside element with hidden ancestor')
-       expected #has_text?("Inside element with hidden ancestor") to return false, got true
-     # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:74:in `block (2 levels) in <top (required)>'
-
-  11) Capybara::Session terminus#has_no_text? should be true if the given text is on the page but not visible
-     Failure/Error: @session.should have_no_text('Inside element with hidden ancestor')
-       expected #has_no_text?("Inside element with hidden ancestor") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:172:in `block (2 levels) in <top (required)>'
-
-  12) Capybara::Session terminus#visit should send no referer when visiting a page
+  10) Capybara::Session terminus#visit should send no referer when visiting a page
      Failure/Error: @session.should have_content 'No referer'
        expected #has_content?("No referer") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:48:in `block (2 levels) in <top (required)>'
 
-  13) Capybara::Session terminus#visit should send no referer when visiting a second page
+  11) Capybara::Session terminus#visit should send no referer when visiting a second page
      Failure/Error: @session.should have_content 'No referer'
        expected #has_content?("No referer") to return true, got false
      # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:54:in `block (2 levels) in <top (required)>'
 
-  14) Capybara::Session terminus#text should strip whitespace
-     Failure/Error: /\ADuis aute .* text with whitespace .* est laborum\.\z/
-       expected: /\ADuis aute .* text with whitespace .* est laborum\.\z/
-            got: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum\n  dolore eu fugiat Redirect pariatur. Excepteur sint occaecat cupidatat non proident,\n  sunt in culpa qui officia\n  text   with  \n  whitespace\n  id est laborum." (using =~)
-       Diff:
-       @@ -1,2 +1,7 @@
-       -/\ADuis aute .* text with whitespace .* est laborum\.\z/
-       +Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-       +  dolore eu fugiat Redirect pariatur. Excepteur sint occaecat cupidatat non proident,
-       +  sunt in culpa qui officia
-       +  text   with  
-       +  whitespace
-       +  id est laborum.
-     # ./vendor/capybara/lib/capybara/spec/session/text_spec.rb:20:in `block (2 levels) in <top (required)>'
-
-Finished in 6 minutes 44.46 seconds
-483 examples, 14 failures
+Finished in 6 minutes 47.02 seconds
+483 examples, 11 failures
 
 Failed examples:
 
@@ -821,8 +796,5 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:47 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:53 # Capybara::Session terminus#attach_file with multipart form should send content type image/jpeg when uploading an image
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
-rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:72 # Capybara::Session terminus#has_text? should be false if the given text is on the page but not visible
-rspec ./vendor/capybara/lib/capybara/spec/session/has_text_spec.rb:170 # Capybara::Session terminus#has_no_text? should be true if the given text is on the page but not visible
 rspec ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:46 # Capybara::Session terminus#visit should send no referer when visiting a page
 rspec ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:51 # Capybara::Session terminus#visit should send no referer when visiting a second page
-rspec ./vendor/capybara/lib/capybara/spec/session/text_spec.rb:16 # Capybara::Session terminus#text should strip whitespace
