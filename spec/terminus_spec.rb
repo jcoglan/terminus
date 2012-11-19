@@ -16,17 +16,9 @@ RSpec.configure do |config|
   end
 end
 
-session = Capybara::Session.new(:terminus, TestApp)
+skip  = [:screenshot]
+skip << :windows if %w[Android iPad iPhone PhantomJS].include?(ENV['USER_AGENT'])
 
-Capybara::SpecHelper.run_specs session, 'terminus', :skip => [
-#  :drag,
-#  :frames,
-#  :js,
-#  :response_headers,
-  :screenshot,
-#  :source,
-#  :status_code,
-#  :trigger,
-  :windows
-]
+session = Capybara::Session.new(:terminus, TestApp)
+Capybara::SpecHelper.run_specs(session, 'terminus', :skip => skip)
 

@@ -232,6 +232,11 @@ Capybara::Session terminus
     with partial options
       should be false if a field with the given partial options is on the page
       should be true if a field with the given partial options is not on the page
+  #within_window
+    should find the div in firstPopup
+    should find the div in secondPopup
+    should find the divs in both popups
+    should find the div in the main window after finding a div in a popup
   #click_button
     should wait for asynchronous load
     casts to string
@@ -594,6 +599,12 @@ Capybara::Session terminus
   #has_no_button?
     should be true if the given button is on the page
     should be false if the given button is not on the page
+  #within_frame
+    should find the div in frameOne
+    should find the div in FrameTwo
+    should find the text div in the main window after finding text in frameOne
+    should find the text div in the main window after finding text in frameTwo
+    should return the result of executing the block
   #source
     should return the unmodified page source
     should return the original, unmodified source of the page
@@ -772,8 +783,8 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-Finished in 6 minutes 33.55 seconds
-483 examples, 9 failures
+Finished in 6 minutes 37.74 seconds
+492 examples, 9 failures
 
 Failed examples:
 
