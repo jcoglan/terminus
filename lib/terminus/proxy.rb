@@ -47,43 +47,11 @@ module Terminus
     end
     
     def call(env)
-      response = begin
-                   add_cookies(env)
-                   @app.call(env)
-                 rescue => error
-                   error_page(error)
-                 end
-      
+      add_cookies(env)
+      response = forward_request(env)
       store_cookies(env, response)
-      
-      if REDIRECT_CODES.include?(response.first)
-        @redirects += 1
-        if @redirects > MAX_REDIRECTS
-          @redirects = 0
-          response = INFINITE_REDIRECT_RESPONSE
-        end
-      else
-        @redirects = 0
-      end
-      
-      if location = response[1].keys.grep(/^location$/i).first
-        app_host = URI.parse('http://' + env['HTTP_HOST']).host
-        response[1][location] = Terminus.rewrite_remote(response[1][location], app_host).to_s
-      end
-      
-      return response if response.first == -1 or              # async response
-             REDIRECT_CODES.include?(response.first) or       # redirects
-             BASIC_RESOURCES.include?(env['PATH_INFO']) or    # not pages - favicon etc
-             env.has_key?('HTTP_X_REQUESTED_WITH')            # Ajax calls
-      
-      content_type = Proxy.content_type(response)
-      return response unless CONTENT_TYPES.include?(content_type)
-      
-      response[1] = response[1].dup
-      response[1].delete_if { |key, _| key =~ /^content-length$/i }
-      response[2] = DriverBody.new(env, response)
-      
-      response
+      response = detect_infinite_redirect(response)
+      rewrite_response(env, response)
     end
     
   private
@@ -113,6 +81,53 @@ module Terminus
     def error_page(error)
       error_id = Terminus.save_error(error)
       [200, {'Content-Type' => 'text/html'}, [ERROR_PAGE.result(binding)]]
+    end
+    
+    def forward_request(env)
+      @app.call(env)
+    rescue => error
+      error_page(error)
+    end
+    
+    def detect_infinite_redirect(response)
+      if REDIRECT_CODES.include?(response.first)
+        @redirects += 1
+        if @redirects > MAX_REDIRECTS
+          @redirects = 0
+          response = INFINITE_REDIRECT_RESPONSE
+        end
+      else
+        @redirects = 0
+      end
+      response
+    end
+    
+    def rewrite_response(env, response)
+      rewrite_location(env, response)
+      return response if return_unmodified?(env, response)
+      
+      response[1] = response[1].dup
+      response[1].delete_if { |key, _| key =~ /^content-length$/i }
+      response[2] = DriverBody.new(env, response)
+      response
+    end
+    
+    def rewrite_location(env, response)
+      return unless location = response[1].keys.grep(/^location$/i).first
+      app_host = URI.parse('http://' + env['HTTP_HOST']).host
+      response[1][location] = Terminus.rewrite_remote(response[1][location], app_host).to_s
+    end
+    
+    def return_unmodified?(env, response)
+      return true if response.first == -1 or                  # async response
+             REDIRECT_CODES.include?(response.first) or       # redirects
+             BASIC_RESOURCES.include?(env['PATH_INFO']) or    # not pages - favicon etc
+             env.has_key?('HTTP_X_REQUESTED_WITH')            # Ajax calls
+      
+      content_type = Proxy.content_type(response)
+      return true unless CONTENT_TYPES.include?(content_type)
+      
+      false
     end
     
   end
