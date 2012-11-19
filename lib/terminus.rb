@@ -83,7 +83,8 @@ module Terminus
                                 :rewrite_local,
                                 :rewrite_remote,
                                 :save_error,
-                                :server_running?
+                                :server_running?,
+                                :visited?
     
   private
     

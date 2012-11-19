@@ -200,6 +200,7 @@ module Terminus
       close_frames!
       uri = @controller.rewrite_remote(url, @dock_host)
       uri.host = @dock_host if uri.host =~ LOCALHOST
+      @controller.visit_url(uri.to_s)
       
       if @connector
         ask([:visit, uri.to_s], false)

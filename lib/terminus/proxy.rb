@@ -84,6 +84,7 @@ module Terminus
     end
     
     def forward_request(env)
+      env.delete('HTTP_REFERER') if Terminus.visited?(env['REQUEST_URI'])
       @app.call(env)
     rescue => error
       error_page(error)

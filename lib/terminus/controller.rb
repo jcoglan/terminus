@@ -9,6 +9,7 @@ module Terminus
       @errors       = {}
       @host_aliases = {}
       @local_ports  = []
+      @visited      = Set.new
     end
     
     def browser(id = nil)
@@ -124,6 +125,16 @@ module Terminus
       true
     rescue
       false
+    end
+    
+    def visit_url(url)
+      @visited.add(url)
+    end
+    
+    def visited?(url)
+      visited = @visited.member?(url)
+      @visited.delete(url)
+      visited
     end
     
   private

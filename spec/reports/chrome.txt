@@ -473,8 +473,8 @@ Capybara::Session terminus
   #visit
     should fetch a response from the driver with a relative url
     should fetch a response from the driver with an absolute url with a port
-    should send no referer when visiting a page (FAILED - 10)
-    should send no referer when visiting a second page (FAILED - 11)
+    should send no referer when visiting a page
+    should send no referer when visiting a second page
     should send a referer when following a link
     should preserve the original referer URL when following a redirect
     should send a referer when submitting a form
@@ -772,18 +772,8 @@ Failures:
      # ./vendor/capybara/lib/capybara/session.rb:343:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-  10) Capybara::Session terminus#visit should send no referer when visiting a page
-     Failure/Error: @session.should have_content 'No referer'
-       expected #has_content?("No referer") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:48:in `block (2 levels) in <top (required)>'
-
-  11) Capybara::Session terminus#visit should send no referer when visiting a second page
-     Failure/Error: @session.should have_content 'No referer'
-       expected #has_content?("No referer") to return true, got false
-     # ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:54:in `block (2 levels) in <top (required)>'
-
-Finished in 6 minutes 47.02 seconds
-483 examples, 11 failures
+Finished in 6 minutes 33.55 seconds
+483 examples, 9 failures
 
 Failed examples:
 
@@ -796,5 +786,3 @@ rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:47 # Capyb
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:53 # Capybara::Session terminus#attach_file with multipart form should send content type image/jpeg when uploading an image
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus#attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
-rspec ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:46 # Capybara::Session terminus#visit should send no referer when visiting a page
-rspec ./vendor/capybara/lib/capybara/spec/session/visit_spec.rb:51 # Capybara::Session terminus#visit should send no referer when visiting a second page
