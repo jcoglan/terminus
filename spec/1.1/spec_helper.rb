@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 
 root = File.expand_path('../../..', __FILE__)
+$LOAD_PATH.unshift(root + '/vendor/capybara/1.1/xpath/lib')
 $LOAD_PATH.unshift(root + '/vendor/capybara/1.1/lib')
 
 require root + '/vendor/capybara/1.1/spec/spec_helper'
