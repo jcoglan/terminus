@@ -20,6 +20,7 @@ Capybara::Driver::Terminus
         should extract node attributes
         should extract boolean node attributes
         should allow retrieval of the value
+        should not swallow extra newlines in textarea
         should allow assignment of field value
         should extract node tag name
         should extract node visibility
@@ -717,6 +718,8 @@ Capybara::Session
             should reload the current context of the node automatically
             should reload a parent node automatically
             should reload a node automatically when using find
+            should not reload nodes which haven't been found
+            should reload nodes with options
         #find
           should allow triggering of custom JS events
         #body
@@ -770,9 +773,9 @@ Failures:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/1.1/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:66:in `set'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `block in set'
-     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:46:in `wait_until'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `set'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `block in set'
+     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:54:in `wait_until'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `set'
      # ./vendor/capybara/1.1/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/1.1/lib/capybara/spec/session/attach_file_spec.rb:12:in `block (4 levels) in <top (required)>'
@@ -783,9 +786,9 @@ Failures:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/1.1/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:66:in `set'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `block in set'
-     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:46:in `wait_until'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `set'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `block in set'
+     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:54:in `wait_until'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `set'
      # ./vendor/capybara/1.1/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/1.1/lib/capybara/spec/session/attach_file_spec.rb:18:in `block (4 levels) in <top (required)>'
@@ -796,9 +799,9 @@ Failures:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/1.1/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:66:in `set'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `block in set'
-     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:46:in `wait_until'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `set'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `block in set'
+     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:54:in `wait_until'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `set'
      # ./vendor/capybara/1.1/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/1.1/lib/capybara/spec/session/attach_file_spec.rb:26:in `block (4 levels) in <top (required)>'
@@ -809,9 +812,9 @@ Failures:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/1.1/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:66:in `set'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `block in set'
-     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:46:in `wait_until'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `set'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `block in set'
+     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:54:in `wait_until'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `set'
      # ./vendor/capybara/1.1/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/1.1/lib/capybara/spec/session/attach_file_spec.rb:32:in `block (4 levels) in <top (required)>'
@@ -822,9 +825,9 @@ Failures:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/1.1/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:66:in `set'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `block in set'
-     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:46:in `wait_until'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `set'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `block in set'
+     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:54:in `wait_until'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `set'
      # ./vendor/capybara/1.1/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/1.1/lib/capybara/spec/session/attach_file_spec.rb:43:in `block (4 levels) in <top (required)>'
@@ -835,9 +838,9 @@ Failures:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/1.1/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:66:in `set'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `block in set'
-     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:46:in `wait_until'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `set'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `block in set'
+     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:54:in `wait_until'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `set'
      # ./vendor/capybara/1.1/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/1.1/lib/capybara/spec/session/attach_file_spec.rb:49:in `block (4 levels) in <top (required)>'
@@ -848,9 +851,9 @@ Failures:
        Capybara::NotSupportedByDriverError
      Shared Example Group: "attach_file" called from ./vendor/capybara/1.1/lib/capybara/spec/session.rb:88
      # ./lib/terminus/node.rb:66:in `set'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `block in set'
-     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:46:in `wait_until'
-     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:75:in `set'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `block in set'
+     # ./vendor/capybara/1.1/lib/capybara/node/base.rb:54:in `wait_until'
+     # ./vendor/capybara/1.1/lib/capybara/node/element.rb:79:in `set'
      # ./vendor/capybara/1.1/lib/capybara/node/actions.rb:158:in `attach_file'
      # (eval):2:in `attach_file'
      # ./vendor/capybara/1.1/lib/capybara/spec/session/attach_file_spec.rb:55:in `block (4 levels) in <top (required)>'
@@ -862,8 +865,8 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/1.1/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/1.1/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-Finished in 2 minutes 57.28 seconds
-510 examples, 8 failures
+Finished in 2 minutes 50.74 seconds
+513 examples, 8 failures
 
 Failed examples:
 
