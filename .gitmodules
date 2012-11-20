@@ -3,4 +3,7 @@
 	url = git://github.com/jupiterjs/syn.git
 [submodule "vendor/capybara/2.0"]
 	path = vendor/capybara/2.0
-	url = git://github.com/jcoglan/capybara
+	url = git://github.com/jcoglan/capybara.git
+[submodule "vendor/capybara/1.1"]
+	path = vendor/capybara/1.1
+	url = git://github.com/jcoglan/capybara.git
