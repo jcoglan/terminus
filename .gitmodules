@@ -1,6 +1,6 @@
 [submodule "vendor/syn"]
 	path = vendor/syn
-	url = git://github.com/jupiterjs/syn.git
+	url = git://github.com/bitovi/syn.git
 [submodule "vendor/capybara/2.0"]
 	path = vendor/capybara/2.0
 	url = git://github.com/jcoglan/capybara.git
