@@ -14,6 +14,7 @@ Terminus.sockets = false if ENV.has_key?('NOSOCKET')
 case ENV['USER_AGENT']
   when 'auto'      then Terminus.start_browser
   when 'PhantomJS' then Terminus.start_phantomjs
+  when 'Firefox'   then Terminus.sockets = false
 end
 
 def select_browser

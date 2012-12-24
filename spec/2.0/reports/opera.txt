@@ -814,7 +814,7 @@ Failures:
        undefined method `host' for nil:NilClass
      # ./vendor/capybara/2.0/lib/capybara/spec/session/visit_spec.rb:56:in `block (3 levels) in <top (required)>'
 
-Finished in 15 minutes 26.2 seconds
+Finished in 15 minutes 38.06 seconds
 497 examples, 13 failures
 
 Failed examples:
