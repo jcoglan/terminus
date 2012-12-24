@@ -22,6 +22,10 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   def invalid_element_errors
     [::Terminus::ObsoleteElementError]
   end
+
+  def needs_server?
+    true
+  end
   
   def visit(path)
     h, s = Capybara.app_host, @rack_server
