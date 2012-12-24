@@ -641,8 +641,8 @@ Capybara::Session terminus
     when Capybara.always_include_port is true
       should fetch a response from the driver with an absolute url without a port
     without a server
-      should respect `app_host` (FAILED - 10)
-      should visit a fully qualified URL (FAILED - 11)
+      should respect `app_host`
+      should visit a fully qualified URL
   #within_frame
     should find the div in frameOne
     should find the div in FrameTwo
@@ -785,20 +785,8 @@ Failures:
      # ./vendor/capybara/2.0/lib/capybara/session.rb:338:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-  10) Capybara::Session terminus #visit without a server should respect `app_host`
-     Failure/Error: Capybara.app_host = "http://#{@session.server.host}:#{@session.server.port}"
-     NoMethodError:
-       undefined method `host' for nil:NilClass
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/visit_spec.rb:49:in `block (3 levels) in <top (required)>'
-
-  11) Capybara::Session terminus #visit without a server should visit a fully qualified URL
-     Failure/Error: serverless_session.visit("http://#{@session.server.host}:#{@session.server.port}/foo")
-     NoMethodError:
-       undefined method `host' for nil:NilClass
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/visit_spec.rb:56:in `block (3 levels) in <top (required)>'
-
-Finished in 6 minutes 41.67 seconds
-493 examples, 11 failures
+Finished in 6 minutes 38.45 seconds
+493 examples, 9 failures
 
 Failed examples:
 
@@ -811,5 +799,3 @@ rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:47 # C
 rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:53 # Capybara::Session terminus #attach_file with multipart form should send content type image/jpeg when uploading an image
 rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/visit_spec.rb:47 # Capybara::Session terminus #visit without a server should respect `app_host`
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/visit_spec.rb:54 # Capybara::Session terminus #visit without a server should visit a fully qualified URL

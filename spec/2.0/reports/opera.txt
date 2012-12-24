@@ -203,8 +203,8 @@ Capybara::Session terminus
     is unaffected by posting through a relative form
     is affected by posting through an absolute form
     is affected by following a redirect
-    is affected by pushState (FAILED - 10)
-    is affected by replaceState (FAILED - 11)
+    is affected by pushState
+    is affected by replaceState
   #evaluate_script
     should evaluate the given script and return whatever it produces
   #execute_script
@@ -641,8 +641,8 @@ Capybara::Session terminus
     when Capybara.always_include_port is true
       should fetch a response from the driver with an absolute url without a port
     without a server
-      should respect `app_host` (FAILED - 12)
-      should visit a fully qualified URL (FAILED - 13)
+      should respect `app_host`
+      should visit a fully qualified URL
   #within_frame
     should find the div in frameOne
     should find the div in FrameTwo
@@ -790,32 +790,8 @@ Failures:
      # ./vendor/capybara/2.0/lib/capybara/session.rb:338:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-  10) Capybara::Session terminus #current_url, #current_path, #current_host is affected by pushState
-     Failure/Error: @session.current_path.should == "/pushed"
-       expected: "/pushed"
-            got: "/with_js" (using ==)
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/current_url_spec.rb:85:in `block (2 levels) in <top (required)>'
-
-  11) Capybara::Session terminus #current_url, #current_path, #current_host is affected by replaceState
-     Failure/Error: @session.current_path.should == "/replaced"
-       expected: "/replaced"
-            got: "/with_js" (using ==)
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/current_url_spec.rb:91:in `block (2 levels) in <top (required)>'
-
-  12) Capybara::Session terminus #visit without a server should respect `app_host`
-     Failure/Error: Capybara.app_host = "http://#{@session.server.host}:#{@session.server.port}"
-     NoMethodError:
-       undefined method `host' for nil:NilClass
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/visit_spec.rb:49:in `block (3 levels) in <top (required)>'
-
-  13) Capybara::Session terminus #visit without a server should visit a fully qualified URL
-     Failure/Error: serverless_session.visit("http://#{@session.server.host}:#{@session.server.port}/foo")
-     NoMethodError:
-       undefined method `host' for nil:NilClass
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/visit_spec.rb:56:in `block (3 levels) in <top (required)>'
-
-Finished in 15 minutes 38.06 seconds
-497 examples, 13 failures
+Finished in 8 minutes 42.53 seconds
+497 examples, 9 failures
 
 Failed examples:
 
@@ -828,7 +804,3 @@ rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:47 # C
 rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:53 # Capybara::Session terminus #attach_file with multipart form should send content type image/jpeg when uploading an image
 rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/current_url_spec.rb:82 # Capybara::Session terminus #current_url, #current_path, #current_host is affected by pushState
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/current_url_spec.rb:88 # Capybara::Session terminus #current_url, #current_path, #current_host is affected by replaceState
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/visit_spec.rb:47 # Capybara::Session terminus #visit without a server should respect `app_host`
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/visit_spec.rb:54 # Capybara::Session terminus #visit without a server should visit a fully qualified URL
