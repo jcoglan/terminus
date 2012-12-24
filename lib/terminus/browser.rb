@@ -62,7 +62,6 @@ module Terminus
     def current_url
       url = @attributes['url']
       return '' unless url
-      return url unless @connector
       rewrite_local(ask([:current_url]))
     end
     
