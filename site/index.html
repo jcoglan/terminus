@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Open+Sans:400,700">
     <script type="text/javascript" src="./prettify.js"></script>
     <title>Terminus</title>
-    
+
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-873493-10']);
@@ -22,31 +22,31 @@
     </script>
   </head>
   <body onload="prettyPrint()">
-    
+
     <div class="bg"></div>
     <h1>Terminus</h1>
-    
+
     <p>Terminus is a <a href="https://github.com/jnicklas/capybara">Capybara</a>
       driver for real browsers. It lets you control your application in any
       browser on any device (including <a
       href="http://phantomjs.org/">PhantomJS</a>), without needing browser
       plugins. This allows several types of testing to be automated:</p>
-    
+
     <ul>
       <li>Cross-browser testing</li>
       <li>Headless testing</li>
       <li>Multi-browser interaction e.g. messaging apps</li>
       <li>Testing on remote machines, phones, iPads etc</li>
     </ul>
-    
+
     <h2>See it in action</h2>
-    
+
     <div class="iframe">
       <iframe src="http://player.vimeo.com/video/26649163?byline=0&amp;portrait=0&amp;color=ff9933" width="500" height="281" frameborder="0"></iframe>
     </div>
-    
+
     <h2>Supported Capybara features</h2>
-    
+
     <ul>
       <li>All core Capybara 1.1.x features except <tt>attach_file</tt></li>
       <li>Drive most major desktop and mobile browsers</li>
@@ -57,9 +57,9 @@
       <li>Frame and window switching</li>
       <li>Detect infinite redirects</li>
     </ul>
-    
+
     <h2>Supported browsers</h2>
-    
+
     <ul>
       <li>Android (except window switching)</li>
       <li>Chrome</li>
@@ -70,106 +70,106 @@
       <li>Safari</li>
       <li>Mobile Safari (except window switching)</li>
     </ul>
-    
+
     <h2>How to use it</h2>
-    
+
     <p>Terminus is available <a href="http://rubygems.org/gems/terminus">through
       Rubygems</a>. For the most part, you will not use it directly: you will
       use the Capybara API and it will send instructions to Terminus for
       execution. To set Terminus as your driver:</p>
-    
+
     <pre class="prettyprint">require 'capybara/dsl'
 require 'terminus'
 
 Capybara.current_driver = :terminus</pre>
-    
+
     <p>Terminus does require some extra setup before you can use it to control
       your app. First up, you need to start the Terminus server on the machine
       where your application will be running (you don&rsquo;t need to do this if
       you&rsquo;re using PhantomJS &ndash; see below):</p>
-    
+
     <pre class="prettyprint">$ terminus</pre>
-    
+
     <p>This starts the server on port 7004. Now open a browser at
       <a href="http://localhost:7004">localhost:7004</a>. This is the
       &lsquo;holding page&rsquo;. A browser is said to be &lsquo;docked&rsquo;
       while it is visiting this page, meaning it is ready and waiting to run
       some tests for you.</p>
-    
+
     <p>Finally, in your tests you need to make sure there&rsquo;s a docked
       browser and select it. In a <tt>before</tt> block, run the following:</p>
-    
+
     <pre class="prettyprint">Terminus.browser = :docked</pre>
-    
+
     <p>After your tests are finished, you need to return the browser to the
       holding page to make it ready to accept new work. In an <tt>after</tt>
       block or using the <tt>at_exit</tt> hook:</p>
-    
+
     <pre class="prettyprint">Terminus.return_to_dock</pre>
-    
+
     <p>This returns all currently connected browsers to the holding page.</p>
-    
+
     <h2>Launching a browser automatically</h2>
-    
+
     <p>You can skip running the <tt>terminus</tt> command and opening a browser
       by hand if you just want to use your default browser. Run this
       command at the beginning of your test suite:</p>
-    
+
     <pre class="prettyprint">Terminus.start_browser</pre>
-    
+
     <p>This runs <tt>terminus</tt> in the background, launches your default
       browser connected to it and sets <tt>Terminus.browser</tt> to this
       browser.</p>
-    
+
     <h2>Using PhantomJS</h2>
-    
+
     <p>Terminus can be used for headless testing via <a
       href="http://phantomjs.org/">PhantomJS</a>. Just tell Terminus to start
       PhantomJS before you run any tests:</p>
-    
+
     <pre class="prettyprint">Terminus.start_phantomjs</pre>
-    
+
     <p>This command starts the <tt>terminus</tt> server for you, starts a
       <tt>phantomjs</tt> process, and selects this browser and waits for it to
       connect. When the method returns, you can immediately start sending
       commands to the PhantomJS browser.</p>
-    
+
     <p>You can optionally specify which port you want the background server to
       run on, and which command should be used to run <tt>phantomjs</tt>:</p>
-    
+
     <pre class="prettyprint">Terminus.start_phantomjs(
   :port    => 4567,
   :command => ['path/to/phantomjs']
 )</pre>
-    
+
     <p>By default, the port is selected automatically and the command used is
       <tt>['/usr/bin/env', 'phantomjs']</tt>.</p>
-    
+
     <p>The PhantomJS browser can be explicitly selected like this if
       you&rsquo;re running a multi-browser scenario:</p>
-    
+
     <pre class="prettyprint">Terminus.browser = {:name => 'PhantomJS'}</pre>
-    
+
     <h2>Browser selection API</h2>
 
     <p>If you&rsquo;re testing a messaging app, for example, you need several
       browsers to participate in the test. Terminus has a browser selection API
       that lets you switch which browser you&rsquo;re controlling as you use the
       Capybara API.</p>
-    
+
     <ul>
       <li><b><tt>Terminus.ensure_browsers(n)</tt></b> blocks until there are at
         least <tt>n</tt> browsers connected. This is useful for making sure you
         have everything you need before beginning a test.</li>
-      
+
       <li><b><tt>Terminus.browsers</tt></b> returns a list of objects
         representing the connected browsers. So for example you can select the
         first browser by calling <tt>Terminus.browser = Terminus.browsers.first</tt>.</li>
-      
+
       <li><b><tt>Terminus.browser = :docked</tt></b> selects any browser that is
         currently visiting the holding page.</li>
     </ul>
-    
+
     <p>You can also select based on browser name, version and operating system,
       for example to select Firefox 3.6 you can call:</p>
 
@@ -179,12 +179,12 @@ Capybara.current_driver = :terminus</pre>
       and the values may be strings or regular expressions.
       <tt>Terminus.browser=</tt> blocks until a browser matching the criteria is
       connected.</p>
-    
+
     <div class="footer">
       <p>Copyright &copy; 2010&ndash;2012 <a href="http://jcoglan.com">James
         Coglan</a>, released under the MIT license</p>
     </div>
-        
+
   </body>
 </html>
 

@@ -10,7 +10,7 @@ RSpec.configure do |config|
                        else               :docked
                        end
   end
-  
+
   config.after do
     Terminus.browser.return_to_dock unless ENV['USER_AGENT']
   end

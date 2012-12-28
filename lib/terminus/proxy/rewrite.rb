@@ -1,16 +1,16 @@
 module Terminus
   class Proxy
-    
+
     module Rewrite
       attr_writer :dock_host
-      
+
       def each(&block)
         handler = lambda do |fragment|
           block.call(rewrite(fragment))
         end
         super(&handler)
       end
-      
+
       def rewrite(fragment)
         fragment.gsub(/\b(action|href)=('[^']*?'|"[^"]*?")/i) do
           q = $2.chars.first
@@ -18,6 +18,6 @@ module Terminus
         end
       end
     end
-    
+
   end
 end

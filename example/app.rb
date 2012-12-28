@@ -6,15 +6,15 @@ require 'yaml'
 module Example
   class App < Sinatra::Base
     set :views, File.expand_path('../views', __FILE__)
-    
+
     get '/' do
       erb(:index)
     end
-    
+
     get '/signup' do
       erb(:signup)
     end
-    
+
     post '/signup' do
       "<pre>\n#{ YAML.dump params }\n</pre>"
     end

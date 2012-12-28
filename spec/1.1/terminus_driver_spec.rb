@@ -5,13 +5,13 @@ describe Capybara::Driver::Terminus do
     @driver = Capybara::Driver::Terminus.new(TestApp)
     select_browser
   end
-  
+
   after do
     Terminus.browser.return_to_dock unless ENV['USER_AGENT']
   end
 
   single_window = %w[Android iPad iPhone PhantomJS].include?(ENV['USER_AGENT'])
-  
+
   it_should_behave_like "driver"
   it_should_behave_like "driver with javascript support"
   it_should_behave_like "driver with resynchronization support"

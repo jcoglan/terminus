@@ -7,23 +7,23 @@ require File.expand_path('../../lib/terminus', __FILE__)
 spec = Oyster.spec do
   name "terminus -- Control web browsers with Ruby"
   synopsis "terminus [--port PORT]"
-  
+
   integer :port, :default => Terminus::DEFAULT_PORT
 end
 
 begin
   options = spec.parse
   app = Terminus.create(options)
-  
+
   trap("INT") { app.stop! ; exit }
-  
+
   Terminus.port = options[:port]
-  
+
   puts "Terminus server running on port #{Terminus.port}"
   puts "Press CTRL-C to exit"
   puts ""
   app.run!
-  
+
 rescue Oyster::HelpRendered
 end
 

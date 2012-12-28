@@ -1,88 +1,88 @@
 module Terminus
   class Node
-    
+
     attr_reader :id
-    
+
     def initialize(browser, id, driver = nil)
       @browser, @id, @driver = browser, id, driver
     end
-    
+
     def checked?
       !!self['checked']
     end
-    
+
     def click
       page    = @browser.page_id
       options = @driver ? @driver.options : {}
-      
+
       value = if @browser.connector
         @browser.ask([:click, @id, options], false)
       else
         command = @browser.tell([:click, @id, options])
-        
+
         result = @browser.wait_with_timeout(:click_response) do
           @browser.result(command) || (@browser.page_id != page)
         end
         Hash === result ? result[:value] : nil
       end
-      
+
       if String === value
         raise Capybara::TimeoutError, value
       end
     end
-    
+
     def drag_to(node)
       @browser.ask([:drag, {:from => @id, :to => node.id}])
     end
-    
+
     def ==(other)
       Terminus::Node === other and @id == other.id
     end
     alias :eql? :==
-    
+
     def find(xpath)
       @browser.ask([:find, xpath, @id]).map { |id| Node.new(@browser, id) }
     end
-    
+
     def hash
       @id.hash
     end
-    
+
     # Capybara invokes `node.native ==` to determine node equality
     def native
       self
     end
-    
+
     def select
       @browser.ask([:select, @id])
     end
-    
+
     def selected?
       !!self['selected']
     end
-    
+
     def set(value)
       result = @browser.ask([:set, @id, value])
       raise Capybara::NotSupportedByDriverError.new if result == 'not_allowed'
     end
-    
+
     def trigger(event_type)
       @browser.ask([:trigger, @id, event_type])
     end
-    
+
     def unselect
       allowed = @browser.ask([:unselect, @id])
       raise Capybara::UnselectNotAllowed.new unless allowed
     end
-    
+
     def to_s
       "<#{self.class.name} #{@id}>"
     end
     alias :inspect :to_s
-    
+
     alias :select_option :select
     alias :unselect_option :unselect
-    
+
     SYNC_DSL_METHODS = [ [:[], :attribute],
                          [:[]=, :set_attribute],
                          :tag_name,
@@ -90,7 +90,7 @@ module Terminus
                          :value,
                          [:visible?, :is_visible]
                        ]
-    
+
     SYNC_DSL_METHODS.each do |method|
       if Array === method
         name, command = *method
@@ -101,7 +101,7 @@ module Terminus
         @browser.ask([command, @id, *args])
       end
     end
-    
+
   end
 end
 

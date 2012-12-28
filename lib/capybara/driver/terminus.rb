@@ -1,24 +1,24 @@
 class Capybara::Driver::Terminus < Capybara::Driver::Base
   attr_reader :options
-  
+
   NULL_APP = lambda do |env|
     [200, {'Content-Type' => 'text/html'}, ['']]
   end
-  
+
   def initialize(app = nil, options = {})
     @app         = Terminus::Proxy[app || NULL_APP]
     @options     = options
     @rack_server = Capybara::Server.new(@app)
-    
+
     @rack_server.boot
     sleep(0.1) until Terminus.server_running?(@rack_server)
     Terminus.register_local_port(@rack_server.port)
   end
-  
+
   def find(xpath)
     browser.find(xpath, self)
   end
-  
+
   def invalid_element_errors
     [::Terminus::ObsoleteElementError]
   end
@@ -26,17 +26,17 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   def needs_server?
     true
   end
-  
+
   def visit(path)
     h, s = Capybara.app_host, @rack_server
     path = "#{h || "http://#{s.host}:#{s.port}"}#{path}" unless path =~ /^https?:\/\//
     browser.visit(path)
   end
-  
+
   def wait?
     true
   end
-  
+
   extend Forwardable
   def_delegators :browser, :body,
                            :current_url,
@@ -47,7 +47,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :response_headers,
                            :source,
                            :status_code
-  
+
   def within_window(name)
     current_browser = browser
     Terminus.browser = browser.id + '/' + name
@@ -56,9 +56,9 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     result
   end
   alias :within_frame :within_window
-  
+
 private
-  
+
   def browser
     Terminus.ensure_browsers
     Terminus.browser
