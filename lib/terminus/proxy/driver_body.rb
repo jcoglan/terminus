@@ -70,7 +70,7 @@ module Terminus
 
       def inject_script(fragment)
         fragment.gsub(/((?:^\s*)?<\/body>)/i) do
-          TEMPLATE.result(binding) + $1
+          TEMPLATE.result(binding) + ($1 || '')
         end
       end
 
