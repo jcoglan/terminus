@@ -864,7 +864,7 @@ Failures:
      Shared Example Group: "session with javascript support" called from ./spec/1.1/terminus_session_spec.rb:16
      # ./vendor/capybara/1.1/lib/capybara/spec/session/javascript.rb:101:in `block (4 levels) in <top (required)>'
 
-Finished in 16 minutes 7.15 seconds
+Finished in 16 minutes 53.08 seconds
 513 examples, 8 failures
 
 Failed examples:

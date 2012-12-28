@@ -865,7 +865,7 @@ Failures:
      Shared Example Group: "fill_in" called from ./vendor/capybara/1.1/lib/capybara/spec/session.rb:94
      # ./vendor/capybara/1.1/lib/capybara/spec/session/fill_in_spec.rb:22:in `block (3 levels) in <top (required)>'
 
-Finished in 4 minutes 45.25 seconds
+Finished in 3 minutes 31.57 seconds
 513 examples, 8 failures
 
 Failed examples:
