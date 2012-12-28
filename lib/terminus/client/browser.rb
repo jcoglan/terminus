@@ -17,11 +17,11 @@ module Terminus
       end
       
       def browser_selector
-        {:current_url => dock_url}
+        {:raw_url => dock_url}
       end
       
       def dock_url
-        "http://#{@address[2]}:#{@port}"
+        "http://#{@address[2]}:#{@port}/"
       end
     end
     

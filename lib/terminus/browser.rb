@@ -24,7 +24,7 @@ module Terminus
       return params == id if String === params
       return false if @parent
       return false unless @user_agent
-      
+
       params.all? do |name, value|
         property = __send__(name)
         value === property
@@ -124,6 +124,7 @@ module Terminus
       remove_timeout(:dead)
       add_timeout(:dead, Timeouts::TIMEOUT) { drop_dead! }
       
+      @attributes['raw_url'] = message['url']
       message['url'] = rewrite_local(message['url'])
       
       @attributes = @attributes.merge(message)
@@ -140,6 +141,10 @@ module Terminus
       start_connector if message['sockets'] and sockets?
       
       @ping = true
+    end
+
+    def raw_url
+      @attributes['raw_url']
     end
     
     def reset!
