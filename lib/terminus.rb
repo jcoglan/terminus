@@ -20,6 +20,7 @@ module Terminus
   DEFAULT_HOST = 'localhost'
   DEFAULT_PORT = 7004
   LOCALHOST    = /^(localhost|0\.0\.0\.0|127\.0\.0\.1)$/
+  PING_PATH    = '/favicon.ico'
   RETRY_LIMIT  = 3
 
   ROOT = File.expand_path('..', __FILE__)

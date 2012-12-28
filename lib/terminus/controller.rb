@@ -120,7 +120,7 @@ module Terminus
 
     def server_running?(server)
       return false unless server.port
-      uri = URI.parse("http://#{server.host}:#{server.port}/")
+      uri = URI.parse("http://#{server.host}:#{server.port}#{PING_PATH}")
       Net::HTTP.start(uri.host, uri.port) { |h| h.head(uri.path) }
       true
     rescue
