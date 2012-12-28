@@ -25,6 +25,6 @@ task :compile do
   File.open(target, 'w') { |f| f.write(code) }
   
   min = target.gsub(/\.js$/, '-min.js')
-  system "./node_modules/.bin/uglifyjs -o '#{min}' '#{target}'"
+  system "./node_modules/.bin/uglifyjs -cmo '#{min}' '#{target}'"
 end
 
