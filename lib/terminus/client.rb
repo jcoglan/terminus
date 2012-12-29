@@ -19,11 +19,12 @@ module Terminus
 
       def initialize(options)
         @id        = Faye.random
+        @options   = options
         @address   = TCPServer.new(0).addr
         @connector = Connector::Server.new(self)
         @port      = options[:port] || @address[1]
         @terminus  = Terminus.create(:port => @port)
-        @browser   = ChildProcess.build(*browser_args(options[:command]))
+        @browser   = ChildProcess.build(*browser_args)
       end
 
       def debug(*args)

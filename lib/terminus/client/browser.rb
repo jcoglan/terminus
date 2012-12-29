@@ -8,7 +8,8 @@ module Terminus
         /(linux|bsd|aix|solaris)/i      => ['xdg-open']
       }
 
-      def browser_args(command)
+      def browser_args
+        command = @options[:command]
         return command + [dock_url] if command
 
         os  = RbConfig::CONFIG['host_os']
