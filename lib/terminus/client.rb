@@ -5,17 +5,29 @@ module Terminus
     autoload :PhantomJS,  ROOT + '/terminus/client/phantomjs'
 
     class Base
+      attr_reader :id
+
       def self.start(options = {})
-        process = new(options)
-        process.start
-        process
+        @process = new(options)
+        @process.start
+        @process
+      end
+
+      def self.save_screenshot(path, options = {})
+        @process.save_screenshot(path, options)
       end
 
       def initialize(options)
-        @address  = TCPServer.new(0).addr
-        @port     = options[:port] || @address[1]
-        @terminus = Terminus.create(:port => @port)
-        @browser  = ChildProcess.build(*browser_args(options[:command]))
+        @id        = Faye.random
+        @address   = TCPServer.new(0).addr
+        @connector = Connector::Server.new(self)
+        @port      = options[:port] || @address[1]
+        @terminus  = Terminus.create(:port => @port)
+        @browser   = ChildProcess.build(*browser_args(options[:command]))
+      end
+
+      def debug(*args)
+        p args if Terminus.debug
       end
 
       def start

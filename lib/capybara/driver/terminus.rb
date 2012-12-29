@@ -45,6 +45,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :html,
                            :reset!,
                            :response_headers,
+                           :save_screenshot,
                            :source,
                            :status_code
 

@@ -181,6 +181,11 @@ module Terminus
       visit("http://#{@dock_host}:#{Terminus.port}/")
     end
 
+    def save_screenshot(path, options = {})
+      raise Capybara::NotSupportedByDriverError.new unless name == 'PhantomJS'
+      Client::PhantomJS.save_screenshot(path, options)
+    end
+
     def sockets?
       @sockets.nil? ? Terminus.sockets != false : @sockets
     end

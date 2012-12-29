@@ -16,7 +16,8 @@ RSpec.configure do |config|
   end
 end
 
-skip  = [:screenshot]
+skip  = []
+skip << :screenshot unless ENV['USER_AGENT'] == 'PhantomJS'
 skip << :windows if %w[Android iPad iPhone PhantomJS].include?(ENV['USER_AGENT'])
 
 session = Capybara::Session.new(:terminus, TestApp)

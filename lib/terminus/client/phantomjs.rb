@@ -7,11 +7,16 @@ module Terminus
 
       def browser_args(command)
         args = (command || DEFAULT_COMMAND).dup
-        args + [PHANTOM_CLIENT, @address[2], @port.to_s]
+        args + [PHANTOM_CLIENT, @address[2], @port.to_s, @connector.port.to_s]
       end
 
       def browser_selector
         {:name => 'PhantomJS'}
+      end
+
+      def save_screenshot(path, options = {})
+        message = Yajl::Encoder.encode(['save_screenshot', path])
+        @connector.request(message)
       end
     end
 
