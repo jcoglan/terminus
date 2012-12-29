@@ -13,6 +13,10 @@ module Terminus
         @process
       end
 
+      def self.debugger
+        @process.debugger
+      end
+
       def self.save_screenshot(path, options = {})
         @process.save_screenshot(path, options)
       end

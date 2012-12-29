@@ -69,6 +69,11 @@ module Terminus
       p args if Terminus.debug
     end
 
+    def debugger
+      raise Capybara::NotSupportedByDriverError.new unless name == 'PhantomJS'
+      Client::PhantomJS.debugger
+    end
+
     def docked?
       @docked
     end

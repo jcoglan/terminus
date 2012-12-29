@@ -40,6 +40,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
   extend Forwardable
   def_delegators :browser, :body,
                            :current_url,
+                           :debugger,
                            :evaluate_script,
                            :execute_script,
                            :html,
