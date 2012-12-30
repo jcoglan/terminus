@@ -23,11 +23,11 @@
 
 module Terminus
   module Connector
-    
+
     class Server
       RECV_SIZE    = 1024
       BIND_TIMEOUT = 5
-      
+
       def initialize(browser, timeout = BIND_TIMEOUT)
         @browser = browser
         @skips   = 0
@@ -35,7 +35,7 @@ module Terminus
         @timeout = timeout
         reset
       end
-      
+
       def reset
         @closing = false
         @env     = nil
@@ -43,15 +43,15 @@ module Terminus
         @parser  = Http::Parser.new
         @socket  = nil
       end
-      
+
       def connected?
         not @socket.nil?
       end
-      
+
       def port
         @server.addr[1]
       end
-      
+
       def request(message)
         @browser.debug(:send, @browser.id, message)
         accept unless connected?
@@ -65,13 +65,13 @@ module Terminus
         reset
         nil
       end
-      
+
       def drain_socket
         @closing = true if @socket
       end
-      
+
     private
-      
+
       def start_server
         time = Time.now
         TCPServer.open(0)
@@ -83,7 +83,7 @@ module Terminus
           raise
         end
       end
-      
+
       def accept
         @skips.times { @server.accept.close }
         @socket = @server.accept
@@ -100,7 +100,7 @@ module Terminus
           @browser.debug(:accept, @browser.id, @handler.url)
         end
       end
-      
+
       def env
         @env ||= begin
           env = {'REQUEST_METHOD' => @parser.http_method}
@@ -113,11 +113,11 @@ module Terminus
           env
         end
       end
-      
+
       def receive
         @browser.debug(:receive, @browser.id)
         start = Time.now
-        
+
         until @handler.message?
           raise Errno::EWOULDBLOCK if (Time.now - start) >= @timeout
           IO.select([@socket], [], [], @timeout) or raise Errno::EWOULDBLOCK
@@ -128,7 +128,7 @@ module Terminus
         end
         @handler && @handler.next_message
       end
-      
+
       def close
         [server, socket].compact.each do |s|
           s.close_read
@@ -136,7 +136,7 @@ module Terminus
         end
       end
     end
-    
+
   end
 end
 

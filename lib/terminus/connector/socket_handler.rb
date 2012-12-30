@@ -23,50 +23,50 @@
 
 module Terminus
   module Connector
-    
+
     class SocketHandler
       attr_reader :env
-      
+
       def initialize(server, env)
         @server   = server
         @env      = env
         @parser   = Faye::WebSocket.parser(env).new(self)
         @messages = []
       end
-      
+
       def url
         "ws://#{env['HTTP_HOST']}/"
       end
-      
+
       def handshake_response
         @parser.handshake_response
       end
-      
+
       def <<(data)
         @parser.parse(data)
       end
-      
+
       def encode(message)
         @parser.frame(Faye::WebSocket.encode(message))
       end
-      
+
       def receive(message)
         @messages << message
       end
-      
+
       def message?
         @messages.any?
       end
-      
+
       def next_message
         @messages.shift
       end
-      
+
       def close(*args)
         @server.reset
       end
     end
-    
+
   end
 end
 

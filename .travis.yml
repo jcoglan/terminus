@@ -7,7 +7,7 @@ rvm:
 before_script:
   - git submodule update --init --recursive
 
-script: bundle exec rspec -cf nested spec/ || true
+script: bundle exec rspec -cf nested spec/2.0 || true
 
 env: USER_AGENT=PhantomJS
 
