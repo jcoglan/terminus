@@ -16,12 +16,15 @@ module Terminus
       <!doctype html>
       <html>
         <head>
-          <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         </head>
         <body>
-          <script type="text/javascript">
-            TERMINUS_ERROR_ID = '<%= error_id %>';
-          </script>
+          <h1><%= error.class %>: <%=ERB::Util.h error.message %></h1>
+          <ul>
+            <% error.backtrace.each do |line| %>
+              <li><%=ERB::Util.h line %></li>
+            <% end %>
+          </ul>
         </body>
       </html>
     HTML
@@ -60,8 +63,6 @@ module Terminus
       return unless External === @app
       cookies = Terminus.cookies.get_cookies(env['REQUEST_URI'])
       env['HTTP_COOKIE'] = (cookies + [env['HTTP_COOKIE']]).compact.join('; ')
-    rescue => e
-      puts e.message
     end
 
     def store_cookies(env, response)
@@ -78,16 +79,11 @@ module Terminus
       end
     end
 
-    def error_page(error)
-      error_id = Terminus.save_error(error)
-      [200, {'Content-Type' => 'text/html'}, [ERROR_PAGE.result(binding)]]
-    end
-
     def forward_request(env)
       env.delete('HTTP_REFERER') if Terminus.visited?(env['REQUEST_URI'])
       @app.call(env)
     rescue => error
-      error_page(error)
+      [500, {'Content-Type' => 'text/html'}, [ERROR_PAGE.result(binding)]]
     end
 
     def detect_infinite_redirect(response)

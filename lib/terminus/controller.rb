@@ -6,7 +6,6 @@ module Terminus
     def initialize
       @connected    = false
       @browsers     = {}
-      @errors       = {}
       @host_aliases = {}
       @local_ports  = []
       @visited      = Set.new
@@ -59,10 +58,6 @@ module Terminus
       @host_aliases[Host.new(URI.parse("http://localhost:#{port}/"))] = Host.new(URI.parse("http://localhost:80/"))
     end
 
-    def retrieve_error(id)
-      @errors.delete(id)
-    end
-
     def return_to_dock
       @browsers.each { |id, b| b.return_to_dock }
     end
@@ -110,12 +105,6 @@ module Terminus
       uri
     rescue URI::InvalidURIError
       url
-    end
-
-    def save_error(error)
-      id = Faye.random
-      @errors[id] = error
-      id
     end
 
     def server_running?(server)
