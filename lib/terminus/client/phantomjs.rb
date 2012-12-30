@@ -47,7 +47,7 @@ module Terminus
       end
 
       def save_screenshot(path, options = {})
-        message = Yajl::Encoder.encode(['save_screenshot', path])
+        message = Yajl::Encoder.encode(['save_screenshot', path, options])
         @connector.request(message)
       end
     end
