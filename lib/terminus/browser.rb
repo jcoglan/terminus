@@ -70,8 +70,8 @@ module Terminus
     end
 
     def debugger
-      raise Capybara::NotSupportedByDriverError.new unless name == 'PhantomJS'
-      Client::PhantomJS.debugger
+      Client::PhantomJS.debugger if name == 'PhantomJS'
+      Readline.readline('Driver paused, press ENTER to continue')
     end
 
     def docked?

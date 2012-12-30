@@ -36,7 +36,6 @@ module Terminus
         process = ChildProcess.build(@debugger, url)
         process.start
         puts "Launched WebKit remote debugger at #{url}"
-        Readline.readline 'Press ENTER to continue'
       end
 
       def detect_browser(browser)
