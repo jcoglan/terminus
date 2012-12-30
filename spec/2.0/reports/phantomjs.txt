@@ -583,6 +583,8 @@ Capybara::Session terminus
     can store files in a specified directory
     uses the given filename
     returns the filename
+  #save_screenshot
+    should generate PNG file
   #select
     should return value of the first option
     should return value of the selected option
@@ -785,8 +787,8 @@ Failures:
      # ./vendor/capybara/2.0/lib/capybara/session.rb:338:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-Finished in 6 minutes 46.02 seconds
-493 examples, 9 failures
+Finished in 6 minutes 50.67 seconds
+494 examples, 9 failures
 
 Failed examples:
 
