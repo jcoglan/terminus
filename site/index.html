@@ -48,7 +48,7 @@
     <h2>Supported Capybara features</h2>
 
     <ul>
-      <li>All core Capybara 1.1.x features except <tt>attach_file</tt></li>
+      <li>All core Capybara 1.1 and 2.0 features except <tt>attach_file</tt></li>
       <li>Drive most major desktop and mobile browsers</li>
       <li>Execute JavaScript</li>
       <li>Resynchronization (waiting for <tt>setTimeout</tt> and <tt>jQuery.ajax</tt>)</li>
@@ -56,6 +56,8 @@
       <li>Set cookies</li>
       <li>Frame and window switching</li>
       <li>Detect infinite redirects</li>
+      <li>Take screenshots under PhantomJS</li>
+      <li>Remote debugging</li>
     </ul>
 
     <h2>Supported browsers</h2>
@@ -149,6 +151,21 @@ Capybara.current_driver = :terminus</pre>
       you&rsquo;re running a multi-browser scenario:</p>
 
     <pre class="prettyprint">Terminus.browser = {:name => 'PhantomJS'}</pre>
+
+    <p>While using PhantomJS, you can use the Capybara screenshot API to save an
+      image of the page:</p>
+
+    <pre class="prettyprint">page.save_screenshot('screenshot.png')</pre>
+
+    <p>You can also launch the remote WebKit debugger to inspect the page using
+      the WebKit developer tools in Chrome:</p>
+
+    <pre class="prettyprint">page.driver.debugger</pre>
+
+    <p>This command pauses execution until you press <tt>ENTER</tt>, and it
+      launches the WebKit debugger in Chrome. If using a browser other than
+      PhantomJS this command simply pauses the test so you can inspect the page
+      in the browser.</p>
 
     <h2>Browser selection API</h2>
 
