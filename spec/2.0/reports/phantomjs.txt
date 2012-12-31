@@ -787,7 +787,7 @@ Failures:
      # ./vendor/capybara/2.0/lib/capybara/session.rb:338:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-Finished in 6 minutes 50.67 seconds
+Finished in 6 minutes 42.61 seconds
 494 examples, 9 failures
 
 Failed examples:

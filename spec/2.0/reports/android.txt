@@ -797,7 +797,7 @@ Failures:
             got: "/with_js" (using ==)
      # ./vendor/capybara/2.0/lib/capybara/spec/session/current_url_spec.rb:91:in `block (2 levels) in <top (required)>'
 
-Finished in 123 minutes 39.03 seconds
+Finished in 64 minutes 17.28 seconds
 493 examples, 11 failures
 
 Failed examples:

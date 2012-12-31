@@ -795,7 +795,7 @@ Failures:
        expected #has_css?("#focus_event_triggered") to return true, got false
      # ./vendor/capybara/2.0/lib/capybara/spec/session/node_spec.rb:123:in `block (3 levels) in <top (required)>'
 
-Finished in 17 minutes 44.85 seconds
+Finished in 16 minutes 18.85 seconds
 497 examples, 10 failures
 
 Failed examples:
