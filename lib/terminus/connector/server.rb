@@ -70,6 +70,13 @@ module Terminus
         @closing = true if @socket
       end
 
+      def close
+        [@server, @socket].compact.each do |s|
+          s.close_read
+          s.close_write
+        end
+      end
+
     private
 
       def start_server
@@ -127,13 +134,6 @@ module Terminus
           break if @handler.nil?
         end
         @handler && @handler.next_message
-      end
-
-      def close
-        [server, socket].compact.each do |s|
-          s.close_read
-          s.close_write
-        end
       end
     end
 
