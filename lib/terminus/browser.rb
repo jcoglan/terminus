@@ -209,6 +209,10 @@ module Terminus
       command_id
     end
 
+    def title
+      ask([:title])
+    end
+
     def visit(url, retries = RETRY_LIMIT)
       close_frames!
       uri = @controller.rewrite_remote(url, @dock_host)

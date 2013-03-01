@@ -53,7 +53,8 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :response_headers,
                            :save_screenshot,
                            :source,
-                           :status_code
+                           :status_code,
+                           :title
 
   def within_window(name)
     current_browser = browser
