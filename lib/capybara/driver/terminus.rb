@@ -15,9 +15,14 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
     Terminus.register_local_port(@rack_server.port)
   end
 
-  def find(xpath)
-    browser.find(xpath, self)
+  def find_css(css)
+    browser.find_css(css, self)
   end
+
+  def find_xpath(xpath)
+    browser.find_xpath(xpath, self)
+  end
+  alias :find :find_xpath
 
   def invalid_element_errors
     [::Terminus::ObsoleteElementError]

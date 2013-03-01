@@ -40,9 +40,14 @@ module Terminus
     end
     alias :eql? :==
 
-    def find(xpath)
-      @browser.ask([:find, xpath, @id]).map { |id| Node.new(@browser, id) }
+    def find_css(css)
+      @browser.ask([:find_css, css, @id]).map { |id| Node.new(@browser, id) }
     end
+
+    def find_xpath(xpath)
+      @browser.ask([:find_xpath, xpath, @id]).map { |id| Node.new(@browser, id) }
+    end
+    alias :find :find_xpath
 
     def hash
       @id.hash
@@ -66,6 +71,15 @@ module Terminus
       raise Capybara::NotSupportedByDriverError.new if result == 'not_allowed'
     end
 
+    def all_text
+      @browser.ask([:text, @id, false])
+    end
+
+    def visible_text
+      @browser.ask([:text, @id, true])
+    end
+    alias :text :visible_text
+
     def trigger(event_type)
       @browser.ask([:trigger, @id, event_type])
     end
@@ -86,7 +100,6 @@ module Terminus
     SYNC_DSL_METHODS = [ [:[], :attribute],
                          [:[]=, :set_attribute],
                          :tag_name,
-                         :text,
                          :value,
                          [:visible?, :is_visible]
                        ]

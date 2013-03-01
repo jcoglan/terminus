@@ -87,8 +87,12 @@ module Terminus
       nil
     end
 
-    def find(xpath, driver = nil)
-      ask([:find, xpath, false]).map { |id| Node.new(self, id, driver) }
+    def find_css(css, driver = nil)
+      ask([:find_css, css, false]).map { |id| Node.new(self, id, driver) }
+    end
+
+    def find_xpath(xpath, driver = nil)
+      ask([:find_xpath, xpath, false]).map { |id| Node.new(self, id, driver) }
     end
 
     def frame!(frame_browser)
