@@ -1,4 +1,4 @@
-Run options: exclude {:requires=>#<Proc:0x00000100db8728>}
+Run options: exclude {:requires=>#<Proc:0x00000101901508>}
 
 Capybara::Session terminus
   #all
@@ -611,15 +611,15 @@ Capybara::Session terminus
     should escape any characters that would have special meaning in a regexp
     should wait for text to disappear
   #has_title?
-    should be true if the page has the given title (FAILED - 13)
-    should allow regexp matches (FAILED - 14)
-    should wait for title (FAILED - 15)
-    should be false if the page has not the given title (FAILED - 16)
+    should be true if the page has the given title
+    should allow regexp matches
+    should wait for title
+    should be false if the page has not the given title
   #has_no_title?
-    should be false if the page has the given title (FAILED - 17)
-    should allow regexp matches (FAILED - 18)
-    should wait for title to disappear (FAILED - 19)
-    should be true if the page has not the given title (FAILED - 20)
+    should be false if the page has the given title
+    should allow regexp matches
+    should wait for title to disappear
+    should be true if the page has not the given title
   #has_xpath?
     should be true if the given selector is on the page
     should be false if the given selector is not on the page
@@ -675,7 +675,7 @@ Capybara::Session terminus
     #tag_name
       should extract node tag name
     #disabled?
-      should extract disabled node (FAILED - 21)
+      should extract disabled node (FAILED - 13)
     #visible?
       should extract node visibility
     #checked?
@@ -690,7 +690,7 @@ Capybara::Session terminus
     #drag_to
       should drag and drop an object
     #hover
-      should allow hovering on an element (FAILED - 22)
+      should allow hovering on an element (FAILED - 14)
     #reload
       without automatic reload
         should reload the current context of the node
@@ -770,9 +770,9 @@ Capybara::Session terminus
     with css as default selector
       should print the text of the page
   #title
-    should print the title of the page (FAILED - 23)
+    should print the title of the page
     with css as default selector
-      should print the title of the page (FAILED - 24)
+      should print the title of the page
   #uncheck
     should uncheck a checkbox by id
     should uncheck a checkbox by label
@@ -822,8 +822,8 @@ Capybara::Session terminus
     should find the text div in the main window after finding text in frameOne
     should find the text div in the main window after finding text in frameTwo
     should return the result of executing the block
-    should find the div given Element (FAILED - 25)
-    should find multiple nested frames (FAILED - 26)
+    should find the div given Element (FAILED - 15)
+    should find multiple nested frames (FAILED - 16)
   #within
     should raise an error if the scope is not found on the page
     should restore the scope when an error is raised
@@ -982,135 +982,41 @@ Failures:
        expected Capybara::ElementNotFound but nothing was raised
      # ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:42:in `block (3 levels) in <top (required)>'
 
-  13) Capybara::Session terminus #has_title? should be true if the page has the given title
-     Failure/Error: @session.should have_title('with_js')
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:363:in `block in has_title?'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:362:in `has_title?'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:7:in `block (2 levels) in <top (required)>'
-
-  14) Capybara::Session terminus #has_title? should allow regexp matches
-     Failure/Error: @session.should have_title(/w[a-z]{3}_js/)
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:363:in `block in has_title?'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:362:in `has_title?'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:11:in `block (2 levels) in <top (required)>'
-
-  15) Capybara::Session terminus #has_title? should wait for title
-     Failure/Error: @session.should have_title("changed title")
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:363:in `block in has_title?'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:362:in `has_title?'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:17:in `block (2 levels) in <top (required)>'
-
-  16) Capybara::Session terminus #has_title? should be false if the page has not the given title
-     Failure/Error: @session.should_not have_title('monkey')
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:363:in `block in has_title?'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:362:in `has_title?'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:21:in `block (2 levels) in <top (required)>'
-
-  17) Capybara::Session terminus #has_no_title? should be false if the page has the given title
-     Failure/Error: @session.should_not have_no_title('with_js')
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:374:in `block in has_no_title?'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:373:in `has_no_title?'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:31:in `block (2 levels) in <top (required)>'
-
-  18) Capybara::Session terminus #has_no_title? should allow regexp matches
-     Failure/Error: @session.should_not have_no_title(/w[a-z]{3}_js/)
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:374:in `block in has_no_title?'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:373:in `has_no_title?'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:35:in `block (2 levels) in <top (required)>'
-
-  19) Capybara::Session terminus #has_no_title? should wait for title to disappear
-     Failure/Error: @session.should have_no_title('with_js')
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:374:in `block in has_no_title?'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:373:in `has_no_title?'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:41:in `block (2 levels) in <top (required)>'
-
-  20) Capybara::Session terminus #has_no_title? should be true if the page has not the given title
-     Failure/Error: @session.should have_no_title('monkey')
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:374:in `block in has_no_title?'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:373:in `has_no_title?'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:45:in `block (2 levels) in <top (required)>'
-
-  21) Capybara::Session terminus node #disabled? should extract disabled node
+  13) Capybara::Session terminus node #disabled? should extract disabled node
      Failure/Error: @session.find('//input[@id="customer_name"]').should be_disabled
      NoMethodError:
-       undefined method `disabled?' for <Terminus::Node t3ooz01hi9g8511gxzcd1dpzago1ntbd0y1>:Terminus::Node
+       undefined method `disabled?' for <Terminus::Node ahp6cr1t55jdc12b0vn700cost61j9r9id1>:Terminus::Node
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:176:in `block in disabled?'
      # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:176:in `disabled?'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/node_spec.rb:87:in `block (3 levels) in <top (required)>'
 
-  22) Capybara::Session terminus node #hover should allow hovering on an element
+  14) Capybara::Session terminus node #hover should allow hovering on an element
      Failure/Error: @session.find(:css,'.hidden_until_hover', :visible => false).should_not be_visible
        expected visible? to return false, got true
      # ./vendor/capybara/2.1/lib/capybara/spec/session/node_spec.rb:154:in `block (3 levels) in <top (required)>'
 
-  23) Capybara::Session terminus #title should print the title of the page
-     Failure/Error: @session.title.should == 'Test Title'
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/title_spec.rb:5:in `block (2 levels) in <top (required)>'
-
-  24) Capybara::Session terminus #title with css as default selector should print the title of the page
-     Failure/Error: @session.title.should == 'Test Title'
-     NoMethodError:
-       undefined method `title' for #<Capybara::Driver::Terminus:0x00000101e7e328>
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:146:in `title'
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/title_spec.rb:12:in `block (3 levels) in <top (required)>'
-
-  25) Capybara::Session terminus #within_frame should find the div given Element
+  15) Capybara::Session terminus #within_frame should find the div given Element
      Failure/Error: @session.within_frame element do
      TypeError:
        can't convert Capybara::Node::Element into String
-     # ./lib/capybara/driver/terminus.rb:60:in `+'
-     # ./lib/capybara/driver/terminus.rb:60:in `within_window'
+     # ./lib/capybara/driver/terminus.rb:61:in `+'
+     # ./lib/capybara/driver/terminus.rb:61:in `within_window'
      # ./vendor/capybara/2.1/lib/capybara/session.rb:264:in `within_frame'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/within_frame_spec.rb:33:in `block (2 levels) in <top (required)>'
 
-  26) Capybara::Session terminus #within_frame should find multiple nested frames
+  16) Capybara::Session terminus #within_frame should find multiple nested frames
      Failure/Error: @session.within_frame 'parentFrame' do
      Terminus::Timeouts::TimeoutError:
        Waited 30s but could not get a selected_browser
      # ./lib/terminus/timeouts.rb:21:in `wait_with_timeout'
      # ./lib/terminus/controller.rb:26:in `browser='
-     # ./lib/capybara/driver/terminus.rb:60:in `within_window'
+     # ./lib/capybara/driver/terminus.rb:61:in `within_window'
      # ./vendor/capybara/2.1/lib/capybara/session.rb:264:in `within_frame'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/within_frame_spec.rb:38:in `block (2 levels) in <top (required)>'
 
-Finished in 8 minutes 51.22 seconds
-620 examples, 26 failures
+Finished in 9 minutes 12.84 seconds
+620 examples, 16 failures
 
 Failed examples:
 
@@ -1126,17 +1032,7 @@ rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:66 # C
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:92 # Capybara::Session terminus #attach_file with :exact option should set a file path by partial label when false
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:31 # Capybara::Session terminus #find with :wait option should not wait for asynchronous load when `false` given
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:39 # Capybara::Session terminus #find with :wait option should not find element if it appears after given wait duration
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:6 # Capybara::Session terminus #has_title? should be true if the page has the given title
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:10 # Capybara::Session terminus #has_title? should allow regexp matches
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:15 # Capybara::Session terminus #has_title? should wait for title
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:20 # Capybara::Session terminus #has_title? should be false if the page has not the given title
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:30 # Capybara::Session terminus #has_no_title? should be false if the page has the given title
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:34 # Capybara::Session terminus #has_no_title? should allow regexp matches
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:39 # Capybara::Session terminus #has_no_title? should wait for title to disappear
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/has_title_spec.rb:44 # Capybara::Session terminus #has_no_title? should be true if the page has not the given title
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/node_spec.rb:85 # Capybara::Session terminus node #disabled? should extract disabled node
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/node_spec.rb:151 # Capybara::Session terminus node #hover should allow hovering on an element
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/title_spec.rb:3 # Capybara::Session terminus #title should print the title of the page
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/title_spec.rb:10 # Capybara::Session terminus #title with css as default selector should print the title of the page
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/within_frame_spec.rb:31 # Capybara::Session terminus #within_frame should find the div given Element
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/within_frame_spec.rb:37 # Capybara::Session terminus #within_frame should find multiple nested frames
