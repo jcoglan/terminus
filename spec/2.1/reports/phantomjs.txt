@@ -1,4 +1,4 @@
-Run options: exclude {:requires=>#<Proc:0x000001012a7090>}
+Run options: exclude {:requires=>#<Proc:0x000001012ead40>}
 
 Capybara::Session terminus
   #all
@@ -689,8 +689,6 @@ Capybara::Session terminus
       should allow triggering of custom JS events
     #drag_to
       should drag and drop an object
-    #hover
-      should allow hovering on an element (FAILED - 13)
     #reload
       without automatic reload
         should reload the current context of the node
@@ -822,8 +820,8 @@ Capybara::Session terminus
     should find the text div in the main window after finding text in frameOne
     should find the text div in the main window after finding text in frameTwo
     should return the result of executing the block
-    should find the div given Element (FAILED - 14)
-    should find multiple nested frames (FAILED - 15)
+    should find the div given Element (FAILED - 13)
+    should find multiple nested frames (FAILED - 14)
   #within
     should raise an error if the scope is not found on the page
     should restore the scope when an error is raised
@@ -982,12 +980,7 @@ Failures:
        expected Capybara::ElementNotFound but nothing was raised
      # ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:42:in `block (3 levels) in <top (required)>'
 
-  13) Capybara::Session terminus node #hover should allow hovering on an element
-     Failure/Error: @session.find(:css,'.hidden_until_hover', :visible => false).should_not be_visible
-       expected visible? to return false, got true
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/node_spec.rb:154:in `block (3 levels) in <top (required)>'
-
-  14) Capybara::Session terminus #within_frame should find the div given Element
+  13) Capybara::Session terminus #within_frame should find the div given Element
      Failure/Error: @session.within_frame element do
      TypeError:
        can't convert Capybara::Node::Element into String
@@ -996,7 +989,7 @@ Failures:
      # ./vendor/capybara/2.1/lib/capybara/session.rb:264:in `within_frame'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/within_frame_spec.rb:33:in `block (2 levels) in <top (required)>'
 
-  15) Capybara::Session terminus #within_frame should find multiple nested frames
+  14) Capybara::Session terminus #within_frame should find multiple nested frames
      Failure/Error: @session.within_frame 'parentFrame' do
      Terminus::Timeouts::TimeoutError:
        Waited 30s but could not get a selected_browser
@@ -1006,8 +999,8 @@ Failures:
      # ./vendor/capybara/2.1/lib/capybara/session.rb:264:in `within_frame'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/within_frame_spec.rb:38:in `block (2 levels) in <top (required)>'
 
-Finished in 8 minutes 53.7 seconds
-620 examples, 15 failures
+Finished in 8 minutes 52.79 seconds
+619 examples, 14 failures
 
 Failed examples:
 
@@ -1023,6 +1016,5 @@ rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:66 # C
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:92 # Capybara::Session terminus #attach_file with :exact option should set a file path by partial label when false
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:31 # Capybara::Session terminus #find with :wait option should not wait for asynchronous load when `false` given
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:39 # Capybara::Session terminus #find with :wait option should not find element if it appears after given wait duration
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/node_spec.rb:151 # Capybara::Session terminus node #hover should allow hovering on an element
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/within_frame_spec.rb:31 # Capybara::Session terminus #within_frame should find the div given Element
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/within_frame_spec.rb:37 # Capybara::Session terminus #within_frame should find multiple nested frames
