@@ -31,6 +31,10 @@ module Terminus
       end
     end
 
+    def disabled?
+      !!self['disabled']
+    end
+
     def drag_to(node)
       @browser.ask([:drag, {:from => @id, :to => node.id}])
     end
