@@ -57,6 +57,7 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :title
 
   def within_window(name)
+    name = name['id'] unless String === name
     current_browser = browser
     Terminus.browser = browser.id + '/' + name
     result = yield
