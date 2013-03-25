@@ -2,4 +2,5 @@
 *.gem
 Gemfile.lock
 node_modules
+vendor/bundle
 

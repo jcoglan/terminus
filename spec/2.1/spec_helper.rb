@@ -2,7 +2,9 @@ require 'rubygems'
 require 'bundler/setup'
 
 root = File.expand_path('../../..', __FILE__)
-$LOAD_PATH.unshift(root + '/vendor/capybara/2.1/xpath/lib')
+xpath_path = Dir.glob(File.expand_path('bundler/gems/xpath-*/lib', ENV['GEM_HOME']))
+
+$LOAD_PATH.unshift(xpath_path.first)
 $LOAD_PATH.unshift(root + '/vendor/capybara/2.1/lib')
 
 require root + '/vendor/capybara/2.1/spec/spec_helper'
