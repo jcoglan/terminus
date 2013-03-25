@@ -1,4 +1,4 @@
-Run options: exclude {:requires=>#<Proc:0x000001018e4750>}
+Run options: exclude {:requires=>#<Proc:0x00000100f2a6b0>}
 
 Capybara::Session terminus
   #all
@@ -202,6 +202,11 @@ Capybara::Session terminus
         does not click on approximately matching button
     with a locator that doesn't exist
       should raise an error
+    with :disabled option
+      ignores disabled buttons when false
+      ignores disabled buttons by default
+      happily clicks on links which incorrectly have the disabled attribute
+      does nothing when button is disabled
   #click_link
     should wait for asynchronous load
     casts to string
@@ -306,6 +311,10 @@ Capybara::Session terminus
     with :exact option
       should accept partial matches when false
       should not accept partial matches when true
+    with :disabled option
+      should find disabled fields when true
+      should not find disabled fields when false
+      should not find disabled fields by default
   #find_link
     should find any field
     casts to string
@@ -337,6 +346,11 @@ Capybara::Session terminus
       should use the selector when it matches the :for option
     with custom selector with custom filter
       should find elements that match the filter
+      ignores filter when it is not given
+      should not find elements that don't match the filter
+    with custom selector with custom filter and default
+      should find elements that match the filter
+      should use default value when filter is not given
       should not find elements that don't match the filter
     with css as default selector
       should find the first element using the given locator
@@ -592,6 +606,21 @@ Capybara::Session terminus
     should accept non-string parameters
     should be true when passed nil
     should wait for text to appear
+    with between
+      should be true if the text occurs within the range given
+      should be false if the text occurs more or fewer times than range
+    with count
+      should be true if the text occurs the given number of times
+      should be false if the text occurs a different number of times than the given
+      should coerce count to an integer
+    with maximum
+      should be true when text occurs same or fewer times than given
+      should be false when text occurs more times than given
+      should coerce maximum to an integer
+    with minimum
+      should be true when text occurs same or more times than given
+      should be false when text occurs fewer times than given
+      should coerce minimum to an integer
   #has_no_text?
     should be false if the given text is on the page at least once
     should be false if scoped to an element which has the text
@@ -672,10 +701,14 @@ Capybara::Session terminus
     #set
       should allow assignment of field value
       should fill the field even if the caret was not at the end
+      should not set if the text field is readonly
+      should not set if the textarea is readonly
     #tag_name
       should extract node tag name
     #disabled?
       should extract disabled node
+      should see disabled options as disabled
+      should see enabled options in disabled select as disabled
     #visible?
       should extract node visibility
     #checked?
@@ -854,120 +887,120 @@ Failures:
      Failure/Error: @session.attach_file "form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:11:in `block (3 levels) in <top (required)>'
 
   2) Capybara::Session terminus #attach_file with normal form should set a file path by label
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:17:in `block (3 levels) in <top (required)>'
 
   3) Capybara::Session terminus #attach_file with normal form casts to string
      Failure/Error: @session.attach_file :"form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:23:in `block (3 levels) in <top (required)>'
 
   4) Capybara::Session terminus #attach_file with multipart form should set a file path by id
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:31:in `block (3 levels) in <top (required)>'
 
   5) Capybara::Session terminus #attach_file with multipart form should set a file path by label
      Failure/Error: @session.attach_file "Single Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:37:in `block (3 levels) in <top (required)>'
 
   6) Capybara::Session terminus #attach_file with multipart form should send content type text/plain when uploading a text file
      Failure/Error: @session.attach_file "Single Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:48:in `block (3 levels) in <top (required)>'
 
   7) Capybara::Session terminus #attach_file with multipart form should send content type image/jpeg when uploading an image
      Failure/Error: @session.attach_file "Single Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:54:in `block (3 levels) in <top (required)>'
 
   8) Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:60:in `block (3 levels) in <top (required)>'
 
   9) Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
      Failure/Error: @session.attach_file "Multiple Documents", [@test_file_path, @another_test_file_path]
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
   10) Capybara::Session terminus #attach_file with :exact option should set a file path by partial label when false
      Failure/Error: @session.attach_file "Imag", __FILE__, :exact => false
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
-     # ./lib/terminus/node.rb:75:in `set'
+     # ./lib/terminus/node.rb:71:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
-     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:78:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
      # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
      # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
-     # ./vendor/capybara/2.1/lib/capybara/session.rb:353:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:93:in `block (3 levels) in <top (required)>'
 
   11) Capybara::Session terminus #find with :wait option should not wait for asynchronous load when `false` given
@@ -980,8 +1013,8 @@ Failures:
        expected Capybara::ElementNotFound but nothing was raised
      # ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:42:in `block (3 levels) in <top (required)>'
 
-Finished in 8 minutes 56.24 seconds
-619 examples, 12 failures
+Finished in 9 minutes 16.73 seconds
+645 examples, 12 failures
 
 Failed examples:
 
