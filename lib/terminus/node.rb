@@ -31,10 +31,6 @@ module Terminus
       end
     end
 
-    def disabled?
-      !!self['disabled']
-    end
-
     def drag_to(node)
       @browser.ask([:drag, {:from => @id, :to => node.id}])
     end
@@ -103,6 +99,7 @@ module Terminus
 
     SYNC_DSL_METHODS = [ [:[], :attribute],
                          [:[]=, :set_attribute],
+                         [:disabled?, :is_disabled],
                          :tag_name,
                          :value,
                          [:visible?, :is_visible]
