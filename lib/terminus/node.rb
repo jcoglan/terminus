@@ -3,8 +3,8 @@ module Terminus
 
     attr_reader :id
 
-    def initialize(browser, id)
-      @browser, @id = browser, id
+    def initialize(browser, id, driver = nil)
+      @browser, @id, @driver = browser, id, driver
     end
 
     def checked?
@@ -12,12 +12,13 @@ module Terminus
     end
 
     def click
-      page = @browser.page_id
+      page    = @browser.page_id
+      options = @driver ? @driver.options : {}
 
       value = if @browser.connector
-        @browser.ask([:click, @id], false)
+        @browser.ask([:click, @id, options], false)
       else
-        command = @browser.tell([:click, @id])
+        command = @browser.tell([:click, @id, options])
 
         result = @browser.wait_with_timeout(:click_response) do
           @browser.result(command) || (@browser.page_id != page)
@@ -40,11 +41,11 @@ module Terminus
     alias :eql? :==
 
     def find_css(css)
-      @browser.ask([:find_css, css, @id]).map { |id| Node.new(@browser, id) }
+      @browser.ask([:find_css, css, @id]).map { |id| Node.new(@browser, id, @driver) }
     end
 
     def find_xpath(xpath)
-      @browser.ask([:find_xpath, xpath, @id]).map { |id| Node.new(@browser, id) }
+      @browser.ask([:find_xpath, xpath, @id]).map { |id| Node.new(@browser, id, @driver) }
     end
     alias :find :find_xpath
 
