@@ -3,8 +3,8 @@ module Terminus
 
     attr_reader :id
 
-    def initialize(browser, id, driver = nil)
-      @browser, @id, @driver = browser, id, driver
+    def initialize(browser, id)
+      @browser, @id = browser, id
     end
 
     def checked?
@@ -12,13 +12,12 @@ module Terminus
     end
 
     def click
-      page    = @browser.page_id
-      options = @driver ? @driver.options : {}
+      page = @browser.page_id
 
       value = if @browser.connector
-        @browser.ask([:click, @id, options], false)
+        @browser.ask([:click, @id], false)
       else
-        command = @browser.tell([:click, @id, options])
+        command = @browser.tell([:click, @id])
 
         result = @browser.wait_with_timeout(:click_response) do
           @browser.result(command) || (@browser.page_id != page)
