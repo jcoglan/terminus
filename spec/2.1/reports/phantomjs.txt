@@ -1,4 +1,4 @@
-Run options: exclude {:requires=>#<Proc:0x00000100f2a6b0>}
+Run options: exclude {:requires=>#<Proc:0x00000102807818>}
 
 Capybara::Session terminus
   #all
@@ -269,6 +269,7 @@ Capybara::Session terminus
     should fill in a textarea by label
     should fill in a textarea by name
     should fill in a password field by id
+    should handle HTML in a textarea
     should fill in a field with a custom type
     should fill in a field without a type
     should fill in a text field respecting its maxlength attribute
@@ -278,6 +279,7 @@ Capybara::Session terminus
     should throw an exception if a hash containing 'with' is not provided
     should wait for asynchronous load
     casts to string
+    casts to string if field has maxlength
     on a pre-populated textfield with a reformatting onchange
       should only trigger onchange once
     with ignore_hidden_fields
@@ -329,9 +331,11 @@ Capybara::Session terminus
     should wait for asynchronous load
     should raise ElementNotFound with a useful default message if nothing was found
     should accept an XPath instance
+    with :text option
+      casts text's argument to string
     with :wait option
-      should not wait for asynchronous load when `false` given (FAILED - 11)
-      should not find element if it appears after given wait duration (FAILED - 12)
+      should not wait for asynchronous load when `false` given
+      should not find element if it appears after given wait duration
       should find element if it appears before given wait duration
     with frozen time
       raises an error suggesting that Capybara is stuck in time
@@ -698,6 +702,7 @@ Capybara::Session terminus
     #value
       should allow retrieval of the value
       should not swallow extra newlines in textarea
+      return any HTML content in textarea
     #set
       should allow assignment of field value
       should fill the field even if the caret was not at the end
@@ -1003,18 +1008,8 @@ Failures:
      # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:93:in `block (3 levels) in <top (required)>'
 
-  11) Capybara::Session terminus #find with :wait option should not wait for asynchronous load when `false` given
-     Failure/Error: expect do
-       expected Capybara::ElementNotFound but nothing was raised
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:34:in `block (3 levels) in <top (required)>'
-
-  12) Capybara::Session terminus #find with :wait option should not find element if it appears after given wait duration
-     Failure/Error: expect do
-       expected Capybara::ElementNotFound but nothing was raised
-     # ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:42:in `block (3 levels) in <top (required)>'
-
-Finished in 9 minutes 16.73 seconds
-645 examples, 12 failures
+Finished in 9 minutes 7.49 seconds
+649 examples, 10 failures
 
 Failed examples:
 
@@ -1028,5 +1023,3 @@ rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:53 # C
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
 rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:92 # Capybara::Session terminus #attach_file with :exact option should set a file path by partial label when false
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:31 # Capybara::Session terminus #find with :wait option should not wait for asynchronous load when `false` given
-rspec ./vendor/capybara/2.1/lib/capybara/spec/session/find_spec.rb:39 # Capybara::Session terminus #find with :wait option should not find element if it appears after given wait duration
