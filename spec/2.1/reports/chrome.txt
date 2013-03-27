@@ -1,4 +1,4 @@
-Run options: exclude {:requires=>#<Proc:0x00000100aa5720>}
+Run options: exclude {:requires=>#<Proc:0x00000100b84088>}
 
 Capybara::Session terminus
   #all
@@ -14,8 +14,9 @@ Capybara::Session terminus
     with css as default selector
       should find the first element using the given locator
     with visible filter
-      should only find visible nodes
-      should only find invisible nodes
+      should only find visible nodes when true
+      should find nodes regardless of whether they are invisible when false
+      should default to Capybara.ignore_hidden_elements
     within a scope
       should find any element using the given locator
   #assert_selector
@@ -59,6 +60,9 @@ Capybara::Session terminus
       should raise an error
     with a path that doesn't exist
       should raise an error
+    with :exact option
+      should set a file path by partial label when false (FAILED - 10)
+      not allow partial matches when true
   #body
     should return the unmodified page body
     encoding of response between ascii and utf8
@@ -82,6 +86,9 @@ Capybara::Session terminus
       should raise an error
     with a disabled checkbox
       should raise an error
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
   #choose
     should choose a radio button by id
     should choose a radio button by label
@@ -90,6 +97,9 @@ Capybara::Session terminus
       should raise an error
     with a disabled radio button
       should raise an error
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
   #click_button
     should wait for asynchronous load
     casts to string
@@ -135,6 +145,19 @@ Capybara::Session terminus
     with title given on a submit button
       should submit the associated form
       should work with partial matches
+    with fields associated with the form using the form attribute
+      should serialize and submit text fields
+      should serialize text areas
+      should serialize select tags
+      should not serliaze fields associated with a different form
+    with submit button outside the form defined by <button> tag
+      should submit the associated form
+      should submit the button that was clicked, but not other buttons
+    with submit button outside the form defined by <input type='submit'> tag
+      should submit the associated form
+      should submit the button that was clicked, but not other buttons
+    with submit button for form1 located within form2
+      should submit the form associated with the button
     with alt given on an image button
       should submit the associated form
       should work with partial matches
@@ -160,6 +183,9 @@ Capybara::Session terminus
       should work with partial matches
     with a locator that doesn't exist
       should raise an error
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
   #click_link_or_button
     should click on a link
     should click on a button
@@ -167,8 +193,20 @@ Capybara::Session terminus
     should be aliased as click_on
     should wait for asynchronous load
     casts to string
+    with :exact option
+      when `true`
+        clicks on approximately matching link
+        clicks on approximately matching button
+      when `false`
+        does not click on link which matches approximately
+        does not click on approximately matching button
     with a locator that doesn't exist
       should raise an error
+    with :disabled option
+      ignores disabled buttons when false
+      ignores disabled buttons by default
+      happily clicks on links which incorrectly have the disabled attribute
+      does nothing when button is disabled
   #click_link
     should wait for asynchronous load
     casts to string
@@ -194,6 +232,19 @@ Capybara::Session terminus
       should accept partial matches
     with a locator that doesn't exist
       should raise an error
+    with :href option given
+      should find links with valid href
+      should raise error if link wasn't found
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+  #current_scope
+    when not in a #within block
+      should return the document
+    when in a #within block
+      should return the element in scope
+    when in a nested #within block
+      should return the element in scope
   #current_url, #current_path, #current_host
     is affected by visiting a page directly
     returns to the app host when visiting a relative url
@@ -218,6 +269,7 @@ Capybara::Session terminus
     should fill in a textarea by label
     should fill in a textarea by name
     should fill in a password field by id
+    should handle HTML in a textarea
     should fill in a field with a custom type
     should fill in a field without a type
     should fill in a text field respecting its maxlength attribute
@@ -227,6 +279,7 @@ Capybara::Session terminus
     should throw an exception if a hash containing 'with' is not provided
     should wait for asynchronous load
     casts to string
+    casts to string if field has maxlength
     on a pre-populated textfield with a reformatting onchange
       should only trigger onchange once
     with ignore_hidden_fields
@@ -235,23 +288,42 @@ Capybara::Session terminus
       should raise an error
     on a disabled field
       should raise an error
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
   #find_button
     should find any button
     casts to string
     should raise error if the button doesn't exist
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
   #find_by_id
     should find any element by id
     casts to string
     should raise error if no element with id is found
+    with :visible option
+      finds invisible elements when `false`
+      finds invisible elements when `false`
   #find_field
     should find any field
     casts to string
     should raise error if the field doesn't exist
     should be aliased as 'field_labeled' for webrat compatibility
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+    with :disabled option
+      should find disabled fields when true
+      should not find disabled fields when false
+      should not find disabled fields by default
   #find_link
     should find any field
     casts to string
     should raise error if the field doesn't exist
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
   #find
     should find the first element using the given locator
     should find the first element using the given locator and options
@@ -259,10 +331,17 @@ Capybara::Session terminus
     should wait for asynchronous load
     should raise ElementNotFound with a useful default message if nothing was found
     should accept an XPath instance
+    with :text option
+      casts text's argument to string
+    with :wait option
+      should not wait for asynchronous load when `false` given
+      should not find element if it appears after given wait duration
+      should find element if it appears before given wait duration
     with frozen time
       raises an error suggesting that Capybara is stuck in time
     with css selectors
       should find the first element using the given locator
+      should support pseudo selectors
     with xpath selectors
       should find the first element using the given locator
     with custom selector
@@ -271,11 +350,58 @@ Capybara::Session terminus
       should use the selector when it matches the :for option
     with custom selector with custom filter
       should find elements that match the filter
+      ignores filter when it is not given
+      should not find elements that don't match the filter
+    with custom selector with custom filter and default
+      should find elements that match the filter
+      should use default value when filter is not given
       should not find elements that don't match the filter
     with css as default selector
       should find the first element using the given locator
+    with :exact option
+      matches exactly when true
+      matches loosely when false
+      defaults to `Capybara.exact`
+    with :match option
+      defaults to `Capybara.match`
+      raises an error when unknown option given
+      when set to `one`
+        raises an error when multiple matches exist
+        raises an error even if there the match is exact and the others are inexact
+        returns the element if there is only one
+        raises an error if there is no match
+      when set to `first`
+        returns the first matched element
+        raises an error if there is no match
+      when set to `smart`
+        and `exact` set to `false`
+          raises an error when there are multiple exact matches
+          finds a single exact match when there also are inexact matches
+          raises an error when there are multiple inexact matches
+          finds a single inexact match
+          raises an error if there is no match
+        with `exact` set to `true`
+          raises an error when there are multiple exact matches
+          finds a single exact match when there also are inexact matches
+          raises an error when there are multiple inexact matches
+          raises an error when there is a single inexact matches
+          raises an error if there is no match
+      when set to `prefer_exact`
+        and `exact` set to `false`
+          picks the first one when there are multiple exact matches
+          finds a single exact match when there also are inexact matches
+          picks the first one when there are multiple inexact matches
+          finds a single inexact match
+          raises an error if there is no match
+        with `exact` set to `true`
+          picks the first one when there are multiple exact matches
+          finds a single exact match when there also are inexact matches
+          raises an error if there are multiple inexact matches
+          raises an error if there is a single inexact match
+          raises an error if there is no match
     within a scope
       should find the an element using the given locator
+      should support pseudo selectors
   #first
     should find the first element using the given locator
     should return nil when nothing was found
@@ -287,8 +413,12 @@ Capybara::Session terminus
     with css as default selector
       should find the first element using the given locator
     with visible filter
-      should only find visible nodes if true given
-      should include invisible nodes if false given
+      should only find visible nodes when true
+      should find nodes regardless of whether they are invisible when false
+      should find nodes regardless of whether they are invisible when :all
+      should find only hidden nodes when :hidden
+      should find only visible nodes when :visible
+      should default to Capybara.ignore_hidden_elements
     within a scope
       should find the first element using the given locator
   #has_button?
@@ -438,6 +568,7 @@ Capybara::Session terminus
       should be false if the content isn't on the page at all
     with text
       should discard all matches where the given string is not contained
+      should respect visibility setting
       should discard all matches where the given regexp is not matched
   #has_no_selector?
     should be false if the given selector is on the page
@@ -471,12 +602,29 @@ Capybara::Session terminus
     should be false if text is in the title tag in the head
     should be false if text is inside a script tag in the body
     should be false if the given text is on the page but not visible
+    should be true if :all given and text is invisible.
+    should be true if `Capybara.ignore_hidden_elements = true` and text is invisible.
     should be true if the text in the page matches given regexp
     should be false if the text in the page doesn't match given regexp
     should escape any characters that would have special meaning in a regexp
     should accept non-string parameters
     should be true when passed nil
     should wait for text to appear
+    with between
+      should be true if the text occurs within the range given
+      should be false if the text occurs more or fewer times than range
+    with count
+      should be true if the text occurs the given number of times
+      should be false if the text occurs a different number of times than the given
+      should coerce count to an integer
+    with maximum
+      should be true when text occurs same or fewer times than given
+      should be false when text occurs more times than given
+      should coerce maximum to an integer
+    with minimum
+      should be true when text occurs same or more times than given
+      should be false when text occurs fewer times than given
+      should coerce minimum to an integer
   #has_no_text?
     should be false if the given text is on the page at least once
     should be false if scoped to an element which has the text
@@ -489,10 +637,22 @@ Capybara::Session terminus
     should be true if text is in the title tag in the head
     should be true if text is inside a script tag in the body
     should be true if the given text is on the page but not visible
+    should be false if :all given and text is invisible.
+    should be false if `Capybara.ignore_hidden_elements = true` and text is invisible.
     should be true if the text in the page doesn't match given regexp
     should be false if the text in the page  matches given regexp
     should escape any characters that would have special meaning in a regexp
     should wait for text to disappear
+  #has_title?
+    should be true if the page has the given title
+    should allow regexp matches
+    should wait for title
+    should be false if the page has not the given title
+  #has_no_title?
+    should be false if the page has the given title
+    should allow regexp matches
+    should wait for title to disappear
+    should be true if the page has not the given title
   #has_xpath?
     should be true if the given selector is on the page
     should be false if the given selector is not on the page
@@ -542,11 +702,18 @@ Capybara::Session terminus
     #value
       should allow retrieval of the value
       should not swallow extra newlines in textarea
+      return any HTML content in textarea
     #set
       should allow assignment of field value
       should fill the field even if the caret was not at the end
+      should not set if the text field is readonly
+      should not set if the textarea is readonly
     #tag_name
       should extract node tag name
+    #disabled?
+      should extract disabled node
+      should see disabled options as disabled
+      should see enabled options in disabled select as disabled
     #visible?
       should extract node visibility
     #checked?
@@ -576,6 +743,7 @@ Capybara::Session terminus
     resets current url, host, path
     resets page body
     raises any errors caught inside the server
+    ignores server errors when `Capybara.raise_server_errors = false`
   #status_code
     should return response codes
   #save_page
@@ -584,9 +752,17 @@ Capybara::Session terminus
     can store files in a specified directory
     uses the given filename
     returns the filename
+    asset_host contains a string
+      prepends base tag with value from asset_host to the head
+      doesn't prepend base tag to pages when asset_host is nil
+      doesn't prepend base tag to pages which already have it
   #select
     should return value of the first option
     should return value of the selected option
+    should allow selecting options where there are inexact matches
+    should allow selecting options where they are the only inexact match
+    should not allow selecting options where they are the only inexact match if `Capybara.exact_options = true`
+    should not allow selecting an option if the match is ambiguous
     should return the value attribute rather than content if present
     should select an option from a select box by id
     should select an option from a select box by label
@@ -608,15 +784,36 @@ Capybara::Session terminus
       should select multiple options
       should remain selected if already selected
       should return value attribute rather than content if present
+    with :exact option
+      when `false`
+        can match select box approximately
+        can match option approximately
+        can match option approximately when :from not given
+      when `true`
+        can match select box approximately
+        can match option approximately
+        can match option approximately when :from not given
   #text
     should print the text of the page
+    ignores invisible text by default
+    shows invisible text if `:all` given
+    ignores invisible text if `:visible` given
+    ignores invisible text if `Capybara.ignore_hidden_elements = true`
+    ignores invisible text if `Capybara.visible_text_only = true`
     should strip whitespace
     with css as default selector
       should print the text of the page
+  #title
+    should print the title of the page
+    with css as default selector
+      should print the title of the page
   #uncheck
     should uncheck a checkbox by id
     should uncheck a checkbox by label
     casts to string
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
   #unselect
     with multiple select
       should unselect an option from a select box by id
@@ -631,6 +828,15 @@ Capybara::Session terminus
       should raise an error
     with an option that doesn't exist
       should raise an error
+    with :exact option
+      when `false`
+        can match select box approximately
+        can match option approximately
+        can match option approximately when :from not given
+      when `true`
+        can match select box approximately
+        can match option approximately
+        can match option approximately when :from not given
   #visit
     should fetch a response from the driver with a relative url
     should fetch a response from the driver with an absolute url with a port
@@ -650,6 +856,8 @@ Capybara::Session terminus
     should find the text div in the main window after finding text in frameOne
     should find the text div in the main window after finding text in frameTwo
     should return the result of executing the block
+    should find the div given Element
+    should find multiple nested frames
   #within
     should raise an error if the scope is not found on the page
     should restore the scope when an error is raised
@@ -688,120 +896,133 @@ Failures:
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      # ./lib/terminus/node.rb:71:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `block in set'
-     # ./vendor/capybara/2.0/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/actions.rb:144:in `attach_file'
-     # ./vendor/capybara/2.0/lib/capybara/session.rb:341:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:11:in `block (3 levels) in <top (required)>'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:11:in `block (3 levels) in <top (required)>'
 
   2) Capybara::Session terminus #attach_file with normal form should set a file path by label
      Failure/Error: @session.attach_file "Image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      # ./lib/terminus/node.rb:71:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `block in set'
-     # ./vendor/capybara/2.0/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/actions.rb:144:in `attach_file'
-     # ./vendor/capybara/2.0/lib/capybara/session.rb:341:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:17:in `block (3 levels) in <top (required)>'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:17:in `block (3 levels) in <top (required)>'
 
   3) Capybara::Session terminus #attach_file with normal form casts to string
      Failure/Error: @session.attach_file :"form_image", __FILE__
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      # ./lib/terminus/node.rb:71:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `block in set'
-     # ./vendor/capybara/2.0/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/actions.rb:144:in `attach_file'
-     # ./vendor/capybara/2.0/lib/capybara/session.rb:341:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:23:in `block (3 levels) in <top (required)>'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:23:in `block (3 levels) in <top (required)>'
 
   4) Capybara::Session terminus #attach_file with multipart form should set a file path by id
      Failure/Error: @session.attach_file "form_document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      # ./lib/terminus/node.rb:71:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `block in set'
-     # ./vendor/capybara/2.0/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/actions.rb:144:in `attach_file'
-     # ./vendor/capybara/2.0/lib/capybara/session.rb:341:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:31:in `block (3 levels) in <top (required)>'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:31:in `block (3 levels) in <top (required)>'
 
   5) Capybara::Session terminus #attach_file with multipart form should set a file path by label
      Failure/Error: @session.attach_file "Single Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      # ./lib/terminus/node.rb:71:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `block in set'
-     # ./vendor/capybara/2.0/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/actions.rb:144:in `attach_file'
-     # ./vendor/capybara/2.0/lib/capybara/session.rb:341:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:37:in `block (3 levels) in <top (required)>'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:37:in `block (3 levels) in <top (required)>'
 
   6) Capybara::Session terminus #attach_file with multipart form should send content type text/plain when uploading a text file
      Failure/Error: @session.attach_file "Single Document", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      # ./lib/terminus/node.rb:71:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `block in set'
-     # ./vendor/capybara/2.0/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/actions.rb:144:in `attach_file'
-     # ./vendor/capybara/2.0/lib/capybara/session.rb:341:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:48:in `block (3 levels) in <top (required)>'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:48:in `block (3 levels) in <top (required)>'
 
   7) Capybara::Session terminus #attach_file with multipart form should send content type image/jpeg when uploading an image
      Failure/Error: @session.attach_file "Single Document", @test_jpg_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      # ./lib/terminus/node.rb:71:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `block in set'
-     # ./vendor/capybara/2.0/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/actions.rb:144:in `attach_file'
-     # ./vendor/capybara/2.0/lib/capybara/session.rb:341:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:54:in `block (3 levels) in <top (required)>'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:54:in `block (3 levels) in <top (required)>'
 
   8) Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
      Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      # ./lib/terminus/node.rb:71:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `block in set'
-     # ./vendor/capybara/2.0/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/actions.rb:144:in `attach_file'
-     # ./vendor/capybara/2.0/lib/capybara/session.rb:341:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:60:in `block (3 levels) in <top (required)>'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:60:in `block (3 levels) in <top (required)>'
 
   9) Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
      Failure/Error: @session.attach_file "Multiple Documents", [@test_file_path, @another_test_file_path]
      Capybara::NotSupportedByDriverError:
        Capybara::NotSupportedByDriverError
      # ./lib/terminus/node.rb:71:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `block in set'
-     # ./vendor/capybara/2.0/lib/capybara/node/base.rb:78:in `synchronize'
-     # ./vendor/capybara/2.0/lib/capybara/node/element.rb:79:in `set'
-     # ./vendor/capybara/2.0/lib/capybara/node/actions.rb:144:in `attach_file'
-     # ./vendor/capybara/2.0/lib/capybara/session.rb:341:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
 
-Finished in 7 minutes 13.47 seconds
-498 examples, 9 failures
+  10) Capybara::Session terminus #attach_file with :exact option should set a file path by partial label when false
+     Failure/Error: @session.attach_file "Imag", __FILE__, :exact => false
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `block in set'
+     # ./vendor/capybara/2.1/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.1/lib/capybara/node/element.rb:95:in `set'
+     # ./vendor/capybara/2.1/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:93:in `block (3 levels) in <top (required)>'
+
+Finished in 9 minutes 29.84 seconds
+652 examples, 10 failures
 
 Failed examples:
 
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:10 # Capybara::Session terminus #attach_file with normal form should set a file path by id
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:16 # Capybara::Session terminus #attach_file with normal form should set a file path by label
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:22 # Capybara::Session terminus #attach_file with normal form casts to string
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:30 # Capybara::Session terminus #attach_file with multipart form should set a file path by id
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:36 # Capybara::Session terminus #attach_file with multipart form should set a file path by label
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:47 # Capybara::Session terminus #attach_file with multipart form should send content type text/plain when uploading a text file
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:53 # Capybara::Session terminus #attach_file with multipart form should send content type image/jpeg when uploading an image
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
-rspec ./vendor/capybara/2.0/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:10 # Capybara::Session terminus #attach_file with normal form should set a file path by id
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:16 # Capybara::Session terminus #attach_file with normal form should set a file path by label
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:22 # Capybara::Session terminus #attach_file with normal form casts to string
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:30 # Capybara::Session terminus #attach_file with multipart form should set a file path by id
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:36 # Capybara::Session terminus #attach_file with multipart form should set a file path by label
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:47 # Capybara::Session terminus #attach_file with multipart form should send content type text/plain when uploading a text file
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:53 # Capybara::Session terminus #attach_file with multipart form should send content type image/jpeg when uploading an image
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
+rspec ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:92 # Capybara::Session terminus #attach_file with :exact option should set a file path by partial label when false
