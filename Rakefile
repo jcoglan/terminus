@@ -2,10 +2,14 @@ USER_AGENTS = %w[PhantomJS Chrome Firefox Safari Opera]
 require 'fileutils'
 
 task :prepare do
-  `npm install`
-  `bundle install --path vendor/bundle`
   `git submodule update --init --recursive`
-  FileUtils.cd('vendor/capybara/2.1') { `bundle install --path ../../bundle` }
+  `npm install`
+  `rm Gemfile.lock`
+  `bundle install --path vendor/bundle`
+  FileUtils.cd 'vendor/capybara/2.1' do
+    `rm Gemfile.lock`
+    `bundle install --path ../../bundle`
+  end
 end
 
 task :compile do
