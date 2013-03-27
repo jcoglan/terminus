@@ -4,7 +4,7 @@
       origin = 'http://' + host + ':' + <%= Terminus.port %>;
 
   var withPackageManager = function(callback) {
-    if (window.JS && JS.Packages) return callback();
+    if (window.JS && JS.packages) return callback();
 
     var script = document.createElement('script'),
         head   = document.getElementsByTagName('head')[0];
@@ -23,9 +23,9 @@
   };
 
   withPackageManager(function() {
-    JS.cacheBust = true;
+    JS.cache = false;
 
-    JS.Packages(function() { with(this) {
+    JS.packages(function() { with(this) {
       file(origin + faye + '/client.js').provides('Faye', 'Faye.Client');
       file(origin + '/compiled/terminus-min.js').requires('Faye.Client').provides('Terminus');
     }});
