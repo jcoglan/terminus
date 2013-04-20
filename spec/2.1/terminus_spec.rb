@@ -16,7 +16,7 @@ RSpec.configure do |config|
   end
 end
 
-skip  = [:hover]
+skip  = [:frames, :hover]
 skip << :screenshot unless ENV['USER_AGENT'] == 'PhantomJS'
 skip << :windows if %w[Android iPad iPhone PhantomJS].include?(ENV['USER_AGENT'])
 
