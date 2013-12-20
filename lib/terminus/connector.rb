@@ -60,7 +60,7 @@ module Terminus
       @browser.debug(:recv, @browser.id, result)
       reset if result.nil?
       result
-    rescue Errno::ECONNRESET, Errno::EPIPE, Errno::EWOULDBLOCK
+    rescue Errno::EBADF, Errno::ECONNRESET, Errno::EPIPE, Errno::EWOULDBLOCK
       reset
       nil
     end

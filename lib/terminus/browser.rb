@@ -88,10 +88,12 @@ module Terminus
     end
 
     def find_css(css, driver = nil)
+      return [] unless @find_enabled
       ask([:find_css, css, false]).map { |id| Node.new(self, id, driver) }
     end
 
     def find_xpath(xpath, driver = nil)
+      return [] unless @find_enabled
       ask([:find_xpath, xpath, false]).map { |id| Node.new(self, id, driver) }
     end
 
@@ -136,8 +138,10 @@ module Terminus
       @attributes['raw_url'] = message['url']
       message['url'] = rewrite_local(message['url'])
 
-      @attributes = @attributes.merge(message)
-      @user_agent = UserAgent.parse(message['ua'])
+      @attributes   = @attributes.merge(message)
+      @find_enabled = true
+      @user_agent   = UserAgent.parse(message['ua'])
+
       detect_dock_host
 
       @infinite_redirect = message['infinite']
@@ -164,6 +168,7 @@ module Terminus
       ask([:clear_cookies])
 
       @attributes.delete('url')
+      @find_enabled = false
     end
 
     def response_headers
