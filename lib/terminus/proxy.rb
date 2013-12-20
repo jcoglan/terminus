@@ -40,7 +40,7 @@ module Terminus
 
     def self.content_type(response)
       type = response[1].find { |key, _| key =~ /^content-type$/i }
-      type && type.last.split(';').first
+      type && type.flatten.last.split(';').first
     end
 
     def initialize(app)
@@ -100,11 +100,13 @@ module Terminus
     end
 
     def rewrite_response(env, response)
+      headers = response[1]
+
+      headers.each_key { |k| headers[k] = [headers[k]].flatten.first }
       rewrite_location(env, response)
       return response if return_unmodified?(env, response)
 
-      response[1] = response[1].dup
-      response[1].delete_if { |key, _| key =~ /^content-length$/i }
+      headers.delete_if { |key, _| key =~ /^content-length$/i }
       response[2] = DriverBody.new(env, response)
       response
     end

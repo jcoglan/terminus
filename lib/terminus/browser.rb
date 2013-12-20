@@ -34,12 +34,12 @@ module Terminus
     def ask(command, retries = RETRY_LIMIT)
       debug(:ask, id, command)
       value = if @connector
-        message = Yajl::Encoder.encode('commandId' => '_', 'command' => command)
+        message = MultiJson.dump('commandId' => '_', 'command' => command)
         response = @connector.request(message)
         if response.nil?
           retries == false ? false : ask(command)
         else
-          result_hash = Yajl::Parser.parse(response)
+          result_hash = MultiJson.load(response)
           result_hash['value']
         end
       else
@@ -285,7 +285,7 @@ module Terminus
 
     def start_connector
       return if @connector or @dock_host.nil? or Terminus.browser != self
-      @connector = Connector::Server.new(self)
+      @connector = Connector.new(self)
       url = "ws://#{@dock_host}:#{@connector.port}/"
       debug(:connect, id, url)
       messenger.publish(socket_channel, 'url' => url)

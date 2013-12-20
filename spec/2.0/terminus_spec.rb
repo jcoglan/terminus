@@ -3,11 +3,12 @@ require File.expand_path('../spec_helper', __FILE__)
 RSpec.configure do |config|
   config.before do
     Terminus.browser = case ENV['USER_AGENT']
-                       when 'iPhone' then {:os => /iPhone/}
-                       when 'iPad'   then {:os => /like Mac OS X/}
-                       when 'auto'   then Terminus.browser
-                       when String   then {:name => ENV['USER_AGENT']}
-                       else               :docked
+                       when 'Android' then {:os => /Android/}
+                       when 'iPhone'  then {:os => /iPhone/}
+                       when 'iPad'    then {:os => /like Mac OS X/}
+                       when 'auto'    then Terminus.browser
+                       when String    then {:name => ENV['USER_AGENT']}
+                       else                :docked
                        end
   end
 

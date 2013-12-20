@@ -19,11 +19,12 @@ end
 
 def select_browser
   Terminus.browser = case ENV['USER_AGENT']
-                     when 'iPhone' then {:os => /iPhone/}
-                     when 'iPad'   then {:os => /like Mac OS X/}
-                     when 'auto'   then Terminus.browser
-                     when String   then {:name => ENV['USER_AGENT']}
-                     else               :docked
+                     when 'Android' then {:os => /Android/}
+                     when 'iPhone'  then {:os => /iPhone/}
+                     when 'iPad'    then {:os => /like Mac OS X/}
+                     when 'auto'    then Terminus.browser
+                     when String    then {:name => ENV['USER_AGENT']}
+                     else                :docked
                      end
 end
 
