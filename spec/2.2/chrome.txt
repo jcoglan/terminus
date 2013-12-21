@@ -1,31 +1,5 @@
 Failures:
 
-  1) Capybara::Session terminus #has_title? should allow regexp matches
-     Failure/Error: @session.should have_title(/w[a-z]{3}_js/)
-     NoMethodError:
-       undefined method `title' for nil:NilClass
-     # ./vendor/capybara/2.2/lib/capybara/session.rb:151:in `title'
-     # ./vendor/capybara/2.2/lib/capybara/session.rb:406:in `block in has_title?'
-     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
-     # ./vendor/capybara/2.2/lib/capybara/session.rb:405:in `has_title?'
-     # ./vendor/capybara/2.2/lib/capybara/spec/session/has_title_spec.rb:11:in `block (2 levels) in <top (required)>'
-
-  15) Capybara::Session terminus #go_forward should fetch a response from the driver from the previous page
-     Failure/Error: @session.go_back
-     Capybara::NotSupportedByDriverError:
-       Capybara::Driver::Base#go_back
-     # ./vendor/capybara/2.2/lib/capybara/driver/base.rb:23:in `go_back'
-     # ./vendor/capybara/2.2/lib/capybara/session.rb:205:in `go_back'
-     # ./vendor/capybara/2.2/lib/capybara/spec/session/go_forward_spec.rb:7:in `block (2 levels) in <top (required)>'
-
-  16) Capybara::Session terminus #go_back should fetch a response from the driver from the previous page
-     Failure/Error: @session.go_back
-     Capybara::NotSupportedByDriverError:
-       Capybara::Driver::Base#go_back
-     # ./vendor/capybara/2.2/lib/capybara/driver/base.rb:23:in `go_back'
-     # ./vendor/capybara/2.2/lib/capybara/session.rb:205:in `go_back'
-     # ./vendor/capybara/2.2/lib/capybara/spec/session/go_back_spec.rb:7:in `block (2 levels) in <top (required)>'
-
   17) Capybara::Session terminus #visit should fetch a response when absolute URI doesn't have a trailing slash
      Failure/Error: @session.should have_content('Hello world!')
        expected #has_content?("Hello world!") to return true, got false
@@ -35,16 +9,6 @@ Failures:
      Failure/Error: @session.should have_content('root cookie')
        expected #has_content?("root cookie") to return true, got false
      # ./vendor/capybara/2.2/lib/capybara/spec/session/visit_spec.rb:102:in `block (2 levels) in <top (required)>'
-
-  19) Capybara::Session terminus #select with multiple select should return value attribute rather than content if present
-     Failure/Error: Unable to find matching line from backtrace
-     Capybara::ExpectationNotMet:
-       expected not to find xpath "/html/body/*", found 1 match: "Relative"
-     # ./vendor/capybara/2.2/lib/capybara/node/matchers.rb:108:in `block in assert_no_selector'
-     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
-     # ./vendor/capybara/2.2/lib/capybara/node/matchers.rb:106:in `assert_no_selector'
-     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.2/lib/capybara/session.rb:81:in `reset!'
 
 Finished in 10 minutes 3 seconds
 691 examples, 19 failures, 1 pending

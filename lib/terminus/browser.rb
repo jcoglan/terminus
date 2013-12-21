@@ -105,6 +105,14 @@ module Terminus
       @frames.to_a
     end
 
+    def go_back
+      execute_script('window.history.back()')
+    end
+
+    def go_forward
+      execute_script('window.history.forward()')
+    end
+
     def html
       ask([:body])
     end

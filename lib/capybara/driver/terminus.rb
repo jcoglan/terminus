@@ -48,6 +48,8 @@ class Capybara::Driver::Terminus < Capybara::Driver::Base
                            :debugger,
                            :evaluate_script,
                            :execute_script,
+                           :go_back,
+                           :go_forward,
                            :html,
                            :reset!,
                            :response_headers,
