@@ -90,6 +90,7 @@ end
 
 Capybara.server do |app, port|
   handler = Rack::Handler.get('webrick')
-  handler.run(app, :Port => port, :AccessLog => [], :Logger => WEBrick::Log::new(nil, 0))
+  logger  = Terminus.debug ? Logger.new(STDOUT) : WEBrick::Log.new(nil, 0)
+  handler.run(app, :Port => port, :AccessLog => [], :Logger => logger)
 end
 

@@ -1,6 +1,7 @@
 require 'erb'
 require 'forwardable'
 require 'http/parser'
+require 'logger'
 require 'net/http'
 require 'rbconfig'
 require 'readline'
@@ -18,7 +19,7 @@ require 'useragent'
 
 module Terminus
   FAYE_MOUNT   = '/messaging'
-  DEFAULT_HOST = 'localhost'
+  DEFAULT_HOST = '127.0.0.1'
   DEFAULT_PORT = 7004
   LOCALHOST    = /^(localhost|0\.0\.0\.0|127\.0\.0\.1)$/
   PING_PATH    = '/favicon.ico'

@@ -69,7 +69,7 @@ module Terminus
       set_cookie = response[1].keys.grep(/^set-cookie$/i).first
       return unless set_cookie
 
-      host = External === @app ? @app.uri.host : env['HTTP_HOST']
+      host = External === @app ? @app.host : env['HTTP_HOST']
       endpoint = "http://#{host}#{env['PATH_INFO']}"
 
       [*response[1][set_cookie]].compact.each do |cookie|

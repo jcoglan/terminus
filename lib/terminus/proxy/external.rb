@@ -5,7 +5,21 @@ module Terminus
       attr_reader :uri
 
       def initialize(uri)
+        uri.host.gsub!(LOCALHOST, '127.0.0.1')
         @uri = uri
+      end
+
+      def call(env)
+        dock_host = env['SERVER_NAME']
+        response = super
+        response[1].delete('transfer-encoding')
+        response[2].extend(Rewrite)
+        response[2].dock_host = dock_host
+        response
+      end
+
+      def host
+        "#{@uri.host}:#{@uri.port}"
       end
 
       def rewrite_env(env)
@@ -24,15 +38,6 @@ module Terminus
         end
 
         env
-      end
-
-      def call(env)
-        dock_host = env['SERVER_NAME']
-        response = super
-        response[1].delete('transfer-encoding')
-        response[2].extend(Rewrite)
-        response[2].dock_host = dock_host
-        response
       end
     end
 

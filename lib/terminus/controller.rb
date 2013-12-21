@@ -55,7 +55,7 @@ module Terminus
 
     def register_local_port(port)
       @local_ports << port
-      @host_aliases[Host.new(URI.parse("http://localhost:#{port}/"))] = Host.new(URI.parse("http://localhost:80/"))
+      @host_aliases[Host.new(URI.parse("http://127.0.0.1:#{port}/"))] = Host.new(URI.parse("http://127.0.0.1:80/"))
     end
 
     def return_to_dock
