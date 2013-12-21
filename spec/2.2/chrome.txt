@@ -10,11 +10,6 @@ Failures:
      # ./vendor/capybara/2.2/lib/capybara/session.rb:405:in `has_title?'
      # ./vendor/capybara/2.2/lib/capybara/spec/session/has_title_spec.rb:11:in `block (2 levels) in <top (required)>'
 
-  4) Capybara::Session terminus node #visible? should extract node visibility
-     Failure/Error: @session.find('//div[@id="hidden_attr"]').should_not be_visible
-       expected visible? to return false, got true
-     # ./vendor/capybara/2.2/lib/capybara/spec/session/node_spec.rb:162:in `block (3 levels) in <top (required)>'
-
   15) Capybara::Session terminus #go_forward should fetch a response from the driver from the previous page
      Failure/Error: @session.go_back
      Capybara::NotSupportedByDriverError:
