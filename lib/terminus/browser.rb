@@ -232,6 +232,8 @@ module Terminus
       uri.host = @dock_host if uri.host =~ LOCALHOST
       @controller.visit_url(uri.to_s)
 
+      @find_enabled = true
+
       if @connector
         ask([:visit, uri.to_s], false)
         @connector.drain_socket
