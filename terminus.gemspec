@@ -2,7 +2,7 @@ SYN = %w[synthetic mouse browsers key drag/drag] unless defined? SYN
 
 Gem::Specification.new do |s|
   s.name              = 'terminus'
-  s.version           = '0.5.0'
+  s.version           = '0.6.0'
   s.summary           = 'Capybara driver for cross-browser and remote scripting'
   s.author            = 'James Coglan'
   s.email             = 'jcoglan@gmail.com'
