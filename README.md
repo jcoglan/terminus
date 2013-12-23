@@ -1,6 +1,6 @@
 # Terminus
 
-[Terminus[(http://terminus.jcoglan.com) is an experimental
+[Terminus](http://terminus.jcoglan.com) is an experimental
 [Capybara](https://github.com/jnicklas/capybara) driver for real browsers. It
 lets you control your application in any browser on any device (including
 [PhantomJS](http://phantomjs.org/)), without needing browser plugins. This
@@ -11,8 +11,8 @@ allows several types of testing to be automated:
 * Multi-browser interaction e.g. messaging apps
 * Testing on remote machines, phones, iPads etc
 
-*Since it is experimental, this project is sporadically maintained. Usage is
-entirely at your own risk.*
+_Since it is experimental, this project is sporadically maintained. Usage is
+entirely at your own risk._
 
 
 ## Installation
