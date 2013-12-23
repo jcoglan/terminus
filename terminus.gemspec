@@ -8,10 +8,10 @@ Gem::Specification.new do |s|
   s.email             = 'jcoglan@gmail.com'
   s.homepage          = 'http://terminus.jcoglan.com'
 
-  s.extra_rdoc_files  = %w[README.rdoc]
-  s.rdoc_options      = %w[--main README.rdoc]
+  s.extra_rdoc_files  = %w[README.md]
+  s.rdoc_options      = %w[--main README.md --markup markdown]
 
-  s.files             = %w[README.rdoc] +
+  s.files             = %w[README.md] +
                         Dir.glob('{bin,lib}/**/*') +
                         SYN.map { |f| "lib/terminus/public/syn/#{f}.js" }
 
