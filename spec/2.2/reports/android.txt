@@ -1,0 +1,1092 @@
+Run options: exclude {:requires=>#<Proc:0x00000100a6b200>}
+
+Capybara::Session terminus
+  #all
+    should find all elements using the given locator
+    should return an empty array when nothing was found
+    should accept an XPath instance
+    should raise an error when given invalid options
+    with css selectors
+      should find all elements using the given selector
+      should find all elements when given a list of selectors
+    with xpath selectors
+      should find the first element using the given locator
+    with css as default selector
+      should find the first element using the given locator
+    with visible filter
+      should only find visible nodes when true
+      should find nodes regardless of whether they are invisible when false
+      should default to Capybara.ignore_hidden_elements
+    within a scope
+      should find any element using the given locator
+  #assert_selector
+    should be true if the given selector is on the page
+    should be false if the given selector is not on the page
+    should use default selector
+    should respect scopes
+    with count
+      should be true if the content is on the page the given number of times
+      should be false if the content is on the page the given number of times
+      should be false if the content isn't on the page at all
+    with text
+      should discard all matches where the given string is not contained
+      should discard all matches where the given regexp is not matched
+    with wait
+      should find element if it appears before given wait duration
+  #assert_no_selector
+    should be false if the given selector is on the page
+    should be true if the given selector is not on the page
+    should use default selector
+    should respect scopes
+    with count
+      should be false if the content is on the page the given number of times
+      should be true if the content is on the page the wrong number of times
+      should be true if the content isn't on the page at all
+    with text
+      should discard all matches where the given string is contained
+      should discard all matches where the given regexp is matched
+    with wait
+      should not find element if it appears after given wait duration
+  #attach_file
+    with normal form
+      should set a file path by id (FAILED - 1)
+      should set a file path by label (FAILED - 2)
+      casts to string (FAILED - 3)
+    with multipart form
+      should set a file path by id (FAILED - 4)
+      should set a file path by label (FAILED - 5)
+      should not break if no file is submitted
+      should send content type text/plain when uploading a text file (FAILED - 6)
+      should send content type image/jpeg when uploading an image (FAILED - 7)
+      should not break when using HTML5 multiple file input (FAILED - 8)
+      should not break when using HTML5 multiple file input uploading multiple files (FAILED - 9)
+      should not send anything when attaching no files to a multiple upload field
+    with a locator that doesn't exist
+      should raise an error
+    with a path that doesn't exist
+      should raise an error
+    with :exact option
+      should set a file path by partial label when false (FAILED - 10)
+      not allow partial matches when true
+  #body
+    should return the unmodified page body
+    encoding of response between ascii and utf8
+      should be valid with html entities
+      should be valid without html entities
+  #check
+    should trigger associated events
+    should check a checkbox by id
+    should check a checkbox by label
+    casts to string
+    'checked' attribute
+      should be true if checked
+      should be false if unchecked
+    checking
+      should not change an already checked checkbox
+      should check an unchecked checkbox
+    unchecking
+      should not change an already unchecked checkbox
+      should uncheck a checked checkbox
+    with a locator that doesn't exist
+      should raise an error
+    with a disabled checkbox
+      should raise an error
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+    with `option` option
+      can check boxes by their value
+      should raise an error if option not found
+  #choose
+    should choose a radio button by id
+    should choose a radio button by label
+    casts to string
+    with a locator that doesn't exist
+      should raise an error
+    with a disabled radio button
+      should raise an error
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+    with `option` option
+      can check radio buttons by their value
+      should raise an error if option not found
+  #click_button
+    should wait for asynchronous load
+    casts to string
+    should serialize and send valueless buttons that were clicked
+    should not send image buttons that were not clicked
+    should serialize and send GET forms
+    should follow redirects
+    should post pack to the same URL when no action given
+    should post pack to the same URL when blank action given
+    ignores disabled buttons
+    should encode complex field names, like array[][value]
+    with multiple values with the same name
+      should use the latest given value
+    with a form that has a relative url as an action
+      should post to the correct url
+    with a form that has no action specified
+      should post to the correct url
+    with value given on a submit button
+      on a form with HTML5 fields
+        should serialise and submit search fields
+        should serialise and submit email fields
+        should serialise and submit url fields
+        should serialise and submit tel fields
+        should serialise and submit color fields
+      on an HTML4 form
+        should serialize and submit text fields
+        should escape fields when submitting
+        should serialize and submit password fields
+        should serialize and submit hidden fields
+        should not serialize fields from other forms
+        should submit the button that was clicked, but not other buttons
+        should serialize radio buttons
+        should default radio value to 'on' if none specified
+        should serialize check boxes
+        should default checkbox value to 'on' if none specififed
+        should serialize text areas
+        should serialize select tag with values
+        should serialize select tag without values
+        should serialize first option for select tag with no selection
+        should not serialize a select tag without options
+        should convert lf to cr/lf in submitted textareas
+        should not submit disabled fields
+    with id given on a submit button
+      should submit the associated form
+      should work with partial matches
+    with title given on a submit button
+      should submit the associated form
+      should work with partial matches
+    with fields associated with the form using the form attribute
+      should serialize and submit text fields
+      should serialize text areas
+      should serialize select tags
+      should not serliaze fields associated with a different form
+    with submit button outside the form defined by <button> tag
+      should submit the associated form
+      should submit the button that was clicked, but not other buttons
+    with submit button outside the form defined by <input type='submit'> tag
+      should submit the associated form
+      should submit the button that was clicked, but not other buttons
+    with submit button for form1 located within form2
+      should submit the form associated with the button
+    with submit button not associated with any form
+      should not error when clicked
+    with alt given on an image button
+      should submit the associated form
+      should work with partial matches
+    with value given on an image button
+      should submit the associated form
+      should work with partial matches
+    with id given on an image button
+      should submit the associated form
+    with title given on an image button
+      should submit the associated form
+      should work with partial matches
+    with text given on a button defined by <button> tag
+      should submit the associated form
+      should work with partial matches
+    with id given on a button defined by <button> tag
+      should submit the associated form
+      should serialize and send GET forms
+    with value given on a button defined by <button> tag
+      should submit the associated form
+      should work with partial matches
+    with title given on a button defined by <button> tag
+      should submit the associated form
+      should work with partial matches
+    with a locator that doesn't exist
+      should raise an error
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+  #click_link_or_button
+    should click on a link
+    should click on a button
+    should click on a button with no type attribute
+    should be aliased as click_on
+    should wait for asynchronous load
+    casts to string
+    with :exact option
+      when `true`
+        clicks on approximately matching link
+        clicks on approximately matching button
+      when `false`
+        does not click on link which matches approximately
+        does not click on approximately matching button
+    with a locator that doesn't exist
+      should raise an error
+    with :disabled option
+      ignores disabled buttons when false
+      ignores disabled buttons by default
+      happily clicks on links which incorrectly have the disabled attribute
+      does nothing when button is disabled
+  #click_link
+    should wait for asynchronous load
+    casts to string
+    should follow relative links
+    should follow protocol relative links
+    should follow redirects
+    should follow redirects
+    should add query string to current URL with naked query string
+    should do nothing on anchor links
+    should do nothing on URL+anchor links for the same page
+    should follow link on URL+anchor links for a different page
+    raise an error with links with no href
+    with id given
+      should take user to the linked page
+    with text given
+      should take user to the linked page
+      should accept partial matches
+    with title given
+      should take user to the linked page
+      should accept partial matches
+    with alternative text given to a contained image
+      should take user to the linked page
+      should accept partial matches
+    with a locator that doesn't exist
+      should raise an error
+    with :href option given
+      should find links with valid href
+      should raise error if link wasn't found
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+  #current_scope
+    when not in a #within block
+      should return the document
+    when in a #within block
+      should return the element in scope
+    when in a nested #within block
+      should return the element in scope
+  #current_url, #current_path, #current_host
+    is affected by visiting a page directly
+    returns to the app host when visiting a relative url
+    is affected by setting Capybara.app_host
+    is unaffected by following a relative link
+    is affected by following an absolute link
+    is unaffected by posting through a relative form
+    is affected by posting through an absolute form
+    is affected by following a redirect
+    is affected by pushState
+    is affected by replaceState
+  #evaluate_script
+    should evaluate the given script and return whatever it produces
+  #execute_script
+    should execute the given script and return nothing
+  #fill_in
+    should fill in a text field by id
+    should fill in a text field by name
+    should fill in a text field by label without for
+    should fill in a url field by label without for
+    should fill in a textarea by id
+    should fill in a textarea by label
+    should fill in a textarea by name
+    should fill in a password field by id
+    should handle HTML in a textarea
+    should handle newlines in a textarea
+    should fill in a field with a custom type
+    should fill in a field without a type
+    should fill in a text field respecting its maxlength attribute
+    should fill in a password field by name
+    should fill in a password field by label
+    should fill in a password field by name
+    should throw an exception if a hash containing 'with' is not provided
+    should wait for asynchronous load
+    casts to string
+    casts to string if field has maxlength
+    on a pre-populated textfield with a reformatting onchange
+      should only trigger onchange once
+      should trigger change when clearing field
+    with ignore_hidden_fields
+      should not find a hidden field
+    with a locator that doesn't exist
+      should raise an error
+    on a disabled field
+      should raise an error
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+  #find_button
+    should find any button
+    casts to string
+    should raise error if the button doesn't exist
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+  #find_by_id
+    should find any element by id
+    casts to string
+    should raise error if no element with id is found
+    with :visible option
+      finds invisible elements when `false`
+      finds invisible elements when `false`
+  #find_field
+    should find any field
+    casts to string
+    should raise error if the field doesn't exist
+    should be aliased as 'field_labeled' for webrat compatibility
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+    with :disabled option
+      should find disabled fields when true
+      should not find disabled fields when false
+      should not find disabled fields by default
+  #find_link
+    should find any field
+    casts to string
+    should raise error if the field doesn't exist
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+  #find
+    should find the first element using the given locator
+    should find the first element using the given locator and options
+    should raise an error if there are multiple matches
+    should wait for asynchronous load
+    should raise ElementNotFound with a useful default message if nothing was found
+    should accept an XPath instance
+    with :text option
+      casts text's argument to string
+    with :wait option
+      should not wait for asynchronous load when `false` given
+      should not find element if it appears after given wait duration
+      should find element if it appears before given wait duration
+    with frozen time
+      raises an error suggesting that Capybara is stuck in time
+    with css selectors
+      should find the first element using the given locator
+      should support pseudo selectors
+    with xpath selectors
+      should find the first element using the given locator
+    with custom selector
+      should use the custom selector
+    with custom selector with :for option
+      should use the selector when it matches the :for option
+    with custom selector with custom filter
+      should find elements that match the filter
+      ignores filter when it is not given
+      should not find elements that don't match the filter
+    with custom selector with custom filter and default
+      should find elements that match the filter
+      should use default value when filter is not given
+      should not find elements that don't match the filter
+    with css as default selector
+      should find the first element using the given locator
+    with :exact option
+      matches exactly when true
+      matches loosely when false
+      defaults to `Capybara.exact`
+    with :match option
+      defaults to `Capybara.match`
+      raises an error when unknown option given
+      when set to `one`
+        raises an error when multiple matches exist
+        raises an error even if there the match is exact and the others are inexact
+        returns the element if there is only one
+        raises an error if there is no match
+      when set to `first`
+        returns the first matched element
+        raises an error if there is no match
+      when set to `smart`
+        and `exact` set to `false`
+          raises an error when there are multiple exact matches
+          finds a single exact match when there also are inexact matches
+          raises an error when there are multiple inexact matches
+          finds a single inexact match
+          raises an error if there is no match
+        with `exact` set to `true`
+          raises an error when there are multiple exact matches
+          finds a single exact match when there also are inexact matches
+          raises an error when there are multiple inexact matches
+          raises an error when there is a single inexact matches
+          raises an error if there is no match
+      when set to `prefer_exact`
+        and `exact` set to `false`
+          picks the first one when there are multiple exact matches
+          finds a single exact match when there also are inexact matches
+          picks the first one when there are multiple inexact matches
+          finds a single inexact match
+          raises an error if there is no match
+        with `exact` set to `true`
+          picks the first one when there are multiple exact matches
+          finds a single exact match when there also are inexact matches
+          raises an error if there are multiple inexact matches
+          raises an error if there is a single inexact match
+          raises an error if there is no match
+    within a scope
+      should find the an element using the given locator
+      should support pseudo selectors
+  #first
+    should find the first element using the given locator
+    should return nil when nothing was found
+    should accept an XPath instance
+    with css selectors
+      should find the first element using the given selector
+    with xpath selectors
+      should find the first element using the given locator
+    with css as default selector
+      should find the first element using the given locator
+    with visible filter
+      should only find visible nodes when true
+      should find nodes regardless of whether they are invisible when false
+      should find nodes regardless of whether they are invisible when :all
+      should find only hidden nodes when :hidden
+      should find only visible nodes when :visible
+      should default to Capybara.ignore_hidden_elements
+    within a scope
+      should find the first element using the given locator
+  #go_back
+    should fetch a response from the driver from the previous page
+  #go_forward
+    should fetch a response from the driver from the previous page
+  #has_button?
+    should be true if the given button is on the page
+    should be true for disabled buttons if :disabled => true
+    should be false if the given button is not on the page
+    should be false for disabled buttons by default
+    should be false for disabled buttons if :disabled => false
+  #has_no_button?
+    should be true if the given button is on the page
+    should be true for disabled buttons if :disabled => true
+    should be false if the given button is not on the page
+    should be false for disabled buttons by default
+    should be false for disabled buttons if :disabled => false
+  #has_css?
+    should be true if the given selector is on the page
+    should be false if the given selector is not on the page
+    should respect scopes
+    should wait for content to appear
+    with between
+      should be true if the content occurs within the range given
+      should be false if the content occurs more or fewer times than range
+    with count
+      should be true if the content occurs the given number of times
+      should be false if the content occurs a different number of times than the given
+      should coerce count to an integer
+    with maximum
+      should be true when content occurs same or fewer times than given
+      should be false when content occurs more times than given
+      should coerce maximum to an integer
+    with minimum
+      should be true when content occurs same or more times than given
+      should be false when content occurs fewer times than given
+      should coerce minimum to an integer
+    with text
+      should discard all matches where the given string is not contained
+      should discard all matches where the given regexp is not matched
+  #has_no_css?
+    should be false if the given selector is on the page
+    should be true if the given selector is not on the page
+    should respect scopes
+    should wait for content to disappear
+    with between
+      should be false if the content occurs within the range given
+      should be true if the content occurs more or fewer times than range
+    with count
+      should be false if the content is on the page the given number of times
+      should be true if the content is on the page the given number of times
+      should coerce count to an integer
+    with maximum
+      should be false when content occurs same or fewer times than given
+      should be true when content occurs more times than given
+      should coerce maximum to an integer
+    with minimum
+      should be false when content occurs same or more times than given
+      should be true when content occurs fewer times than given
+      should coerce minimum to an integer
+    with text
+      should discard all matches where the given string is not contained
+      should discard all matches where the given regexp is not matched
+  #has_field
+    should be true if the field is on the page
+    should be false if the field is not on the page
+    with value
+      should be true if a field with the given value is on the page
+      should be false if the given field is not on the page
+      should be true after the field has been filled in with the given value
+      should be false after the field has been filled in with a different value
+    with type
+      should be true if a field with the given type is on the page
+      should be false if the given field is not on the page
+  #has_no_field
+    should be false if the field is on the page
+    should be true if the field is not on the page
+    with value
+      should be false if a field with the given value is on the page
+      should be true if the given field is not on the page
+      should be false after the field has been filled in with the given value
+      should be true after the field has been filled in with a different value
+    with type
+      should be false if a field with the given type is on the page
+      should be true if the given field is not on the page
+  #has_checked_field?
+    should be true if a checked field is on the page
+    should be true for disabled checkboxes if :disabled => true
+    should be false if an unchecked field is on the page
+    should be false if no field is on the page
+    should be false for disabled checkboxes by default
+    should be false for disabled checkboxes if :disabled => false
+    should be true after an unchecked checkbox is checked
+    should be false after a checked checkbox is unchecked
+    should be true after an unchecked radio button is chosen
+    should be false after another radio button in the group is chosen
+  #has_no_checked_field?
+    should be false if a checked field is on the page
+    should be false for disabled checkboxes if :disabled => true
+    should be true if an unchecked field is on the page
+    should be true if no field is on the page
+    should be true for disabled checkboxes by default
+    should be true for disabled checkboxes if :disabled => false
+  #has_unchecked_field?
+    should be false if a checked field is on the page
+    should be true if an unchecked field is on the page
+    should be true for disabled unchecked fields if :disabled => true
+    should be false if no field is on the page
+    should be false for disabled unchecked fields by default
+    should be false for disabled unchecked fields if :disabled => false
+    should be false after an unchecked checkbox is checked
+    should be true after a checked checkbox is unchecked
+    should be false after an unchecked radio button is chosen
+    should be true after another radio button in the group is chosen
+  #has_no_unchecked_field?
+    should be true if a checked field is on the page
+    should be false if an unchecked field is on the page
+    should be false for disabled unchecked fields if :disabled => true
+    should be true if no field is on the page
+    should be true for disabled unchecked fields by default
+    should be true for disabled unchecked fields if :disabled => false
+  #has_link?
+    should be true if the given link is on the page
+    should be false if the given link is not on the page
+  #has_no_link?
+    should be false if the given link is on the page
+    should be true if the given link is not on the page
+  #has_select?
+    should be true if the field is on the page
+    should be false if the field is not on the page
+    with selected value
+      should be true if a field with the given value is on the page
+      should be false if the given field is not on the page
+      should be true after the given value is selected
+      should be false after a different value is selected
+      should be true after the given values are selected
+      should be false after one of the values is unselected
+    with exact options
+      should be true if a field with the given options is on the page
+      should be false if the given field is not on the page
+    with partial options
+      should be true if a field with the given partial options is on the page
+      should be false if a field with the given partial options is not on the page
+  #has_no_select?
+    should be false if the field is on the page
+    should be true if the field is not on the page
+    with selected value
+      should be false if a field with the given value is on the page
+      should be true if the given field is not on the page
+      should be false after the given value is selected
+      should be true after a different value is selected
+      should be false after the given values are selected
+      should be true after one of the values is unselected
+    with exact options
+      should be false if a field with the given options is on the page
+      should be true if the given field is not on the page
+    with partial options
+      should be false if a field with the given partial options is on the page
+      should be true if a field with the given partial options is not on the page
+  #has_selector?
+    should be true if the given selector is on the page
+    should be false if the given selector is not on the page
+    should use default selector
+    should respect scopes
+    with count
+      should be true if the content is on the page the given number of times
+      should be false if the content is on the page the given number of times
+      should be false if the content isn't on the page at all
+    with text
+      should discard all matches where the given string is not contained
+      should respect visibility setting
+      should discard all matches where the given regexp is not matched
+  #has_no_selector?
+    should be false if the given selector is on the page
+    should be true if the given selector is not on the page
+    should use default selector
+    should respect scopes
+    with count
+      should be false if the content is on the page the given number of times
+      should be true if the content is on the page the wrong number of times
+      should be true if the content isn't on the page at all
+    with text
+      should discard all matches where the given string is contained
+      should discard all matches where the given regexp is matched
+  #has_table?
+    should be true if the table is on the page
+    should be false if the table is not on the page
+  #has_no_table?
+    should be false if the table is on the page
+    should be true if the table is not on the page
+  #has_text?
+    should be true if the given text is on the page at least once
+    should be true if scoped to an element which has the text
+    should be false if scoped to an element which does not have the text
+    should ignore tags
+    should ignore extra whitespace and newlines
+    should ignore whitespace and newlines in the search string
+    should be false if the given text is not on the page
+    should handle single quotes in the text
+    should handle double quotes in the text
+    should handle mixed single and double quotes in the text
+    should be false if text is in the title tag in the head
+    should be false if text is inside a script tag in the body
+    should be false if the given text is on the page but not visible
+    should be true if :all given and text is invisible.
+    should be true if `Capybara.ignore_hidden_elements = true` and text is invisible.
+    should be true if the text in the page matches given regexp
+    should be false if the text in the page doesn't match given regexp
+    should escape any characters that would have special meaning in a regexp
+    should accept non-string parameters
+    should be true when passed nil
+    should wait for text to appear
+    with between
+      should be true if the text occurs within the range given
+      should be false if the text occurs more or fewer times than range
+    with count
+      should be true if the text occurs the given number of times
+      should be false if the text occurs a different number of times than the given
+      should coerce count to an integer
+    with maximum
+      should be true when text occurs same or fewer times than given
+      should be false when text occurs more times than given
+      should coerce maximum to an integer
+    with minimum
+      should be true when text occurs same or more times than given
+      should be false when text occurs fewer times than given
+      should coerce minimum to an integer
+    with wait
+      should find element if it appears before given wait duration
+  #has_no_text?
+    should be false if the given text is on the page at least once
+    should be false if scoped to an element which has the text
+    should be true if scoped to an element which does not have the text
+    should ignore tags
+    should be true if the given text is not on the page
+    should handle single quotes in the text
+    should handle double quotes in the text
+    should handle mixed single and double quotes in the text
+    should be true if text is in the title tag in the head
+    should be true if text is inside a script tag in the body
+    should be true if the given text is on the page but not visible
+    should be false if :all given and text is invisible.
+    should be false if `Capybara.ignore_hidden_elements = true` and text is invisible.
+    should be true if the text in the page doesn't match given regexp
+    should be false if the text in the page  matches given regexp
+    should escape any characters that would have special meaning in a regexp
+    should wait for text to disappear
+    with wait
+      should not find element if it appears after given wait duration
+  #has_title?
+    should be true if the page has the given title
+    should allow regexp matches
+    should wait for title
+    should be false if the page has not the given title
+  #has_no_title?
+    should be false if the page has the given title
+    should allow regexp matches
+    should wait for title to disappear
+    should be true if the page has not the given title
+  #has_xpath?
+    should be true if the given selector is on the page
+    should be false if the given selector is not on the page
+    should use xpath even if default selector is CSS
+    should respect scopes
+    should wait for content to appear
+    with count
+      should be true if the content occurs the given number of times
+      should be false if the content occurs a different number of times than the given
+    with text
+      should discard all matches where the given string is not contained
+      should discard all matches where the given regexp is not matched
+  #has_no_xpath?
+    should be false if the given selector is on the page
+    should be true if the given selector is not on the page
+    should use xpath even if default selector is CSS
+    should respect scopes
+    should wait for content to disappear
+    with count
+      should be false if the content occurs the given number of times
+      should be true if the content occurs a different number of times than the given
+    with text
+      should discard all matches where the given string is contained
+      should discard all matches where the given regexp is matched
+  #response_headers
+    should return response headers
+  #html
+    should return the unmodified page body
+    should return the current state of the page
+  #source
+    should return the unmodified page source
+    should return the current state of the page
+  #body
+    should return the unmodified page source
+    should return the current state of the page
+  node
+    should act like a session object
+    should scope CSS selectors
+    #parent
+      should have a reference to its parent if there is one
+    #text
+      should extract node texts
+      should return document text on /html selector
+    #[]
+      should extract node attributes
+      should extract boolean node attributes
+    #value
+      should allow retrieval of the value
+      should not swallow extra newlines in textarea
+      should not swallow leading newlines for set content in textarea
+      return any HTML content in textarea
+      defaults to 'on' for checkbox
+      defaults to 'on' for radio buttons
+    #set
+      should allow assignment of field value
+      should fill the field even if the caret was not at the end
+      should not set if the text field is readonly
+      should not set if the textarea is readonly
+      should allow me to change the contents of a contenteditable element
+      should allow me to set the contents of a contenteditable element
+      should allow me to change the contents of a contenteditable elements child (PENDING: Selenium doesn't like editing nested contents)
+    #tag_name
+      should extract node tag name
+    #disabled?
+      should extract disabled node
+      should see disabled options as disabled
+      should see enabled options in disabled select as disabled
+    #visible?
+      should extract node visibility
+    #checked?
+      should extract node checked state
+    #selected?
+      should extract node selected state
+    #==
+      preserve object identity
+      returns false for unrelated object
+    #trigger
+      should allow triggering of custom JS events
+    #drag_to
+      should drag and drop an object
+    #reload
+      without automatic reload
+        should reload the current context of the node
+        should reload a parent node
+        should not automatically reload
+      with automatic reload
+        should reload the current context of the node automatically
+        should reload a parent node automatically
+        should reload a node automatically when using find
+        should not reload nodes which haven't been found
+        should reload nodes with options
+  #reset_session!
+    removes cookies
+    resets current url, host, path
+    resets page body
+    is synchronous
+    raises any errors caught inside the server
+    ignores server errors when `Capybara.raise_server_errors = false`
+  #status_code
+    should return response codes
+  #save_page
+    saves the page in the root directory
+    generates a sensible filename
+    can store files in a specified directory
+    uses the given filename
+    returns an absolute path in pwd
+    returns an absolute path in given directory
+    asset_host contains a string
+      prepends base tag with value from asset_host to the head
+      doesn't prepend base tag to pages when asset_host is nil
+      doesn't prepend base tag to pages which already have it
+  #select
+    should return value of the first option
+    should return value of the selected option
+    should allow selecting options where there are inexact matches
+    should allow selecting options where they are the only inexact match
+    should not allow selecting options where they are the only inexact match if `Capybara.exact_options = true`
+    should not allow selecting an option if the match is ambiguous
+    should return the value attribute rather than content if present
+    should select an option from a select box by id
+    should select an option from a select box by label
+    should select an option without giving a select box
+    should escape quotes
+    should obey from
+    show match labels with preceding or trailing whitespace
+    casts to string
+    with a locator that doesn't exist
+      should raise an error
+    with an option that doesn't exist
+      should raise an error
+    on a disabled select
+      should raise an error
+    with multiple select
+      should return an empty value
+      should return value of the selected options
+      should select one option
+      should select multiple options
+      should remain selected if already selected
+      should return value attribute rather than content if present
+    with :exact option
+      when `false`
+        can match select box approximately
+        can match option approximately
+        can match option approximately when :from not given
+      when `true`
+        can match select box approximately
+        can match option approximately
+        can match option approximately when :from not given
+  #text
+    should print the text of the page
+    ignores invisible text by default
+    shows invisible text if `:all` given
+    ignores invisible text if `:visible` given
+    ignores invisible text if `Capybara.ignore_hidden_elements = true`
+    ignores invisible text if `Capybara.visible_text_only = true`
+    should strip whitespace
+    with css as default selector
+      should print the text of the page
+  #title
+    should print the title of the page
+    with css as default selector
+      should print the title of the page
+  #uncheck
+    should uncheck a checkbox by id
+    should uncheck a checkbox by label
+    casts to string
+    with :exact option
+      should accept partial matches when false
+      should not accept partial matches when true
+  #unselect
+    with multiple select
+      should unselect an option from a select box by id
+      should unselect an option without a select box
+      should unselect an option from a select box by label
+      should favour exact matches to option labels
+      should escape quotes
+      casts to string
+    with single select
+      should raise an error
+    with a locator that doesn't exist
+      should raise an error
+    with an option that doesn't exist
+      should raise an error
+    with :exact option
+      when `false`
+        can match select box approximately (FAILED - 11)
+        can match option approximately (FAILED - 12)
+        can match option approximately when :from not given (FAILED - 13)
+      when `true`
+        can match select box approximately
+        can match option approximately
+        can match option approximately when :from not given
+  #visit
+    should fetch a response from the driver with a relative url
+    should fetch a response from the driver with an absolute url with a port
+    should fetch a response when absolute URI doesn't have a trailing slash
+    should send no referer when visiting a page
+    should send no referer when visiting a second page
+    should send a referer when following a link
+    should preserve the original referer URL when following a redirect
+    should send a referer when submitting a form
+    can set cookie if a blank path is specified
+    when Capybara.always_include_port is true
+      should fetch a response from the driver with an absolute url without a port
+    without a server
+      should respect `app_host`
+      should visit a fully qualified URL
+  #within
+    should raise an error if the scope is not found on the page
+    should restore the scope when an error is raised
+    should fill in a field and click a button
+    with CSS selector
+      should click links in the given scope
+      should assert content in the given scope
+      should accept additional options
+    with XPath selector
+      should click links in the given scope
+    with the default selector
+      should use XPath
+    with Node rather than selector
+      should click links in the given scope
+    with the default selector set to CSS
+      should use CSS
+    with nested scopes
+      should respect the inner scope
+      should respect the outer scope
+  #within_fieldset
+    should restrict scope to a fieldset given by id
+    should restrict scope to a fieldset given by legend
+  #within_table
+    should restrict scope to a fieldset given by id
+    should restrict scope to a fieldset given by legend
+
+Pending:
+  Capybara::Session terminus node #set should allow me to change the contents of a contenteditable elements child
+    # Selenium doesn't like editing nested contents
+    # ./vendor/capybara/2.2/lib/capybara/spec/session/node_spec.rb:119
+
+Failures:
+
+  1) Capybara::Session terminus #attach_file with normal form should set a file path by id
+     Failure/Error: @session.attach_file "form_image", __FILE__
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:11:in `block (3 levels) in <top (required)>'
+
+  2) Capybara::Session terminus #attach_file with normal form should set a file path by label
+     Failure/Error: @session.attach_file "Image", __FILE__
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:17:in `block (3 levels) in <top (required)>'
+
+  3) Capybara::Session terminus #attach_file with normal form casts to string
+     Failure/Error: @session.attach_file :"form_image", __FILE__
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:23:in `block (3 levels) in <top (required)>'
+
+  4) Capybara::Session terminus #attach_file with multipart form should set a file path by id
+     Failure/Error: @session.attach_file "form_document", @test_file_path
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:31:in `block (3 levels) in <top (required)>'
+
+  5) Capybara::Session terminus #attach_file with multipart form should set a file path by label
+     Failure/Error: @session.attach_file "Single Document", @test_file_path
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:37:in `block (3 levels) in <top (required)>'
+
+  6) Capybara::Session terminus #attach_file with multipart form should send content type text/plain when uploading a text file
+     Failure/Error: @session.attach_file "Single Document", @test_file_path
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:48:in `block (3 levels) in <top (required)>'
+
+  7) Capybara::Session terminus #attach_file with multipart form should send content type image/jpeg when uploading an image
+     Failure/Error: @session.attach_file "Single Document", @test_jpg_file_path
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:54:in `block (3 levels) in <top (required)>'
+
+  8) Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
+     Failure/Error: @session.attach_file "Multiple Documents", @test_file_path
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:60:in `block (3 levels) in <top (required)>'
+
+  9) Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
+     Failure/Error: @session.attach_file "Multiple Documents", [@test_file_path, @another_test_file_path]
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:68:in `block (3 levels) in <top (required)>'
+
+  10) Capybara::Session terminus #attach_file with :exact option should set a file path by partial label when false
+     Failure/Error: @session.attach_file "Imag", __FILE__, :exact => false
+     Capybara::NotSupportedByDriverError:
+       Capybara::NotSupportedByDriverError
+     # ./lib/terminus/node.rb:71:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `block in set'
+     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
+     # ./vendor/capybara/2.2/lib/capybara/node/element.rb:94:in `set'
+     # ./vendor/capybara/2.2/lib/capybara/node/actions.rb:149:in `attach_file'
+     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:98:in `block (3 levels) in <top (required)>'
+
+  11) Capybara::Session terminus #unselect with :exact option when `false` can match select box approximately
+     Failure/Error: extract_results(@session)["underwear"].should_not include("Boxerbriefs")
+       expected ["Boxerbriefs", "Briefs", "Commando", "Frenchman's Pantalons", "thermal"] not to include "Boxerbriefs"
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/unselect_spec.rb:78:in `block (4 levels) in <top (required)>'
+
+  12) Capybara::Session terminus #unselect with :exact option when `false` can match option approximately
+     Failure/Error: extract_results(@session)["underwear"].should_not include("Boxerbriefs")
+       expected ["Boxerbriefs", "Briefs", "Commando", "Frenchman's Pantalons", "thermal"] not to include "Boxerbriefs"
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/unselect_spec.rb:84:in `block (4 levels) in <top (required)>'
+
+  13) Capybara::Session terminus #unselect with :exact option when `false` can match option approximately when :from not given
+     Failure/Error: extract_results(@session)["underwear"].should_not include("Boxerbriefs")
+       expected ["Boxerbriefs", "Briefs", "Commando", "Frenchman's Pantalons", "thermal"] not to include "Boxerbriefs"
+     # ./vendor/capybara/2.2/lib/capybara/spec/session/unselect_spec.rb:90:in `block (4 levels) in <top (required)>'
+
+Finished in 20 minutes 33 seconds
+686 examples, 13 failures, 1 pending
+
+Failed examples:
+
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:10 # Capybara::Session terminus #attach_file with normal form should set a file path by id
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:16 # Capybara::Session terminus #attach_file with normal form should set a file path by label
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:22 # Capybara::Session terminus #attach_file with normal form casts to string
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:30 # Capybara::Session terminus #attach_file with multipart form should set a file path by id
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:36 # Capybara::Session terminus #attach_file with multipart form should set a file path by label
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:47 # Capybara::Session terminus #attach_file with multipart form should send content type text/plain when uploading a text file
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:53 # Capybara::Session terminus #attach_file with multipart form should send content type image/jpeg when uploading an image
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:97 # Capybara::Session terminus #attach_file with :exact option should set a file path by partial label when false
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/unselect_spec.rb:75 # Capybara::Session terminus #unselect with :exact option when `false` can match select box approximately
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/unselect_spec.rb:81 # Capybara::Session terminus #unselect with :exact option when `false` can match option approximately
+rspec ./vendor/capybara/2.2/lib/capybara/spec/session/unselect_spec.rb:87 # Capybara::Session terminus #unselect with :exact option when `false` can match option approximately when :from not given
