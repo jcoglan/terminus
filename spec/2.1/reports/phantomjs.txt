@@ -1,4 +1,4 @@
-Run options: exclude {:requires=>#<Proc:0x0000010096a7e8>}
+Run options: exclude {:requires=>#<Proc:0x0000010108ef10>}
 
 Capybara::Session terminus
   #all
@@ -1000,7 +1000,7 @@ Failures:
      # ./vendor/capybara/2.1/lib/capybara/session.rb:354:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.1/lib/capybara/spec/session/attach_file_spec.rb:93:in `block (3 levels) in <top (required)>'
 
-Finished in 8 minutes 29 seconds
+Finished in 8 minutes 17 seconds
 642 examples, 10 failures
 
 Failed examples:

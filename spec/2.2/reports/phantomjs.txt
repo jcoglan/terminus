@@ -1,4 +1,4 @@
-Run options: exclude {:requires=>#<Proc:0x00000101203850>}
+Run options: exclude {:requires=>#<Proc:0x00000100b1b358>}
 
 Capybara::Session terminus
   #all
@@ -352,7 +352,7 @@ Capybara::Session terminus
     with :text option
       casts text's argument to string
     with :wait option
-      should not wait for asynchronous load when `false` given (FAILED - 11)
+      should not wait for asynchronous load when `false` given
       should not find element if it appears after given wait duration
       should find element if it appears before given wait duration
     with frozen time
@@ -900,7 +900,7 @@ Capybara::Session terminus
     should send a referer when following a link
     should preserve the original referer URL when following a redirect
     should send a referer when submitting a form
-    can set cookie if a blank path is specified (FAILED - 12)
+    can set cookie if a blank path is specified (FAILED - 11)
     when Capybara.always_include_port is true
       should fetch a response from the driver with an absolute url without a port
     without a server
@@ -1059,23 +1059,13 @@ Failures:
      # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
      # ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:98:in `block (3 levels) in <top (required)>'
 
-  11) Capybara::Session terminus #find with :wait option should not wait for asynchronous load when `false` given
-     Failure/Error: Unable to find matching line from backtrace
-     Capybara::ExpectationNotMet:
-       expected not to find xpath "/html/body/*", found 1 match: "Relative"
-     # ./vendor/capybara/2.2/lib/capybara/node/matchers.rb:108:in `block in assert_no_selector'
-     # ./vendor/capybara/2.2/lib/capybara/node/base.rb:81:in `synchronize'
-     # ./vendor/capybara/2.2/lib/capybara/node/matchers.rb:106:in `assert_no_selector'
-     # ./vendor/capybara/2.2/lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
-     # ./vendor/capybara/2.2/lib/capybara/session.rb:81:in `reset!'
-
-  12) Capybara::Session terminus #visit can set cookie if a blank path is specified
+  11) Capybara::Session terminus #visit can set cookie if a blank path is specified
      Failure/Error: @session.should have_content('root cookie')
        expected #has_content?("root cookie") to return true, got false
      # ./vendor/capybara/2.2/lib/capybara/spec/session/visit_spec.rb:102:in `block (2 levels) in <top (required)>'
 
-Finished in 9 minutes 2 seconds
-687 examples, 12 failures, 1 pending
+Finished in 8 minutes 44 seconds
+687 examples, 11 failures, 1 pending
 
 Failed examples:
 
@@ -1089,5 +1079,4 @@ rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:53 # C
 rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:59 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input
 rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:66 # Capybara::Session terminus #attach_file with multipart form should not break when using HTML5 multiple file input uploading multiple files
 rspec ./vendor/capybara/2.2/lib/capybara/spec/session/attach_file_spec.rb:97 # Capybara::Session terminus #attach_file with :exact option should set a file path by partial label when false
-rspec ./vendor/capybara/2.2/lib/capybara/spec/session/find_spec.rb:37 # Capybara::Session terminus #find with :wait option should not wait for asynchronous load when `false` given
 rspec ./vendor/capybara/2.2/lib/capybara/spec/session/visit_spec.rb:99 # Capybara::Session terminus #visit can set cookie if a blank path is specified
