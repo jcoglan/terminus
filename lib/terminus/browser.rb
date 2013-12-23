@@ -148,7 +148,7 @@ module Terminus
 
       @attributes   = @attributes.merge(message)
       @find_enabled = true
-      @user_agent   = UserAgent.parse(message['ua'])
+      @user_agent   = UserAgent.parse(message['ua'].gsub(/.*?\bOPR\b/, 'Opera'))
 
       detect_dock_host
 
